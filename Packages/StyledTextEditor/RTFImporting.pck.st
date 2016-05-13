@@ -1,7 +1,8 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1759] on 17 July 2013 at 12:56:06.44085 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #1865] on 12 November 2013 at 8:54:49.789064 am'!
 'Description Please enter a description for this package.'!
-!provides: 'RTFImporting' 1 0!
-!requires: 'Graphics-Files-Additional' 1 nil!
+!provides: 'RTFImporting' 1 2!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
+!requires: 'ExtendedClipboard' 1 nil nil!
 !classDefinition: #RTFException category: #RTFimporting!
 Error subclass: #RTFException
 	instanceVariableNames: ''
@@ -281,6 +282,16 @@ newline is a Mac-hack. No newlines are expected in a RTF, but Mac makes escaped 
 Not a real Unicode implementation. Just compatibility for Sophie-RTF. Answers instances of Character (i.e. ISO-8859-15).
 Based on http://www.unicode.org/Public/MAPPINGS/ISO8859/8859-15.TXT!
 
+!ExtendedClipboardInterface methodsFor: '*rtfImporting' stamp: 'jmv 11/12/2013 08:52'!
+fromRTFBytes: bytes
+	| parser builder |
+	builder _ RTFTextBuilder currentClass new.
+	parser _ RTFParser new.
+	parser
+		parseWithTokenizer: (RTFTokenizer newFromString: bytes asString)
+		buildWith: builder.
+	^builder text! !
+
 !RTFChunkScanner methodsFor: 'private' stamp: 'mir 8/14/2006 16:25'!
 addScannedString
 	| scannedString |
@@ -332,7 +343,7 @@ lfAt: index
 	lastIndex := lastIndex  + 1.
 	prevIndex := lastIndex! !
 
-!RTFChunkScanner methodsFor: 'initialize' stamp: 'mir 8/12/2006 16:05'!
+!RTFChunkScanner methodsFor: 'initialization' stamp: 'mir 8/12/2006 16:05'!
 scan: chunkString into: aBuffer startingAt: index
 	chunk := chunkString.
 	buffer := aBuffer.
@@ -1921,7 +1932,7 @@ finishParagraph
 		nextPutAllString: String newLineString
 		withAttributes: attrs! !
 
-!RTFTextBuilder methodsFor: 'initialize' stamp: 'jmv 4/11/2011 21:39'!
+!RTFTextBuilder methodsFor: 'initialization' stamp: 'jmv 4/11/2011 21:39'!
 initialize
 	
 "	state := RTFSophieContentTreeBuilderState new."

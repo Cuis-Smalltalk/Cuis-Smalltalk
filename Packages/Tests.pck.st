@@ -1,7 +1,11 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1752] on 14 July 2013 at 5:17:41.121295 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2746] on 29 April 2016 at 3:59:00.251522 pm'!
 'Description Please enter a description for this package '!
-!provides: 'Tests' 1 0!
-!requires: 'Compression' 1 nil!
+!provides: 'Tests' 1 49!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
+!requires: 'Collections-CompactArrays' 1 nil nil!
+!requires: 'Compression' 1 nil nil!
+!requires: 'Morphic-Widgets-Extras' 1 nil nil!
+!requires: 'Taskbar' 1 nil nil!
 !classDefinition: #MyResumableTestError category: #'Tests-Exceptions'!
 Error subclass: #MyResumableTestError
 	instanceVariableNames: ''
@@ -40,6 +44,16 @@ Object subclass: #ExceptionTester
 	category: 'Tests-Exceptions'!
 !classDefinition: 'ExceptionTester class' category: #'Tests-Exceptions'!
 ExceptionTester class
+	instanceVariableNames: ''!
+
+!classDefinition: #AffineTransformationTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #AffineTransformationTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'AffineTransformationTest class' category: #'Tests-Morphic-Kernel'!
+AffineTransformationTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #ArrayLiteralTest category: #'Tests-Compiler'!
@@ -82,16 +96,6 @@ TestCase subclass: #ClosureCompilerTest
 ClosureCompilerTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #MethodHighlightingTests category: #'Tests-Compiler'!
-ClosureCompilerTest subclass: #MethodHighlightingTests
-	instanceVariableNames: 'creator timeStamp duration tracks'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'MethodHighlightingTests class' category: #'Tests-Compiler'!
-MethodHighlightingTests class
-	instanceVariableNames: ''!
-
 !classDefinition: #ClosureTests category: #'Tests-Compiler'!
 TestCase subclass: #ClosureTests
 	instanceVariableNames: 'collection ivar'
@@ -100,6 +104,16 @@ TestCase subclass: #ClosureTests
 	category: 'Tests-Compiler'!
 !classDefinition: 'ClosureTests class' category: #'Tests-Compiler'!
 ClosureTests class
+	instanceVariableNames: ''!
+
+!classDefinition: #CollectTest category: #'Tests-Kernel-Collections'!
+TestCase subclass: #CollectTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Collections'!
+!classDefinition: 'CollectTest class' category: #'Tests-Kernel-Collections'!
+CollectTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #CompilerExceptionsTest category: #'Tests-Compiler'!
@@ -142,6 +156,16 @@ TestCase subclass: #CuisSourceFileArrayTest
 CuisSourceFileArrayTest class
 	instanceVariableNames: ''!
 
+!classDefinition: #DateAndTimeTest category: #'Tests-Kernel-Chronology'!
+TestCase subclass: #DateAndTimeTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Chronology'!
+!classDefinition: 'DateAndTimeTest class' category: #'Tests-Kernel-Chronology'!
+DateAndTimeTest class
+	instanceVariableNames: ''!
+
 !classDefinition: #DecompilerTests category: #'Tests-Compiler'!
 TestCase subclass: #DecompilerTests
 	instanceVariableNames: ''
@@ -162,13 +186,13 @@ DecompilerTests subclass: #DecompilerTestFailuresCollector
 DecompilerTestFailuresCollector class
 	instanceVariableNames: ''!
 
-!classDefinition: #DelayTest category: #'Tests-Kernel--Processes'!
+!classDefinition: #DelayTest category: #'Tests-Kernel-Processes'!
 TestCase subclass: #DelayTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel--Processes'!
-!classDefinition: 'DelayTest class' category: #'Tests-Kernel--Processes'!
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'DelayTest class' category: #'Tests-Kernel-Processes'!
 DelayTest class
 	instanceVariableNames: ''!
 
@@ -200,6 +224,26 @@ TestCase subclass: #FloatTest
 	category: 'Tests-Kernel-Numbers'!
 !classDefinition: 'FloatTest class' category: #'Tests-Kernel-Numbers'!
 FloatTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #FmFileIOAccessorTest category: #'Tests-FileMan'!
+TestCase subclass: #FmFileIOAccessorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-FileMan'!
+!classDefinition: 'FmFileIOAccessorTest class' category: #'Tests-FileMan'!
+FmFileIOAccessorTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #FmFileManTest category: #'Tests-FileMan'!
+TestCase subclass: #FmFileManTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-FileMan'!
+!classDefinition: 'FmFileManTest class' category: #'Tests-FileMan'!
+FmFileManTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #FractionTest category: #'Tests-Kernel-Numbers'!
@@ -242,6 +286,16 @@ TestCase subclass: #IntegerTest
 IntegerTest class
 	instanceVariableNames: ''!
 
+!classDefinition: #IntervalTest category: #'Tests-Collections'!
+TestCase subclass: #IntervalTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Collections'!
+!classDefinition: 'IntervalTest class' category: #'Tests-Collections'!
+IntervalTest class
+	instanceVariableNames: ''!
+
 !classDefinition: #LargeNegativeIntegerTest category: #'Tests-Kernel-Numbers'!
 TestCase subclass: #LargeNegativeIntegerTest
 	instanceVariableNames: ''
@@ -262,13 +316,13 @@ TestCase subclass: #LargePositiveIntegerTest
 LargePositiveIntegerTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #LayoutMorphTest category: #'Tests-Morphic'!
+!classDefinition: #LayoutMorphTest category: #'Tests-Morphic-Kernel'!
 TestCase subclass: #LayoutMorphTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Morphic'!
-!classDefinition: 'LayoutMorphTest class' category: #'Tests-Morphic'!
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'LayoutMorphTest class' category: #'Tests-Morphic-Kernel'!
 LayoutMorphTest class
 	instanceVariableNames: ''!
 
@@ -282,14 +336,34 @@ TestCase subclass: #MirrorPrimitiveTests
 MirrorPrimitiveTests class
 	instanceVariableNames: ''!
 
-!classDefinition: #MonitorTest category: #'Tests-Kernel--Processes'!
+!classDefinition: #MonitorTest category: #'Tests-Kernel-Processes'!
 TestCase subclass: #MonitorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel--Processes'!
-!classDefinition: 'MonitorTest class' category: #'Tests-Kernel--Processes'!
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'MonitorTest class' category: #'Tests-Kernel-Processes'!
 MonitorTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #MorphicLocationTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #MorphicLocationTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'MorphicLocationTest class' category: #'Tests-Morphic-Kernel'!
+MorphicLocationTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #MorphicTranslationTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #MorphicTranslationTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'MorphicTranslationTest class' category: #'Tests-Morphic-Kernel'!
+MorphicTranslationTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #NumberTest category: #'Tests-Kernel-Numbers'!
@@ -302,6 +376,26 @@ TestCase subclass: #NumberTest
 NumberTest class
 	instanceVariableNames: ''!
 
+!classDefinition: #OrderedCollectionTest category: #'Tests-Kernel-Collections'!
+TestCase subclass: #OrderedCollectionTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Collections'!
+!classDefinition: 'OrderedCollectionTest class' category: #'Tests-Kernel-Collections'!
+OrderedCollectionTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #PrettyPrintingTest category: #'Tests-Compiler'!
+TestCase subclass: #PrettyPrintingTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'PrettyPrintingTest class' category: #'Tests-Compiler'!
+PrettyPrintingTest class
+	instanceVariableNames: ''!
+
 !classDefinition: #ProcessTerminateBug category: #'Tests-Exceptions'!
 TestCase subclass: #ProcessTerminateBug
 	instanceVariableNames: ''
@@ -312,13 +406,13 @@ TestCase subclass: #ProcessTerminateBug
 ProcessTerminateBug class
 	instanceVariableNames: ''!
 
-!classDefinition: #ProcessTest category: #'Tests-Kernel--Processes'!
+!classDefinition: #ProcessTest category: #'Tests-Kernel-Processes'!
 TestCase subclass: #ProcessTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel--Processes'!
-!classDefinition: 'ProcessTest class' category: #'Tests-Kernel--Processes'!
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'ProcessTest class' category: #'Tests-Kernel-Processes'!
 ProcessTest class
 	instanceVariableNames: ''!
 
@@ -342,6 +436,36 @@ TestCase subclass: #RandomTest
 RandomTest class
 	instanceVariableNames: ''!
 
+!classDefinition: #LaggedFibonacciRandomTest category: #'Tests-Kernel-Numbers'!
+RandomTest subclass: #LaggedFibonacciRandomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'LaggedFibonacciRandomTest class' category: #'Tests-Kernel-Numbers'!
+LaggedFibonacciRandomTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ParkMiller88RandomTest category: #'Tests-Kernel-Numbers'!
+RandomTest subclass: #ParkMiller88RandomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'ParkMiller88RandomTest class' category: #'Tests-Kernel-Numbers'!
+ParkMiller88RandomTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ParkMiller93RandomTest category: #'Tests-Kernel-Numbers'!
+RandomTest subclass: #ParkMiller93RandomTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'ParkMiller93RandomTest class' category: #'Tests-Kernel-Numbers'!
+ParkMiller93RandomTest class
+	instanceVariableNames: ''!
+
 !classDefinition: #ReferenceStreamTest category: #'Tests-System-Object Storage'!
 TestCase subclass: #ReferenceStreamTest
 	instanceVariableNames: ''
@@ -362,13 +486,13 @@ TestCase subclass: #ScannerTest
 ScannerTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SemaphoreTest category: #'Tests-Kernel--Processes'!
+!classDefinition: #SemaphoreTest category: #'Tests-Kernel-Processes'!
 TestCase subclass: #SemaphoreTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel--Processes'!
-!classDefinition: 'SemaphoreTest class' category: #'Tests-Kernel--Processes'!
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'SemaphoreTest class' category: #'Tests-Kernel-Processes'!
 SemaphoreTest class
 	instanceVariableNames: ''!
 
@@ -422,16 +546,6 @@ TestCase subclass: #SmartRefStreamTest
 SmartRefStreamTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #StandardSourceFileArrayTest category: #'Tests-Files'!
-TestCase subclass: #StandardSourceFileArrayTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Files'!
-!classDefinition: 'StandardSourceFileArrayTest class' category: #'Tests-Files'!
-StandardSourceFileArrayTest class
-	instanceVariableNames: ''!
-
 !classDefinition: #StrikeFontTest category: #'Tests-Kernel'!
 TestCase subclass: #StrikeFontTest
 	instanceVariableNames: ''
@@ -474,7 +588,7 @@ SystemDictionaryTest class
 
 !classDefinition: #TaskbarTaskTest category: #'Tests-Taskbar'!
 TestCase subclass: #TaskbarTaskTest
-	instanceVariableNames: 'task morph'
+	instanceVariableNames: 'task morph needsDelete taskbar'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Tests-Taskbar'!
@@ -522,13 +636,13 @@ TestCase subclass: #ThemesTest
 ThemesTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #TimeTest category: #'Tests-Kernel'!
+!classDefinition: #TimeTest category: #'Tests-Kernel-Chronology'!
 TestCase subclass: #TimeTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel'!
-!classDefinition: 'TimeTest class' category: #'Tests-Kernel'!
+	category: 'Tests-Kernel-Chronology'!
+!classDefinition: 'TimeTest class' category: #'Tests-Kernel-Chronology'!
 TimeTest class
 	instanceVariableNames: ''!
 
@@ -562,13 +676,13 @@ TestCase subclass: #WeakIdentitySetTest
 WeakIdentitySetTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #WorldTest category: #'Tests-Morphic'!
+!classDefinition: #WorldTest category: #'Tests-Morphic-Kernel'!
 TestCase subclass: #WorldTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Morphic'!
-!classDefinition: 'WorldTest class' category: #'Tests-Morphic'!
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'WorldTest class' category: #'Tests-Morphic-Kernel'!
 WorldTest class
 	instanceVariableNames: ''!
 
@@ -583,13 +697,16 @@ ZipCrcTests class
 	instanceVariableNames: ''!
 
 
+!AffineTransformationTest commentStamp: '<historical>' prior: 0!
+Tests for MatrixTransform2x3!
+
 !CompilerTest commentStamp: 'nice 12/3/2007 22:15' prior: 0!
 CompilerTest is a holder for SUnit test of Compiler!
 
-!CuisSourceFileArrayTest commentStamp: '<historical>' prior: 0!
-This test documents the source pointer address conversion methods for StandardSourceFileArray.
+!CuisSourceFileArrayTest commentStamp: 'pb 1/24/2016 20:00' prior: 0!
+This test documents the source pointer address conversion methods for CuisSourceFileArray.
 
-The available address space for source pointers in CompiledMethod is 16r1000000 through 16r4FFFFFF. StandardSourceFileArray maps positions in the sources file to address range 16r1000000 through 16r1FFFFFF and 16r3000000 through 16r3FFFFFF, and positions in the changes file to address range 16r2000000 through 16r2FFFFFF and 16r4000000 through 16r4FFFFFF. This permits a maximum file size of 16r2000000 (32MB) for both the sources file and the changes file. 
+See class comment there. 
 !
 
 !DecompilerTests commentStamp: 'sd 9/26/2004 13:24' prior: 0!
@@ -600,7 +717,7 @@ Here are a bunch of methods that can help improving the decompiler:
 	- decompilerDiscrepancies are the results of running decompileTestHelper..as you see the pattern 	
 	is quite present.!
 
-!DecompilerTestFailuresCollector commentStamp: '<historical>' prior: 0!
+!DecompilerTestFailuresCollector commentStamp: 'jmv 10/16/2013 19:44' prior: 0!
 (| dtfc |
 dtfc := DecompilerTestFailuresCollector new.
 (dtfc class superclass organization listAtCategoryNamed: #tests) do:
@@ -688,7 +805,7 @@ MultiByteFileStream. #next:.
 MViewPane. #reconstructEnabledDocuments.
 MViewPane. #reconstructOpenDocuments.
 MViewPane. #reconstructSelectionList.
-NewParagraph. #selectionRectsFrom:to:.
+TextComposition. #selectionRectsFrom:to:.
 Object. #instanceFields.
 OldSocket. #getResponseNoLF.
 PasteUpMorph. #dropFiles:.
@@ -762,6 +879,15 @@ WeakSet. #scanForLoadedSymbol:.
 !FloatTest commentStamp: 'fbs 3/8/2004 22:13' prior: 0!
 I provide a test suite for Float values. Examine my tests to see how Floats should behave, and see how to use them.!
 
+!FmFileManTest commentStamp: 'mu 5/16/2007 21:01' prior: 0!
+FmFileManTest suite run!
+
+!MorphicLocationTest commentStamp: 'jmv 1/14/2015 14:32' prior: 0!
+Tests for composition of AffineTransformation and MorphicTranslation!
+
+!MorphicTranslationTest commentStamp: '<historical>' prior: 0!
+Tests for MorphicTranslation!
+
 !ProcessTest commentStamp: 'ul 8/16/2011 11:35' prior: 0!
 I hold test cases for generic Process-related behaviour.!
 
@@ -773,12 +899,6 @@ Instance Variables none; does not have common test fixture accross all tests (be
 
 !SmallIntegerTest commentStamp: 'fbs 3/8/2004 22:13' prior: 0!
 I provide a test suite for SmallInteger values. Examine my tests to see how SmallIntegers should behave, and see how to use them.!
-
-!StandardSourceFileArrayTest commentStamp: 'dtl 12/13/2009 23:42' prior: 0!
-This test documents the source pointer address conversion methods for StandardSourceFileArray.
-
-The available address space for source pointers in CompiledMethod is 16r1000000 through 16r4FFFFFF. StandardSourceFileArray maps positions in the sources file to address range 16r1000000 through 16r1FFFFFF and 16r3000000 through 16r3FFFFFF, and positions in the changes file to address range 16r2000000 through 16r2FFFFFF and 16r4000000 through 16r4FFFFFF. This permits a maximum file size of 16r2000000 (32MB) for both the sources file and the changes file. 
-!
 
 !SystemConsistencyTest commentStamp: '<historical>' prior: 0!
 General system - wide image health tests.!
@@ -1416,7 +1536,108 @@ warningTest
 	Warning signal: 'Ouch'.
 	self log: 'Warning signal handled and resumed.'! !
 
-!ArrayLiteralTest methodsFor: 'initialize-release' stamp: 'avi 2/16/2004 21:09'!
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:11'!
+testComposition
+	"
+	AffineTransformationTest new testComposition
+	"
+	| composition inner outer |
+
+	outer _ AffineTransformation withTranslation: 3@5.
+	inner _ AffineTransformation withRadians: 0.3.
+	composition _ outer composedWith: inner.
+	self assert: composition translation = outer translation.
+	self assert: (outer externalizePosition: (inner externalizePosition: 3@4)) = (composition externalizePosition: 3@4).
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: (inner internalizePosition: (outer internalizePosition: 3@4)) = (composition internalizePosition: 3@4).
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).
+
+
+	outer _ AffineTransformation withRadians: 0.3.
+	inner _ AffineTransformation withTranslation: 3@5.
+	composition _ outer composedWith: inner.
+	self assert: composition radians = outer radians.
+	self assert: ((outer externalizePosition: (inner externalizePosition: 3@4)) - (composition externalizePosition: 3@4)) r < 0.0001.
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: ((inner internalizePosition: (outer internalizePosition: 3@4)) - (composition internalizePosition: 3@4)) r < 0.0001.
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:11'!
+testDisplayBounds
+	"
+	AffineTransformationTest new testDisplayBounds
+	"
+	self assert:
+		((AffineTransformation withRadians: 0.3) displayBoundsOfTransformOf: (10@10 extent: 20@30))
+			= (-2@13 corner: 26@47).
+
+	self assert: (AffineTransformation new displayBoundsOfTransformOf: (-2@ 2 extent: 10@10)) = (-2@2 corner: 8@12).
+	self assert: (AffineTransformation new displayBoundsOfTransformOf: (-12@ 12 extent: 10@10)) = (-12@12 corner: -2@22).
+	self assert: ((AffineTransformation withTranslation: 2)  displayBoundsOfTransformOf: (-4@ 2  extent: 10@10)) = (-2@4 corner: 8@14).
+	self assert: ((AffineTransformation withTranslation: -4)  displayBoundsOfTransformOf: (2@ 2  extent: 10@10)) = (-2@-2 corner: 8@8).
+	self assert: ((AffineTransformation withTranslation: 2)  displayBoundsOfTransformOf: (-14@ 2  extent: 10@10)) = (-12@4 corner: -2@14).
+	self assert: ((AffineTransformation withTranslation: 4)  displayBoundsOfTransformOf: (-12@ 2  extent: 10@10)) = (-8@6 corner: 2@16).
+	self assert: ((AffineTransformation withTranslation: -4)  displayBoundsOfTransformOf: (12@ 2  extent: 10@10)) = (8@-2 corner: 18@8).
+	self assert: ((AffineTransformation withTranslation: -2)  displayBoundsOfTransformOf: (4@ 2  extent: 10@10)) = (2@0 corner: 12@10).
+	self assert: ((AffineTransformation withTranslation: 4)  displayBoundsOfTransformOf: (-2@ 2  extent: 10@10)) = (2@6 corner: 12@16).! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:05'!
+testFloatInverseTransform
+	"
+	AffineTransformationTest new testFloatInverseTransform
+	"
+	self assert: (AffineTransformation new inverseTransform: (-2@ 2)) = (-2@2).
+	self assert: ((AffineTransformation withTranslation: 2) inverseTransform: (-4@ 2)) = (-6@0).
+	self assert: ((AffineTransformation withTranslation: 4) inverseTransform: (-2@ 2)) = (-6@-2).
+	self assert: ((AffineTransformation withTranslation: -2) inverseTransform: (4@ 2)) = (6@4).
+	self assert: ((AffineTransformation withTranslation: -4) inverseTransform: (2@ 2)) = (6@6)! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:06'!
+testFloatTransform
+	"
+	AffineTransformationTest new testFloatTransform
+	"
+	self assert: (AffineTransformation new transform: (-2@ 2)) = (-2@2).
+	self assert: ((AffineTransformation withTranslation: 2) transform: (-4@ 2)) = (-2@4).
+	self assert: ((AffineTransformation withTranslation: 4) transform: (-2@ 2)) = (2@6).
+	self assert: ((AffineTransformation withTranslation: -2) transform: (4@ 2)) = (2@0).
+	self assert: ((AffineTransformation withTranslation: -4) transform: (2@ 2)) = (-2@-2)! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:12'!
+testInverseTransformation
+	"
+	AffineTransformationTest new testInverseTransformation
+	"
+	| forward inverse |
+
+	forward _ AffineTransformation withTranslation: 3@5.
+	inverse _ forward inverseTransformation.
+	
+	self assert: inverse translation = forward translation negated.
+	self assert: (inverse externalizePosition: 3@4) = (forward internalizePosition: 3@4).
+	self assert: (inverse externalizeDelta: 3@4) = (forward internalizeDelta: 3@4).
+	self assert: (inverse externalizeScalar: 7) = (forward internalizeScalar: 7).
+	self assert: (inverse internalizePosition: 3@4) = (forward externalizePosition: 3@4).
+	self assert: (inverse internalizeDelta: 3@4) = (forward externalizeDelta: 3@4).
+	self assert: (inverse internalizeScalar: 7) = (forward externalizeScalar: 7).
+
+
+	forward _ AffineTransformation withRadians: 0.25.
+	inverse _ forward inverseTransformation.
+
+	self assert: inverse radians = forward radians negated.
+	self assert: ((inverse externalizePosition: 3@4) - (forward internalizePosition: 3@4)) r < 0.0001.
+	self assert: ((inverse externalizeDelta: 3@4) - (forward internalizeDelta: 3@4)) r < 0.0001.
+	self assert: ((inverse externalizeScalar: 7) - (forward internalizeScalar: 7)) abs < 0.0001.
+	self assert: ((inverse internalizePosition: 3@4) - (forward externalizePosition: 3@4)) r < 0.0001.
+	self assert: ((inverse internalizeDelta: 3@4) - (forward externalizeDelta: 3@4)) r < 0.0001.
+	self assert: ((inverse internalizeScalar: 7) - (forward externalizeScalar: 7)) abs < 0.0001.! !
+
+!ArrayLiteralTest methodsFor: 'running' stamp: 'avi 2/16/2004 21:09'!
 tearDown
 	self class removeSelector: #array! !
 
@@ -1580,17 +1801,19 @@ testAllAlphasRgbSub
       ]].
      self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbSub'! !
 
-!BitBltTest methodsFor: 'bugs' stamp: 'sd 6/5/2005 10:12'!
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 7/12/2015 22:27'!
 testAlphaCompositing
-	"self run: #testAlphaCompositing"
+	"
+	BitBltTest new testAlphaCompositing
+	"
 
 	| bb f1 f2 mixColor result eps |
 	f1 := Form extent: 1@1 depth: 32.
 	f2 := Form extent: 1@1 depth: 32.
 	eps := 0.5 / 255.
 	0 to: 255 do:[:i|
-		f1 colorAt: 0@0 put: Color blue.
-		mixColor := Color red alpha: i / 255.0.
+		f1 colorAt: 0@0 put: (Color r: 0 g: 0 b: 1).
+		mixColor := Color r: 1 g: 0 b: 0 alpha: i / 255.0.
 		f2 colorAt: 0@0 put: mixColor.
 		mixColor := f2 colorAt: 0@0.
 		bb := BitBlt toForm: f1.
@@ -1603,9 +1826,11 @@ testAlphaCompositing
 		self assert: result alpha = 1.0.
 	].! !
 
-!BitBltTest methodsFor: 'bugs' stamp: 'sd 6/5/2005 10:12'!
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 7/12/2015 22:27'!
 testAlphaCompositing2
-	"self run: #testAlphaCompositing2"
+	"
+	BitBltTest new testAlphaCompositing2
+	"
 
 	| bb f1 f2 mixColor result eps |
 	f1 := Form extent: 1@1 depth: 32.
@@ -1613,7 +1838,7 @@ testAlphaCompositing2
 	eps := 0.5 / 255.
 	0 to: 255 do:[:i|
 		f1 colorAt: 0@0 put: Color transparent.
-		mixColor := Color red alpha: i / 255.0.
+		mixColor := Color r: 1 g: 0 b: 0 alpha: i / 255.0.
 		f2 colorAt: 0@0 put: mixColor.
 		mixColor := f2 colorAt: 0@0.
 		bb := BitBlt toForm: f1.
@@ -1624,24 +1849,6 @@ testAlphaCompositing2
 		self assert: (result red - mixColor alpha) abs < eps.
 		self assert: result alpha = mixColor alpha.
 	].! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'sd 6/5/2005 10:13'!
-testPeekerUnhibernateBug
-	"self run: #testPeekerUnhibernateBug"
-
-	| bitBlt |
-	bitBlt := BitBlt bitPeekerFromForm: Display.
-	bitBlt destForm hibernate.
-	self shouldnt:[bitBlt pixelAt: 1@1] raise: Error.! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'sd 6/5/2005 10:14'!
-testPokerUnhibernateBug
-	"self run: #testPokerUnhibernateBug"
-
-	| bitBlt |
-	bitBlt := BitBlt bitPokerToForm: Display.
-	bitBlt sourceForm hibernate.
-	self shouldnt:[bitBlt pixelAt: 1@1 put: 0] raise: Error.! !
 
 !CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:08'!
 testCaseConversion
@@ -1992,21 +2199,21 @@ doTestDebuggerTempAccessWith: one with: two
 	self assert: local1 = 25.
 	self assert: remote1 = (6/7)! !
 
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 16:58'!
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:03'!
 supportTestSourceRangeAccessForDecompiledInjectInto: method source: source
 	"Test debugger source range selection for inject:into:"
 	^self
 		supportTestSourceRangeAccessForInjectInto: method
 		source: source
-		selectionSequence: #(	':= t1'
-								'do: [:t4 | t3 := t2 value: t3 value: t4]'
-								'value: t3 value: t4'
-								':= t2 value: t3 value: t4'
-								']'
-								'value: t3 value: t4'
-								':= t2 value: t3 value: t4'
-								']'
-								'^t3')! !
+		selectionSequence: #(	'_ arg1'
+								'do: [:arg5 | temp3 _ arg2 value: temp3 value: arg5]'
+								'value: temp3 value: arg5'
+								'_ arg2 value: temp3 value: arg5'
+								'temp3 _ arg2 value: temp3 value: arg5'
+								'value: temp3 value: arg5'
+								'_ arg2 value: temp3 value: arg5'
+								'temp3 _ arg2 value: temp3 value: arg5'
+								'^temp3')! !
 
 !ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 19:44'!
 supportTestSourceRangeAccessForDecompiledNoBytecodeInjectInto: method source: source
@@ -2162,15 +2369,15 @@ testBlockNumberingForInjectInto
 	self assert: ((tempRefs includesKey: (2 to: 4))
 				and: [(tempRefs at: (2 to: 4)) hasEqualElements: #(('each' 1) ('binaryBlock' 2) ('nextValue' (3 1)))])! !
 
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:00'!
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:00'!
 testDebuggerTempAccess
 
+	"This test also fails in Squeak. Check if it is ever fixed."
 	self flag: #expectedFailure.
-	true ifTrue: [^self].
 
 	self doTestDebuggerTempAccessWith: 1 with: 2! !
 
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'nice 2/23/2011 21:39'!
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 6/29/2014 19:57'!
 testDecompiledDoitMethodTempNames
 	"self new testDecompiledDoitMethodTempNames"
 	"Test that a decompiled doit that has been copied with temps decompiles to the input"
@@ -2180,17 +2387,16 @@ testDecompiledDoitMethodTempNames
 		[:source| | mns m mps mnps |
 		"Need to compare an ungenerated tree with the generated method's methodNode
 		 because generating code alters the tree when it introduces remote temp vectors."
-		mns := #(first last) collect:
-					[:ignored|
+		mns := #(first last) collect: [ :ignored |
 					source first isLetter
-						ifTrue:
-							[self class compilerClass new
+						ifTrue: [
+							Compiler new
 								compile: source
 								in: self class
 								notifying: nil
 								ifFail: [self error: 'compilation error']]
-						ifFalse:
-							[self class compilerClass new
+						ifFalse: [
+							Compiler new
 								compileNoPattern: source
 								in: self class
 								context: nil
@@ -2201,21 +2407,16 @@ testDecompiledDoitMethodTempNames
 		mns first nodesDo: removeComments.
 		self assert: (mnps := mns first printString) = (mps := m methodNode printString)]! !
 
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:00'!
-testInjectIntoDecompilations
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:52'!
+testInjectIntoDecompilationsEncoderForV3
 	"Test various compilations decompile to the same code for a method sufficiently
 	 simple that this is possible and sufficiently complex that the code generated
 	 varies between the compilations."
-	"self new testInjectIntoDecompilations"
+	"self new testInjectIntoDecompilationsEncoderForV3"
 	| source |
 
-	self flag: #expectedFailure.
-	true ifTrue: [^self].
-
 	source := (Collection sourceCodeAt: #inject:into:) asString.
-	{ Encoder.
-	   EncoderForV3. EncoderForLongFormV3.
-	   EncoderForV3PlusClosures. EncoderForLongFormV3PlusClosures } do:
+	{ EncoderForV3 } do:
 		[:encoderClass| | method |
 		method := (Parser new
 							encoderClass: encoderClass;
@@ -2223,24 +2424,43 @@ testInjectIntoDecompilations
 							class: Collection)
 						generate: #(0 0 0 0).
 		self assert: (Scanner new scanTokens: method decompileString)
-					= #(inject: t1 into: t2
-							| t3 |
-							t3 ':=' t1 .
-							self do: [ ':t4' | t3 ':=' t2 value: t3 value: t4 ] .
-							^ t3)]! !
+					= #(inject: arg1 into: arg2
+							| temp3 |
+							temp3 _ arg1 .
+							self do: [ ':temp4' | temp3 _ arg2 value: temp3 value: temp4 ] .
+							^ temp3 . )]! !
 
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:01'!
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:52'!
+testInjectIntoDecompilationsEncoderForV3PlusClosures
+	"Test various compilations decompile to the same code for a method sufficiently
+	 simple that this is possible and sufficiently complex that the code generated
+	 varies between the compilations."
+	"self new testInjectIntoDecompilationsEncoderForV3PlusClosures"
+	| source |
+
+	source := (Collection sourceCodeAt: #inject:into:) asString.
+	{ EncoderForV3PlusClosures } do:
+		[:encoderClass| | method |
+		method := (Parser new
+							encoderClass: encoderClass;
+							parse: source
+							class: Collection)
+						generate: #(0 0 0 0).
+		self assert: (Scanner new scanTokens: method decompileString)
+					= #(inject: arg1 into: arg2
+							| temp3 |
+							temp3 _ arg1 .
+							self do: [ ':arg5' | temp3 _ arg2 value: temp3 value: arg5 ] .
+							^ temp3 . )]! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:04'!
 testInjectIntoDecompiledDebugs
 	"Test various debugs of the decompiled form debug correctly."
 	"self new testInjectIntoDecompiledDebugs"
 	| source |
 
-	self flag: #expectedFailure.
-	true ifTrue: [^self].
-
 	source := (Collection sourceCodeAt: #inject:into:) asString.
-	{ Encoder.
-	   EncoderForV3PlusClosures. EncoderForLongFormV3PlusClosures } do:
+	{ EncoderForV3PlusClosures } do:
 		[:encoderClass| | method |
 		method := (Parser new
 							encoderClass: encoderClass;
@@ -2307,24 +2527,23 @@ testInlineBlockCollectionSD1
 	b2 := b2 asArray collect: [:b | b value].
 	self assert: b1 = b2! !
 
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 1/17/2011 00:13'!
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 6/29/2014 19:58'!
 testMethodAndNodeTempNames
 	"self new testMethodAndNodeTempNames"
 	"Test that BytecodeAgnosticMethodNode>>blockExtentsToTempRefs answers the same
 	 structure as CompiledMethod>>blockExtentsToTempRefs when the method has been
 	 copied with the appropriate temps.  This tests whether doit methods are debuggable
 	 since they carry their own temps."
-	self closureCases do:
-		[:source| | mn om m mbe obe |
+	self closureCases do: [ :source | | mn om m mbe obe |
 		mn := source first isLetter
-					ifTrue:
-						[self class compilerClass new
+					ifTrue: [
+						Compiler new
 							compile: source
 							in: self class
 							notifying: nil
 							ifFail: [self error: 'compilation error']]
-					ifFalse:
-						[self class compilerClass new
+					ifFalse: [
+						Compiler new
 							compileNoPattern: source
 							in: self class
 							context: nil
@@ -2354,19 +2573,6 @@ testSourceRangeAccessForBlueBookInjectInto
 	self supportTestSourceRangeAccessForInjectInto: method source: source! !
 
 !ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 15:20'!
-testSourceRangeAccessForBlueBookLongFormInjectInto
-	"Test debugger source range selection for inject:into: for a version compiled with closures"
-	"self new testSourceRangeAccessForBlueBookLongFormInjectInto"
-	| source method |
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	method := (Parser new
-						encoderClass: EncoderForLongFormV3;
-						parse: source
-						class: Collection)
-					generate: (Collection compiledMethodAt: #inject:into:) trailer.
-	self supportTestSourceRangeAccessForInjectInto: method source: source! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 15:20'!
 testSourceRangeAccessForClosureBytecodeInjectInto
 	"Test debugger source range selection for inject:into: for a version compiled with closures"
 	"self new testSourceRangeAccessForClosureBytecodeInjectInto"
@@ -2374,19 +2580,6 @@ testSourceRangeAccessForClosureBytecodeInjectInto
 	source := (Collection sourceCodeAt: #inject:into:) asString.
 	method := (Parser new
 						encoderClass: EncoderForV3PlusClosures;
-						parse: source
-						class: Collection)
-					generate: (Collection compiledMethodAt: #inject:into:) trailer.
-	self supportTestSourceRangeAccessForInjectInto: method source: source! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 15:20'!
-testSourceRangeAccessForClosureLongFormBytecodeInjectInto
-	"Test debugger source range selection for inject:into: for a version compiled with closures"
-	"self new testSourceRangeAccessForClosureLongFormBytecodeInjectInto"
-	| source method |
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	method := (Parser new
-						encoderClass: EncoderForLongFormV3PlusClosures;
 						parse: source
 						class: Collection)
 					generate: (Collection compiledMethodAt: #inject:into:) trailer.
@@ -2584,30 +2777,43 @@ testCopyNonLocalReturn
 		shouldnt: [self methodWithNonLocalReturn]
 		raise: Error! !
 
-!ClosureTests methodsFor: 'testing' stamp: 'jmv 12/20/2012 21:41'!
-testIsClean
+!ClosureTests methodsFor: 'testing' stamp: 'jmv 5/26/2015 16:33'!
+testIsTrivialClosure
 	"
-	ClosureTests new testIsClean
+	ClosureTests new testIsTrivialClosure
 	"
 	| tempVar |
 	tempVar _ 1.
-	self assert: [ 3 + 4 ] isClean.
-	self assert: [ :a | a * 2 ] isClean.
-	self assert: [ Smalltalk size ] isClean.
-	self assert: [ :blockArg | blockArg printString ] isClean.
-	self assert: [ | blockTemp | blockTemp printString ] isClean.
-	self assert: [ | blockTemp | blockTemp _ 7 ] isClean.
-	self deny: [ | outerBlockTemp | [ outerBlockTemp printString ] isClean ] value.
-	self deny: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] isClean ] value.
-	self deny: [ tempVar + 1 ] isClean.
-	self deny: [ tempVar _ 1 ] isClean.
-	self deny: [ ivar + 1 ] isClean.
-	self deny: [ ivar _ 1 ] isClean.
-	self deny: [ ^ true ] isClean.
-	self deny: [ self printString ] isClean.
-	self deny: [ ^ self ] isClean.
-	self deny: [ ClassVar + 1 ] isClean.
-	self deny: [ ClassVar _ 1 ] isClean! !
+	self assert: [ 3 + 4 ] isTrivialClosure.
+	self assert: [ :a | a * 2 ] isTrivialClosure.
+	self assert: [ Smalltalk size ] isTrivialClosure.
+	self assert: [ ClosureTests selectors size ] isTrivialClosure.
+	self assert: [ :blockArg | blockArg printString ] isTrivialClosure.
+	self assert: [ | blockTemp | blockTemp printString ] isTrivialClosure.
+	self assert: [ | blockTemp | blockTemp _ 7 ] isTrivialClosure.
+	self assert: [ | c | c _ [ :a :b | a+b ]. c value: 3 value: 4 ] isTrivialClosure.
+
+	self assert: [ | outerBlockTemp | [ outerBlockTemp printString ] ] isTrivialClosure.
+	self assert: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] ] isTrivialClosure.
+	self assert: [ | outerBlockTemp | [[ outerBlockTemp printString ]] ] isTrivialClosure.
+	self assert: [ | outerBlockTemp | [[ outerBlockTemp _ 7 ]] ] isTrivialClosure.
+	self assert: [ [| outerBlockTemp | [ outerBlockTemp printString ]] ] isTrivialClosure.
+	self assert: [ [| outerBlockTemp | [ outerBlockTemp _ 7 ]] ] isTrivialClosure.
+
+	self deny: [ | outerBlockTemp | [ outerBlockTemp printString ] isTrivialClosure ] value.
+	self deny: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] isTrivialClosure ] value.
+	self deny: [ | outerBlockTemp | [[ outerBlockTemp printString ]] isTrivialClosure ] value.
+	self deny: [ | outerBlockTemp | [[ outerBlockTemp _ 7 ]] isTrivialClosure ] value.
+
+	self deny: [ tempVar + 1 ] isTrivialClosure.
+	self deny: [ tempVar _ 1 ] isTrivialClosure.
+	self deny: [ ivar + 1 ] isTrivialClosure.
+	self deny: [ ivar _ 1 ] isTrivialClosure.
+	self deny: [ ^ true ] isTrivialClosure.
+	self deny: [ self printString ] isTrivialClosure.
+	self deny: [ ^ self ] isTrivialClosure.
+	self deny: [ ClassVar + 1 ] isTrivialClosure.
+	self deny: [ ClassVar _ 1 ] isTrivialClosure! !
 
 !ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:36'!
 testMethodArgument
@@ -2734,6 +2940,52 @@ testWhileWithTempNotInlined
 		collection add: [ temp ] ].
 	[ index < 5 ] whileTrue: block.
 	self assertValues: #(1 2 3 4 5)! !
+
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:34'!
+testIdentitySet
+	"
+	CollectTest  new testIdentitySet
+	"
+	| col result |
+	col _ #(1 2 3 1.0 2.0 3.0) asIdentitySet.
+	result _ col collect: [ :elem |  elem yourself ].
+	self assert: result class = IdentitySet.
+	self assert: result = #(1 2 3 1.0 2.0 3.0) asIdentitySet.
+	self assert: result = col! !
+
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 10:51'!
+testOrderedCollection
+	"
+	CollectTest  new testOrderedCollection
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ col collect: [ :elem |  elem * 2 ].
+	self assert: result class = OrderedCollection.
+	self assert: result = #(2 4 6 8 10) asOrderedCollection! !
+
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:34'!
+testSet
+	"
+	CollectTest  new testSet
+	"
+	| col result |
+	col _ #(1 2 3 1.0 2.0 3.0) asSet.
+	result _ col collect: [ :elem |  elem yourself ].
+	self assert: result class = Set.
+	self assert: result = #(1 2 3) asSet.
+	self assert: result = col! !
+
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:01'!
+testSortedCollection
+	"
+	CollectTest  new testSortedCollection
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asSortedCollection: [ :a :b | a > b ].
+	result _ col collect: [ :elem |  elem * 2 ].
+	self assert: result class = OrderedCollection.
+	self assert: result = #(10 8 6 4 2) asOrderedCollection! !
 
 !CompilerExceptionsTest methodsFor: 'as yet unclassified' stamp: 'cwp 8/25/2009 20:27'!
 griffle | goo |! !
@@ -2938,26 +3190,101 @@ testSourcesFileAddressRange
 
 ! !
 
+!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:29'!
+testCreation
+	"
+	self new testCreation
+	"
+	| d |
+	d _ (DateAndTime julianDayNumber: 2456814) date.
+	self assert: d yearNumber = 2014.
+	self assert: d monthIndex = 6.
+	self assert: d dayOfMonth = 5.
+	
+	d _ (DateAndTime fromSeconds: 3579379200) date.
+	self assert: d yearNumber = 2014.
+	self assert: d monthIndex = 6.
+	self assert: d dayOfMonth = 5.
+	
+	d _ DateAndTime fromSeconds: 3579431284.
+	self assert: d yearNumber = 2014.
+	self assert: d monthIndex = 6.
+	self assert: d dayOfMonth = 5.
+	self assert: d hour = 14.
+	self assert: d minute = 28.
+	self assert: d second = 4.
+	self assert: d nanoSecond = 0! !
+
+!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:22'!
+testOperations
+	"
+	self new testOperations
+	"
+	| d dt |
+	dt _ DateAndTime now.
+
+	d _ 1 hours.
+	self assert: dt < (dt + d).
+	self assert: dt - d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ 1 minutes.
+	self assert: dt < (dt + d).
+	self assert: dt - d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ 1 seconds.
+	self assert: dt < (dt + d).
+	self assert: dt - d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ -1 hours.
+	self assert: dt < (dt - d).
+	self assert: dt + d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ -1 minutes.
+	self assert: dt < (dt - d).
+	self assert: dt + d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ -1 seconds.
+	self assert: dt < (dt - d).
+	self assert: dt + d < dt.
+	self assert: dt + d - d = dt.! !
+
+!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 4/27/2016 15:04'!
+testToByDo
+	"
+	DateAndTimeTest new testToByDo
+	"
+	| end last start step |
+	start _ DateAndTime midnight.
+	end _ DateAndTime midnight + 2 hours.
+	step _ 15 minutes.
+	start to: end by: step do: [ :time | last _ time ].
+	self assert: last = end! !
+
 !DecompilerTests methodsFor: 'utilities' stamp: 'sd 9/25/2004 15:30'!
 blockingClasses
 
 
 	^ #(CompiledMethod)! !
 
-!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 3/2/2010 09:52'!
+!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 6/29/2014 19:59'!
 checkDecompileMethod: oldMethod
 	
 	| cls selector oldMethodNode methodNode newMethod oldCodeString newCodeString |
 	cls := oldMethod methodClass.
 	selector := oldMethod selector.
-	oldMethodNode := cls decompilerClass new
+	oldMethodNode := Decompiler new
 						decompile: selector
 						in: cls
 						method: oldMethod.
 	[oldMethodNode properties includesKey: #warning] whileTrue:
 		[oldMethodNode properties removeKey: #warning].
 	oldCodeString := oldMethodNode decompileString.
-	methodNode := [cls compilerClass new
+	methodNode := [ Compiler new
 						compile: oldCodeString
 						in: cls
 						notifying: nil
@@ -2970,7 +3297,7 @@ checkDecompileMethod: oldMethod
 	"Ignore cannot store into block arg errors; they're not our issue."
 	methodNode ~~ #badStore ifTrue:
 		[newMethod := methodNode generate: #(0 0 0 0).
-		 newCodeString := (cls decompilerClass new
+		 newCodeString := (Decompiler new
 							decompile: selector
 							in: cls
 							method: newMethod) decompileString.
@@ -2984,137 +3311,13 @@ checkDecompileMethod: oldMethod
 			description: cls name asString, ' ', selector asString
 			resumable: true]! !
 
-!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 8/9/2010 22:39'!
+!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 5/27/2015 13:58'!
 decompileClassesSelect: aBlock
-	
-	(Smalltalk classNames select: aBlock) do:
-		[:cn | | cls |
-		cls := Smalltalk at: cn.
-		 cls selectorsAndMethodsDo:
-			[:selector :meth |
-			(self isFailure: cls sel: selector) ifFalse:
-				[" to help making progress
-					(self
-						isStoredProblems: cls theNonMetaClass
-						sel: selector
-						meta: cls isMeta)
-					ifFalse: [ "
-				self checkDecompileMethod: meth]]]! !
-
-!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 11/2/2011 15:45'!
-decompilerFailures
-	"here is the list of failures: DNU resulting in trying to decompile the following methods"
-
-	^ #((AdditionalMethodState at:ifAbsent:)
-		(AdditionalMethodState at:ifAbsentPut:)
-		(AdditionalMethodState at:put:)
-		(AdditionalMethodState hasLiteralSuchThat:)
-		(AdditionalMethodState hasLiteralThorough:)
-		(AdditionalMethodState includesProperty:)
-		(AdditionalMethodState keysAndValuesDo:)
-		(AdditionalMethodState pragmas)
-		(AdditionalMethodState properties)
-		(AdditionalMethodState propertyKeysAndValuesDo:)
-		(AdditionalMethodState propertyValueAt:ifAbsent:)
-		(AdditionalMethodState removeKey:ifAbsent:)
-		(AdditionalMethodState setMethod:)
-		(BalloonEngineSimulation circleCosTable "-0.3826834323650903 => -0.38268343236509 or -0.3826834323650902")
-		 (BalloonEngineSimulation circleSinTable "-0.3826834323650903 => -0.38268343236509 or -0.3826834323650902")
-		(BlockNode emitCodeExceptLast:encoder:)
-		(BlockNode sizeCodeExceptLast:)
-		(Categorizer changeFromCategorySpecs:)
-		(Categorizer elementCategoryDict)
-		(ChatNotes storeAIFFOnFile:)
-		(ClosureTests testToDoInsideTemp)
-		(Command veryDeepFixupWith:)
-		(CompiledMethod =)
-		(CompiledMethod getPreambleFrom:at:)
-		(CompiledMethod hasLiteralSuchThat:)
-		(CompiledMethod hasLiteralThorough:)
-		(CompiledMethod sameTraitCodeAs:)
-		(Date printOn:)
-		(EventSensor eventTickler)
-		(Float printPaddedWith:to:)
-		(FMSound mixSampleCount:into:startingAt:leftVol:rightVol:)
-		(Form preMultiplyAlpha)
-		(FTPClient getDataInto:)
-		 (GeniePlugin primSameClassAbsoluteStrokeDistanceMyPoints:otherPoints:myVectors:otherVectors:mySquaredLengths:otherSquaredLengths:myAngles:otherAngles:maxSizeAndReferenceFlag:rowBase:rowInsertRemove:rowInsertRemoveCount: "Cannot compile -- stack including temps is too deep")
-		(GZipReadStream on:from:to:)
-		(GraphMorph drawDataOn:)
-		(HttpUrl checkAuthorization:retry:)
-		(Integer asBytesDescription)
-		(IntegerTest testNumberOfDigits)
-		(IntegerTest testPrintStringBase)
-		(JPEGReadWriter decodeBlockInto:component:dcTable:acTable:)
-		(LoopedSampledSound mixSampleCount:into:startingAt:leftVol:rightVol:)
-		(MessageTally treePrintOn:tabs:thisTab:total:totalTime:tallyExact:orThreshold:)
-		(MessageTrace selectAllBetweenAnchorAnd:)
-		(MethodPragmaTest testCompileCharacter)
-		(MultiByteBinaryOrTextStream next:)
-		(MultiByteFileStream next:)
-		(MVCProject textWindows)
-		(MVCToolBuilder setLayout:in:)
-		(Paragraph selectionRectsFrom:to:)
-		(PasteUpMorph dropFiles:)
-		(Player veryDeepFixupWith:)
-		(PluggableTabButtonMorph calculateArcLengths)
-		(PluggableTabButtonMorph drawTabOn:)
-		(PluckedSound reset)
-		(PNGReadWriter copyPixelsGray:)
-		(PNGReadWriter processInterlaced)
-		(PNMReadWriter nextPutRGB:)
-		(PNMReadWriter nextPutBW:reverse:)
-		(PNMReadWriter readBWreverse:)
-		(PNMReadWriter readGray)
-		(PNMReadWriter readPlainRGB)
-		(PNMReadWriter writeHeader:)
-		(PointTest testTheta)
-		(PopUpMenu readKeyboard)
-		(PostscriptCanvas outlineQuadraticBezierShape:)
-		(QPickable2D pick:) "foo ifTrue: [^bar] ifFalse: [^baz]. ^huh?"
-		(QUsersPane userEntryCompare:to:) "foo ifTrue: [^bar] ifFalse: [^baz]. ^huh?"
-		(RelativeInstructionPrinter print:)
-		(RemoteHandMorph appendNewDataToReceiveBuffer)
-		(ScaledDecimalTest testConvertFromFraction)
-		(SHMCClassDefinition allInstVarNames)
-		(SHMCClassDefinition withAllSuperclasses)
-		(ShortIntegerArray writeOn:)
-		(SHParserST80 isBinary)
-		(StandardScriptingSystem holderWithAlphabet)
-		(StrikeFontSet displayStringR2L:on:from:to:at:kern:)
-		(String howManyMatch:)
-		(String keywords)
-		(StringTest testWthNoLineLongerThan)
-		(SyntaxMorph replaceKeyWord:menuItem:)
-		(SyntaxMorph replaceSel:menuItem:)
-		(TextDiffBuilder lcsFor:and:)
-		(TextURL actOnClickFor:)
-		(TShaderProgram vertexStrings) "foo ifTrue: []. => foo. => ."
-		(TShaderProgram fragmentStrings) "foo ifTrue: []. => foo. => ."
-		(TTContourConstruction segmentsDo:) "out of scope variable"
-		(TTCFontReader processCharacterMappingTable:)
-		(TTFileDescription getGlyphFlagsFrom:size:)
-		(TTFileDescription processCharacterMappingTable:)
-		(TTFontReader getGlyphFlagsFrom:size:)
-		(TTFontReader processCharacterMappingTable:)
-		(TTFontReader processHorizontalMetricsTable:length:)
-		(TWindow zoomWindow:) "foo ifTrue: [^bar] ifFalse: [^baz]. ^huh?"
-		(WaveEditor showEnvelope)
-		(WeakSet scanForLoadedSymbol:)
-
-		"(PNMReadWriter nextImage) (Collection #ifEmpty:ifNotEmpty:) (Collection #ifEmpty:) (Collection #ifNotEmpty:ifEmpty:) (Text #alignmentAt:ifAbsent:) (ObjectWithDocumentation propertyAt:ifAbsent:)")! !
-
-!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 8/30/2011 08:35'!
-isFailure: cls sel: selector 
-	"self new isKnowProblem: PNMReaderWriter sel: #nextImage"
-	"#((PNMReadWriter nextImage)) includes: {PNMReadWriter
-	name asSymbol . #nextImage}."
-
-	"Too many failures here. May be check #decompilerFailures when the decompiler is enhanced..."
-	self flag: #expectedFailure.
-	true ifTrue: [^true].
-
-	^self decompilerFailures includes: {cls name asSymbol. selector}! !
+	| cls |
+	(Smalltalk classNames select: aBlock) do: [ :cn |
+		cls _ Smalltalk at: cn.
+		 cls selectorsAndMethodsDo: [ :selector :meth |
+				self checkDecompileMethod: meth ]]! !
 
 !DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
 testDecompilerInClassesAAtoAM
@@ -3324,13 +3527,9 @@ testDecompilerInClassesZAtoZM
 testDecompilerInClassesZNtoZZ
 	self decompileClassesSelect: [:cn| cn first = $Z and: [cn second asUppercase > $M]]! !
 
-!DecompilerTests methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:01'!
+!DecompilerTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:04'!
 testRemoteTemp
 	| aBlock |
-
-	self flag: #expectedFailure.
-	true ifTrue: [^self].
-
 	aBlock := Compiler evaluate: '| x y |  [:a :b | x := a. y := b. x+y]'.
 	self shouldnt: [aBlock decompile] raise: Error
 	! !
@@ -3558,58 +3757,17 @@ testDoublePassOuter
 testDoubleResume
 	self assertSuccess: (ExceptionTester new runTest: #doubleResumeTest ) ! !
 
-!ExceptionTests methodsFor: 'testing-outer' stamp: 'jmv 4/12/2012 21:58'!
+!ExceptionTests methodsFor: 'testing-outer' stamp: 'SqR 8/28/2014 22:45'!
 testHandlerFromAction
 	"A test ensuring that nested exceptions work as expected."
 
 	| result |
-	"This test also fails in Squeak. Check if it is ever fixed."
-	self flag: #expectedFailure.
-	true ifTrue: [^self].
-
 	result := [
 		[
 			[self error: 'trigger error'] on: ZeroDivide do: [ :ex | 'inner' ]
 		] on: Error do: [ :ex | 3 / 0 ]
 	] on: ZeroDivide do: [ :ex | 'outer' ].
-	self assert: result = 'outer'.
-! !
-
-!ExceptionTests methodsFor: 'testing' stamp: 'ar 9/1/2010 22:43'!
-testHandlerReentrancy
-
-	| callingOrder |
-	"Handlers are not re-entrant by default, so inner is not activated twice"
-	callingOrder := String streamContents: [:stream |
-		[[stream nextPut: $s. Notification signal]
-		
-			"Inner handler"
-			on: Notification do: [:ex |
-				stream nextPut: $i.
-				ex pass]]
-		
-			"outer handler"
-			on: Notification do: [:ex |
-				stream nextPut: $o.
-				Notification signal]].
-		
-	self assert: callingOrder = 'sio'.
-
-	"Now make inner re-entrant"
-	callingOrder := String streamContents: [:stream |
-		[[stream nextPut: $s. Notification signal]
-		
-			"Inner handler"
-			on: Notification do: [:ex |
-				stream nextPut: $i.
-				ex rearmHandlerDuring: [ex pass]]]
-		
-			"outer handler"
-			on: Notification do: [:ex |
-				stream nextPut: $o.
-				Notification signal]].
-		
-	self assert: callingOrder = 'sioi'.! !
+	self assert: result = 'outer'! !
 
 !ExceptionTests methodsFor: 'testing' stamp: 'brp 10/21/2004 16:42'!
 testNoTimeout
@@ -3638,6 +3796,28 @@ testNonResumablePass
 			do: [:ex | ex pass. ex return: 5]
 		] raise: Error
 ! !
+
+!ExceptionTests methodsFor: 'testing-ExceptionTester' stamp: 'SqR 10/10/2015 16:22'!
+testResignalAs
+
+	| answer |
+	answer := [
+		[3 zork]
+			on: ZeroDivide
+			do: [:ex | ex return: 5]
+	] on: Error do: [:ex | ex resignalAs: ZeroDivide].
+	self assert: answer == 5! !
+
+!ExceptionTests methodsFor: 'testing-ExceptionTester' stamp: 'SqR 11/15/2015 11:42'!
+testResignalAsUnwinds
+
+	| unwound answer |
+	unwound := false.
+	answer := [
+		[3 zork]
+			on: ZeroDivide do: [:ex | self assert: unwound.  ex return: 5]
+	] on: Error do: [:ex | [ex resignalAs: ZeroDivide] ifCurtailed: [unwound := true]].
+	self assert: answer == 5! !
 
 !ExceptionTests methodsFor: 'testing-ExceptionTester' stamp: 'md 3/25/2003 23:44'!
 testResumableFallOffTheEndHandler
@@ -3719,7 +3899,71 @@ testSimpleReturn
 testTimeoutWithZeroDuration
 	self assertSuccess: (ExceptionTester new runTest: #simpleTimeoutWithZeroDurationTest ) ! !
 
-!FloatTest methodsFor: 'IEEE 754' stamp: 'nice 5/30/2006 02:34'!
+!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 1/2/2015 09:29'!
+test32bitConversion
+	"Except for NaN, we can convert a 32bits float to a 64bits float exactly.
+	Thus we can convert the 64bits float to the original 32bits float pattern."
+ 
+	#(
+		16r0 				"zero"
+		16r80000000 		"negative zero"
+		16r1 				"min unormalized"
+		16r12345 			"a unnormalized"
+		16r801FEDCB 		"a negative unnormalized"
+		16r7FFFFF 			"largest unnormalized"
+		16r800000 		"smallest normalized"
+		16r468ACDEF 		"a normalized float"
+		16rCABD1234 		"a negative normalized float"
+		16r7F7FFFFF 		"largest finite float"
+		16r7F800000 		"positive infinity"
+		16rFF800000 		"negative infinity"
+		16r803FFFFC
+		16r803FFFFD
+	)
+		do: [ :originalWord | self assert: (Float fromIEEE32Bit: originalWord) asIEEE32BitWord = originalWord ]! !
+
+!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 12/1/2015 12:31'!
+test32bitConversion2
+	"This tests the rounding done when going from 64bit Float to 32bit Float
+	self new test32bitConversion2
+	"
+
+	| pi32 pi32Predecessor roundingTo32Border roundingBorderPrev roundingBorderSuc aux roundedByConversion |
+	"Pick two neighbors in the 32-bit Float world"
+	pi32 _ Float fromIEEE32Bit: Float pi asIEEE32BitWord.
+	pi32Predecessor _ Float fromIEEE32Bit: Float pi asIEEE32BitWord-1.
+	"Find the middle value in the 64-bit Float world, and both its neighbors"
+	roundingTo32Border _ pi32 + pi32Predecessor / 2.0.
+	roundingBorderPrev _ roundingTo32Border predecessor.
+	roundingBorderSuc _ roundingTo32Border successor.
+
+	"64 bit middle value is not like any of the 32 bit values. Same for neighbors."
+	self deny: roundingTo32Border mantissaPart hex = pi32 mantissaPart hex.
+	self deny: roundingTo32Border mantissaPart hex = pi32Predecessor mantissaPart hex.
+	self deny: roundingBorderPrev mantissaPart hex = pi32Predecessor mantissaPart hex.
+	self deny: roundingBorderPrev mantissaPart hex = pi32 mantissaPart hex.
+	self deny: roundingBorderSuc mantissaPart hex = pi32Predecessor mantissaPart hex.
+	self deny: roundingBorderSuc mantissaPart hex = pi32 mantissaPart hex.
+
+	"Conversion to 32 bit gives appropriate 32 bit value, done #asIEEE32BitWord or done by FloatArray."
+	roundedByConversion _ Float fromIEEE32Bit: roundingTo32Border asIEEE32BitWord.
+	self assert: roundedByConversion mantissaPart hex = pi32Predecessor mantissaPart hex.
+	aux _ FloatArray new: 1. aux at: 1 put: roundingTo32Border. roundedByConversion _ aux at: 1.
+	self assert: roundedByConversion mantissaPart hex = pi32Predecessor mantissaPart hex.
+
+	"Conversion to 32 bit gives appropriate 32 bit value, done #asIEEE32BitWord or done by FloatArray."
+	roundedByConversion _ Float fromIEEE32Bit: roundingBorderPrev asIEEE32BitWord.
+	self assert: roundedByConversion mantissaPart hex = pi32Predecessor mantissaPart hex.
+	aux _ FloatArray new: 1. aux at: 1 put: roundingBorderPrev. roundedByConversion _ aux at: 1.
+	self assert: roundedByConversion mantissaPart hex = pi32Predecessor mantissaPart hex.
+
+	"Conversion to 32 bit gives appropriate 32 bit value, done #asIEEE32BitWord or done by FloatArray."
+	roundedByConversion _ Float fromIEEE32Bit: roundingBorderSuc asIEEE32BitWord.
+	self assert: roundedByConversion mantissaPart hex = pi32 mantissaPart hex.
+	aux _ FloatArray new: 1. aux at: 1 put: roundingBorderSuc. roundedByConversion _ aux at: 1.
+	self assert: roundedByConversion mantissaPart hex = pi32 mantissaPart hex! !
+
+!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 5/27/2015 13:38'!
 test32bitGradualUnderflow
 	"method asIEEE32BitWord did not respect IEEE gradual underflow"
 	
@@ -3740,7 +3984,7 @@ test32bitGradualUnderflow
 	self assert: expected = conv.
 	
 	"case 2: smallest number"
-	conv := 2r0.00000000000000000000001e-126 asIEEE32BitWord.
+	conv := (Compiler evaluate: '2r0.00000000000000000000001e-126') asIEEE32BitWord.
 	expected := exponentPart bitOr: 2r1.
 	self assert: expected = conv.
 	
@@ -3894,7 +4138,7 @@ testCharacterization
 	self assert: Float infinity hex = '7FF0000000000000'.
 	self assert: Float infinity negated hex = 'FFF0000000000000'.! !
 
-!FloatTest methodsFor: 'testing compare' stamp: 'nice 7/19/2009 19:24'!
+!FloatTest methodsFor: 'testing compare' stamp: 'jmv 5/27/2015 13:35'!
 testCloseTo
 	self deny: (Float nan closeTo: Float nan) description: 'NaN isn''t close to anything'.
 	self deny: (Float nan closeTo: 1.0) description: 'NaN isn''t close to anything'.
@@ -3909,7 +4153,7 @@ testCloseTo
 	self assert: (0 closeTo: 1.0e-8).
 	self assert: (1+1.0e-8 closeTo: 1.0).
 	
-	self assert: (1000000001.0 closeTo: 1000000000.0).
+	self assert: (1000000001 * 1.0 closeTo: 1000000000.0).
 	self deny: (1000000001 closeTo: 1000000000) description: 'exact representation are considered closeTo: only if equal'.! !
 
 !FloatTest methodsFor: 'testing compare' stamp: 'jmv 9/1/2010 11:58'!
@@ -4063,7 +4307,7 @@ testFloatTruncated
 		x := r next * 1.9999e16 + 1.0e12 .
 		self assert: x truncated = x asTrueFraction truncated]! !
 
-!FloatTest methodsFor: 'testing - conversion' stamp: 'nice 5/7/2006 16:22'!
+!FloatTest methodsFor: 'testing - conversion' stamp: 'jmv 3/28/2016 09:48'!
 testFractionAsFloat
 	"use a random test"
 	
@@ -4071,7 +4315,7 @@ testFractionAsFloat
 	r := Random new seed: 1234567.
 	m := (2 raisedTo: 54) - 1.
 	200 timesRepeat: [
-		frac := ((r nextInt: m) * (r nextInt: m) + 1) / ((r nextInt: m) * (r nextInt: m) + 1).
+		frac := ((r nextInteger: m) * (r nextInteger: m) + 1) / ((r nextInteger: m) * (r nextInteger: m) + 1).
 		err := (frac - frac asFloat asTrueFraction) * frac reciprocal * (1 bitShift: 52).
 		self assert: err < (1/2)].
 	
@@ -4129,13 +4373,11 @@ testInfinity2
   	"All infinities are signed. Negative infinity is not equal to Infinity"
 ! !
 
-!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 5/7/2012 15:15'!
+!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 1/9/2014 23:43'!
 testInfinity3
 	self assert:
 		(Float infinity negated asIEEE32BitWord
-			printPaddedWith: $0
-			to: 32
-			base: 2) = '11111111100000000000000000000000'.
+			printStringBase: 2 length: 32 padded: true) = '11111111100000000000000000000000'.
 	self assert:
 		(Float fromIEEE32Bit:
 			(Integer
@@ -4248,12 +4490,12 @@ testNaN4
 	"as a NaN is not equal to itself, it can not be retrieved when it is used as a dictionary key"
 ! !
 
-!FloatTest methodsFor: 'IEEE 754' stamp: 'mha 7/30/2009 16:15'!
+!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 1/9/2014 23:43'!
 testNaN5
 	| nanstr |
 	
 	"check the NaN string representation conforms to IEEE 754"
-	nanstr := Float nan asIEEE32BitWord printPaddedWith: $0 to: 32 base: 2.
+	nanstr := Float nan asIEEE32BitWord printStringBase: 2 length: 32 padded: true.
 	self
 		assert: (#($0 $1) includes: (nanstr at: 1));
 		assert: (nanstr copyFrom: 2 to: 9) = '11111111';
@@ -4399,13 +4641,11 @@ testZero1
 	"The negative zero has a bit representation that is different from the bit representation of the positive zero. Nevertheless, both values are defined to be equal."
 ! !
 
-!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 5/7/2012 15:15'!
+!FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 1/9/2014 23:42'!
 testZero2
 	self assert:
 		(Float negativeZero asIEEE32BitWord
-			printPaddedWith: $0
-			to: 32
-			base: 2) = '10000000000000000000000000000000'.
+			printStringBase: 2 length: 32 padded: true) = '10000000000000000000000000000000'.
 	self assert:
 		(Float fromIEEE32Bit:
 			(Integer
@@ -4417,6 +4657,331 @@ testZeroSignificandAsInteger
 	"This is about http://bugs.squeak.org/view.php?id=6990"
 	
 	self assert: 0.0 significandAsInteger = 0! !
+
+!FmFileIOAccessorTest methodsFor: 'private' stamp: 'jmv 9/28/2015 14:02'!
+defaultDirectoryPath
+	^FmDirectoryEntry currentDirectory pathName! !
+
+!FmFileIOAccessorTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 11:22'!
+testDirectoryExists
+	"FmFileIOAccessorTest debug: #testDirectoryExists"
+	| subDirString dirString |
+	subDirString := 99999 atRandom asString.
+	dirString := self defaultDirectoryPath, FmFileIOAccessor default slash, subDirString.
+
+	FmFileIOAccessor default createDirectory: dirString.
+
+	self should: [ dirString asDirectoryEntry exists ].
+
+	FmFileIOAccessor default deleteDirectory: dirString.
+
+	self shouldnt: [ dirString asDirectoryEntry exists ].! !
+
+!FmFileManTest methodsFor: 'private' stamp: 'mu 11/6/2006 20:35'!
+directoryEntryForTest
+	^'./fmTestDir' asDirectoryEntry! !
+
+!FmFileManTest methodsFor: 'private' stamp: 'mu 11/6/2006 20:29'!
+randomFileName
+	^100000 atRandom asString, '.fmtst'! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/28/2015 10:33'!
+testAbsolutePath
+	"FmFileManTest debug: #testAbsolutePath"
+	| dirEntry dirEntry1 dirEntry2 dirEntry3 dirEntry4 |
+	dirEntry := '/' asDirectoryEntry.
+	self should: [dirEntry = ':' asDirectoryEntry].
+	self should: [dirEntry = '\' asDirectoryEntry].
+	
+	dirEntry1 := '/temp/' asDirectoryEntry.
+	self should: [dirEntry1 = ':temp' asDirectoryEntry].
+	self should: [dirEntry1 = '\temp' asDirectoryEntry].
+
+	dirEntry2 := '/temp/a' asDirectoryEntry.
+	self should: [dirEntry2 = ':temp:a' asDirectoryEntry].
+	self should: [dirEntry2 = '\temp\a' asDirectoryEntry].
+
+	dirEntry3 := 'C:/temp/b' asDirectoryEntry.
+	self should: [dirEntry3 = 'C:\temp\b' asDirectoryEntry].
+	self should: [dirEntry3 = 'C::temp:b' asDirectoryEntry].
+
+	"Platform specific path tests"
+	FmFileIOAccessor default onMacClassic ifTrue: [
+	dirEntry4 := 'Macintosh HD:tmp' asDirectoryEntry.
+	self should: [dirEntry4 = 'Macintosh HD/tmp' asDirectoryEntry].
+	self should: [dirEntry4 = 'Macintosh HD\tmp' asDirectoryEntry].
+	].
+	
+	
+	
+	! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/6/2006 23:08'!
+testAtPut
+	"FmFileManTest debug: #testAtPut" 
+	| dir bytes |
+	dir := self directoryEntryForTest.
+	dir at: 'test1' put: 'Hello'.
+	self should: [(dir at: 'test1') = 'Hello'].
+	self should: [dir includesKey: 'test1'].
+
+	bytes := #(1 2 3 4 5 6) asByteArray.
+	dir binaryAt: 'test2' put: bytes.
+	self should: [(dir binaryAt: 'test2') = bytes].
+	self should: [dir includesKey: 'test2'].
+
+	dir removeKey: 'test1'.
+
+	self shouldnt: [dir includesKey: 'test1'].
+
+	dir recursiveDelete.
+	self should: [dir exists not]! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 6/6/2015 19:49'!
+testConcatenation
+	"
+	FmFileManTest debug: #testConcatenation
+	"
+	| dir |
+	dir := ('./subDir' asDirectoryEntry / 'aaa/bbb' / 'ccc' / 'ddd\eee' / 'fff:ggg').
+	dir at: 'test1' put: 'RecursiveDeleted!!'.
+
+	self assert: dir name = 'ggg'.
+	self assert: dir parent name = 'fff'.
+	self assert: dir parent parent name = 'eee'.
+	self assert: dir parent parent parent name = 'ddd'.
+	self assert: dir parent parent parent parent name = 'ccc'.
+	self assert: dir parent parent parent parent parent name = 'bbb'.
+	self assert: dir parent parent parent parent parent parent name = 'aaa'.
+
+	'./subDir' asDirectoryEntry recursiveDelete.
+	self shouldnt: [dir exists].
+	self shouldnt: ['./subDir' asDirectoryEntry exists].! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 12:08'!
+testCopy
+	"FmFileManTest debug: #testCopy" 
+	| file1 file2 |
+	file1 := self randomFileName asFileEntry.
+	file2 := file1 parent // self randomFileName.
+
+	file1 fileContents: 'This is a test'.
+
+"	self should: [file2 fileContents isEmpty]."
+	self should: [file2 exists not].
+
+	file1 copyTo: file2 pathName.
+
+	self should: [file2 fileContents = 'This is a test'].
+
+	file1 delete.
+	file2 delete.
+	self should: [file1 exists not].
+	self should: [file2 exists not]
+	
+	
+	! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/5/2015 08:43'!
+testDefaultDirectory
+	"
+	FmFileManTest debug: #testDefaultDirectory
+	"
+	
+	| pathComponents |
+
+	self assert: '' asDirectoryEntry =  FmDirectoryEntry currentDirectory.
+
+	pathComponents := '' asDirectoryEntry pathComponents.
+	self assert: pathComponents = FmDirectoryEntry currentDirectory pathComponents! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/6/2006 20:33'!
+testFileContents
+	"FmFileManTest debug: #testFileContents" 
+	| file1 file2 bytes |
+	file1 := self randomFileName asFileEntry.
+	file1 fileContents: 'This is a test'.
+	self should: [file1 fileContents = 'This is a test'].
+	file1 delete.
+	self should: [file1 exists not].
+
+	file2 := self randomFileName asFileEntry.
+	bytes := #(1 2 3 4 5 6) asByteArray.
+	file2 fileContents: bytes.
+	self should: [file2 fileContents = bytes asString].
+	self should: [file2 binaryContents = bytes].
+	file2 delete.
+	self should: [file2 exists not]! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 11/30/2015 09:43'!
+testIsAbsolutePathName
+	"
+	FmFileManTest debug: #testIsAbsolutePathName
+	"
+	self assert: '/' isAbsolutePathName.
+	self assert: '/temp/' isAbsolutePathName.
+	self assert: '/temp/a' isAbsolutePathName.
+	Smalltalk platformName = 'Win32' ifTrue: [
+		self assert: 'C:/temp/b' isAbsolutePathName ].
+	FmFileIOAccessor default onMacClassic ifTrue: [
+		self assert: 'Macintosh HD/tmp' isAbsolutePathName ].
+	
+	self deny: './' isAbsolutePathName.
+	self deny: '../' isAbsolutePathName.
+	self deny: 'afile' isAbsolutePathName.! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 6/6/2015 23:20'!
+testIsRelativePathName
+	"
+	FmFileManTest debug: #testIsRelativePathName
+	"
+	self assert: './' isRelativePathName.
+	self assert: '../' isRelativePathName.
+"	self assert: 'afile' isRelativePathName."
+	self deny: '/' isRelativePathName.
+	self deny: '/temp/' isRelativePathName.
+	self deny: '/temp/a' isRelativePathName.
+	self deny: 'C:/temp/b' isRelativePathName.
+	self deny: 'Macintosh HD/tmp' isRelativePathName.! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 6/6/2015 22:03'!
+testPathComponents
+	"
+	FmFileManTest debug: #testPathComponents
+	"
+	| pathComponents |
+
+	pathComponents := './aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
+	pathComponents := pathComponents last: 4.
+	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd').
+
+	pathComponents := '/aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
+	pathComponents := pathComponents last: 4.
+	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd').
+
+	pathComponents := 'aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
+	pathComponents := pathComponents last: 4.
+	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd')! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 11:28'!
+testPipe
+	"FmFileManTest debug: #testPipe" 
+	| reverseFilter file1 file2 file3 |
+
+	reverseFilter := [:in :out | out nextPutAll: (in upToEnd reverse)].
+
+	file1 := self randomFileName asFileEntry.
+	file2 := self randomFileName asFileEntry.
+	file3 := self randomFileName asFileEntry.
+
+	file1 fileContents: 'This is a pipe test'.
+
+	file1 pipe: reverseFilter to: file2 pathName.
+
+	self should: [('.' asDirectoryEntry at: file1 name) = 'This is a pipe test'].	
+	self should: [(file2 fileContents) = 'tset epip a si sihT'].	
+"	self should: [(file3 fileContents) isEmpty]."
+	self should: [file3 exists not].
+
+	file2 pipe: reverseFilter to: file3 pathName.
+	self should: [(file3 fileContents) = 'This is a pipe test'].	
+
+	file1 delete.
+	file2 delete.
+	file3 delete.
+	self should: [file1 exists not].
+	self should: [file2 exists not].
+	self should: [file3 exists not]
+	
+	
+	! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 12:09'!
+testRecursiveDelete
+	"FmFileManTest debug: #testRecursiveDelete" 
+	| dir |
+	dir := ('./subDir' asDirectoryEntry / 'aaa\bbb' / 'ccc' / 'ddd\eee' / 'fff:ggg').
+	dir at: 'test1' put: 'RecursiveDelete!!'.
+	self should: [(dir at: 'test1') = 'RecursiveDelete!!'].
+
+	dir removeKey: 'test1'.
+
+	self shouldnt: [(dir // 'test1') exists].
+
+	'./subDir' asDirectoryEntry recursiveDelete.
+	self shouldnt: [dir exists].
+	self shouldnt: ['./subDir' asDirectoryEntry exists].
+
+	! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/15/2006 20:22'!
+testRefresh
+	"FmFileManTest debug: #testRefresh" 
+	| file1 |
+	file1 := self randomFileName asFileEntry.
+
+	file1 fileContents: '1234567890'.
+	self should: [file1 fileSize = 10].
+
+	file1 fileContents: '123'.
+	self should: [file1 fileSize = 3].
+	
+
+	file1 delete.
+	self should: [file1 exists not].
+	! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/15/2006 20:19'!
+testRename
+	"FmFileManTest debug: #testRename" 
+	| file1 |
+	file1 := self randomFileName asFileEntry.
+	file1 fileContents: 'ToBeRenamed'.
+
+	self shouldnt: [file1 name = 'newName1'].
+
+	file1 rename: 'newName1'.
+
+	self should: [file1 name = 'newName1'].
+	self should: [file1 exists].
+
+	self should: [file1 fileContents = 'ToBeRenamed'].
+
+	file1 delete.
+	self should: [file1 exists not].
+	! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 11:31'!
+testRoot
+	"FmFileManTest debug: #testRoot"
+	| root |
+	root := FmDirectoryEntry roots first.
+	self should: [root pathComponents isEmpty].
+	FmFileIOAccessor default onUnix ifTrue: [
+		self should: [root = '\' asDirectoryEntry]. 
+		self should: [root = ':' asDirectoryEntry]. 
+		self should: [root = '/' asDirectoryEntry]]! !
+
+!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/2/2015 16:42'!
+testStream
+	"FmFileManTest debug: #testStream" 
+	| file1 contents formerContents allContents |
+	file1 := self randomFileName asFileEntry.
+	file1 writeStream: [:str | str nextPutAll: 'HELLO!!'].
+	contents := file1 readStream: [:str | str upToEnd].
+	self should: [contents = 'HELLO!!'].
+
+	file1 appendStream: [:str | str nextPutAll: 'AGAIN!!'].
+
+	formerContents := file1 readStream: [:str | str upTo:$!!].
+	self should: [formerContents = 'HELLO'].
+
+	allContents := file1 readStream: [:str | str upToEnd].
+	self should: [allContents = 'HELLO!!AGAIN!!'].
+
+	file1 delete.
+	self should: [file1 exists not].
+	! !
 
 !FractionTest methodsFor: 'private' stamp: 'jmv 10/11/2011 22:12'!
 assert: a classAndValueEquals: b
@@ -4814,6 +5379,150 @@ assert: a classAndValueEquals: b
 	self assert: a class = b class.
 	self assert: a = b! !
 
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:01'!
+testBackslashBackslashLnLn
+
+	self assert: -42391158275216203514294433200 \\ -14130386091738734504764811067 = -14130386091738734504764811066.
+	self assert: -42391158275216203514294433201 \\ -14130386091738734504764811067 = 0.
+	self assert: -42391158275216203514294433202 \\ -14130386091738734504764811067 = -1.
+	self assert: -8727963568087712425891397479476727340041448 \\ -79766443076872509863361 = -79766443076872509863360.
+	self assert: -8727963568087712425891397479476727340041449 \\ -79766443076872509863361 = 0.
+	self assert: -8727963568087712425891397479476727340041450 \\ -79766443076872509863361 = -1! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:00'!
+testBackslashBackslashLnLp
+
+	self assert: -42391158275216203514294433200 \\ 14130386091738734504764811067 = 1.
+	self assert: -42391158275216203514294433201 \\ 14130386091738734504764811067 = 0.
+	self assert: -42391158275216203514294433202 \\ 14130386091738734504764811067 = 14130386091738734504764811066.
+	self assert: -8727963568087712425891397479476727340041448 \\ 79766443076872509863361 = 1.
+	self assert: -8727963568087712425891397479476727340041449 \\ 79766443076872509863361 = 0.
+	self assert: -8727963568087712425891397479476727340041450 \\ 79766443076872509863361 = 79766443076872509863360! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:01'!
+testBackslashBackslashLnSn
+
+	self assert: -42391158275216203514294433201 \\ -3 = 0.
+	self assert: -42391158275216203514294433202 \\ -3 = -1.
+	self assert: -42391158275216203514294433203 \\ -3 = -2.
+	self assert: -42391158275216203514294433204 \\ -3 = 0! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:02'!
+testBackslashBackslashLnSp
+
+	self assert: -42391158275216203514294433201 \\ 3 = 0.
+	self assert: -42391158275216203514294433202 \\ 3 = 2.
+	self assert: -42391158275216203514294433203 \\ 3 = 1.
+	self assert: -42391158275216203514294433204 \\ 3 = 0! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:04'!
+testBackslashBackslashLpLn
+
+	self assert: 42391158275216203514294433200 \\ -14130386091738734504764811067 = -1.
+	self assert: 42391158275216203514294433201 \\ -14130386091738734504764811067 = 0.
+	self assert: 42391158275216203514294433202 \\ -14130386091738734504764811067 = -14130386091738734504764811066.
+	self assert: 8727963568087712425891397479476727340041448 \\ -79766443076872509863361 = -1.
+	self assert: 8727963568087712425891397479476727340041449 \\ -79766443076872509863361 = 0.
+	self assert: 8727963568087712425891397479476727340041450 \\ -79766443076872509863361 = -79766443076872509863360! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:05'!
+testBackslashBackslashLpLp
+
+	self assert: 42391158275216203514294433200 \\ 14130386091738734504764811067 = 14130386091738734504764811066.
+	self assert: 42391158275216203514294433201 \\ 14130386091738734504764811067 = 0.
+	self assert: 42391158275216203514294433202 \\ 14130386091738734504764811067 = 1.
+	self assert: 8727963568087712425891397479476727340041448 \\ 79766443076872509863361 = 79766443076872509863360.
+	self assert: 8727963568087712425891397479476727340041449 \\ 79766443076872509863361 = 0.
+	self assert: 8727963568087712425891397479476727340041450 \\ 79766443076872509863361 = 1! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:06'!
+testBackslashBackslashLpSn
+
+	self assert: 42391158275216203514294433201 \\ -3 = 0.
+	self assert: 42391158275216203514294433202 \\ -3 = -2.
+	self assert: 42391158275216203514294433203 \\ -3 = -1.
+	self assert: 42391158275216203514294433204 \\ -3 = 0! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:07'!
+testBackslashBackslashLpSp
+
+	self assert: 42391158275216203514294433201 \\ 3 = 0.
+	self assert: 42391158275216203514294433202 \\ 3 = 1.
+	self assert: 42391158275216203514294433203 \\ 3 = 2.
+	self assert: 42391158275216203514294433204 \\ 3 = 0! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:08'!
+testBackslashBackslashSnLn
+
+	self assert: 0 \\ -42391158275216203514294433201 = 0.
+	self assert: -1 \\ -42391158275216203514294433201 = -1.
+	self assert: -14348907 \\ -42391158275216203514294433201 = -14348907! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:09'!
+testBackslashBackslashSnLp
+
+	self assert: 0 \\ 42391158275216203514294433201 = 0.
+	self assert: -1 \\ 42391158275216203514294433201 =  42391158275216203514294433200.
+	self assert: -14348907 \\ 42391158275216203514294433201 = 42391158275216203514280084294! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:09'!
+testBackslashBackslashSnSn
+
+	self assert: 0 \\ -3 = 0.
+	self assert: -1 \\ -3 = -1.
+	self assert: -9 \\ -3 = 0.
+	self assert: -10 \\ -3 = -1.
+	self assert: -11 \\ -3 = -2.
+	self assert: -12 \\ -3 = 0.
+	self assert: -13 \\ -3 = -1! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:10'!
+testBackslashBackslashSnSp
+
+	self assert: 0 \\ 3 = 0.
+	self assert: -1 \\ 3 = 2.
+	self assert: -9 \\ 3 = 0.
+	self assert: -10 \\ 3 = 2.
+	self assert: -11 \\ 3 = 1.
+	self assert: -12 \\ 3 = 0.
+	self assert: -13 \\ 3 = 2! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:11'!
+testBackslashBackslashSpLn
+
+	self assert: 0 \\ -42391158275216203514294433201 = 0.
+	self assert: 1 \\ -42391158275216203514294433201 = -42391158275216203514294433200.
+	self assert: 14348907 \\ -42391158275216203514294433201 = -42391158275216203514280084294! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:12'!
+testBackslashBackslashSpLp
+
+	self assert: 0 \\ 42391158275216203514294433201 = 0.
+	self assert: 1 \\ 42391158275216203514294433201 = 1.
+	self assert: 14348907 \\ 42391158275216203514294433201 = 14348907! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:13'!
+testBackslashBackslashSpSn
+
+	self assert: 0 \\ -3 = 0.
+	self assert: 1 \\ -3 = -2.
+	self assert: 9 \\ -3 = 0.
+	self assert: 10 \\ -3 = -2.
+	self assert: 11 \\ -3 = -1.
+	self assert: 12 \\ -3 = 0.
+	self assert: 13 \\ -3 = -2! !
+
+!IntegerTest methodsFor: 'tests - division - \\' stamp: 'sqr 1/25/2014 14:13'!
+testBackslashBackslashSpSp
+
+	self assert: 0 \\ 3 = 0.
+	self assert: 1 \\ 3 = 1.
+	self assert: 9 \\ 3 = 0.
+	self assert: 10 \\ 3 = 1.
+	self assert: 11 \\ 3 = 2.
+	self assert: 12 \\ 3 = 0.
+	self assert: 13 \\ 3 = 1! !
+
 !IntegerTest methodsFor: 'tests - benchmarks' stamp: 'sd 6/5/2005 08:37'!
 testBenchFib
 
@@ -5105,6 +5814,150 @@ testDifferentBases
 	self assert: -35rYXWVUTSRQPONMLKJIHGFEDCBA9876543210 = -1101553773143634726491620528194292510495517905608180485.
 	self assert: -36rZYXWVUTSRQPONMLKJIHGFEDCBA9876543210 = -106300512100105327644605138221229898724869759421181854980.! !
 
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:53'!
+testDivLnLn
+
+	self assert: (-42391158275216203514294433200 div: -14130386091738734504764811067) = 3.
+	self assert: (-42391158275216203514294433201 div: -14130386091738734504764811067) = 3.
+	self assert: (-42391158275216203514294433202 div: -14130386091738734504764811067) = 4.
+	self assert: (-8727963568087712425891397479476727340041448 div: -79766443076872509863361) = 109418989131512359209.
+	self assert: (-8727963568087712425891397479476727340041449 div: -79766443076872509863361) = 109418989131512359209.
+	self assert: (-8727963568087712425891397479476727340041450 div: -79766443076872509863361) = 109418989131512359210! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:53'!
+testDivLnLp
+
+	self assert: (-42391158275216203514294433200 div: 14130386091738734504764811067) = -3.
+	self assert: (-42391158275216203514294433201 div: 14130386091738734504764811067) = -3.
+	self assert: (-42391158275216203514294433202 div: 14130386091738734504764811067) = -4.
+	self assert: (-8727963568087712425891397479476727340041448 div: 79766443076872509863361) = -109418989131512359209.
+	self assert: (-8727963568087712425891397479476727340041449 div: 79766443076872509863361) = -109418989131512359209.
+	self assert: (-8727963568087712425891397479476727340041450 div: 79766443076872509863361) = -109418989131512359210! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:54'!
+testDivLnSn
+
+	self assert: (-42391158275216203514294433201 div: -3) = 14130386091738734504764811067.
+	self assert: (-42391158275216203514294433202 div: -3) = 14130386091738734504764811068.
+	self assert: (-42391158275216203514294433203 div: -3) = 14130386091738734504764811068.
+	self assert: (-42391158275216203514294433204 div: -3) = 14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivLnSp
+
+	self assert: (-42391158275216203514294433201 div: 3) = -14130386091738734504764811067.
+	self assert: (-42391158275216203514294433202 div: 3) = -14130386091738734504764811068.
+	self assert: (-42391158275216203514294433203 div: 3) = -14130386091738734504764811068.
+	self assert: (-42391158275216203514294433204 div: 3) = -14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:54'!
+testDivLpLn
+
+	self assert: (42391158275216203514294433200 div: -14130386091738734504764811067) = -2.
+	self assert: (42391158275216203514294433201 div: -14130386091738734504764811067) = -3.
+	self assert: (42391158275216203514294433202 div: -14130386091738734504764811067) = -3.
+	self assert: (8727963568087712425891397479476727340041448 div: -79766443076872509863361) = -109418989131512359208.
+	self assert: (8727963568087712425891397479476727340041449 div: -79766443076872509863361) = -109418989131512359209.
+	self assert: (8727963568087712425891397479476727340041450 div: -79766443076872509863361) = -109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivLpLp
+
+	self assert: (42391158275216203514294433200 div: 14130386091738734504764811067) = 2.
+	self assert: (42391158275216203514294433201 div: 14130386091738734504764811067) = 3.
+	self assert: (42391158275216203514294433202 div: 14130386091738734504764811067) = 3.
+	self assert: (8727963568087712425891397479476727340041448 div: 79766443076872509863361) = 109418989131512359208.
+	self assert: (8727963568087712425891397479476727340041449 div: 79766443076872509863361) = 109418989131512359209.
+	self assert: (8727963568087712425891397479476727340041450 div: 79766443076872509863361) = 109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:55'!
+testDivLpSn
+
+	self assert: (42391158275216203514294433201 div: -3) = -14130386091738734504764811067.
+	self assert: (42391158275216203514294433202 div: -3) = -14130386091738734504764811067.
+	self assert: (42391158275216203514294433203 div: -3) = -14130386091738734504764811067.
+	self assert: (42391158275216203514294433204 div: -3) = -14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivLpSp
+
+	self assert: (42391158275216203514294433201 div: 3) = 14130386091738734504764811067.
+	self assert: (42391158275216203514294433202 div: 3) = 14130386091738734504764811067.
+	self assert: (42391158275216203514294433203 div: 3) = 14130386091738734504764811067.
+	self assert: (42391158275216203514294433204 div: 3) = 14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:55'!
+testDivSnLn
+
+	self assert: (0 div: -42391158275216203514294433201) = 0.
+	self assert: (-1 div: -42391158275216203514294433201) = 1.
+	self assert: (-14348907 div: -42391158275216203514294433201) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivSnLp
+
+	self assert: (0 div: 42391158275216203514294433201) = 0.
+	self assert: (-1 div: 42391158275216203514294433201) = -1.
+	self assert: (-14348907 div: 42391158275216203514294433201) = -1! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:56'!
+testDivSnSn
+
+	self assert: (0 div: -3) = 0.
+	self assert: (-1 div: -3) = 1.
+	self assert: (-9 div: -3) = 3.
+	self assert: (-10 div: -3) = 4.
+	self assert: (-11 div: -3) = 4.
+	self assert: (-12 div: -3) = 4.
+	self assert: (-13 div: -3) = 5! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivSnSp
+
+	self assert: (0 div: 3) = 0.
+	self assert: (-1 div: 3) = -1.
+	self assert: (-9 div: 3) = -3.
+	self assert: (-10 div: 3) = -4.
+	self assert: (-11 div: 3) = -4.
+	self assert: (-12 div: 3) = -4.
+	self assert: (-13 div: 3) = -5! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:55'!
+testDivSpLn
+
+	self assert: (0 div: -42391158275216203514294433201) = 0.
+	self assert: (1 div: -42391158275216203514294433201) = 0.
+	self assert: (14348907 div: -42391158275216203514294433201) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivSpLp
+
+	self assert: (0 div: 42391158275216203514294433201) = 0.
+	self assert: (1 div: 42391158275216203514294433201) = 0.
+	self assert: (14348907 div: 42391158275216203514294433201) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:54'!
+testDivSpSn
+
+	self assert: (0 div: -3) = 0.
+	self assert: (1 div: -3) = 0.
+	self assert: (9 div: -3) = -3.
+	self assert: (10 div: -3) = -3.
+	self assert: (11 div: -3) = -3.
+	self assert: (12 div: -3) = -4.
+	self assert: (13 div: -3) = -4! !
+
+!IntegerTest methodsFor: 'tests - division - div:' stamp: 'sqr 1/25/2014 14:36'!
+testDivSpSp
+
+	self assert: (0 div: 3) = 0.
+	self assert: (1 div: 3) = 0.
+	self assert: (9 div: 3) = 3.
+	self assert: (10 div: 3) = 3.
+	self assert: (11 div: 3) = 3.
+	self assert: (12 div: 3) = 4.
+	self assert: (13 div: 3) = 4! !
+
 !IntegerTest methodsFor: 'tests - basic' stamp: 'md 4/21/2003 16:17'!
 testEven
 	
@@ -5203,7 +6056,7 @@ testHighBitOfMagnitude
 		self assert: anInteger highBitOfMagnitude = highBit.
 		self assert: anInteger negated highBitOfMagnitude = highBit].! !
 
-!IntegerTest methodsFor: 'tests - printing' stamp: 'laza 3/29/2004 18:16'!
+!IntegerTest methodsFor: 'tests - printing' stamp: 'jmv 1/9/2014 23:39'!
 testIntegerPadding
 	"self run: #testIntegerPadding"
 
@@ -5241,44 +6094,7 @@ testIntegerPadding
 	self assert: (2047 printStringBase: 16 length: -1 padded: true) =  '7FF'.
 	self assert: (2047 printStringBase: 16 length: 4 padded: true) =  '07FF'.
 	self assert: (-2047 printStringBase: 16 length: 4 padded: true) = '-7FF'.
-	self assert: (-2047 printStringBase: 16 length: 19 padded: true) =  '-0000000000000007FF'.
-
-	self assert: (1 storeStringBase: 10 length: 0 padded: false) = '1'.
-	self assert: (1 storeStringBase: 10 length: 1 padded: false) = '1'.
-	self assert: (1 storeStringBase: 10 length: 2 padded: false) = ' 1'.
-	self assert: (1024 storeStringBase: 10 length: 19 padded: false) = '               1024'.
-	self assert: (1024 storeStringBase: 10 length: -1 padded: false) = '1024'.
-	self assert: (1024 storeStringBase: 10 length: 5 padded: false) =  ' 1024'.
-	self assert: (-1024 storeStringBase: 10 length: 5 padded: false) =   '-1024'.
-	self assert: (-1024 storeStringBase: 10 length: 19 padded: false) =  '              -1024'.
-
-	self assert: (1 storeStringBase: 10 length: 0 padded: true) = '1'.
-	self assert: (1 storeStringBase: 10 length: 1 padded: true) = '1'.
-	self assert: (1 storeStringBase: 10 length: 2 padded: true) = '01'.
-	self assert: (1024 storeStringBase: 10 length: 19 padded: true) = '0000000000000001024'.
-	self assert: (1024 storeStringBase: 10 length: -1 padded: true) = '1024'.
-	self assert: (1024 storeStringBase: 10 length: 5 padded: true) =  '01024'.
-	self assert: (-1024 storeStringBase: 10 length: 5 padded: true) =   '-1024'.
-	self assert: (-1024 storeStringBase: 10 length: 19 padded: true) =  '-000000000000001024'.
-
-	self assert: (1 storeStringBase: 16 length: 0 padded: false) = '16r1'.
-	self assert: (1 storeStringBase: 16 length: 4 padded: false) = '16r1'.
-	self assert: (1 storeStringBase: 16 length: 5 padded: false) = ' 16r1'.
-	self assert: (2047 storeStringBase: 16 length: 19 padded: false) =  '             16r7FF'.
-	self assert: (2047 storeStringBase: 16 length: -1 padded: false) =  '16r7FF'.
-	self assert: (2047 storeStringBase: 16 length: 7 padded: false) =  ' 16r7FF'.
-	self assert: (-2047 storeStringBase: 16 length: 7 padded: false) = '-16r7FF'.
-	self assert: (-2047 storeStringBase: 16 length: 19 padded: false) =  '            -16r7FF'.
-
-	self assert: (1 storeStringBase: 16 length: 0 padded: true) = '16r1'.
-	self assert: (1 storeStringBase: 16 length: 4 padded: true) = '16r1'.
-	self assert: (1 storeStringBase: 16 length: 5 padded: true) = '16r01'.
-	self assert: (2047 storeStringBase: 16 length: 19 padded: true) =  '16r00000000000007FF'.
-	self assert: (2047 storeStringBase: 16 length: -1 padded: true) =  '16r7FF'.
-	self assert: (2047 storeStringBase: 16 length: 7 padded: true) =  '16r07FF'.
-	self assert: (-2047 storeStringBase: 16 length: 7 padded: true) = '-16r7FF'.
-	self assert: (-2047 storeStringBase: 16 length: 19 padded: true) =  '-16r0000000000007FF'.
-! !
+	self assert: (-2047 printStringBase: 16 length: 19 padded: true) =  '-0000000000000007FF'! !
 
 !IntegerTest methodsFor: 'tests - instance creation' stamp: 'jmv 9/1/2010 13:56'!
 testIntegerReadFrom
@@ -5378,182 +6194,291 @@ testLowBit
 		self assert: anInteger lowBit = lowBit.
 		self assert: anInteger negated lowBit = lowBit].! !
 
-!IntegerTest methodsFor: 'tests - printing' stamp: 'laza 3/30/2004 14:20'!
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:57'!
+testModLnLn
+
+	self assert: (-42391158275216203514294433200 mod: -14130386091738734504764811067) = 1.
+	self assert: (-42391158275216203514294433201 mod: -14130386091738734504764811067) = 0.
+	self assert: (-42391158275216203514294433202 mod: -14130386091738734504764811067) = 14130386091738734504764811066.
+	self assert: (-8727963568087712425891397479476727340041448 mod: -79766443076872509863361) = 1.
+	self assert: (-8727963568087712425891397479476727340041449 mod: -79766443076872509863361) = 0.
+	self assert: (-8727963568087712425891397479476727340041450 mod: -79766443076872509863361) = 79766443076872509863360! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModLnLp
+
+	self assert: (-42391158275216203514294433200 mod: 14130386091738734504764811067) = 1.
+	self assert: (-42391158275216203514294433201 mod: 14130386091738734504764811067) = 0.
+	self assert: (-42391158275216203514294433202 mod: 14130386091738734504764811067) = 14130386091738734504764811066.
+	self assert: (-8727963568087712425891397479476727340041448 mod: 79766443076872509863361) = 1.
+	self assert: (-8727963568087712425891397479476727340041449 mod: 79766443076872509863361) = 0.
+	self assert: (-8727963568087712425891397479476727340041450 mod: 79766443076872509863361) = 79766443076872509863360! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 15:05'!
+testModLnSn
+
+	self assert: (-42391158275216203514294433201 mod: -3) = 0.
+	self assert: (-42391158275216203514294433202 mod: -3) = 2.
+	self assert: (-42391158275216203514294433203 mod: -3) = 1.
+	self assert: (-42391158275216203514294433204 mod: -3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModLnSp
+
+	self assert: (-42391158275216203514294433201 mod: 3) = 0.
+	self assert: (-42391158275216203514294433202 mod: 3) = 2.
+	self assert: (-42391158275216203514294433203 mod: 3) = 1.
+	self assert: (-42391158275216203514294433204 mod: 3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 15:05'!
+testModLpLn
+
+	self assert: (42391158275216203514294433200 mod: -14130386091738734504764811067) = 14130386091738734504764811066.
+	self assert: (42391158275216203514294433201 mod: -14130386091738734504764811067) = 0.
+	self assert: (42391158275216203514294433202 mod: -14130386091738734504764811067) = 1.
+	self assert: (8727963568087712425891397479476727340041448 mod: -79766443076872509863361) = 79766443076872509863360.
+	self assert: (8727963568087712425891397479476727340041449 mod: -79766443076872509863361) = 0.
+	self assert: (8727963568087712425891397479476727340041450 mod: -79766443076872509863361) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModLpLp
+
+	self assert: (42391158275216203514294433200 mod: 14130386091738734504764811067) = 14130386091738734504764811066.
+	self assert: (42391158275216203514294433201 mod: 14130386091738734504764811067) = 0.
+	self assert: (42391158275216203514294433202 mod: 14130386091738734504764811067) = 1.
+	self assert: (8727963568087712425891397479476727340041448 mod: 79766443076872509863361) = 79766443076872509863360.
+	self assert: (8727963568087712425891397479476727340041449 mod: 79766443076872509863361) = 0.
+	self assert: (8727963568087712425891397479476727340041450 mod: 79766443076872509863361) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 15:04'!
+testModLpSn
+
+	self assert: (42391158275216203514294433201 mod: -3) = 0.
+	self assert: (42391158275216203514294433202 mod: -3) = 1.
+	self assert: (42391158275216203514294433203 mod: -3) = 2.
+	self assert: (42391158275216203514294433204 mod: -3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModLpSp
+
+	self assert: (42391158275216203514294433201 mod: 3) = 0.
+	self assert: (42391158275216203514294433202 mod: 3) = 1.
+	self assert: (42391158275216203514294433203 mod: 3) = 2.
+	self assert: (42391158275216203514294433204 mod: 3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 15:04'!
+testModSnLn
+
+	self assert: (0 mod: -42391158275216203514294433201) = 0.
+	self assert: (-1 mod: -42391158275216203514294433201) = 42391158275216203514294433200.
+	self assert: (-14348907 mod: -42391158275216203514294433201) = 42391158275216203514280084294! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModSnLp
+
+	self assert: (0 mod: 42391158275216203514294433201) = 0.
+	self assert: (-1 mod: 42391158275216203514294433201) =  42391158275216203514294433200.
+	self assert: (-14348907 mod: 42391158275216203514294433201) = 42391158275216203514280084294! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 15:00'!
+testModSnSn
+
+	self assert: (0 mod: -3) = 0.
+	self assert: (-1 mod: -3) = 2.
+	self assert: (-9 mod: -3) = 0.
+	self assert: (-10 mod: -3) = 2.
+	self assert: (-11 mod: -3) = 1.
+	self assert: (-12 mod: -3) = 0.
+	self assert: (-13 mod: -3) = 2! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:59'!
+testModSnSp
+
+	self assert: (0 mod: 3) = 0.
+	self assert: (-1 mod: 3) = 2.
+	self assert: (-9 mod: 3) = 0.
+	self assert: (-10 mod: 3) = 2.
+	self assert: (-11 mod: 3) = 1.
+	self assert: (-12 mod: 3) = 0.
+	self assert: (-13 mod: 3) = 2! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 15:05'!
+testModSpLn
+
+	self assert: (0 mod: -42391158275216203514294433201) = 0.
+	self assert: (1 mod: -42391158275216203514294433201) = 1.
+	self assert: (14348907 mod: -42391158275216203514294433201) = 14348907! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModSpLp
+
+	self assert: (0 mod: 42391158275216203514294433201) = 0.
+	self assert: (1 mod: 42391158275216203514294433201) = 1.
+	self assert: (14348907 mod: 42391158275216203514294433201) = 14348907! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:58'!
+testModSpSn
+
+	self assert: (0 mod: -3) = 0.
+	self assert: (1 mod: -3) = 1.
+	self assert: (9 mod: -3) = 0.
+	self assert: (10 mod: -3) = 1.
+	self assert: (11 mod: -3) = 2.
+	self assert: (12 mod: -3) = 0.
+	self assert: (13 mod: -3) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - mod:' stamp: 'sqr 1/25/2014 14:35'!
+testModSpSp
+
+	self assert: (0 mod: 3) = 0.
+	self assert: (1 mod: 3) = 1.
+	self assert: (9 mod: 3) = 0.
+	self assert: (10 mod: 3) = 1.
+	self assert: (11 mod: 3) = 2.
+	self assert: (12 mod: 3) = 0.
+	self assert: (13 mod: 3) = 1! !
+
+!IntegerTest methodsFor: 'tests - printing' stamp: 'jmv 1/9/2014 22:54'!
 testNegativeIntegerPrinting
 	"self run: #testnegativeIntegerPrinting"
 
 	self assert: (-2 printStringBase: 2) = '-10'.
-	self assert: (-2 radix: 2) = '-10'.
 	self assert: -2 printStringHex = '-2'.
 	self assert: (-2 storeStringBase: 2) = '-2r10'.
 	self assert: -2 storeStringHex = '-16r2'.
 	self assert: (-21 printStringBase: 3) = '-210'.
-	self assert: (-21 radix: 3) = '-210'.
 	self assert: -21 printStringHex = '-15'.
 	self assert: (-21 storeStringBase: 3) = '-3r210'.
 	self assert: -21 storeStringHex = '-16r15'.
 	self assert: (-228 printStringBase: 4) = '-3210'.
-	self assert: (-228 radix: 4) = '-3210'.
 	self assert: -228 printStringHex = '-E4'.
 	self assert: (-228 storeStringBase: 4) = '-4r3210'.
 	self assert: -228 storeStringHex = '-16rE4'.
 	self assert: (-2930 printStringBase: 5) = '-43210'.
-	self assert: (-2930 radix: 5) = '-43210'.
 	self assert: -2930 printStringHex = '-B72'.
 	self assert: (-2930 storeStringBase: 5) = '-5r43210'.
 	self assert: -2930 storeStringHex = '-16rB72'.
 	self assert: (-44790 printStringBase: 6) = '-543210'.
-	self assert: (-44790 radix: 6) = '-543210'.
 	self assert: -44790 printStringHex = '-AEF6'.
 	self assert: (-44790 storeStringBase: 6) = '-6r543210'.
 	self assert: -44790 storeStringHex = '-16rAEF6'.
 	self assert: (-800667 printStringBase: 7) = '-6543210'.
-	self assert: (-800667 radix: 7) = '-6543210'.
 	self assert: -800667 printStringHex = '-C379B'.
 	self assert: (-800667 storeStringBase: 7) = '-7r6543210'.
 	self assert: -800667 storeStringHex = '-16rC379B'.
 	self assert: (-16434824 printStringBase: 8) = '-76543210'.
-	self assert: (-16434824 radix: 8) = '-76543210'.
 	self assert: -16434824 printStringHex = '-FAC688'.
 	self assert: (-16434824 storeStringBase: 8) = '-8r76543210'.
 	self assert: -16434824 storeStringHex = '-16rFAC688'.
 	self assert: (-381367044 printStringBase: 9) = '-876543210'.
-	self assert: (-381367044 radix: 9) = '-876543210'.
 	self assert: -381367044 printStringHex = '-16BB3304'.
 	self assert: (-381367044 storeStringBase: 9) = '-9r876543210'.
 	self assert: -381367044 storeStringHex = '-16r16BB3304'.
 	self assert: (-9876543210 printStringBase: 10) = '-9876543210'.
-	self assert: (-9876543210 radix: 10) = '-9876543210'.
 	self assert: -9876543210 printStringHex = '-24CB016EA'.
 	self assert: (-9876543210 storeStringBase: 10) = '-9876543210'.
 	self assert: -9876543210 storeStringHex = '-16r24CB016EA'.
 	self assert: (-282458553905 printStringBase: 11) = '-A9876543210'.
-	self assert: (-282458553905 radix: 11) = '-A9876543210'.
 	self assert: -282458553905 printStringHex = '-41C3D77E31'.
 	self assert: (-282458553905 storeStringBase: 11) = '-11rA9876543210'.
 	self assert: -282458553905 storeStringHex = '-16r41C3D77E31'.
 	self assert: (-8842413667692 printStringBase: 12) = '-BA9876543210'.
-	self assert: (-8842413667692 radix: 12) = '-BA9876543210'.
 	self assert: -8842413667692 printStringHex = '-80AC8ECF56C'.
 	self assert: (-8842413667692 storeStringBase: 12) = '-12rBA9876543210'.
 	self assert: -8842413667692 storeStringHex = '-16r80AC8ECF56C'.
 	self assert: (-300771807240918 printStringBase: 13) = '-CBA9876543210'.
-	self assert: (-300771807240918 radix: 13) = '-CBA9876543210'.
 	self assert: -300771807240918 printStringHex = '-1118CE4BAA2D6'.
 	self assert: (-300771807240918 storeStringBase: 13) = '-13rCBA9876543210'.
 	self assert: -300771807240918 storeStringHex = '-16r1118CE4BAA2D6'.
 	self assert: (-11046255305880158 printStringBase: 14) = '-DCBA9876543210'.
-	self assert: (-11046255305880158 radix: 14) = '-DCBA9876543210'.
 	self assert: -11046255305880158 printStringHex = '-273E82BB9AF25E'.
 	self assert: (-11046255305880158 storeStringBase: 14) = '-14rDCBA9876543210'.
 	self assert: -11046255305880158 storeStringHex = '-16r273E82BB9AF25E'.
 	self assert: (-435659737878916215 printStringBase: 15) = '-EDCBA9876543210'.
-	self assert: (-435659737878916215 radix: 15) = '-EDCBA9876543210'.
 	self assert: -435659737878916215 printStringHex = '-60BC6392F366C77'.
 	self assert: (-435659737878916215 storeStringBase: 15) = '-15rEDCBA9876543210'.
 	self assert: -435659737878916215 storeStringHex = '-16r60BC6392F366C77'.
 	self assert: (-18364758544493064720 printStringBase: 16) = '-FEDCBA9876543210'.
-	self assert: (-18364758544493064720 radix: 16) = '-FEDCBA9876543210'.
 	self assert: -18364758544493064720 printStringHex = '-FEDCBA9876543210'.
 	self assert: (-18364758544493064720 storeStringBase: 16) = '-16rFEDCBA9876543210'.
 	self assert: -18364758544493064720 storeStringHex = '-16rFEDCBA9876543210'.
 	self assert: (-824008854613343261192 printStringBase: 17) = '-GFEDCBA9876543210'.
-	self assert: (-824008854613343261192 radix: 17) = '-GFEDCBA9876543210'.
 	self assert: -824008854613343261192 printStringHex = '-2CAB6B877C1CD2D208'.
 	self assert: (-824008854613343261192 storeStringBase: 17) = '-17rGFEDCBA9876543210'.
 	self assert: -824008854613343261192 storeStringHex = '-16r2CAB6B877C1CD2D208'.
 	self assert: (-39210261334551566857170 printStringBase: 18) = '-HGFEDCBA9876543210'.
-	self assert: (-39210261334551566857170 radix: 18) = '-HGFEDCBA9876543210'.
 	self assert: -39210261334551566857170 printStringHex = '-84D97AFCAE81415B3D2'.
 	self assert: (-39210261334551566857170 storeStringBase: 18) = '-18rHGFEDCBA9876543210'.
 	self assert: -39210261334551566857170 storeStringHex = '-16r84D97AFCAE81415B3D2'.
 	self assert: (-1972313422155189164466189 printStringBase: 19) = '-IHGFEDCBA9876543210'.
-	self assert: (-1972313422155189164466189 radix: 19) = '-IHGFEDCBA9876543210'.
 	self assert: -1972313422155189164466189 printStringHex = '-1A1A75329C5C6FC00600D'.
 	self assert: (-1972313422155189164466189 storeStringBase: 19) = '-19rIHGFEDCBA9876543210'.
 	self assert: -1972313422155189164466189 storeStringHex = '-16r1A1A75329C5C6FC00600D'.
 	self assert: (-104567135734072022160664820 printStringBase: 20) = '-JIHGFEDCBA9876543210'.
-	self assert: (-104567135734072022160664820 radix: 20) = '-JIHGFEDCBA9876543210'.
 	self assert: -104567135734072022160664820 printStringHex = '-567EF3C9636D242A8C68F4'.
 	self assert: (-104567135734072022160664820 storeStringBase: 20) = '-20rJIHGFEDCBA9876543210'.
 	self assert: -104567135734072022160664820 storeStringHex = '-16r567EF3C9636D242A8C68F4'.
 	self assert: (-5827980550840017565077671610 printStringBase: 21) = '-KJIHGFEDCBA9876543210'.
-	self assert: (-5827980550840017565077671610 radix: 21) = '-KJIHGFEDCBA9876543210'.
 	self assert: -5827980550840017565077671610 printStringHex = '-12D4CAE2B8A09BCFDBE30EBA'.
 	self assert: (-5827980550840017565077671610 storeStringBase: 21) = '-21rKJIHGFEDCBA9876543210'.
 	self assert: -5827980550840017565077671610 storeStringHex = '-16r12D4CAE2B8A09BCFDBE30EBA'.
 	self assert: (-340653664490377789692799452102 printStringBase: 22) = '-LKJIHGFEDCBA9876543210'.
-	self assert: (-340653664490377789692799452102 radix: 22) = '-LKJIHGFEDCBA9876543210'.
 	self assert: -340653664490377789692799452102 printStringHex = '-44CB61B5B47E1A5D8F88583C6'.
 	self assert: (-340653664490377789692799452102 storeStringBase: 22) = '-22rLKJIHGFEDCBA9876543210'.
 	self assert: -340653664490377789692799452102 storeStringHex = '-16r44CB61B5B47E1A5D8F88583C6'.
 	self assert: (-20837326537038308910317109288851 printStringBase: 23) = '-MLKJIHGFEDCBA9876543210'.
-	self assert: (-20837326537038308910317109288851 radix: 23) = '-MLKJIHGFEDCBA9876543210'.
 	self assert: -20837326537038308910317109288851 printStringHex = '-1070108876456E0EF115B389F93'.
 	self assert: (-20837326537038308910317109288851 storeStringBase: 23) = '-23rMLKJIHGFEDCBA9876543210'.
 	self assert: -20837326537038308910317109288851 storeStringHex = '-16r1070108876456E0EF115B389F93'.
 	self assert: (-1331214537196502869015340298036888 printStringBase: 24) = '-NMLKJIHGFEDCBA9876543210'.
-	self assert: (-1331214537196502869015340298036888 radix: 24) = '-NMLKJIHGFEDCBA9876543210'.
 	self assert: -1331214537196502869015340298036888 printStringHex = '-41A24A285154B026B6ED206C6698'.
 	self assert: (-1331214537196502869015340298036888 storeStringBase: 24) = '-24rNMLKJIHGFEDCBA9876543210'.
 	self assert: -1331214537196502869015340298036888 storeStringHex = '-16r41A24A285154B026B6ED206C6698'.
 	self assert: (-88663644327703473714387251271141900 printStringBase: 25) = '-ONMLKJIHGFEDCBA9876543210'.
-	self assert: (-88663644327703473714387251271141900 radix: 25) = '-ONMLKJIHGFEDCBA9876543210'.
 	self assert: -88663644327703473714387251271141900 printStringHex = '-111374860A2C6CEBE5999630398A0C'.
 	self assert: (-88663644327703473714387251271141900 storeStringBase: 25) = '-25rONMLKJIHGFEDCBA9876543210'.
 	self assert: -88663644327703473714387251271141900 storeStringHex = '-16r111374860A2C6CEBE5999630398A0C'.
 	self assert: (-6146269788878825859099399609538763450 printStringBase: 26) = '-PONMLKJIHGFEDCBA9876543210'.
-	self assert: (-6146269788878825859099399609538763450 radix: 26) = '-PONMLKJIHGFEDCBA9876543210'.
 	self assert: -6146269788878825859099399609538763450 printStringHex = '-49FBA7F30B0F48BD14E6A99BD8ADABA'.
 	self assert: (-6146269788878825859099399609538763450 storeStringBase: 26) = '-26rPONMLKJIHGFEDCBA9876543210'.
 	self assert: -6146269788878825859099399609538763450 storeStringHex = '-16r49FBA7F30B0F48BD14E6A99BD8ADABA'.
 	self assert: (-442770531899482980347734468443677777577 printStringBase: 27) = '-QPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-442770531899482980347734468443677777577 radix: 27) = '-QPONMLKJIHGFEDCBA9876543210'.
 	self assert: -442770531899482980347734468443677777577 printStringHex = '-14D1A80A997343640C1145A073731DEA9'.
 	self assert: (-442770531899482980347734468443677777577 storeStringBase: 27) = '-27rQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -442770531899482980347734468443677777577 storeStringHex = '-16r14D1A80A997343640C1145A073731DEA9'.
 	self assert: (-33100056003358651440264672384704297711484 printStringBase: 28) = '-RQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-33100056003358651440264672384704297711484 radix: 28) = '-RQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -33100056003358651440264672384704297711484 printStringHex = '-6145B6E6DACFA25D0E936F51D25932377C'.
 	self assert: (-33100056003358651440264672384704297711484 storeStringBase: 28) = '-28rRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -33100056003358651440264672384704297711484 storeStringHex = '-16r6145B6E6DACFA25D0E936F51D25932377C'.
 	self assert: (-2564411043271974895869785066497940850811934 printStringBase: 29) = '-SRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-2564411043271974895869785066497940850811934 radix: 29) = '-SRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -2564411043271974895869785066497940850811934 printStringHex = '-1D702071CBA4A1597D4DD37E95EFAC79241E'.
 	self assert: (-2564411043271974895869785066497940850811934 storeStringBase: 29) = '-29rSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -2564411043271974895869785066497940850811934 storeStringHex = '-16r1D702071CBA4A1597D4DD37E95EFAC79241E'.
 	self assert: (-205646315052919334126040428061831153388822830 printStringBase: 30) = '-TSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-205646315052919334126040428061831153388822830 radix: 30) = '-TSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -205646315052919334126040428061831153388822830 printStringHex = '-938B4343B54B550989989D02998718FFB212E'.
 	self assert: (-205646315052919334126040428061831153388822830 storeStringBase: 30) = '-30rTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -205646315052919334126040428061831153388822830 storeStringHex = '-16r938B4343B54B550989989D02998718FFB212E'.
 	self assert: (-17050208381689099029767742314582582184093573615 printStringBase: 31) = '-UTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-17050208381689099029767742314582582184093573615 radix: 31) = '-UTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -17050208381689099029767742314582582184093573615 printStringHex = '-2FC8ECB1521BA16D24A69E976D53873E2C661EF'.
 	self assert: (-17050208381689099029767742314582582184093573615 storeStringBase: 31) = '-31rUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -17050208381689099029767742314582582184093573615 storeStringHex = '-16r2FC8ECB1521BA16D24A69E976D53873E2C661EF'.
 	self assert: (-1459980823972598128486511383358617792788444579872 printStringBase: 32) = '-VUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-1459980823972598128486511383358617792788444579872 radix: 32) = '-VUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -1459980823972598128486511383358617792788444579872 printStringHex = '-FFBBCDEB38BDAB49CA307B9AC5A928398A418820'.
 	self assert: (-1459980823972598128486511383358617792788444579872 storeStringBase: 32) = '-32rVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -1459980823972598128486511383358617792788444579872 storeStringHex = '-16rFFBBCDEB38BDAB49CA307B9AC5A928398A418820'.
 	self assert: (-128983956064237823710866404905431464703849549412368 printStringBase: 33) = '-WVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-128983956064237823710866404905431464703849549412368 radix: 33) = '-WVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -128983956064237823710866404905431464703849549412368 printStringHex = '-584120A0328DE272AB055A8AA003CE4A559F223810'.
 	self assert: (-128983956064237823710866404905431464703849549412368 storeStringBase: 33) = '-33rWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -128983956064237823710866404905431464703849549412368 storeStringHex = '-16r584120A0328DE272AB055A8AA003CE4A559F223810'.
 	self assert: (-11745843093701610854378775891116314824081102660800418 printStringBase: 34) = '-XWVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-11745843093701610854378775891116314824081102660800418 radix: 34) = '-XWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -11745843093701610854378775891116314824081102660800418 printStringHex = '-1F64D4FC76000F7B92CF0CD5D0F350139AB9F25D8FA2'.
 	self assert: (-11745843093701610854378775891116314824081102660800418 storeStringBase: 34) = '-34rXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -11745843093701610854378775891116314824081102660800418 storeStringHex = '-16r1F64D4FC76000F7B92CF0CD5D0F350139AB9F25D8FA2'.
 	self assert: (-1101553773143634726491620528194292510495517905608180485 printStringBase: 35) = '-YXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-1101553773143634726491620528194292510495517905608180485 radix: 35) = '-YXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -1101553773143634726491620528194292510495517905608180485 printStringHex = '-B8031AD55AD1FAA89E07A271CA1ED2F420415D1570305'.
 	self assert: (-1101553773143634726491620528194292510495517905608180485 storeStringBase: 35) = '-35rYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -1101553773143634726491620528194292510495517905608180485 storeStringHex = '-16rB8031AD55AD1FAA89E07A271CA1ED2F420415D1570305'.
 	self assert: (-106300512100105327644605138221229898724869759421181854980 printStringBase: 36) = '-ZYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (-106300512100105327644605138221229898724869759421181854980 radix: 36) = '-ZYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -106300512100105327644605138221229898724869759421181854980 printStringHex = '-455D441E55A37239AB4C303189576071AF5578FFCA80504'.
 	self assert: (-106300512100105327644605138221229898724869759421181854980 storeStringBase: 36) = '-36rZYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: -106300512100105327644605138221229898724869759421181854980 storeStringHex = '-16r455D441E55A37239AB4C303189576071AF5578FFCA80504'.! !
@@ -5584,11 +6509,11 @@ testNthRootErrorConditions
 	self should: [ -2 nthRoot: 1/4 ] raise: ArithmeticError.
 	self should: [ -2 nthRoot: 1.24 ] raise: ArithmeticError.! !
 
-!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'nice 10/19/2011 21:03'!
+!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 5/27/2015 13:43'!
 testNthRootTruncated
 	<timeout:  5 "seconds">
-	| tooBigToBeAFloat large |
-	tooBigToBeAFloat := 1 << 2000.
+	| tooBigToBeAFloat large theTruncatedRoot |
+	tooBigToBeAFloat _ 1 << 2000.
 	self assert: (tooBigToBeAFloat nthRootTruncated: 100) equals: 1 << 20.
 	self assert: (tooBigToBeAFloat + 1 nthRootTruncated: 100) equals: 1 << 20.
 	self assert: (tooBigToBeAFloat - 1 nthRootTruncated: 100) equals: 1 << 20 - 1.
@@ -5600,17 +6525,16 @@ testNthRootTruncated
 	
 	2 to: 10 do: [:thePower |
 		1 to: 10000 do: [:n |
-			| theTruncatedRoot |
-			theTruncatedRoot := n nthRootTruncated: thePower.
+			theTruncatedRoot _ n nthRootTruncated: thePower.
 			self assert: (theTruncatedRoot raisedTo: thePower) <= n.
 			self assert: (theTruncatedRoot + 1 raisedTo: thePower) > n]]! !
 
-!IntegerTest methodsFor: 'tests - printing' stamp: 'nice 2/15/2008 22:23'!
+!IntegerTest methodsFor: 'tests - printing' stamp: 'jmv 5/27/2015 14:04'!
 testNumberOfDigits
-	
-	2 to: 32 do: [:b |
-		1 to: 1000//b do: [:n |
-			| bRaisedToN |
+
+	| bRaisedToN |
+	2 to: 32 do: [ :b |
+		1 to: 1000//b do: [ :n |
 			bRaisedToN := b raisedTo: n.
 			self assert: (bRaisedToN - 1 numberOfDigitsInBase: b) = n.
 			self assert: (bRaisedToN numberOfDigitsInBase: b) = (n+1).
@@ -5621,186 +6545,150 @@ testNumberOfDigits
 			self assert: (bRaisedToN negated - 1 numberOfDigitsInBase: b) = (n+1).]].
 ! !
 
-!IntegerTest methodsFor: 'tests - printing' stamp: 'laza 3/30/2004 11:52'!
+!IntegerTest methodsFor: 'tests - printing' stamp: 'jmv 1/9/2014 23:00'!
 testPositiveIntegerPrinting
 	"self run: #testPositiveIntegerPrinting"
 
 	self assert: 0 printString = '0'.
 	self assert: 0 printStringHex = '0'.
 	self assert: 0 storeStringHex = '16r0'.
-
 	self assert: (2 printStringBase: 2) = '10'.
-	self assert: (2 radix: 2) = '10'.
 	self assert: 2 printStringHex = '2'.
 	self assert: (2 storeStringBase: 2) = '2r10'.
 	self assert: 2 storeStringHex = '16r2'.
 	self assert: (21 printStringBase: 3) = '210'.
-	self assert: (21 radix: 3) = '210'.
 	self assert: 21 printStringHex = '15'.
 	self assert: (21 storeStringBase: 3) = '3r210'.
 	self assert: 21 storeStringHex = '16r15'.
 	self assert: (228 printStringBase: 4) = '3210'.
-	self assert: (228 radix: 4) = '3210'.
 	self assert: 228 printStringHex = 'E4'.
 	self assert: (228 storeStringBase: 4) = '4r3210'.
 	self assert: 228 storeStringHex = '16rE4'.
 	self assert: (2930 printStringBase: 5) = '43210'.
-	self assert: (2930 radix: 5) = '43210'.
 	self assert: 2930 printStringHex = 'B72'.
 	self assert: (2930 storeStringBase: 5) = '5r43210'.
 	self assert: 2930 storeStringHex = '16rB72'.
 	self assert: (44790 printStringBase: 6) = '543210'.
-	self assert: (44790 radix: 6) = '543210'.
 	self assert: 44790 printStringHex = 'AEF6'.
 	self assert: (44790 storeStringBase: 6) = '6r543210'.
 	self assert: 44790 storeStringHex = '16rAEF6'.
 	self assert: (800667 printStringBase: 7) = '6543210'.
-	self assert: (800667 radix: 7) = '6543210'.
 	self assert: 800667 printStringHex = 'C379B'.
 	self assert: (800667 storeStringBase: 7) = '7r6543210'.
 	self assert: 800667 storeStringHex = '16rC379B'.
 	self assert: (16434824 printStringBase: 8) = '76543210'.
-	self assert: (16434824 radix: 8) = '76543210'.
 	self assert: 16434824 printStringHex = 'FAC688'.
 	self assert: (16434824 storeStringBase: 8) = '8r76543210'.
 	self assert: 16434824 storeStringHex = '16rFAC688'.
 	self assert: (381367044 printStringBase: 9) = '876543210'.
-	self assert: (381367044 radix: 9) = '876543210'.
 	self assert: 381367044 printStringHex = '16BB3304'.
 	self assert: (381367044 storeStringBase: 9) = '9r876543210'.
 	self assert: 381367044 storeStringHex = '16r16BB3304'.
 	self assert: (9876543210 printStringBase: 10) = '9876543210'.
-	self assert: (9876543210 radix: 10) = '9876543210'.
 	self assert: 9876543210 printStringHex = '24CB016EA'.
 	self assert: (9876543210 storeStringBase: 10) = '9876543210'.
 	self assert: 9876543210 storeStringHex = '16r24CB016EA'.
 	self assert: (282458553905 printStringBase: 11) = 'A9876543210'.
-	self assert: (282458553905 radix: 11) = 'A9876543210'.
 	self assert: 282458553905 printStringHex = '41C3D77E31'.
 	self assert: (282458553905 storeStringBase: 11) = '11rA9876543210'.
 	self assert: 282458553905 storeStringHex = '16r41C3D77E31'.
 	self assert: (8842413667692 printStringBase: 12) = 'BA9876543210'.
-	self assert: (8842413667692 radix: 12) = 'BA9876543210'.
 	self assert: 8842413667692 printStringHex = '80AC8ECF56C'.
 	self assert: (8842413667692 storeStringBase: 12) = '12rBA9876543210'.
 	self assert: 8842413667692 storeStringHex = '16r80AC8ECF56C'.
 	self assert: (300771807240918 printStringBase: 13) = 'CBA9876543210'.
-	self assert: (300771807240918 radix: 13) = 'CBA9876543210'.
 	self assert: 300771807240918 printStringHex = '1118CE4BAA2D6'.
 	self assert: (300771807240918 storeStringBase: 13) = '13rCBA9876543210'.
 	self assert: 300771807240918 storeStringHex = '16r1118CE4BAA2D6'.
 	self assert: (11046255305880158 printStringBase: 14) = 'DCBA9876543210'.
-	self assert: (11046255305880158 radix: 14) = 'DCBA9876543210'.
 	self assert: 11046255305880158 printStringHex = '273E82BB9AF25E'.
 	self assert: (11046255305880158 storeStringBase: 14) = '14rDCBA9876543210'.
 	self assert: 11046255305880158 storeStringHex = '16r273E82BB9AF25E'.
 	self assert: (435659737878916215 printStringBase: 15) = 'EDCBA9876543210'.
-	self assert: (435659737878916215 radix: 15) = 'EDCBA9876543210'.
 	self assert: 435659737878916215 printStringHex = '60BC6392F366C77'.
 	self assert: (435659737878916215 storeStringBase: 15) = '15rEDCBA9876543210'.
 	self assert: 435659737878916215 storeStringHex = '16r60BC6392F366C77'.
 	self assert: (18364758544493064720 printStringBase: 16) = 'FEDCBA9876543210'.
-	self assert: (18364758544493064720 radix: 16) = 'FEDCBA9876543210'.
 	self assert: 18364758544493064720 printStringHex = 'FEDCBA9876543210'.
 	self assert: (18364758544493064720 storeStringBase: 16) = '16rFEDCBA9876543210'.
 	self assert: 18364758544493064720 storeStringHex = '16rFEDCBA9876543210'.
 	self assert: (824008854613343261192 printStringBase: 17) = 'GFEDCBA9876543210'.
-	self assert: (824008854613343261192 radix: 17) = 'GFEDCBA9876543210'.
 	self assert: 824008854613343261192 printStringHex = '2CAB6B877C1CD2D208'.
 	self assert: (824008854613343261192 storeStringBase: 17) = '17rGFEDCBA9876543210'.
 	self assert: 824008854613343261192 storeStringHex = '16r2CAB6B877C1CD2D208'.
 	self assert: (39210261334551566857170 printStringBase: 18) = 'HGFEDCBA9876543210'.
-	self assert: (39210261334551566857170 radix: 18) = 'HGFEDCBA9876543210'.
 	self assert: 39210261334551566857170 printStringHex = '84D97AFCAE81415B3D2'.
 	self assert: (39210261334551566857170 storeStringBase: 18) = '18rHGFEDCBA9876543210'.
 	self assert: 39210261334551566857170 storeStringHex = '16r84D97AFCAE81415B3D2'.
 	self assert: (1972313422155189164466189 printStringBase: 19) = 'IHGFEDCBA9876543210'.
-	self assert: (1972313422155189164466189 radix: 19) = 'IHGFEDCBA9876543210'.
 	self assert: 1972313422155189164466189 printStringHex = '1A1A75329C5C6FC00600D'.
 	self assert: (1972313422155189164466189 storeStringBase: 19) = '19rIHGFEDCBA9876543210'.
 	self assert: 1972313422155189164466189 storeStringHex = '16r1A1A75329C5C6FC00600D'.
 	self assert: (104567135734072022160664820 printStringBase: 20) = 'JIHGFEDCBA9876543210'.
-	self assert: (104567135734072022160664820 radix: 20) = 'JIHGFEDCBA9876543210'.
 	self assert: 104567135734072022160664820 printStringHex = '567EF3C9636D242A8C68F4'.
 	self assert: (104567135734072022160664820 storeStringBase: 20) = '20rJIHGFEDCBA9876543210'.
 	self assert: 104567135734072022160664820 storeStringHex = '16r567EF3C9636D242A8C68F4'.
 	self assert: (5827980550840017565077671610 printStringBase: 21) = 'KJIHGFEDCBA9876543210'.
-	self assert: (5827980550840017565077671610 radix: 21) = 'KJIHGFEDCBA9876543210'.
 	self assert: 5827980550840017565077671610 printStringHex = '12D4CAE2B8A09BCFDBE30EBA'.
 	self assert: (5827980550840017565077671610 storeStringBase: 21) = '21rKJIHGFEDCBA9876543210'.
 	self assert: 5827980550840017565077671610 storeStringHex = '16r12D4CAE2B8A09BCFDBE30EBA'.
 	self assert: (340653664490377789692799452102 printStringBase: 22) = 'LKJIHGFEDCBA9876543210'.
-	self assert: (340653664490377789692799452102 radix: 22) = 'LKJIHGFEDCBA9876543210'.
 	self assert: 340653664490377789692799452102 printStringHex = '44CB61B5B47E1A5D8F88583C6'.
 	self assert: (340653664490377789692799452102 storeStringBase: 22) = '22rLKJIHGFEDCBA9876543210'.
 	self assert: 340653664490377789692799452102 storeStringHex = '16r44CB61B5B47E1A5D8F88583C6'.
 	self assert: (20837326537038308910317109288851 printStringBase: 23) = 'MLKJIHGFEDCBA9876543210'.
-	self assert: (20837326537038308910317109288851 radix: 23) = 'MLKJIHGFEDCBA9876543210'.
 	self assert: 20837326537038308910317109288851 printStringHex = '1070108876456E0EF115B389F93'.
 	self assert: (20837326537038308910317109288851 storeStringBase: 23) = '23rMLKJIHGFEDCBA9876543210'.
 	self assert: 20837326537038308910317109288851 storeStringHex = '16r1070108876456E0EF115B389F93'.
 	self assert: (1331214537196502869015340298036888 printStringBase: 24) = 'NMLKJIHGFEDCBA9876543210'.
-	self assert: (1331214537196502869015340298036888 radix: 24) = 'NMLKJIHGFEDCBA9876543210'.
 	self assert: 1331214537196502869015340298036888 printStringHex = '41A24A285154B026B6ED206C6698'.
 	self assert: (1331214537196502869015340298036888 storeStringBase: 24) = '24rNMLKJIHGFEDCBA9876543210'.
 	self assert: 1331214537196502869015340298036888 storeStringHex = '16r41A24A285154B026B6ED206C6698'.
 	self assert: (88663644327703473714387251271141900 printStringBase: 25) = 'ONMLKJIHGFEDCBA9876543210'.
-	self assert: (88663644327703473714387251271141900 radix: 25) = 'ONMLKJIHGFEDCBA9876543210'.
 	self assert: 88663644327703473714387251271141900 printStringHex = '111374860A2C6CEBE5999630398A0C'.
 	self assert: (88663644327703473714387251271141900 storeStringBase: 25) = '25rONMLKJIHGFEDCBA9876543210'.
 	self assert: 88663644327703473714387251271141900 storeStringHex = '16r111374860A2C6CEBE5999630398A0C'.
 	self assert: (6146269788878825859099399609538763450 printStringBase: 26) = 'PONMLKJIHGFEDCBA9876543210'.
-	self assert: (6146269788878825859099399609538763450 radix: 26) = 'PONMLKJIHGFEDCBA9876543210'.
 	self assert: 6146269788878825859099399609538763450 printStringHex = '49FBA7F30B0F48BD14E6A99BD8ADABA'.
 	self assert: (6146269788878825859099399609538763450 storeStringBase: 26) = '26rPONMLKJIHGFEDCBA9876543210'.
 	self assert: 6146269788878825859099399609538763450 storeStringHex = '16r49FBA7F30B0F48BD14E6A99BD8ADABA'.
 	self assert: (442770531899482980347734468443677777577 printStringBase: 27) = 'QPONMLKJIHGFEDCBA9876543210'.
-	self assert: (442770531899482980347734468443677777577 radix: 27) = 'QPONMLKJIHGFEDCBA9876543210'.
 	self assert: 442770531899482980347734468443677777577 printStringHex = '14D1A80A997343640C1145A073731DEA9'.
 	self assert: (442770531899482980347734468443677777577 storeStringBase: 27) = '27rQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 442770531899482980347734468443677777577 storeStringHex = '16r14D1A80A997343640C1145A073731DEA9'.
 	self assert: (33100056003358651440264672384704297711484 printStringBase: 28) = 'RQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (33100056003358651440264672384704297711484 radix: 28) = 'RQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 33100056003358651440264672384704297711484 printStringHex = '6145B6E6DACFA25D0E936F51D25932377C'.
 	self assert: (33100056003358651440264672384704297711484 storeStringBase: 28) = '28rRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 33100056003358651440264672384704297711484 storeStringHex = '16r6145B6E6DACFA25D0E936F51D25932377C'.
 	self assert: (2564411043271974895869785066497940850811934 printStringBase: 29) = 'SRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (2564411043271974895869785066497940850811934 radix: 29) = 'SRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 2564411043271974895869785066497940850811934 printStringHex = '1D702071CBA4A1597D4DD37E95EFAC79241E'.
 	self assert: (2564411043271974895869785066497940850811934 storeStringBase: 29) = '29rSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 2564411043271974895869785066497940850811934 storeStringHex = '16r1D702071CBA4A1597D4DD37E95EFAC79241E'.
 	self assert: (205646315052919334126040428061831153388822830 printStringBase: 30) = 'TSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (205646315052919334126040428061831153388822830 radix: 30) = 'TSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 205646315052919334126040428061831153388822830 printStringHex = '938B4343B54B550989989D02998718FFB212E'.
 	self assert: (205646315052919334126040428061831153388822830 storeStringBase: 30) = '30rTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 205646315052919334126040428061831153388822830 storeStringHex = '16r938B4343B54B550989989D02998718FFB212E'.
 	self assert: (17050208381689099029767742314582582184093573615 printStringBase: 31) = 'UTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (17050208381689099029767742314582582184093573615 radix: 31) = 'UTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 17050208381689099029767742314582582184093573615 printStringHex = '2FC8ECB1521BA16D24A69E976D53873E2C661EF'.
 	self assert: (17050208381689099029767742314582582184093573615 storeStringBase: 31) = '31rUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 17050208381689099029767742314582582184093573615 storeStringHex = '16r2FC8ECB1521BA16D24A69E976D53873E2C661EF'.
 	self assert: (1459980823972598128486511383358617792788444579872 printStringBase: 32) = 'VUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (1459980823972598128486511383358617792788444579872 radix: 32) = 'VUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 1459980823972598128486511383358617792788444579872 printStringHex = 'FFBBCDEB38BDAB49CA307B9AC5A928398A418820'.
 	self assert: (1459980823972598128486511383358617792788444579872 storeStringBase: 32) = '32rVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 1459980823972598128486511383358617792788444579872 storeStringHex = '16rFFBBCDEB38BDAB49CA307B9AC5A928398A418820'.
 	self assert: (128983956064237823710866404905431464703849549412368 printStringBase: 33) = 'WVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (128983956064237823710866404905431464703849549412368 radix: 33) = 'WVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 128983956064237823710866404905431464703849549412368 printStringHex = '584120A0328DE272AB055A8AA003CE4A559F223810'.
 	self assert: (128983956064237823710866404905431464703849549412368 storeStringBase: 33) = '33rWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 128983956064237823710866404905431464703849549412368 storeStringHex = '16r584120A0328DE272AB055A8AA003CE4A559F223810'.
 	self assert: (11745843093701610854378775891116314824081102660800418 printStringBase: 34) = 'XWVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (11745843093701610854378775891116314824081102660800418 radix: 34) = 'XWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 11745843093701610854378775891116314824081102660800418 printStringHex = '1F64D4FC76000F7B92CF0CD5D0F350139AB9F25D8FA2'.
 	self assert: (11745843093701610854378775891116314824081102660800418 storeStringBase: 34) = '34rXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 11745843093701610854378775891116314824081102660800418 storeStringHex = '16r1F64D4FC76000F7B92CF0CD5D0F350139AB9F25D8FA2'.
 	self assert: (1101553773143634726491620528194292510495517905608180485 printStringBase: 35) = 'YXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (1101553773143634726491620528194292510495517905608180485 radix: 35) = 'YXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 1101553773143634726491620528194292510495517905608180485 printStringHex = 'B8031AD55AD1FAA89E07A271CA1ED2F420415D1570305'.
 	self assert: (1101553773143634726491620528194292510495517905608180485 storeStringBase: 35) = '35rYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 1101553773143634726491620528194292510495517905608180485 storeStringHex = '16rB8031AD55AD1FAA89E07A271CA1ED2F420415D1570305'.
 	self assert: (106300512100105327644605138221229898724869759421181854980 printStringBase: 36) = 'ZYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
-	self assert: (106300512100105327644605138221229898724869759421181854980 radix: 36) = 'ZYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 106300512100105327644605138221229898724869759421181854980 printStringHex = '455D441E55A37239AB4C303189576071AF5578FFCA80504'.
 	self assert: (106300512100105327644605138221229898724869759421181854980 storeStringBase: 36) = '36rZYXWVUTSRQPONMLKJIHGFEDCBA9876543210'.
 	self assert: 106300512100105327644605138221229898724869759421181854980 storeStringHex = '16r455D441E55A37239AB4C303189576071AF5578FFCA80504'.! !
@@ -5821,31 +6709,12 @@ testPrimesUpTo
 	self deny: (Integer primesUpTo: nn) last = nn.
 	self assert: (Integer primesUpTo: nn + 1) last  = nn.! !
 
-!IntegerTest methodsFor: 'tests - printing' stamp: 'jmv 2/24/2013 00:00'!
-testPrintOnBaseShowRadix
-	| s |
-	s _ WriteStream on: String new.
-	123 printOn: s base: 10 showRadix: false.
-	self assert: (s contents = '123').
-
-	s _ WriteStream on: String new.
-	123 printOn: s base: 10 showRadix: true.
-	self assert: (s contents = '10r123').
-
-	s _ WriteStream on: String new.
-	123 printOn: s base: 8 showRadix: false.
-	self assert: (s contents = '173').
-
-	s _ WriteStream on: String new.
-	123 printOn: s base: 8 showRadix: true.
-	self assert: (s contents = '8r173')! !
-
-!IntegerTest methodsFor: 'tests - printing' stamp: 'nice 2/15/2008 22:31'!
+!IntegerTest methodsFor: 'tests - printing' stamp: 'jmv 5/27/2015 14:05'!
 testPrintStringBase
 	
-	2 to: 32 do: [:b |
-		1 to: 1000//b do: [:n |
-			| bRaisedToN |
+	| bRaisedToN |
+	2 to: 32 do: [ :b |
+		1 to: 1000//b do: [ :n |
 			bRaisedToN := b raisedTo: n.
 			self assert: (bRaisedToN - 1 printStringBase: b) = (String new: n withAll: (Character digitValue: b-1)).
 			self assert: (bRaisedToN printStringBase: b) = ('1' , (String new: n withAll: $0)).
@@ -5853,6 +6722,150 @@ testPrintStringBase
 			self assert: (bRaisedToN negated + 1 printStringBase: b) = ('-' , (String new: n withAll: (Character digitValue: b-1))).
 			self assert: (bRaisedToN negated printStringBase: b) = ('-1' , (String new: n withAll: $0))]].
 ! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:36'!
+testQuoLnLn
+
+	self assert: (-42391158275216203514294433200 quo: -14130386091738734504764811067) = 2.
+	self assert: (-42391158275216203514294433201 quo: -14130386091738734504764811067) = 3.
+	self assert: (-42391158275216203514294433202 quo: -14130386091738734504764811067) = 3.
+	self assert: (-8727963568087712425891397479476727340041448 quo: -79766443076872509863361) = 109418989131512359208.
+	self assert: (-8727963568087712425891397479476727340041449 quo: -79766443076872509863361) = 109418989131512359209.
+	self assert: (-8727963568087712425891397479476727340041450 quo: -79766443076872509863361) = 109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:51'!
+testQuoLnLp
+
+	self assert: (-42391158275216203514294433200 quo: 14130386091738734504764811067) = -2.
+	self assert: (-42391158275216203514294433201 quo: 14130386091738734504764811067) = -3.
+	self assert: (-42391158275216203514294433202 quo: 14130386091738734504764811067) = -3.
+	self assert: (-8727963568087712425891397479476727340041448 quo: 79766443076872509863361) = -109418989131512359208.
+	self assert: (-8727963568087712425891397479476727340041449 quo: 79766443076872509863361) = -109418989131512359209.
+	self assert: (-8727963568087712425891397479476727340041450 quo: 79766443076872509863361) = -109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoLnSn
+
+	self assert: (-42391158275216203514294433201 quo: -3) = 14130386091738734504764811067.
+	self assert: (-42391158275216203514294433202 quo: -3) = 14130386091738734504764811067.
+	self assert: (-42391158275216203514294433203 quo: -3) = 14130386091738734504764811067.
+	self assert: (-42391158275216203514294433204 quo: -3) = 14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:51'!
+testQuoLnSp
+
+	self assert: (-42391158275216203514294433201 quo: 3) = -14130386091738734504764811067.
+	self assert: (-42391158275216203514294433202 quo: 3) = -14130386091738734504764811067.
+	self assert: (-42391158275216203514294433203 quo: 3) = -14130386091738734504764811067.
+	self assert: (-42391158275216203514294433204 quo: 3) = -14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:52'!
+testQuoLpLn
+
+	self assert: (42391158275216203514294433200 quo: -14130386091738734504764811067) = -2.
+	self assert: (42391158275216203514294433201 quo: -14130386091738734504764811067) = -3.
+	self assert: (42391158275216203514294433202 quo: -14130386091738734504764811067) = -3.
+	self assert: (8727963568087712425891397479476727340041448 quo: -79766443076872509863361) = -109418989131512359208.
+	self assert: (8727963568087712425891397479476727340041449 quo: -79766443076872509863361) = -109418989131512359209.
+	self assert: (8727963568087712425891397479476727340041450 quo: -79766443076872509863361) = -109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoLpLp
+
+	self assert: (42391158275216203514294433200 quo: 14130386091738734504764811067) = 2.
+	self assert: (42391158275216203514294433201 quo: 14130386091738734504764811067) = 3.
+	self assert: (42391158275216203514294433202 quo: 14130386091738734504764811067) = 3.
+	self assert: (8727963568087712425891397479476727340041448 quo: 79766443076872509863361) = 109418989131512359208.
+	self assert: (8727963568087712425891397479476727340041449 quo: 79766443076872509863361) = 109418989131512359209.
+	self assert: (8727963568087712425891397479476727340041450 quo: 79766443076872509863361) = 109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:50'!
+testQuoLpSn
+
+	self assert: (42391158275216203514294433201 quo: -3) = -14130386091738734504764811067.
+	self assert: (42391158275216203514294433202 quo: -3) = -14130386091738734504764811067.
+	self assert: (42391158275216203514294433203 quo: -3) = -14130386091738734504764811067.
+	self assert: (42391158275216203514294433204 quo: -3) = -14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoLpSp
+
+	self assert: (42391158275216203514294433201 quo: 3) = 14130386091738734504764811067.
+	self assert: (42391158275216203514294433202 quo: 3) = 14130386091738734504764811067.
+	self assert: (42391158275216203514294433203 quo: 3) = 14130386091738734504764811067.
+	self assert: (42391158275216203514294433204 quo: 3) = 14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoSnLn
+
+	self assert: (0 quo: -42391158275216203514294433201) = 0.
+	self assert: (-1 quo: -42391158275216203514294433201) = 0.
+	self assert: (-14348907 quo: -42391158275216203514294433201) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:50'!
+testQuoSnLp
+
+	self assert: (0 quo: 42391158275216203514294433201) = 0.
+	self assert: (-1 quo: 42391158275216203514294433201) = 0.
+	self assert: (-14348907 quo: 42391158275216203514294433201) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoSnSn
+
+	self assert: (0 quo: -3) = 0.
+	self assert: (-1 quo: -3) = 0.
+	self assert: (-9 quo: -3) = 3.
+	self assert: (-10 quo: -3) = 3.
+	self assert: (-11 quo: -3) = 3.
+	self assert: (-12 quo: -3) = 4.
+	self assert: (-13 quo: -3) = 4! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:51'!
+testQuoSnSp
+
+	self assert: (0 quo: 3) = 0.
+	self assert: (-1 quo: 3) = 0.
+	self assert: (-9 quo: 3) = -3.
+	self assert: (-10 quo: 3) = -3.
+	self assert: (-11 quo: 3) = -3.
+	self assert: (-12 quo: 3) = -4.
+	self assert: (-13 quo: 3) = -4! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:52'!
+testQuoSpLn
+
+	self assert: (0 quo: -42391158275216203514294433201) = 0.
+	self assert: (1 quo: -42391158275216203514294433201) = 0.
+	self assert: (14348907 quo: -42391158275216203514294433201) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoSpLp
+
+	self assert: (0 quo: 42391158275216203514294433201) = 0.
+	self assert: (1 quo: 42391158275216203514294433201) = 0.
+	self assert: (14348907 quo: 42391158275216203514294433201) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:50'!
+testQuoSpSn
+
+	self assert: (0 quo: -3) = 0.
+	self assert: (1 quo: -3) = 0.
+	self assert: (9 quo: -3) = -3.
+	self assert: (10 quo: -3) = -3.
+	self assert: (11 quo: -3) = -3.
+	self assert: (12 quo: -3) = -4.
+	self assert: (13 quo: -3) = -4! !
+
+!IntegerTest methodsFor: 'tests - division - quo:' stamp: 'sqr 1/25/2014 14:33'!
+testQuoSpSp
+
+	self assert: (0 quo: 3) = 0.
+	self assert: (1 quo: 3) = 0.
+	self assert: (9 quo: 3) = 3.
+	self assert: (10 quo: 3) = 3.
+	self assert: (11 quo: 3) = 3.
+	self assert: (12 quo: 3) = 4.
+	self assert: (13 quo: 3) = 4! !
 
 !IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 10/13/2011 21:45'!
 testRaisedToErrorConditions
@@ -5891,6 +6904,150 @@ testReadFrom
 	s := rs upToEnd.
 	self assert: '.s could be confused with a ScaledDecimal' = s
 ! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemLnLn
+
+	self assert: (-42391158275216203514294433200 rem: -14130386091738734504764811067) = -14130386091738734504764811066.
+	self assert: (-42391158275216203514294433201 rem: -14130386091738734504764811067) = 0.
+	self assert: (-42391158275216203514294433202 rem: -14130386091738734504764811067) = -1.
+	self assert: (-8727963568087712425891397479476727340041448 rem: -79766443076872509863361) = -79766443076872509863360.
+	self assert: (-8727963568087712425891397479476727340041449 rem: -79766443076872509863361) = 0.
+	self assert: (-8727963568087712425891397479476727340041450 rem: -79766443076872509863361) = -1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:47'!
+testRemLnLp
+
+	self assert: (-42391158275216203514294433200 rem: 14130386091738734504764811067) = -14130386091738734504764811066.
+	self assert: (-42391158275216203514294433201 rem: 14130386091738734504764811067) = 0.
+	self assert: (-42391158275216203514294433202 rem: 14130386091738734504764811067) = -1.
+	self assert: (-8727963568087712425891397479476727340041448 rem: 79766443076872509863361) = -79766443076872509863360.
+	self assert: (-8727963568087712425891397479476727340041449 rem: 79766443076872509863361) = 0.
+	self assert: (-8727963568087712425891397479476727340041450 rem: 79766443076872509863361) = -1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemLnSn
+
+	self assert: (-42391158275216203514294433201 rem: -3) = 0.
+	self assert: (-42391158275216203514294433202 rem: -3) = -1.
+	self assert: (-42391158275216203514294433203 rem: -3) = -2.
+	self assert: (-42391158275216203514294433204 rem: -3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:49'!
+testRemLnSp
+
+	self assert: (-42391158275216203514294433201 rem: 3) = 0.
+	self assert: (-42391158275216203514294433202 rem: 3) = -1.
+	self assert: (-42391158275216203514294433203 rem: 3) = -2.
+	self assert: (-42391158275216203514294433204 rem: 3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:48'!
+testRemLpLn
+
+	self assert: (42391158275216203514294433200 rem: -14130386091738734504764811067) = 14130386091738734504764811066.
+	self assert: (42391158275216203514294433201 rem: -14130386091738734504764811067) = 0.
+	self assert: (42391158275216203514294433202 rem: -14130386091738734504764811067) = 1.
+	self assert: (8727963568087712425891397479476727340041448 rem: -79766443076872509863361) = 79766443076872509863360.
+	self assert: (8727963568087712425891397479476727340041449 rem: -79766443076872509863361) = 0.
+	self assert: (8727963568087712425891397479476727340041450 rem: -79766443076872509863361) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemLpLp
+
+	self assert: (42391158275216203514294433200 rem: 14130386091738734504764811067) = 14130386091738734504764811066.
+	self assert: (42391158275216203514294433201 rem: 14130386091738734504764811067) = 0.
+	self assert: (42391158275216203514294433202 rem: 14130386091738734504764811067) = 1.
+	self assert: (8727963568087712425891397479476727340041448 rem: 79766443076872509863361) = 79766443076872509863360.
+	self assert: (8727963568087712425891397479476727340041449 rem: 79766443076872509863361) = 0.
+	self assert: (8727963568087712425891397479476727340041450 rem: 79766443076872509863361) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:49'!
+testRemLpSn
+
+	self assert: (42391158275216203514294433201 rem: -3) = 0.
+	self assert: (42391158275216203514294433202 rem: -3) = 1.
+	self assert: (42391158275216203514294433203 rem: -3) = 2.
+	self assert: (42391158275216203514294433204 rem: -3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemLpSp
+
+	self assert: (42391158275216203514294433201 rem: 3) = 0.
+	self assert: (42391158275216203514294433202 rem: 3) = 1.
+	self assert: (42391158275216203514294433203 rem: 3) = 2.
+	self assert: (42391158275216203514294433204 rem: 3) = 0! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemSnLn
+
+	self assert: (0 rem: -42391158275216203514294433201) = 0.
+	self assert: (-1 rem: -42391158275216203514294433201) = -1.
+	self assert: (-14348907 rem: -42391158275216203514294433201) = -14348907! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:47'!
+testRemSnLp
+
+	self assert: (0 rem: 42391158275216203514294433201) = 0.
+	self assert: (-1 rem: 42391158275216203514294433201) = -1.
+	self assert: (-14348907 rem: 42391158275216203514294433201) = -14348907! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemSnSn
+
+	self assert: (0 rem: -3) = 0.
+	self assert: (-1 rem: -3) = -1.
+	self assert: (-9 rem: -3) = 0.
+	self assert: (-10 rem: -3) = -1.
+	self assert: (-11 rem: -3) = -2.
+	self assert: (-12 rem: -3) = 0.
+	self assert: (-13 rem: -3) = -1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:37'!
+testRemSnSp
+
+	self assert: (0 rem: 3) = 0.
+	self assert: (-1 rem: 3) = -1.
+	self assert: (-9 rem: 3) = 0.
+	self assert: (-10 rem: 3) = -1.
+	self assert: (-11 rem: 3) = -2.
+	self assert: (-12 rem: 3) = 0.
+	self assert: (-13 rem: 3) = -1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:38'!
+testRemSpLn
+
+	self assert: (0 rem: -42391158275216203514294433201) = 0.
+	self assert: (1 rem: -42391158275216203514294433201) = 1.
+	self assert: (14348907 rem: -42391158275216203514294433201) = 14348907! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemSpLp
+
+	self assert: (0 rem: 42391158275216203514294433201) = 0.
+	self assert: (1 rem: 42391158275216203514294433201) = 1.
+	self assert: (14348907 rem: 42391158275216203514294433201) = 14348907! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:48'!
+testRemSpSn
+
+	self assert: (0 rem: -3) = 0.
+	self assert: (1 rem: -3) = 1.
+	self assert: (9 rem: -3) = 0.
+	self assert: (10 rem: -3) = 1.
+	self assert: (11 rem: -3) = 2.
+	self assert: (12 rem: -3) = 0.
+	self assert: (13 rem: -3) = 1! !
+
+!IntegerTest methodsFor: 'tests - division - rem:' stamp: 'sqr 1/25/2014 14:35'!
+testRemSpSp
+
+	self assert: (0 rem: 3) = 0.
+	self assert: (1 rem: 3) = 1.
+	self assert: (9 rem: 3) = 0.
+	self assert: (10 rem: 3) = 1.
+	self assert: (11 rem: 3) = 2.
+	self assert: (12 rem: 3) = 0.
+	self assert: (13 rem: 3) = 1! !
 
 !IntegerTest methodsFor: 'tests - printing' stamp: 'laza 3/30/2004 09:23'!
 testRomanPrinting
@@ -5985,6 +7142,150 @@ testRomanPrinting
 	self assert: -10 printStringRoman = '-X'.
 ! !
 
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:56'!
+testSlashSlashLnLn
+
+	self assert: -42391158275216203514294433200 // -14130386091738734504764811067 = 2.
+	self assert: -42391158275216203514294433201 // -14130386091738734504764811067 = 3.
+	self assert: -42391158275216203514294433202 // -14130386091738734504764811067 = 3.
+	self assert: -8727963568087712425891397479476727340041448 // -79766443076872509863361 = 109418989131512359208.
+	self assert: -8727963568087712425891397479476727340041449 // -79766443076872509863361 = 109418989131512359209.
+	self assert: -8727963568087712425891397479476727340041450 // -79766443076872509863361 = 109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:47'!
+testSlashSlashLnLp
+
+	self assert: -42391158275216203514294433200 // 14130386091738734504764811067 = -3.
+	self assert: -42391158275216203514294433201 // 14130386091738734504764811067 = -3.
+	self assert: -42391158275216203514294433202 // 14130386091738734504764811067 = -4.
+	self assert: -8727963568087712425891397479476727340041448 // 79766443076872509863361 = -109418989131512359209.
+	self assert: -8727963568087712425891397479476727340041449 // 79766443076872509863361 = -109418989131512359209.
+	self assert: -8727963568087712425891397479476727340041450 // 79766443076872509863361 = -109418989131512359210! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:54'!
+testSlashSlashLnSn
+
+	self assert: -42391158275216203514294433201 // -3 = 14130386091738734504764811067.
+	self assert: -42391158275216203514294433202 // -3 = 14130386091738734504764811067.
+	self assert: -42391158275216203514294433203 // -3 = 14130386091738734504764811067.
+	self assert: -42391158275216203514294433204 // -3 = 14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:45'!
+testSlashSlashLnSp
+
+	self assert: -42391158275216203514294433201 // 3 = -14130386091738734504764811067.
+	self assert: -42391158275216203514294433202 // 3 = -14130386091738734504764811068.
+	self assert: -42391158275216203514294433203 // 3 = -14130386091738734504764811068.
+	self assert: -42391158275216203514294433204 // 3 = -14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:54'!
+testSlashSlashLpLn
+
+	self assert: 42391158275216203514294433200 // -14130386091738734504764811067 = -3.
+	self assert: 42391158275216203514294433201 // -14130386091738734504764811067 = -3.
+	self assert: 42391158275216203514294433202 // -14130386091738734504764811067 = -4.
+	self assert: 8727963568087712425891397479476727340041448 // -79766443076872509863361 = -109418989131512359209.
+	self assert: 8727963568087712425891397479476727340041449 // -79766443076872509863361 = -109418989131512359209.
+	self assert: 8727963568087712425891397479476727340041450 // -79766443076872509863361 = -109418989131512359210! !
+
+!IntegerTest methodsFor: 'tests - division' stamp: 'sqr 1/25/2014 13:38'!
+testSlashSlashLpLp
+
+	self assert: 42391158275216203514294433200 // 14130386091738734504764811067 = 2.
+	self assert: 42391158275216203514294433201 // 14130386091738734504764811067 = 3.
+	self assert: 42391158275216203514294433202 // 14130386091738734504764811067 = 3.
+	self assert: 8727963568087712425891397479476727340041448 // 79766443076872509863361 = 109418989131512359208.
+	self assert: 8727963568087712425891397479476727340041449 // 79766443076872509863361 = 109418989131512359209.
+	self assert: 8727963568087712425891397479476727340041450 // 79766443076872509863361 = 109418989131512359209! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:52'!
+testSlashSlashLpSn
+
+	self assert: 42391158275216203514294433201 // -3 = -14130386091738734504764811067.
+	self assert: 42391158275216203514294433202 // -3 = -14130386091738734504764811068.
+	self assert: 42391158275216203514294433203 // -3 = -14130386091738734504764811068.
+	self assert: 42391158275216203514294433204 // -3 = -14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division' stamp: 'sqr 1/25/2014 13:33'!
+testSlashSlashLpSp
+
+	self assert: 42391158275216203514294433201 // 3 = 14130386091738734504764811067.
+	self assert: 42391158275216203514294433202 // 3 = 14130386091738734504764811067.
+	self assert: 42391158275216203514294433203 // 3 = 14130386091738734504764811067.
+	self assert: 42391158275216203514294433204 // 3 = 14130386091738734504764811068! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:52'!
+testSlashSlashSnLn
+
+	self assert: 0 // -42391158275216203514294433201 = 0.
+	self assert: -1 // -42391158275216203514294433201 = 0.
+	self assert: -14348907 // -42391158275216203514294433201 = 0! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:44'!
+testSlashSlashSnLp
+
+	self assert: 0 // 42391158275216203514294433201 = 0.
+	self assert: -1 // 42391158275216203514294433201 = -1.
+	self assert: -14348907 // 42391158275216203514294433201 = -1! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:51'!
+testSlashSlashSnSn
+
+	self assert: 0 // -3 = 0.
+	self assert: -1 // -3 = 0.
+	self assert: -9 // -3 = 3.
+	self assert: -10 // -3 = 3.
+	self assert: -11 // -3 = 3.
+	self assert: -12 // -3 = 4.
+	self assert: -13 // -3 = 4! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:42'!
+testSlashSlashSnSp
+
+	self assert: 0 // 3 = 0.
+	self assert: -1 // 3 = -1.
+	self assert: -9 // 3 = -3.
+	self assert: -10 // 3 = -4.
+	self assert: -11 // 3 = -4.
+	self assert: -12 // 3 = -4.
+	self assert: -13 // 3 = -5! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:51'!
+testSlashSlashSpLn
+
+	self assert: 0 // -42391158275216203514294433201 = 0.
+	self assert: 1 // -42391158275216203514294433201 = -1.
+	self assert: 14348907 // -42391158275216203514294433201 = -1! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:44'!
+testSlashSlashSpLp
+
+	self assert: 0 // 42391158275216203514294433201 = 0.
+	self assert: 1 // 42391158275216203514294433201 = 0.
+	self assert: 14348907 // 42391158275216203514294433201 = 0! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:50'!
+testSlashSlashSpSn
+
+	self assert: 0 // -3 = 0.
+	self assert: 1 // -3 = -1.
+	self assert: 9 // -3 = -3.
+	self assert: 10 // -3 = -4.
+	self assert: 11 // -3 = -4.
+	self assert: 12 // -3 = -4.
+	self assert: 13 // -3 = -5! !
+
+!IntegerTest methodsFor: 'tests - division - //' stamp: 'sqr 1/25/2014 13:42'!
+testSlashSlashSpSp
+
+	self assert: 0 // 3 = 0.
+	self assert: 1 // 3 = 0.
+	self assert: 9 // 3 = 3.
+	self assert: 10 // 3 = 3.
+	self assert: 11 // 3 = 3.
+	self assert: 12 // 3 = 4.
+	self assert: 13 // 3 = 4! !
+
 !IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 10/13/2011 21:46'!
 testSqrtErrorConditions
 	"
@@ -6050,6 +7351,88 @@ testTwoComplementRightShift
 		
      self assert: ((small bitShift: -1) ~= (small + 1 bitShift: -1)
 		== ((large bitShift: -1) ~= (large + 1 bitShift: -1))).! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/9/2016 16:21'!
+testAt
+	"
+	IntervalTest new testAt
+	"
+	self assert: (2 to: 5 by: 2) first = 2.
+	self assert: ((2 to: 5 by: 2) at: 1) = 2.
+	self assert: ((2 to: 5 by: 2) at: 2) = 4.
+	self assert: (2 to: 5 by: 2) last = 4.
+
+	self assert: (0 to: 2.4 by: 0.1) first = 0.
+	self assert: ((0 to: 2.4 by: 0.1) at: 1) = 0.
+	self assert: (((0 to: 2.4 by: 0.1) at: 2) closeTo: 0.1).
+	self assert: (((0 to: 2.4 by: 0.1) at: 3) closeTo: 0.2).
+	self assert: (((0 to: 2.4 by: 0.1) at: 23) closeTo: 2.2).
+	self assert: ((0 to: 2.4 by: 0.1) at: 24) = 2.3.
+	self assert: ((0 to: 2.4 by: 0.1) at: 25) = 2.4.
+	self assert: (0 to: 2.4 by: 0.1) last = 2.4.! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/9/2016 15:16'!
+testFloatInterval
+	"
+	IntervalTest new testFloatInterval
+	"
+	
+	self assert: (0 to: 2.4 by: 0.1) size = 25.
+	self assert: (0 to: 2.4 by: 0.1) first = 0.
+	self assert: (0 to: 2.4 by: 0.1) last = 2.4.
+
+	2 to: 200 do: [ :n |
+		self assert: (0.0 to: 1.0 count: n) size = n.
+		self assert: (0.0 to: 1.0 count: n) first = 0.0.
+		self assert: ((0.0 to: 1.0 count: n) last closeTo: 1.0) ].
+	2 to: 200 do: [ :n |
+		self assert: (1.0 to: 0.0 count: n) size = n.
+		self assert: (1.0 to: 0.0 count: n) first = 1.0.
+		self assert: ((1.0 to: 0.0 count: n) last closeTo: 0.0) ].! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/27/2016 14:49'!
+testFloatToByDo
+	"
+	IntervalTest new testFloatToByDo
+	"
+	| interval toByDo |
+
+	"See comment at #to:by:do:"
+	self flag: #expectedFailure.
+
+	interval _ 0 to: 2.4 by: 0.1.
+	toByDo _ Array streamContents: [ :strm |
+		0 to: 2.4 by: 0.1 do: [ :each |
+			strm nextPut: each ]].
+	self assert: toByDo size = interval size.
+	1 to: toByDo size do: [ :i |
+		self assert: (toByDo at: i) = (interval at: i) ]! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 3/27/2016 17:18'!
+testIntegerInterval
+	"
+	IntervalTest new testIntegerInterval
+	"
+	| z |
+	self assert: (2 to: 5 by: 2) size = 2.
+	self assert: (2 to: 5 by: 2) last = 4.
+	z _ 0.
+	(2 to: 5 by: 2) do: [ :i | z _ i ].
+	self assert: z = 4! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/27/2016 14:29'!
+testIntegerToByDo
+	"
+	IntervalTest new testIntegerToByDo
+	"
+	| interval toByDo |
+	interval _ 2 to: 5 by: 2.
+	toByDo _ Array streamContents: [ :strm |
+		2 to: 5 by: 2 do: [ :each |
+			strm nextPut: each ]].
+	self assert: toByDo size = interval size.
+	1 to: toByDo size do: [ :i |
+		self assert: (toByDo at: i) = (interval at: i) ]! !
 
 !LargeNegativeIntegerTest methodsFor: 'tests' stamp: 'ar 11/30/2009 22:06'!
 testCompactClassIndex
@@ -6145,7 +7528,7 @@ testNormalize
 	self should: ((SmallInteger minVal - 1 + 1) = SmallInteger minVal).
 	self assert: (SmallInteger minVal - 3 + 6) = (SmallInteger minVal+3).! !
 
-!LayoutMorphTest methodsFor: 'tests' stamp: 'jmv 2/14/2013 12:28'!
+!LayoutMorphTest methodsFor: 'tests' stamp: 'jmv 4/19/2016 10:39'!
 testLayout1
 	"
 	self new testLayout1
@@ -6189,33 +7572,33 @@ testLayout1
 
 	self assert: row1 morphWidth = (pane morphWidth - 10).
 	self assert: r1c1 morphWidth class == SmallInteger.
-	self assert: r1c1 morphHeight class == SmallInteger.
 	self assert: r1c1 morphWidth = 10.
-	self assert: r1c1 morphHeight = (row1 morphHeight - 10).
 	self assert: r1c2 morphWidth = 200.
-	self assert: r1c2 morphHeight = (row1 morphHeight - 10).
 	self assert: r1c3 morphWidth = (r1c2 morphWidth / 0.8 * 0.4) rounded.
-	self assert: r1c3 morphHeight = (row1 morphHeight - 10).
 	self assert: r1c4 morphWidth = (r1c2 morphWidth / 0.8 * 0.15) rounded.
-	self assert: r1c4 morphHeight = (row1 morphHeight - 10).
 	self assert: r1c5 morphWidth = 20.
+	self assert: r1c1 morphHeight class == SmallInteger.
+	self assert: r1c1 morphHeight = (row1 morphHeight - 10).
+	self assert: r1c2 morphHeight = (row1 morphHeight - 10).
+	self assert: r1c3 morphHeight = (row1 morphHeight - 10).
+	self assert: r1c4 morphHeight = (row1 morphHeight - 10).
 	self assert: r1c5 morphHeight = 20.
 
 	self assert: row2 morphWidth = (pane morphWidth - 10).
 	self assert: r2c1 morphWidth = 216.
-	self assert: r2c1 morphHeight = (row2 morphHeight - 10).
 	self assert: r2c2 morphWidth = (r2c1 morphWidth / 0.8 * 0.4) rounded.
-	self assert: r2c2 morphHeight = (row2 morphHeight - 10).
 	self assert: r2c3 morphWidth = (r2c1 morphWidth / 0.8 * 0.2) rounded.
+	self assert: r2c1 morphHeight = (row2 morphHeight - 10).
+	self assert: r2c2 morphHeight = (row2 morphHeight - 10).
 	self assert: r2c3 morphHeight = (row2 morphHeight - 10).
 
 	self assert: row3 morphWidth = (pane morphWidth - 10).
-	self assert: row3 morphHeight = 60.
 	self assert: r3c1 morphWidth = 20.
-	self assert: r3c1 morphHeight = (row3 morphHeight - 10 * 0.8) rounded.
 	self assert: r3c2 morphWidth = (row3 morphWidth - 10 - 20 - 10 - 30 * 0.5) rounded.
-	self assert: r3c2 morphHeight = 40.
 	self assert: r3c3 morphWidth = 30.
+	self assert: row3 morphHeight = 60.
+	self assert: r3c1 morphHeight = (row3 morphHeight - 10 * 0.8) rounded.
+	self assert: r3c2 morphHeight = 40.
 	self assert: r3c3 morphHeight = (row3 morphHeight - 10).
 
 	pane delete! !
@@ -6314,12 +7697,12 @@ testLayout3
 
 	pane delete! !
 
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:00'!
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
 testMirrorAt
 	| stackpBefore stackpAfter array byteArray |
 
-	self flag: #expectedFailure.
-	Smalltalk isRunningCog ifFalse: [^self].
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
 
 	stackpBefore := thisContext stackPtr.
 	array := { 1. 2. 3 }.
@@ -6346,12 +7729,12 @@ testMirrorClass
 	stackpAfter := thisContext stackPtr.
 	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
 
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:01'!
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
 testMirrorEqEq
 	| stackpBefore stackpAfter |
 
-	self flag: #expectedFailure.
-	Smalltalk isRunningCog ifFalse: [^self].
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
 
 	stackpBefore := thisContext stackPtr.
 	self assert: (thisContext object: Array new eqeq: Array new) == false.
@@ -6359,12 +7742,12 @@ testMirrorEqEq
 	stackpAfter := thisContext stackPtr.
 	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
 
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:01'!
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
 testMirrorInstVarAt
 	| stackpBefore stackpAfter array point |
 
-	self flag: #expectedFailure.
-	Smalltalk isRunningCog ifFalse: [^self].
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
 
 	stackpBefore := thisContext stackPtr.
 	array := { 1. 2. 3 }.
@@ -6380,12 +7763,12 @@ testMirrorInstVarAt
 	self should: [thisContext object: array instVarAt: 4] raise: Error.
 	self should: [thisContext object: point instVarAt: 3] raise: Error! !
 
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:01'!
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
 testMirrorPerform
 	| stackpBefore stackpAfter anInterval |
 
-	self flag: #expectedFailure.
-	Smalltalk isRunningCog ifFalse: [^self].
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
 
 	stackpBefore := thisContext stackPtr.
 	anInterval := 1 to: 2.
@@ -6398,12 +7781,12 @@ testMirrorPerform
 	stackpAfter := thisContext stackPtr.
 	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
 
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 8/9/2010 23:01'!
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
 testMirrorSize
 	| stackpBefore stackpAfter |
 
-	self flag: #expectedFailure.
-	Smalltalk isRunningCog ifFalse: [^self].
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
 
 	stackpBefore := thisContext stackPtr.
 	self assert: (thisContext objectSize: #(1 2 3)) = 3.
@@ -6521,6 +7904,122 @@ testMonitorNotGainingUnwantedSignalsDuringUnwinding
 	process terminate.
 	self assert: 1 equals: ((monitor instVarNamed: #mutex) instVarNamed: #excessSignals)! !
 
+!MorphicLocationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 14:32'!
+testComposition
+	"
+	MorphicLocationTest new testComposition
+	"
+	| composition inner outer |
+
+	outer _ MorphicTranslation withTranslation: 3@5.
+	inner _ AffineTransformation withRadians: 0.3.
+	composition _ outer composedWith: inner.
+	self assert: composition translation = outer translation.
+	self assert: (outer externalizePosition: (inner externalizePosition: 3@4)) = (composition externalizePosition: 3@4).
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: (inner internalizePosition: (outer internalizePosition: 3@4)) = (composition internalizePosition: 3@4).
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).
+
+
+	outer _ AffineTransformation withRadians: 0.3.
+	inner _ MorphicTranslation withTranslation: 3@5.
+	composition _ outer composedWith: inner.
+	self assert: composition radians = outer radians.
+	self assert: ((outer externalizePosition: (inner externalizePosition: 3@4)) - (composition externalizePosition: 3@4)) r < 0.0001.
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: ((inner internalizePosition: (outer internalizePosition: 3@4)) - (composition internalizePosition: 3@4)) r < 0.0001.
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).! !
+
+!MorphicTranslationTest methodsFor: 'testing' stamp: 'jmv 1/12/2015 15:46'!
+testComposition
+	"
+	MorphicTranslationTest new testComposition
+	"
+	| composition inner outer |
+
+	outer _ MorphicTranslation withTranslation: 3@5.
+	inner _ MorphicTranslation withTranslation: -1@2.
+	composition _ outer composedWith: inner.
+	self assert: composition translation = (outer translation + inner translation).
+	self assert: (outer externalizePosition: (inner externalizePosition: 3@4)) = (composition externalizePosition: 3@4).
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: (inner internalizePosition: (outer internalizePosition: 3@4)) = (composition internalizePosition: 3@4).
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).
+
+
+	outer _ MorphicTranslation withTranslation: -1@2.
+	inner _ MorphicTranslation withTranslation: 3@5.
+	composition _ outer composedWith: inner.
+	self assert: composition radians = outer radians.
+	self assert: (outer externalizePosition: (inner externalizePosition: 3@4)) = (composition externalizePosition: 3@4).
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: (inner internalizePosition: (outer internalizePosition: 3@4)) = (composition internalizePosition: 3@4).
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).! !
+
+!MorphicTranslationTest methodsFor: 'testing' stamp: 'jmv 1/8/2015 10:19'!
+testDisplayBounds
+	"
+	MorphicTranslationTest new testDisplayBounds
+	"
+
+	self assert: (MorphicTranslation new displayBoundsOfTransformOf: (-2@ 2 extent: 10@10)) = (-2@2 corner: 8@12).
+	self assert: (MorphicTranslation new displayBoundsOfTransformOf: (-12@ 12 extent: 10@10)) = (-12@12 corner: -2@22).
+	self assert: ((MorphicTranslation withTranslation: 2)  displayBoundsOfTransformOf: (-4@ 2  extent: 10@10)) = (-2@4 corner: 8@14).
+	self assert: ((MorphicTranslation withTranslation: -4)  displayBoundsOfTransformOf: (2@ 2  extent: 10@10)) = (-2@-2 corner: 8@8).
+	self assert: ((MorphicTranslation withTranslation: 2)  displayBoundsOfTransformOf: (-14@ 2  extent: 10@10)) = (-12@4 corner: -2@14).
+	self assert: ((MorphicTranslation withTranslation: 4)  displayBoundsOfTransformOf: (-12@ 2  extent: 10@10)) = (-8@6 corner: 2@16).
+	self assert: ((MorphicTranslation withTranslation: -4)  displayBoundsOfTransformOf: (12@ 2  extent: 10@10)) = (8@-2 corner: 18@8).
+	self assert: ((MorphicTranslation withTranslation: -2)  displayBoundsOfTransformOf: (4@ 2  extent: 10@10)) = (2@0 corner: 12@10).
+	self assert: ((MorphicTranslation withTranslation: 4)  displayBoundsOfTransformOf: (-2@ 2  extent: 10@10)) = (2@6 corner: 12@16).! !
+
+!MorphicTranslationTest methodsFor: 'testing' stamp: 'jmv 1/8/2015 10:21'!
+testInverseTransform
+	"
+	MorphicTranslationTest new testInverseTransform
+	"
+	self assert: (MorphicTranslation new inverseTransform: (-2@ 2)) = (-2@2).
+	self assert: ((MorphicTranslation withTranslation: 2)  inverseTransform: (-4@ 2)) = (-6@0).
+	self assert: ((MorphicTranslation withTranslation: 4)  inverseTransform: (-2@ 2)) = (-6@-2).
+	self assert: ((MorphicTranslation withTranslation: -2)  inverseTransform: (4@ 2)) = (6@4).
+	self assert: ((MorphicTranslation withTranslation: -4)  inverseTransform: (2@ 2)) = (6@6)! !
+
+!MorphicTranslationTest methodsFor: 'testing' stamp: 'jmv 1/12/2015 15:46'!
+testInverseTransformation
+	"
+	MorphicTranslationTest new testInverseTransformation
+	"
+	| forward inverse |
+
+	forward _ MorphicTranslation withTranslation: 3@5.
+	inverse _ forward inverseTransformation.
+	
+	self assert: inverse translation = forward translation negated.
+	self assert: (inverse externalizePosition: 3@4) = (forward internalizePosition: 3@4).
+	self assert: (inverse externalizeDelta: 3@4) = (forward internalizeDelta: 3@4).
+	self assert: (inverse externalizeScalar: 7) = (forward internalizeScalar: 7).
+	self assert: (inverse internalizePosition: 3@4) = (forward externalizePosition: 3@4).
+	self assert: (inverse internalizeDelta: 3@4) = (forward externalizeDelta: 3@4).
+	self assert: (inverse internalizeScalar: 7) = (forward externalizeScalar: 7)! !
+
+!MorphicTranslationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:08'!
+testTransform
+	"
+	MorphicTranslationTest new testTransform
+	"
+	self assert: (MorphicTranslation new transform: (-2@ 2)) = (-2@2).
+	self assert: ((MorphicTranslation withTranslation: 2) transform: (-4@ 2)) = (-2@4).
+	self assert: ((MorphicTranslation withTranslation: 4) transform: (-2@ 2)) = (2@6).
+	self assert: ((MorphicTranslation withTranslation: -2) transform: (4@ 2)) = (2@0).
+	self assert: ((MorphicTranslation withTranslation: -4) transform: (2@ 2)) = (-2@-2)! !
+
 !NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/26/2009 21:57'!
 testFractionPart
 
@@ -6553,21 +8052,20 @@ testOne
 		assert: Float one = 1.0;
 		assert: Fraction one = 1! !
 
-!NumberTest methodsFor: 'tests' stamp: 'fcs 12/13/2006 17:26'!
+!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:23'!
 testPrintShowingDecimalPlaces
 
-	self assert: (111.2 printShowingDecimalPlaces: 2) = '111.20'.
-	self assert: (111.2 printShowingDecimalPlaces: 0) = '111'.
-	self assert: (111 printShowingDecimalPlaces: 0) = '111'.
-	self assert: (111111111111111 printShowingDecimalPlaces: 2) = '111111111111111.00'.
-	self assert: (10 printShowingDecimalPlaces: 20) ='10.00000000000000000000'.
-	self assert: (0.98 printShowingDecimalPlaces: 2) = '0.98'.
-	self assert: (-0.98 printShowingDecimalPlaces: 2) = '-0.98'.
-	self assert: (2.567 printShowingDecimalPlaces: 2) = '2.57'.
-	self assert: (-2.567 printShowingDecimalPlaces: 2) = '-2.57'.
-	"self assert: (Number categoryForSelector: #printShowingDecimalPlaces:) = 'printing'."! !
+	self assert: (String streamContents: [ :s | 111.2 printOn: s fractionDigits: 2]) = '111.20'.
+	self assert: (String streamContents: [ :s | 111.2 printOn: s fractionDigits: 0]) = '111'.
+	self assert: (String streamContents: [ :s | 111 printOn: s fractionDigits: 0]) = '111'.
+	self assert: (String streamContents: [ :s | 111111111111111 printOn: s fractionDigits: 2]) = '111111111111111.00'.
+	self assert: (String streamContents: [ :s | 10 printOn: s fractionDigits: 20]) ='10.00000000000000000000'.
+	self assert: (String streamContents: [ :s | 0.98 printOn: s fractionDigits: 2]) = '0.98'.
+	self assert: (String streamContents: [ :s | -0.98 printOn: s fractionDigits: 2]) = '-0.98'.
+	self assert: (String streamContents: [ :s | 2.567 printOn: s fractionDigits: 2]) = '2.57'.
+	self assert: (String streamContents: [ :s | -2.567 printOn: s fractionDigits: 2]) = '-2.57'! !
 
-!NumberTest methodsFor: 'tests' stamp: 'nice 3/24/2008 16:50'!
+!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:21'!
 testPrintShowingDecimalPlaces2
 	"This tests problems related to Float>>rounded and Float>>roundTo::
 	- Float>>#rounded is inexact
@@ -6576,25 +8074,24 @@ testPrintShowingDecimalPlaces2
 	"5000000000000001.0 asTrueFraction = 5000000000000001.
 	5000000000000001 highBit = 53.
 	This number is represented exactly asFloat, it should print exactly"
-	self assert: (5000000000000001.0 printShowingDecimalPlaces: 0) = '5000000000000001'.
+	self assert: (String streamContents: [ :s | 5000000000000001.0 printOn: s fractionDigits: 0]) = '5000000000000001'.
 	
 	"50000000000001.25 asTrueFraction = (200000000000005/4).
 	200000000000005 highBit = 48, 4 isPowerOfTwo,
 	So this number is also represented exactly as Float, it should print exactly.
 	Beware: (50000000000001.25 / 0.01) rounded exhibit the same problem as above."
-	self assert: (50000000000001.25 printShowingDecimalPlaces: 2) = '50000000000001.25'.
+	self assert: (String streamContents: [ :s | 50000000000001.25 printOn: s fractionDigits: 2]) = '50000000000001.25'.
 	
 	"This number is close to maximum float value"
-	self shouldnt: [1.0e306 printShowingDecimalPlaces: 3] raise: Error.! !
+	self shouldnt: [String streamContents: [ :s | 1.0e306 printOn: s fractionDigits: 3]] raise: Error.! !
 
-!NumberTest methodsFor: 'tests' stamp: 'nice 4/24/2008 00:58'!
+!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:22'!
 testPrintShowingDecimalPlaces3
 	"This problem were reported at http://bugs.squeak.org/view.php?id=7028
 	unfortunate inversion of left / right padding"
-
-	self assert: (1.009 printShowingDecimalPlaces: 3) = '1.009'.
-	self assert: (35.900 printShowingDecimalPlaces: 3) = '35.900'.
-	self assert: (-0.097 printShowingDecimalPlaces: 3) = '-0.097'.! !
+	self assert: (String streamContents: [ :s | 1.009 printOn: s fractionDigits: 3]) = '1.009'.
+	self assert: (String streamContents: [ :s | 35.900 printOn: s fractionDigits: 3]) = '35.900'.
+	self assert: (String streamContents: [ :s | -0.097 printOn: s fractionDigits: 3]) = '-0.097'.! !
 
 !NumberTest methodsFor: 'tests' stamp: 'nice 12/6/2007 21:24'!
 testRaisedTo
@@ -6663,6 +8160,190 @@ testReciprocal
 		assert: -3 reciprocal = (-1/3).
 		
 	self should: [ 0 reciprocal ] raise: ZeroDivide! !
+
+!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
+testCollectAsReceiverIsModified
+	"
+	This test modifies a collection while iterating it.
+	This is very bad practice and should never be done.
+	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:do:,  as called by #collect:
+
+	OrderedCollectionTest new testCollectAsReceiverIsModified
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ OrderedCollection new.
+	col collect: [ :elem | 
+		result add: elem.
+		elem < 4 ifTrue: [ col add: col size + 1 ]].
+	self assert: result = #(1 2 3 4 5) asOrderedCollection! !
+
+!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
+testDoAsReceiverIsModified
+	"
+	This test modifies a collection while iterating it.
+	This is very bad practice and should never be done.
+	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:do:,  as called by #do:
+
+	OrderedCollectionTest new testDoAsReceiverIsModified
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ OrderedCollection new.
+	col do: [ :elem | 
+		result add: elem.
+		elem < 4 ifTrue: [ col add: col size + 1 ]].
+	self assert: result = #(1 2 3 4 5) asOrderedCollection! !
+
+!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
+testReverseDoAsReceiverIsModified
+	"
+	This test modifies a collection while iterating it.
+	This is very bad practice and should never be done.
+	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:by:do:,  as called by #reverseDo:
+
+	OrderedCollectionTest new testReverseDoAsReceiverIsModified
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ OrderedCollection new.
+	col reverseDo: [ :elem |
+		result add: elem.
+		col size > 3 ifTrue: [ col removeFirst ]].
+	"Not nice, but what can we expect if we remove stuff during iteration?"
+	self assert: result = #(nil nil 3 4 5) asOrderedCollection reversed! !
+
+!PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:39'!
+test1
+	"
+	self new test1
+	"
+	| prettyPrinted source |
+
+	source _ 
+'sample1: x
+	x with: [
+		self print.
+		self print ].'.
+
+	prettyPrinted _ Compiler format: source in: PrettyPrintingTest notifying: nil.
+
+	self assert: source equals: prettyPrinted! !
+
+!PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:39'!
+test2
+	"
+	self new test2
+	"
+	| prettyPrinted source |
+
+	source _ 
+'sample2: x
+	x
+		print;
+		with: [ :a :b :c | | d e f |
+			self print.
+			self print.
+			self do: [ :each |
+				self print.
+				self print.
+				x size + each size ]].'.
+
+	prettyPrinted _ Compiler format: source in: PrettyPrintingTest notifying: nil.
+
+	self assert: source equals: prettyPrinted! !
+
+!PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:40'!
+test3
+	"
+	self new test3
+	"
+	| prettyPrinted source |
+
+	source _ 
+'sample3: x
+	x
+		print;
+		with: [ :a :b :c |
+			self print.
+			self print.
+			self do: [ :each |
+				self print.
+				self print.
+				x size + each size ]].'.
+
+	prettyPrinted _ Compiler format: source in: PrettyPrintingTest notifying: nil.
+
+	self assert: source equals: prettyPrinted! !
+
+!PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:40'!
+test4
+	"
+	self new test4
+	"
+	| prettyPrinted source |
+
+	source _ 
+'sample4: x
+	x
+		print;
+		with: [ | d e f |
+			self print.
+			self print.
+			self do: [ :each |
+				self print.
+				self print.
+				x size + each size ]].'.
+
+	prettyPrinted _ Compiler format: source in: PrettyPrintingTest notifying: nil.
+
+	self assert: source equals: prettyPrinted! !
+
+!PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:41'!
+test5
+	"
+	self new test5
+	"
+	| prettyPrinted source |
+
+	source _ 
+'sample5: x
+	x
+		print;
+		print;
+		print;
+		
+			with: [
+				self print.
+				self print ]
+			do: [
+				self print.
+				self print ].'.
+
+	prettyPrinted _ Compiler format: source in: PrettyPrintingTest notifying: nil.
+
+	self assert: source equals: prettyPrinted! !
+
+!PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:40'!
+test6
+	"
+	self new test6
+	"
+	| prettyPrinted source |
+
+	source _ 
+'sample6: x
+	x
+		with: [
+			self print.
+			self print ]
+		do: [
+			self print.
+			self print ].'.
+
+	prettyPrinted _ Compiler format: source in: PrettyPrintingTest notifying: nil.
+
+	self assert: source equals: prettyPrinted! !
 
 !ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:15'!
 testSchedulerTermination
@@ -6969,12 +8650,156 @@ testValueUnpreemptively
 wasteTime: iterations
 	iterations timesRepeat: [1.23 asString asNumber]! !
 
-!RandomTest methodsFor: 'tests' stamp: 'jmv 1/19/2011 10:46'!
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:33'!
+byteBitCounts
+
+	| tablePower answer |
+	tablePower _ 8.
+	answer _ ByteArray new: (1 bitShift: tablePower).
+	0 to: tablePower - 1 do:
+		[:eachPowerIndex |
+			| powerOfTwo |
+			powerOfTwo _ 1 bitShift: eachPowerIndex.
+			1 + powerOfTwo to: answer size by: powerOfTwo * 2 do:
+				[:eachPivot |
+					0 to: powerOfTwo - 1 do:
+						[:eachIndex |
+							answer
+								at: eachPivot + eachIndex
+								put: (answer at: eachPivot + eachIndex) + 1
+						]
+				]
+		].
+	^answer! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:16'!
+nSamplesByDefault
+
+	^1000! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 17:59'!
+rng
+
+	^self rngClass new! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:01'!
+rngClass
+
+	self subclassResponsibility! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:38'!
+testRandomLargeInteger1
+
+	| random nSamples highBound odds |
+	random _ self rng.
+	nSamples _ self nSamplesByDefault.
+	highBound _ 1 << 64.
+	odds _ 0.
+	nSamples timesRepeat: [odds _ highBound atRandom: random :: bitAnd: 1 :: + odds].
+	self assert: (odds * 2 - nSamples * 5) abs < nSamples  "10% max deviation"! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:47'!
+testRandomLargeInteger2
+
+	| random nSamples bitCounts bitsPerRandom highBound ones |
+	random _ self rng.
+	nSamples _ self nSamplesByDefault.
+	bitCounts _ self byteBitCounts.
+	bitsPerRandom _ 1000.
+	highBound _ 1 << bitsPerRandom.
+	ones _ 0.
+	nSamples timesRepeat:
+		[
+			| next |
+			next _ highBound atRandom: random.
+			1 to: next basicSize do:
+				[:eachIndex | ones _ bitCounts at: (next basicAt: eachIndex) + 1 :: + ones].
+		].
+	self assert: ones - (nSamples * bitsPerRandom / 2) abs / 10 < nSamples "1% max deviation"! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:05'!
 testSeed0
+
 	| random |
-	random := Random new.
-	self should: [ random seed: 0 ] raise: Error.
+	random := self rng.
+	self should: [random seed: 0] raise: Error.
 	self assert: (10 atRandom: random) <= 10! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:17'!
+testSetAtRandom
+
+	| random set nSamples sum |
+	random _ self rng.
+	set _ Set with: 0 with: 1.
+	nSamples _ self nSamplesByDefault.
+	sum _ 0.
+	nSamples timesRepeat: [sum _ set atRandom: random :: + sum].
+	self assert: (sum / nSamples - 0.5) abs < 0.1! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 20:51'!
+testSimpleBuckets
+	"This is a poor test, see Knuth's TAOCP"
+
+	| nbuckets buckets nSamples random slot |
+	nbuckets _ 1000.
+	buckets _ Array new: nbuckets.
+	buckets atAllPut: 0.
+	nSamples _ 1000.
+	random _ self rng.
+	nSamples * nbuckets timesRepeat:
+		[
+			slot := (random next * nbuckets) floor + 1.
+			buckets at: slot put: (buckets at: slot) + 1
+		].
+	buckets do:
+		[:each |
+			"max ~17% deviation"
+			self assert: (each - nSamples * 6) abs < nSamples
+		]! !
+
+!RandomTest class methodsFor: 'testing' stamp: 'sqr 3/5/2016 17:54'!
+isAbstract
+
+	^self subclasses notEmpty! !
+
+!LaggedFibonacciRandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:50'!
+nSamplesByDefault
+
+	^self rng majorLag * 100! !
+
+!LaggedFibonacciRandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:00'!
+rngClass
+
+	^LaggedFibonacciRandom! !
+
+!ParkMiller88RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 19:58'!
+rngClass
+
+	^ParkMiller88Random! !
+
+!ParkMiller88RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 20:06'!
+testParkMillerCorrectness
+	"The correctness test suggested by the authors"
+
+	| random next |
+	random _ self rng seed: 1.
+	10000 timesRepeat: [next _ random next].
+	self assert: next * 16r7FFFFFFF = 1043618065.0! !
+
+!ParkMiller88RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:48'!
+testParkMillerInitialValues
+
+	| nSamples random samples |
+	nSamples _ self nSamplesByDefault.
+	random _ self rng.
+	samples _ 1 to: nSamples :: collect: [:each | random next].
+	self assert: (samples average - 0.5) abs < 0.1.
+	self assert: samples size * 10 > nSamples! !
+
+!ParkMiller93RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 19:58'!
+rngClass
+
+	^ParkMiller93Random! !
 
 !ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 9/25/2012 22:42'!
 testDiskProxy
@@ -7218,13 +9043,13 @@ testOdd
 	
 	self deny: (0 odd)! !
 
-!SmallIntegerTest methodsFor: 'testing - printing' stamp: 'fbs 12/8/2005 12:58'!
+!SmallIntegerTest methodsFor: 'testing - printing' stamp: 'jmv 1/9/2014 23:41'!
 testPrintPaddedWith
 
-self assert: (123 printPaddedWith: $0 to: 10 base: 2)  = '0001111011'.
-self assert: (123 printPaddedWith: $0 to: 10 base: 8)  = '0000000173'.
-self assert: (123 printPaddedWith: $0 to: 10 base: 10) = '0000000123'.
-self assert: (123 printPaddedWith: $0 to: 10 base: 16) = '000000007B'.! !
+	self assert: (123 printStringBase: 2 length: 10 padded: true) = '0001111011'.
+	self assert: (123 printStringBase: 8 length: 10 padded: true) = '0000000173'.
+	self assert: (123 printStringBase: 10 length: 10 padded: true) = '0000000123'.
+	self assert: (123 printStringBase: 16 length: 10 padded: true) = '000000007B'! !
 
 !SmallIntegerTest methodsFor: 'testing - printing' stamp: 'al 7/21/2008 21:48'!
 testPrintString
@@ -7300,150 +9125,6 @@ testWeakDumps
 	refStream nextPut: oldInstance.
 	self deny: (refStream references keys anySatisfy: [ :dumpedObject | dumpedObject isKindOf: Morph ]).
 	window delete! !
-
-!StandardSourceFileArrayTest methodsFor: 'testing' stamp: 'nice 12/27/2009 03:11'!
-testAddressRange
-	"Test source pointer to file position address translation across the full address range"
-	
-	| sf |
-	sf := StandardSourceFileArray new.
-	(16r1000000 to: 16r4FFFFFF by: 811) do: [:e | | i a p |
-		i := sf fileIndexFromSourcePointer: e.
-		p := sf filePositionFromSourcePointer: e.
-		a := sf sourcePointerFromFileIndex: i andPosition: p.
-		self assert: a = e]
-! !
-
-!StandardSourceFileArrayTest methodsFor: 'testing' stamp: 'ul 11/15/2010 12:05'!
-testChangesFileAddressRange
-	"Test file position to source pointer address translation for the changes file"
-	
-	| sf a |
-	sf := StandardSourceFileArray new.
-	(0 to: 16r1FFFFFF by: 811) do: [:e | | a2 i p |
-		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
-		i := sf fileIndexFromSourcePointer: a.
-		self assert: i = 2.
-		p := sf filePositionFromSourcePointer: a.
-		self assert: p = e.
-		a2 := sf sourcePointerFromFileIndex: 2 andPosition: p.
-		self assert: a2 = a].
-	(0 to: 16rFFFFFF by: 811) do: [:e |
-		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
-		self assert: (a between: 16r2000000 and: 16r2FFFFFF)].
-	(16r1000000 to: 16r1FFFFFF by: 811) do: [:e |
-		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
-		self assert: (a between: 16r4000000 and: 16r4FFFFFF)]
-
-
-! !
-
-!StandardSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/22/2011 19:02'!
-testFileIndexFromSourcePointer
-	"Test derivation of file index for sources or changes file from source pointers"
-
-	| sf |
-	sf := StandardSourceFileArray new.
-	"sources file mapping"
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1000000).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1000013).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1FFFFFF).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r3000000).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r3000013).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r3FFFFFF).
-	(16r1000000 to: 16r1FFFFFF by: 811) do: [:e | self assert: 1 = (sf fileIndexFromSourcePointer: e)].
-	(16r3000000 to: 16r3FFFFFF by: 811) do: [:e | self assert: 1 = (sf fileIndexFromSourcePointer: e)].
-	"changes file mapping"
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r2000000).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r2000013).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r2FFFFFF).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4000000).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4000013).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4FFFFFF).
-	(16r2000000 to: 16r2FFFFFF by: 811) do: [:e | self assert: 2 = (sf fileIndexFromSourcePointer: e)].
-	(16r4000000 to: 16r4FFFFFF by: 811) do: [:e | self assert: 2 = (sf fileIndexFromSourcePointer: e)]
-
-
-! !
-
-!StandardSourceFileArrayTest methodsFor: 'testing' stamp: 'dtl 12/14/2009 00:10'!
-testFilePositionFromSourcePointer
-	"Test derivation of file position for sources or changes file from source pointers"
-
-	| sf |
-	sf := StandardSourceFileArray new.
-	"sources file"
-	self assert: 0 = (sf filePositionFromSourcePointer: 16r1000000).
-	self assert: 16r13 = (sf filePositionFromSourcePointer: 16r1000013).
-	self assert: 16rFFFFFF = (sf filePositionFromSourcePointer: 16r1FFFFFF).
-	self assert: 16r1000000 = (sf filePositionFromSourcePointer: 16r3000000).
-	self assert: 16r1000013 = (sf filePositionFromSourcePointer: 16r3000013).
-	self assert: 16r1FFFFFF = (sf filePositionFromSourcePointer: 16r3FFFFFF).
-	"changes file"
-	self assert: 0 = (sf filePositionFromSourcePointer: 16r2000000).
-	self assert: 16r13 = (sf filePositionFromSourcePointer: 16r2000013).
-	self assert: 16rFFFFFF = (sf filePositionFromSourcePointer: 16r2FFFFFF).
-	self assert: 16r1000000 = (sf filePositionFromSourcePointer: 16r4000000).
-	self assert: 16r1000013 = (sf filePositionFromSourcePointer: 16r4000013).
-	self assert: 16r1FFFFFF = (sf filePositionFromSourcePointer: 16r4FFFFFF).
-	"the following numeric ranges are unused but currently produces results as follows"
-	self assert: 0 = (sf filePositionFromSourcePointer: 16r0000000).
-	self assert: 16r13 = (sf filePositionFromSourcePointer: 16r0000013).
-	self assert: 16rFFFFFF = (sf filePositionFromSourcePointer: 16r0FFFFFF)
-! !
-
-!StandardSourceFileArrayTest methodsFor: 'testing' stamp: 'dtl 12/14/2009 00:09'!
-testSourcePointerFromFileIndexAndPosition
-	"Test valid input ranges"
-
-	| sf |
-	sf := StandardSourceFileArray new.
-	self should: [sf sourcePointerFromFileIndex: 0 andPosition: 0] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 0] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 2 andPosition: 0] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 0 andPosition: 3] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 1 andPosition: -1] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 16r1FFFFFF] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 1 andPosition: 16r2000000] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 3 andPosition: 0] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 4 andPosition: 0] raise: Error.
-	
-	self assert: 16r1000000 = (sf sourcePointerFromFileIndex: 1 andPosition: 0).
-	self assert: 16r1000013 = (sf sourcePointerFromFileIndex: 1 andPosition: 16r13).
-	self assert: 16r1FFFFFF = (sf sourcePointerFromFileIndex: 1 andPosition: 16rFFFFFF).
-	self assert: 16r2000000 = (sf sourcePointerFromFileIndex: 2 andPosition: 0).
-	self assert: 16r2000013 = (sf sourcePointerFromFileIndex: 2 andPosition: 16r13).
-	self assert: 16r2FFFFFF = (sf sourcePointerFromFileIndex: 2 andPosition: 16rFFFFFF).
-	self assert: 16r3000000 = (sf sourcePointerFromFileIndex: 1 andPosition: 16r1000000).
-	self assert: 16r3000013 = (sf sourcePointerFromFileIndex: 1 andPosition: 16r1000013).
-	self assert: 16r3FFFFFF = (sf sourcePointerFromFileIndex: 1 andPosition: 16r1FFFFFF).
-	self assert: 16r4000000 = (sf sourcePointerFromFileIndex: 2 andPosition: 16r1000000).
-	self assert: 16r4000013 = (sf sourcePointerFromFileIndex: 2 andPosition: 16r1000013).
-	self assert: 16r4FFFFFF = (sf sourcePointerFromFileIndex: 2 andPosition: 16r1FFFFFF)
-! !
-
-!StandardSourceFileArrayTest methodsFor: 'testing' stamp: 'ul 11/15/2010 12:05'!
-testSourcesFileAddressRange
-	"Test file position to source pointer address translation for the sources file"
-	
-	| sf a |
-	sf := StandardSourceFileArray new.
-	(0 to: 16r1FFFFFF by: 811) do: [:e | | a2 p i |
-		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
-		i := sf fileIndexFromSourcePointer: a.
-		self assert: i = 1.
-		p := sf filePositionFromSourcePointer: a.
-		self assert: p = e.
-		a2 := sf sourcePointerFromFileIndex: 1 andPosition: p.
-		self assert: a2 = a].
-	(0 to: 16rFFFFFF by: 811) do: [:e |
-		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
-		self assert: (a between: 16r1000000 and: 16r1FFFFFF)].
-	(16r1000000 to: 16r1FFFFFF by: 811) do: [:e |
-		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
-		self assert: (a between: 16r3000000 and: 16r3FFFFFF)]
-
-! !
 
 !StrikeFontTest methodsFor: 'testing' stamp: 'jmv 4/12/2011 10:01'!
 testBaseAndDerivedFont
@@ -7687,50 +9368,25 @@ testMethodsWithUnboundGlobals
 	"
 	self assert: Smalltalk methodsWithUnboundGlobals isEmpty! !
 
-!SystemDictionaryTest methodsFor: 'testing' stamp: 'jmv 1/3/2013 16:19'!
-testPointersToEachIn
-	"
-10 timesRepeat: [SystemDictionaryTest new testPointersToEachIn ]
-	"
-	| p1 p2 o oa |
-	o _ Browser.
-	oa _ { o }.
-	p1 _ (Smalltalk pointersTo: o).
-	p2 _ (Smalltalk pointersToEachIn: oa) first.
-	p1 remove: oa ifAbsent: [].
-	p2 remove: oa ifAbsent: [].
-	p1 remove: thisContext ifAbsent: [].
-	p2 remove: thisContext ifAbsent: [].
-	self assert: p1 = p2.
-	o _ Float pi.
-	oa _ { o }.
-	p1 _ (Smalltalk pointersTo: o).
-	p2 _ (Smalltalk pointersToEachIn: oa) first.
-	p1 remove: oa ifAbsent: [].
-	p2 remove: oa ifAbsent: [].
-	p1 remove: thisContext ifAbsent: [].
-	p2 remove: thisContext ifAbsent: [].
-	self assert: p1 = p2.
-	o _ SystemVersion current.
-	oa _ { o }.
-	p1 _ (Smalltalk pointersTo: o).
-	p2 _ (Smalltalk pointersToEachIn: oa) first.
-	p1 remove: oa ifAbsent: [].
-	p2 remove: oa ifAbsent: [].
-	p1 remove: thisContext ifAbsent: [].
-	p2 remove: thisContext ifAbsent: [].
-	self assert: p1 = p2.! !
-
-!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'cbr 4/19/2011 18:18'!
+!TaskbarTaskTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:30'!
 setUp
 
+	needsDelete _ ProjectX ui taskbar isNil.
+	taskbar _ ProjectX ui hideTaskbar; showTaskbar; taskbar.
 	morph _ Morph new.
-	task _ TaskbarTask new minimize: morph! !
+	task _ TaskbarTask forTaskbar: taskbar.
+	task minimize: morph! !
 
-!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'cbr 4/19/2011 18:22'!
+!TaskbarTaskTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:47'!
+tearDown
+
+	needsDelete ifTrue: [
+		ProjectX ui hideTaskbar ]! !
+
+!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 17:28'!
 testMinimize
 
-	task restore: morph.
+	task restore.
 	task minimize: morph.
 	self shouldnt: [ morph visible ]! !
 
@@ -7738,58 +9394,38 @@ testMinimize
 testMorph
 	self should: [ task respondsTo: #morph ]! !
 
-!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'cbr 4/19/2011 18:20'!
+!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 17:28'!
 testRestore
 
-	task restore: morph.
+	task restore.
 	self should: [ morph visible ]! !
 
-!TaskbarTest methodsFor: 'Running' stamp: 'jmv 10/23/2012 23:18'!
+!TaskbarTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:48'!
 setUp
 
-	Taskbar reset.	
-	taskbar _ Taskbar singleton.
-	needsDelete _ taskbar owner isNil.
-	needsDelete ifTrue: [ taskbar openInWorld: ProjectX ui ].
-	taskbar visible: false.
-	taskbar step! !
+	needsDelete _ ProjectX ui taskbar isNil.
+	taskbar _ ProjectX ui hideTaskbar; showTaskbar; taskbar.
+	taskbar screenSizeChanged.
+	taskbar world runStepMethods! !
 
-!TaskbarTest methodsFor: 'Running' stamp: 'jmv 10/23/2012 23:12'!
+!TaskbarTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:31'!
 tearDown
 
 	needsDelete ifTrue: [
-		taskbar delete ]! !
+		ProjectX ui hideTaskbar ]! !
 
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 03:05'!
-testClassHide
-
-	taskbar class hide.
-	self shouldnt: [ taskbar visible ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 03:07'!
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/27/2015 10:10'!
 testClassMinimize
+	"
+	TaskbarTest new setUp testClassMinimize tearDown
+	"
 
 	| m | m _ Morph new.
 
-	taskbar class minimize: m.
+	taskbar minimize: m.
 	self shouldnt: [ m visible ]! !
 
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 03:11'!
-testClassReset
-
-	| a b |
-	a _ Morph new.
-	b _ Morph new. 
-
-	taskbar
-		minimize: a;
-		minimize: b.
-		
-	taskbar class reset.
-
-	self shouldnt: [ a isInWorld & b isInWorld ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 03:16'!
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/26/2015 16:45'!
 testClassRestore
 
 	| m | m _ Morph new. 
@@ -7798,32 +9434,15 @@ testClassRestore
 	
 	self should: [ m visible not ].
 
-	taskbar class restore: m.
+	taskbar restore: m.
 
 	self should: [ m visible ]! !
 
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 10/23/2012 23:28'!
-testClassShow
-	taskbar class show.
-	self should: [ taskbar isInWorld ].
-	ProjectX ui removeMorph: taskbar! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 18:13'!
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/26/2015 16:46'!
 testClassSingleton
 
-	self should: [ taskbar == taskbar class singleton ].
+	self should: [ taskbar == ProjectX ui taskbar ].
 ! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 18:13'!
-testClassVisible
-
-	self should: [ taskbar visible = taskbar class visible ].
-! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/15/2012 17:41'!
-testHeight
-	
-	self should: [ taskbar morphHeight = 18 ]! !
 
 !TaskbarTest methodsFor: 'test cases' stamp: 'jmv 9/4/2012 17:30'!
 testHorizontalAlignment
@@ -7966,27 +9585,28 @@ testSimpleEditor
 				stamp: 0)
 	] raise: Exception! !
 
-!TextEditorTest methodsFor: 'testing' stamp: 'jmv 12/4/2011 22:20'!
+!TextEditorTest methodsFor: 'testing' stamp: 'jmv 4/19/2016 10:22'!
 testUndoRedo
 	"
 	TextEditorTest new testUndoRedo
 	"
-	| editor model paragraph m text1 text0 text2 |
+	| editor model textComposition m text1 text0 text2 |
 	text0 _ ''.
 	model _ TextModel withText: text0 copy.
 	editor _ TextEditor new.
 	m _ InnerTextMorph new.
 	m privateOwner: TextModelMorph new.
+	m model: model.
 	editor morph: m.
 	editor instVarNamed: 'emphasisHere' put: Array new.
 	editor model: model.
-	paragraph _ Paragraph new.
-	paragraph
+	textComposition _ TextComposition new.
+	textComposition
 		setModel: model;
 		extentForComposing: 300@300.
-	editor paragraph: paragraph.
-	paragraph editor: editor.
-	paragraph composeAll.
+	editor textComposition: textComposition.
+	textComposition editor: editor.
+	textComposition composeAll.
 
 	text1 _ 'some words' asText.
 	editor addString: text1.
@@ -8052,9 +9672,9 @@ setUp
 	}
 '! !
 
-!ThemesTest methodsFor: 'as yet unclassified' stamp: 'jmv 6/6/2012 22:42'!
+!ThemesTest methodsFor: 'as yet unclassified' stamp: 'jmv 4/19/2016 10:26'!
 shoutArray
-	^  #(#(#invalid #green) #(#excessCode #green) #(#'$' #green) #(#undefinedKeyword #green) #(#undefinedBinary #green) #(#undefinedUnary #green) #(#character #(#red #muchDarker)) #(#integer #(#red #muchDarker)) #(#number #(#red #muchDarker)) #(#- #(#red #muchDarker)) #(#blockStart3 #(#red #muchDarker)) #(#blockEnd3 #(#red #muchDarker)) #(#leftParenthesis3 #(#red #muchDarker)) #(#rightParenthesis3 #(#red #muchDarker)) #(#default #black) #(#arrayStart #black) #(#arrayEnd #black) #(#arrayStart1 #black) #(#arrayEnd1 #black) #(#leftBrace #black) #(#rightBrace #black) #(#cascadeSeparator #black) #(#statementSeparator #black) #(#externalCallType #black) #(#externalCallTypePointerIndicator #black) #(#rightParenthesis1 #black) #(#blockArgColon #black) #(#leftParenthesis #black) #(#rightParenthesis #black) #(#blockStart #black) #(#blockEnd #black) #(#self #(#red #muchDarker)) #(#super #(#red #muchDarker)) #(#true #(#red #muchDarker)) #(#false #(#red #muchDarker)) #(#nil #(#red #muchDarker)) #(#thisContext #(#red #muchDarker)) #(#return #(#red #muchDarker)) #(#blockStart4 #(#green #darker)) #(#blockEnd4 #(#green #darker)) #(#leftParenthesis4 #(#green #darker)) #(#rightParenthesis4 #(#green #darker)) #(#instVar #(#magenta #muchDarker)) #(#blockStart2 #(#magenta #muchDarker)) #(#blockEnd2 #(#magenta #muchDarker)) #(#leftParenthesis2 #(#magenta #muchDarker)) #(#rightParenthesis2 #(#magenta #muchDarker)) #(#keyword #(#blue #muchDarker)) #(#binary #(#blue #muchDarker)) #(#unary #(#blue #muchDarker)) #(#leftParenthesis5 #(#orange #darker)) #(#rightParenthesis5 #(#orange #darker)) #(#blockStart5 #(#orange #darker)) #(#blockEnd5 #(#orange #darker)) #(#leftParenthesis6 #(#magenta #darker)) #(#rightParenthesis6 #(#magenta #darker)) #(#blockStart6 #(#magenta #darker)) #(#blockEnd6 #(#magenta #darker)) #(#leftParenthesis7 #blue) #(#rightParenthesis7 #blue) #(#blockStart7 #blue) #(#blockEnd7 #blue) #(#methodTempBar #gray) #(#blockTempBar #gray) #(#blockArgsBar #gray) #(#primitive #(#green #muchDarker) #bold) #(#pragmaKeyword #(#green #muchDarker) #bold) #(#pragmaUnary #(#green #muchDarker) #bold) #(#pragmaBinary #(#green #muchDarker) #bold) #(#externalFunctionCallingConvention #(#green #muchDarker) #bold) #(#module #(#green #muchDarker) #bold) #(#primitiveOrExternalCallStart #black #bold) #(#primitiveOrExternalCallEnd #black #bold) #(#globalVar #black #bold) #(#workspaceVar #black #bold) #(#incompleteKeyword #(#gray #veryMuchDarker) #underlined) #(#incompleteBinary #(#gray #veryMuchDarker) #underlined) #(#incompleteUnary #(#gray #veryMuchDarker) #underlined) #(#patternArg #(#cyan #muchDarker) #italic) #(#methodArg #(#cyan #muchDarker) #italic) #(#blockPatternArg #(#cyan #muchDarker) #italic) #(#blockArg #(#cyan #muchDarker) #italic) #(#argument #(#cyan #muchDarker) #italic) #(#symbol #(#blue #muchDarker) #bold) #(#stringSymbol #(#blue #muchDarker) #bold) #(#literalArray #(#blue #muchDarker) #bold) #(#assignment nil #bold) #(#ansiAssignment nil #bold) #(#patternKeyword nil #bold) #(#patternBinary nil #bold) #(#patternUnary nil #bold) #(#tempVar #(#gray #muchDarker) #italic) #(#patternTempVar #(#gray #muchDarker) #italic) #(#poolConstant #(#gray #muchDarker) #italic) #(#blockTempVar #gray #italic) #(#blockPatternTempVar #gray #italic) #(#unfinishedString #green #normal) #(#undefinedIdentifier #green #bold) #(#unfinishedComment #(#red #muchDarker) #italic) #(#comment #(#green #muchDarker) #italic) #(#string #(#magenta #muchDarker) #normal) #(#literal nil #italic) #(#incompleteIdentifier #(#gray #muchDarker) #(#italic #underlined)) #(#classVar #(#gray #muchDarker) #bold))! !
+	^  #(#(#invalid #green) #(#excessCode #green) #(#'$' #green) #(#undefinedKeyword #green) #(#undefinedBinary #green) #(#undefinedUnary #green) #(#character #(#red #muchDarker)) #(#integer #(#red #muchDarker)) #(#number #(#red #muchDarker)) #(#- #(#red #muchDarker)) #(#blockStart3 #(#red #muchDarker)) #(#blockEnd3 #(#red #muchDarker)) #(#leftParenthesis3 #(#red #muchDarker)) #(#rightParenthesis3 #(#red #muchDarker)) #(#default #black) #(#arrayStart #black) #(#arrayEnd #black) #(#arrayStart1 #black) #(#arrayEnd1 #black) #(#leftBrace #black) #(#rightBrace #black) #(#cascadeSeparator #black) #(#chainSeparator #black) #(#statementSeparator #black) #(#externalCallType #black) #(#externalCallTypePointerIndicator #black) #(#rightParenthesis1 #black) #(#blockArgColon #black) #(#leftParenthesis #black) #(#rightParenthesis #black) #(#blockStart #black) #(#blockEnd #black) #(#self #(#red #muchDarker)) #(#super #(#red #muchDarker)) #(#true #(#red #muchDarker)) #(#false #(#red #muchDarker)) #(#nil #(#red #muchDarker)) #(#thisContext #(#red #muchDarker)) #(#blockStart4 #(#green #darker)) #(#blockEnd4 #(#green #darker)) #(#leftParenthesis4 #(#green #darker)) #(#rightParenthesis4 #(#green #darker)) #(#instVar #(#magenta #muchDarker)) #(#blockStart2 #(#magenta #muchDarker)) #(#blockEnd2 #(#magenta #muchDarker)) #(#leftParenthesis2 #(#magenta #muchDarker)) #(#rightParenthesis2 #(#magenta #muchDarker)) #(#keyword #(#blue #muchDarker)) #(#binary #(#blue #muchDarker)) #(#unary #(#blue #muchDarker)) #(#leftParenthesis5 #(#orange #darker)) #(#rightParenthesis5 #(#orange #darker)) #(#blockStart5 #(#orange #darker)) #(#blockEnd5 #(#orange #darker)) #(#leftParenthesis6 #(#magenta #darker)) #(#rightParenthesis6 #(#magenta #darker)) #(#blockStart6 #(#magenta #darker)) #(#blockEnd6 #(#magenta #darker)) #(#leftParenthesis7 #blue) #(#rightParenthesis7 #blue) #(#blockStart7 #blue) #(#blockEnd7 #blue) #(#methodTempBar #gray) #(#blockTempBar #gray) #(#blockArgsBar #gray) #(#primitive #(#green #muchDarker) #bold) #(#pragmaKeyword #(#green #muchDarker) #bold) #(#pragmaUnary #(#green #muchDarker) #bold) #(#pragmaBinary #(#green #muchDarker) #bold) #(#externalFunctionCallingConvention #(#green #muchDarker) #bold) #(#module #(#green #muchDarker) #bold) #(#primitiveOrExternalCallStart #black #bold) #(#primitiveOrExternalCallEnd #black #bold) #(#globalVar #black #bold) #(#workspaceVar #black #bold) #(#incompleteKeyword #(#gray #veryMuchDarker) #underlined) #(#incompleteBinary #(#gray #veryMuchDarker) #underlined) #(#incompleteUnary #(#gray #veryMuchDarker) #underlined) #(#patternArg #(#cyan #muchDarker) #italic) #(#methodArg #(#cyan #muchDarker) #italic) #(#blockPatternArg #(#cyan #muchDarker) #italic) #(#blockArg #(#cyan #muchDarker) #italic) #(#argument #(#cyan #muchDarker) #italic) #(#symbol #(#blue #muchDarker) #bold) #(#stringSymbol #(#blue #muchDarker) #bold) #(#literalArray #(#blue #muchDarker) #bold) #(#patternKeyword nil #bold) #(#patternBinary nil #bold) #(#patternUnary nil #bold) #(#ansiAssignment nil #bold) #(#assignment nil #(#bold #withST80Glyphs)) #(#return nil #(#bold #withST80Glyphs)) #(#tempVar #(#gray #muchDarker) #italic) #(#patternTempVar #(#gray #muchDarker) #italic) #(#poolConstant #(#gray #muchDarker) #italic) #(#blockTempVar #gray #italic) #(#blockPatternTempVar #gray #italic) #(#unfinishedString #green #normal) #(#undefinedIdentifier #green #bold) #(#unfinishedComment #(#red #muchDarker) #italic) #(#comment #(#green #muchDarker) #italic) #(#string #(#magenta #muchDarker) #normal) #(#literal nil #italic) #(#incompleteIdentifier #(#gray #muchDarker) #(#italic #underlined)) #(#classVar #(#gray #muchDarker) #bold))! !
 
 !ThemesTest methodsFor: 'as yet unclassified' stamp: 'cbr 12/17/2010 21:01'!
 testGenerateShoutConfig
@@ -8062,27 +9682,54 @@ testGenerateShoutConfig
 	self assert: 
 		(self shoutArray = theme new generateShoutConfig asArray)! !
 
-!TimeTest methodsFor: 'Tests' stamp: 'jmv 4/16/2013 22:17'!
+!TimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:32'!
+testCreation
+	"
+	self new testCreation
+	"
+	| t |
+	
+	t _ Time seconds: 52262.
+	self assert: t hour = 14.
+	self assert: t minute = 31.
+	self assert: t second = 2.
+
+	t _ Time seconds: 52262 nanoSeconds: 414712000.
+	self assert: t hour = 14.
+	self assert: t minute = 31.
+	self assert: t second = 2.
+	self assert: t nanoSecond = 414712000! !
+
+!TimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:34'!
+testEqual
+	"
+	self new testEqual
+	"
+	| t1 t2 |
+	
+	t1 _ Time seconds: 52262.
+	t2 _ Time seconds: 52262 nanoSeconds: 0.
+	self assert: t1 = t2.
+	t2 _ Time seconds: 52262 nanoSeconds: 1234.
+	self deny: t1 = t2.
+	t2 _ Time seconds: 52263 nanoSeconds: 0.
+	self deny: t1 = t2.! !
+
+!TimeTest methodsFor: 'Tests' stamp: 'jmv 5/27/2014 22:46'!
 testSqueakInquiries
-	| timewords totalseconds condensed corrected |
-	self assert: 
-		(Time namesForTimes: #(2 10000023 10000026))
-			= #('January, 1901' 'April, 1901, 4/26/1901, 5:47 pm' 'April, 1901, 4/26/1901, 5:47 pm').
+	| timewords |
 
 	timewords := #(0.5 30 62 130 4000 10000 60000 86401) 
 		collect: [ :ss | Time humanWordsForSecondsAgo: ss ].
 	self assert: 
 		timewords = #('a second ago' '30 seconds ago' 'a minute ago' '2 minutes ago' 
-			'an hour ago' '2 hours ago' '16 hours ago' 'yesterday').
+			'an hour ago' '2 hours ago' '16 hours ago' 'yesterday').! !
 
-	totalseconds :=  Time primSecondsClock.
-	condensed := Time condenseBunches: 
-		(#(20 400 401  20000 20200 20300 40000 45000  200000 201000 202000) 
-			collect: [:tt | totalseconds - tt]).
-	corrected := condensed collect: [ :e | totalseconds - e ].
-	self
-		assert: (corrected includesAllOf: #(20 400 401 20000 40000 45000 200000)).
-! !
+!TimeTest methodsFor: 'tests' stamp: 'jmv 11/11/2014 09:26'!
+testTimePartsArePositive
+	self assert: (Time afterMidnight: -10 minutes) minute > 0.
+	self assert: (Time afterMidnight: -10 minutes) hour = 23.
+	self assert: (Time afterMidnight: -10 minutes) minute = 50.! !
 
 !TrieTest methodsFor: 'aux' stamp: 'jmv 6/21/2011 22:05'!
 assert: subject isEquivalentToDictionary: controlGroup
@@ -8414,113 +10061,98 @@ testSetProtocol
 	controlGroup add: 'ÑANDÚ'.
 	self assert: subject isEquivalentToSet: controlGroup.! !
 
-!UnicodeTest methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 19:27'!
+!UnicodeTest methodsFor: 'set up' stamp: 'jmv 10/3/2015 16:45'!
 setUp
-	"self new setUp"
+	"
+	self new setUp
+	"
 
-  	| stream |
-	
-	
      bytesOfExample1 := #[16r61 16r62 16r63 16r20 16rC3 16rA0 16rC3 16rA8 16rE2 
 	                              16r82 16rAC 16r20 16rCE 16rB1 16rCE 16rB2 16rCE 16rB3].
 	
 	"see UnicodeNotes.md"
 	
      "write the bytes of an UFT8 encoded string in binary mode to a file"
-     stream := (FileStream  forceNewFileNamed:  self class fileName) binary.
-     stream nextPutAll: bytesOfExample1.
-     stream close.! !
+	self class fileName asFileEntry forceWriteStream: [ :stream |
+		stream binary.
+		stream nextPutAll: bytesOfExample1 ]! !
 
-!UnicodeTest methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 21:29'!
+!UnicodeTest methodsFor: 'testing' stamp: 'jmv 10/3/2015 20:03'!
 test1ReadBinary
 	
 	"see UnicodeNotes.md"
-	
-     "self new test1ReadBinary"
-     | stream content |
+     "
+	self new setUp test1ReadBinary
+	"
+     | content |
+	content := self class fileName asFileEntry binaryContents.
+	self assert: content = bytesOfExample1! !
 
-	stream := (FileStream  fileNamed:  self class fileName) binary.
-      content := stream contentsOfEntireFile.
-	self assert: content = bytesOfExample1.
-      stream close.! !
-
-!UnicodeTest methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 21:30'!
+!UnicodeTest methodsFor: 'testing' stamp: 'jmv 10/3/2015 20:04'!
 test2ReadWithOutBinary
 	
 	"see UnicodeNotes.md"
-	
-     "self new test2ReadWithOutBinary"
-     | stream content |
+     "
+	self new setUp test2ReadWithOutBinary
+	"
+     | content |
+	content := self class fileName asFileEntry textContents.
+	self deny: content = bytesOfExample1! !
 
-	stream := (FileStream  fileNamed:  self class fileName).
-      content := stream contentsOfEntireFile.
-	self deny: content = bytesOfExample1.
-      stream close.! !
-
-!UnicodeTest methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 21:30'!
+!UnicodeTest methodsFor: 'testing' stamp: 'jmv 10/3/2015 20:04'!
 test3ReadUtf8
 	
 	"see UnicodeNotes.md"
-	
-     "self new test3ReadUtf8"
-     | stream content byteArray |
+     "
+	self new setUp test3ReadUtf8
+	"
+     | content byteArray |
+	byteArray _ self class fileName asFileEntry binaryContents.
+	content := String fromUtf8: byteArray.
+	self assert: content = 'abc àè¤ &#945;&#946;&#947;'! !
 
-	stream := (FileStream  fileNamed:  self class fileName) binary.
-	byteArray := stream contentsOfEntireFile.
-      content := String fromUtf8: byteArray.
-	self assert: content = 'abc àè¤ &#945;&#946;&#947;'.
-      stream close.! !
-
-!UnicodeTest methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 21:30'!
+!UnicodeTest methodsFor: 'testing' stamp: 'jmv 10/3/2015 20:06'!
 test4BackConversion
 	
 	"see UnicodeNotes.md"
 	
-     "self new test4BackConversion"
-     | stream contentInternalString contentByteArray |
+     "
+	self new setUp test4BackConversion
+	"
+     | contentInternalString contentByteArray |
 
-	stream := (FileStream  fileNamed:  self class fileName) binary.
-      contentInternalString := String fromUtf8: stream contentsOfEntireFile.
-      stream close.
+	contentInternalString := String fromUtf8: self class fileName asFileEntry binaryContents.
+	contentByteArray := self class fileName asFileEntry binaryContents.
 
-	stream := (FileStream  fileNamed:  self class fileName) binary.
-	contentByteArray := stream contentsOfEntireFile.
-	self assert:   contentByteArray = (contentInternalString asUtf8: true).
-	stream close.
-! !
+	self assert: contentByteArray = (contentInternalString asUtf8: true)! !
 
-!UnicodeTest methodsFor: 'as yet unclassified' stamp: 'hjh 2/13/2013 16:12'!
+!UnicodeTest methodsFor: 'testing' stamp: 'jmv 10/3/2015 20:07'!
 test5ReadWriteUtf8
 	
 	"see UnicodeNotes.md"
 	
-     "self new test5ReadWriteUtf8"
-     | stream content byteArray byteArray2 |
+     "
+	self new setUp test5ReadWriteUtf8
+	"
+     | content byteArray byteArray2 |
 
 	"read UTF8 Unicode file into internal string with NCRs"
 	"for NCR see http://en.wikipedia.org/wiki/Numeric_character_reference"
 	
-	stream := (FileStream  fileNamed:  self class fileName) binary.
-	byteArray := stream contentsOfEntireFile.
-      content := String fromUtf8: byteArray.
+	byteArray := self class fileName asFileEntry binaryContents.
+	content := String fromUtf8: byteArray.
 	"NCRs were added to 'content' as needed"
 
 	"write internal string back to UTF8 file with NCRs converted back to UTF8 chars"
-	stream := (FileStream  forceNewFileNamed:  self class fileName2) binary.
-	stream nextPutAll: (content asUtf8: true).  "true means: convert NCRs back to UTF8"
-	stream close.
+	self class fileName2 asFileEntry forceWriteStream: [ :stream |
+		stream binary.
+		stream nextPutAll: (content asUtf8: true).  "true means: convert NCRs back to UTF8"
+		].
 
       "compare the two versions: what is in file 'fileName' with what is in file 'fileName2'"
-	stream := (FileStream  fileNamed:  self class fileName) binary.
-	byteArray := stream contentsOfEntireFile.
-	stream close.
-
-	stream := (FileStream  fileNamed:  self class fileName2) binary.
-	byteArray2 := stream contentsOfEntireFile.
-	stream close.
-
-	self assert: byteArray = byteArray2.
-     ! !
+	byteArray := self class fileName asFileEntry binaryContents.
+	byteArray2 := self class fileName2 asFileEntry binaryContents.
+	self assert: byteArray = byteArray2! !
 
 !UnicodeTest class methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 19:25'!
 fileName

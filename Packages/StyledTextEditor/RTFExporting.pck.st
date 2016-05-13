@@ -1,7 +1,7 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1759] on 17 July 2013 at 12:56:04.13233 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2710] on 1 April 2016 at 2:12:23.069542 pm'!
 'Description Please enter a description for this package.'!
-!provides: 'RTFExporting' 1 0!
-!requires: 'Graphics-Files-Additional' 1 nil!
+!provides: 'RTFExporting' 1 2!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
 
 !String methodsFor: '*rtfExporting' stamp: 'jmv 11/22/2011 14:52'!
 iso8859s15ToRTFEncoding
@@ -147,7 +147,7 @@ writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop."
 	aStream nextPutAll: '\cf0 '! !
 
-!TextEmphasis methodsFor: '*rtfExporting' stamp: 'jmv 4/12/2011 09:59'!
+!TextEmphasis methodsFor: '*rtfExporting' stamp: 'jmv 4/1/2016 13:45'!
 writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute start. Return number of characters to skip (usually 0)"
 
@@ -159,17 +159,13 @@ writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 		aStream nextPutAll: '\ul ' ].
 	(emphasisCode allMask: AbstractFont struckThroughCode) ifTrue: [
 		aStream nextPutAll: '\strike \strikec0 ' ].
-	(emphasisCode allMask: AbstractFont outlineCode) ifTrue: [
-		aStream nextPutAll: '\outl\strokewidth60 ' ].
 	^0! !
 
-!TextEmphasis methodsFor: '*rtfExporting' stamp: 'jmv 4/12/2011 09:59'!
+!TextEmphasis methodsFor: '*rtfExporting' stamp: 'jmv 4/1/2016 13:46'!
 writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop.
 	Do it in the inverse order of writeRTFStartOn:colorTable:fontTable:"
 
-	(emphasisCode allMask: AbstractFont outlineCode) ifTrue: [
-		aStream nextPutAll: '\outl0\strokewidth0 ' ].
 	(emphasisCode allMask: AbstractFont struckThroughCode) ifTrue: [
 		aStream nextPutAll: '\strike0\striked0 ' ].
 	(emphasisCode allMask: AbstractFont underlinedCode) ifTrue: [
@@ -191,19 +187,3 @@ writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop."
 	aStream nextPutAll: '\fs0 '! !
-
-!TextKern methodsFor: '*rtfExporting' stamp: 'jmv 4/7/2011 15:21'!
-writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
-	"Write the RTF code for attribute start. Return number of characters to skip (usually 0)"
-	| quarterPoints twips |
-	quarterPoints _ kern * 4.	"This maybe needs tweaking!!"
-	twips _ kern * 12.
-	aStream nextPutAll:
-		'\kerning1\expnd', quarterPoints asString,
-		'\expndtw', twips asString; space.
-	^0! !
-
-!TextKern methodsFor: '*rtfExporting' stamp: 'jmv 1/24/2011 11:52'!
-writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
-	"Write the RTF code for attribute stop."
-	aStream nextPutAll: '\kerning1\expnd0\expndtw0 ' ! !

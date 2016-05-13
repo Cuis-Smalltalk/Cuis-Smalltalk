@@ -1,7 +1,7 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1759] on 17 July 2013 at 12:57:15.697354 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2710] on 1 April 2016 at 2:13:44.743542 pm'!
 'Description Please enter a description for this package.'!
-!provides: 'StyledTextNotebook' 1 0!
-!requires: 'StyledText' 1 nil!
+!provides: 'StyledTextNotebook' 1 2!
+!requires: 'StyledText' 1 nil nil!
 !classDefinition: #BpStyledTextNotebook category: #StyledTextNotebook!
 Object subclass: #BpStyledTextNotebook
 	instanceVariableNames: ''
@@ -13,7 +13,7 @@ BpStyledTextNotebook class
 	instanceVariableNames: ''!
 
 
-!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 12/20/2012 13:07'!
+!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 9/11/2013 00:17'!
 createModelAndView
 	"
 	BpStyledTextNotebook createModelAndView
@@ -21,10 +21,10 @@ createModelAndView
 
 	| saveButton topRow w |
 	MyModel _ StyledTextModel new.
-	AppMorph _ SystemWindow createStyledTextEditor: MyModel in: STEMainMorph newColumn.
+	AppMorph _ PluggableStyledTextMorph withModel: MyModel in: STEMainMorph newColumn.
 	AppMorph adoptWidgetsColor: MyModel class windowColor.
 	saveButton _ (PluggableButtonMorph model: self action: #save)
-		extent: 22@22;
+		morphExtent: 22@22;
 		icon: self saveIcon;
 		layoutSpec: LayoutSpec keepMorphExtent;
 		yourself.
@@ -33,9 +33,10 @@ createModelAndView
 
 	w _ PasteUpMorph someInstance.
 	AppMorph morphBoundsInWorld: w morphBoundsInWorld.
-	w addMorph: AppMorph.! !
+	w addMorph: AppMorph.
+	AppMorph startStepping! !
 
-!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 12/20/2012 12:25'!
+!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 9/11/2013 00:33'!
 install
 	"
 	BpStyledTextNotebook install
@@ -48,18 +49,21 @@ install
 
 	Filename _ 'StyledText.object'.
 	PasteUpMorph allInstancesDo: [ :w |
-		w submorphsDo: [ :m | m delete ].
+		w submorphs copy do: [ :m | m delete ].
 		w color: Color white ].
 
 	self createModelAndView.
 
 	"Save image"
 	newName _ 'StyledTextEditor.image'.
+	"
 	(SourceFiles at: 2) ifNotNil: [
 		Smalltalk
-			closeSourceFiles; "so copying the changes file will always work"
+			closeSourceFiles; ""so copying the changes file will always work""
 			 saveChangesInFileNamed: (Smalltalk fullNameForChangesNamed: newName)].
-	Smalltalk saveImageInFileNamed: newName! !
+	Smalltalk saveImageInFileNamed: newName
+	"
+	Smalltalk saveAs: newName! !
 
 !BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 1/6/2012 14:17'!
 save
@@ -89,12 +93,13 @@ ZpyzuH3Hhdm799l178ITdg916R5Kf2H9yeJCoRAWFxcr/rtUChlk/QGoFPNClwN64wAAAABJ
 RU5ErkJggg==' base64Decoded asByteArray readStream ].
 	^SaveIcon! !
 
-!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 1/28/2011 18:44'!
+!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 4/1/2016 13:57'!
 startUp
-	| file |
-	(FileStream isAFileNamed: Filename) ifTrue: [
-		file _ FileStream fileNamed: Filename.
-		[ MyModel _ (SmartRefStream on: file) next ] ensure: [ file close ].
+
+	[
+		MyModel _ Filename asFileEntry readStream: [ :strm |
+			(SmartRefStream on: strm) next ].
 		AppMorph submorphs first
 			 model: MyModel;
-			 possiblyChanged ].! !
+			 possiblyChanged
+	] on: FileDoesNotExistException do: nil.! !

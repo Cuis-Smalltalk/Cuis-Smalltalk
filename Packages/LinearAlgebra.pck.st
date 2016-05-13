@@ -1,6 +1,8 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1752] on 14 July 2013 at 5:11:16.384964 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2760] on 5 May 2016 at 4:43:49.055566 pm'!
 'Description Please enter a description for this package '!
-!provides: 'LinearAlgebra' 1 0!
+!provides: 'LinearAlgebra' 1 26!
+!requires: 'Collections-CompactArrays' 1 2 nil!
+!requires: 'Probabilities-and-Statistics' 1 nil nil!
 !classDefinition: #Matrix category: #LinearAlgebra!
 Array2D subclass: #Matrix
 	instanceVariableNames: ''
@@ -9,6 +11,16 @@ Array2D subclass: #Matrix
 	category: 'LinearAlgebra'!
 !classDefinition: 'Matrix class' category: #LinearAlgebra!
 Matrix class
+	instanceVariableNames: ''!
+
+!classDefinition: #ByteMatrix category: #LinearAlgebra!
+Matrix subclass: #ByteMatrix
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'LinearAlgebra'!
+!classDefinition: 'ByteMatrix class' category: #LinearAlgebra!
+ByteMatrix class
 	instanceVariableNames: ''!
 
 !classDefinition: #FloatMatrix category: #LinearAlgebra!
@@ -31,11 +43,39 @@ FloatMatrix subclass: #FloatBandMatrix
 FloatBandMatrix class
 	instanceVariableNames: ''!
 
+!classDefinition: #IntegerMatrix category: #LinearAlgebra!
+Matrix subclass: #IntegerMatrix
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'LinearAlgebra'!
+!classDefinition: 'IntegerMatrix class' category: #LinearAlgebra!
+IntegerMatrix class
+	instanceVariableNames: ''!
+
+!classDefinition: #ShortIntegerMatrix category: #LinearAlgebra!
+Matrix subclass: #ShortIntegerMatrix
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'LinearAlgebra'!
+!classDefinition: 'ShortIntegerMatrix class' category: #LinearAlgebra!
+ShortIntegerMatrix class
+	instanceVariableNames: ''!
+
 
 !Matrix commentStamp: 'jmv 7/19/2012 11:52' prior: 0!
 My instances are m x n matrices, where m is the height and n the width. A matrix is a kind of 2-d array. A Matrix whose width is 1 is called a "Column Vector". A Matrix whose height is 1 is called a "Row Vector".
 
 My instances can hold elements of any kind, but include some methods that assume that the elements understand arithmetic operations. These are useful for Matrices whose elements are Fractions, LargeIntegers, Matrices and Vectors (column or row Matrices). They are also suitable for Complex numbers, but in such cases, an alternative is to use different FloatMatrices for Real and Imaginary parts.!
+
+!ByteMatrix commentStamp: 'jmv 9/4/2015 10:44' prior: 0!
+Elements are integers between 0 and 255, i.e. bytes.
+
+ByteMatrix fromArrayOfArrays: #(
+	#[ 0 		255 	94  ]
+	#[4 		127 	128]
+	#[ 1 		254	3 ])!
 
 !FloatMatrix commentStamp: '<historical>' prior: 0!
 My instances are m x n matrices of Float values, where m is the height and n the width. Suitable for LinearAlgebra and SignalProcessing suff, among many other possible applications. It is possible to build VM plugins for fast processing.!
@@ -43,12 +83,36 @@ My instances are m x n matrices of Float values, where m is the height and n the
 !FloatBandMatrix commentStamp: '<historical>' prior: 0!
 My instances can have non-zero values only in the diagonal, and a band of certain width around it. Save space.!
 
-!MatrixTransform2x3 methodsFor: '*LinearAlgebra' stamp: 'jmv 6/16/2013 20:14'!
+!IntegerMatrix commentStamp: '<historical>' prior: 0!
+Elements are integers between -16r80000000 and 16r7FFFFFFF, i.e. signed 32-bit words.
+
+IntegerMatrix fromArrayOfArrays: {
+	{ 0. 									1. 						-1 }.
+	{ (2 raisedTo: 31) negated.	-10000.   				-16r80000000}.
+	{ (2 raisedTo: 31) -1. 			12 factorial.			16r7FFFFFFF }}!
+
+!ShortIntegerMatrix commentStamp: 'jmv 9/4/2015 12:58' prior: 0!
+Elements are integers between -32768 and 32767, i.e. signed 16-bit words.
+
+ShortIntegerMatrix fromArrayOfArrays: #(
+	#( 0 			255 	94)
+	#(-4 			127 	128)
+	#( -32768 	254	32767 ))!
+
+!Form methodsFor: '*LinearAlgebra' stamp: 'jmv 5/21/2015 11:34'!
+hackBitsForFloatMatrix: aFloatMatrix
+	"Quite like #hackBits: but we know that FloatMatrixes use 32 bits per element"
+	depth _ 32.
+	width _ aFloatMatrix width.
+	height _ aFloatMatrix height.
+	bits _ aFloatMatrix elements! !
+
+!AffineTransformation methodsFor: '*LinearAlgebra' stamp: 'jmv 8/23/2014 23:29'!
 asMatrix
 	"Answer a FloatMatrix."
 
 	| answer |
-	answer _ FloatMatrix newHeight: 3 width: 3.
+	answer _ FloatMatrix height: 3 width: 3.
 	answer i: 1 j: 1 put: self a11.
 	answer i: 1 j: 2 put: self a12.
 	answer i: 1 j: 3 put: self a13.
@@ -58,13 +122,13 @@ asMatrix
 	answer i: 3 j: 3 put: 1.
 	^answer! !
 
-!Matrix methodsFor: 'aritmethic' stamp: 'jmv 11/16/2012 12:14'!
+!Matrix methodsFor: 'aritmethic' stamp: 'jmv 8/23/2014 23:27'!
 * aMatrixOrNumber
 	"Standard matrix multiplication"
 	| result |
 	(aMatrixOrNumber is: #Matrix) ifTrue: [
 		width = aMatrixOrNumber height ifFalse: [ ^self error: 'Matrix sizes do not match' ].
-		result _ self appropriateResultClass newHeight: height width: aMatrixOrNumber width.
+		result _ self appropriateResultClass height: height width: aMatrixOrNumber width.
 		result fillWith: self multipliedBy: aMatrixOrNumber ]
 	ifFalse: [
 		result _ self copy.
@@ -72,14 +136,14 @@ asMatrix
 	^result
 	! !
 
-!Matrix methodsFor: 'aritmethic' stamp: 'jmv 11/16/2012 12:14'!
+!Matrix methodsFor: 'aritmethic' stamp: 'jmv 8/23/2014 23:27'!
 + aMatrixOrNumber
 	"Add element by element"
 	| result |
 	(aMatrixOrNumber is: #Matrix) ifTrue: [
 		(width = aMatrixOrNumber width) & (height = aMatrixOrNumber height)
 			ifFalse: [ ^self error: 'Matrix sizes do not match' ].
-		result _ self appropriateResultClass newHeight: height width: width.
+		result _ self appropriateResultClass height: height width: width.
 		result fillWith: self plus: aMatrixOrNumber ]
 	ifFalse: [
 		result _ self copy.
@@ -87,14 +151,14 @@ asMatrix
 	^result
 	! !
 
-!Matrix methodsFor: 'aritmethic' stamp: 'jmv 11/16/2012 12:15'!
+!Matrix methodsFor: 'aritmethic' stamp: 'jmv 8/23/2014 23:27'!
 - aMatrixOrNumber
 	"Substract element by element"
 	| result |
 	(aMatrixOrNumber is: #Matrix) ifTrue: [
 		(width = aMatrixOrNumber width) & (height = aMatrixOrNumber height)
 			ifFalse: [ ^self error: 'Matrix sizes do not match' ].
-		result _ self appropriateResultClass newHeight: height width: width.
+		result _ self appropriateResultClass height: height width: width.
 		result fillWith: self minus: aMatrixOrNumber ]
 	ifFalse: [
 		result _ self copy.
@@ -119,55 +183,89 @@ appropriateResultClass
 
 	^self class! !
 
-!Matrix methodsFor: 'conversion' stamp: 'jmv 9/28/2007 19:58'!
-asForm
-	| answer min max |
+!Matrix methodsFor: 'conversion' stamp: 'jmv 1/14/2015 12:55'!
+as32bitFormEvaluating: aBlock
+	"Fill 32bit Form with gray values."
+
+	| answer bits word index |
 	answer _ Form extent: width@height depth: 32.
+	bits _ answer bits.
+	word _ 16rFF000000 copy.
+	index _ 1.
+	1 to: height do: [ :y |
+		1 to: width do: [ :x |
+			aBlock value: index value: word.
+			bits at: index put: word.
+			index _ index + 1 ]].
+	^answer! !
+
+!Matrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 17:19'!
+as8bitFormEvaluating: aBlock
+	"Fill an 8-bit ColorForm with gray values."
+
+	| answer bits bitsIndex elementsIndex bytesPerRow |
+	bytesPerRow _ width + 3 // 4 * 4.
+	answer _ ColorForm grayScaleExtent: width@height.
+	bits _ answer bits.
+	elementsIndex _ 0.
+	1 to: height do: [ :y |
+		bitsIndex _ y-1 * bytesPerRow.
+		1 to: width do: [ :x |
+			elementsIndex _ elementsIndex + 1.
+			bitsIndex _ bitsIndex + 1.
+			bits byteAt: bitsIndex put: (aBlock value: elementsIndex) bigEndian: answer isBigEndian ]].
+	^answer! !
+
+!Matrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 11:18'!
+asForm
+	"Answer a Form with gray values.
+	Map used range of pixel values to available gray values.
+	Do not apply any gamma.
+	
+	Each subclass might do it differently:
+	- mapping the used range of values or some arbitrary range
+	- applying or not gamma correction (to make a linear range look linear to our eyes, using nonlinear mapping)"
+
+	| max min |
 	min _ self min.
 	max _ self max.
-	0 to: height-1 do: [ :i |
-		0 to: width-1 do: [ :j |
-			answer colorAt: j@i put: (Color gray: 
-				(self i: i+1 j: j+1) - min / (max - min)
-			)]].
-	^answer! !
+	max > min ifFalse: [
+		max _ min + 1 ].
+	^self asFormMin: min max: max! !
 
-!Matrix methodsFor: 'conversion' stamp: 'jmv 9/2/2011 15:41'!
+!Matrix methodsFor: 'conversion' stamp: 'jmv 9/2/2014 12:07'!
 asFormG: greenMatrix b: blueMatrix
-	| answer min max b g r |
-	answer _ Form extent: width@height depth: 32.
+
+	| min max |
 	min _ (self min min: greenMatrix min) min: blueMatrix min.
 	max _ (self max max: greenMatrix max) max: blueMatrix max.
-	0 to: height-1 do: [ :i |
-		0 to: width-1 do: [ :j |
-			r _ (self i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0.
-			g _ (greenMatrix i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0.
-			b _ (blueMatrix i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0.
-			answer colorAt: j@i put: (Color  r: r g: g b: b)]].
-	^answer! !
+	^self asFormG: greenMatrix b: blueMatrix min: min max: max! !
 
-!Matrix methodsFor: 'conversion' stamp: 'jmv 9/2/2011 15:41'!
+!Matrix methodsFor: 'conversion' stamp: 'jmv 4/28/2015 10:26'!
 asFormG: greenMatrix b: blueMatrix min: min max: max
-	| answer b g r |
-	answer _ Form extent: width@height depth: 32.
-	0 to: height-1 do: [ :i |
-		0 to: width-1 do: [ :j |
-			r _ (self i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0.
-			g _ (greenMatrix i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0.
-			b _ (blueMatrix i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0.
-			answer colorAt: j@i put: (Color  r: r g: g b: b)]].
-	^answer! !
+	| k r g b blueElements greenElements |
+	k _ 255.0 / (max-min).
+	greenElements _ greenMatrix elements.
+	blueElements _ blueMatrix elements.
+	^ self as32bitFormEvaluating: [ :index :word |
+		r _ (((elements at: index) - min) * k + 0.5) truncated min: 255 max: 0.
+		g _ (((greenElements at: index) - min) * k + 0.5) truncated min: 255 max: 0.
+		b _ (((blueElements at: index) - min) * k + 0.5) truncated min: 255 max: 0.
+		word at: 1 put: b; at: 2 put: g; at: 3 put: r ]! !
 
-!Matrix methodsFor: 'conversion' stamp: 'jmv 7/26/2011 18:12'!
+!Matrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 10:49'!
 asFormMin: min max: max
-	| answer |
-	answer _ Form extent: width@height depth: 32.
-	0 to: height-1 do: [ :i |
-		0 to: width-1 do: [ :j |
-			answer colorAt: j@i put: (Color gray: 
-				((self i: i+1 j: j+1) - min / (max - min) min: 1.0 max: 0.0)
-			)]].
-	^answer! !
+	"Answer a 8bit Form with gray values.
+	Map used range of pixel values to available gray values."
+
+	| k |
+	k _ 255.0 / (max-min).
+	^ self as8bitFormEvaluating: [ :index |
+		(((elements at: index) - min) * k + 0.5) truncated min: 255 max: 0 ]! !
+
+!Matrix methodsFor: 'statistics' stamp: 'jmv 5/12/2015 11:56'!
+average
+	^self mean! !
 
 !Matrix methodsFor: 'aux operations' stamp: 'jmv 7/19/2012 12:25'!
 columnsWithoutPivot: count
@@ -203,6 +301,19 @@ diagonal
 	1 to: height do: [ :i |
 		x i: i j: 1 put: (self i: i j: i ) ].
 	^x! !
+
+!Matrix methodsFor: 'displaying' stamp: 'jmv 5/4/2016 10:55'!
+display
+	self displayAt: 0@0! !
+
+!Matrix methodsFor: 'displaying' stamp: 'jmv 5/4/2016 11:16'!
+displayAt: aPoint
+	"Display receiver, using default conversion to Form.
+	Each subclass might do it differently:
+	- mapping the used range of values or some arbitrary range
+	- applying or not gamma correction (to make a linear range look linear to our eyes, using nonlinear mapping)"
+
+	self asForm displayAt: aPoint! !
 
 !Matrix methodsFor: 'accessing' stamp: 'jmv 7/19/2012 10:25'!
 elements
@@ -371,15 +482,15 @@ Tomar esto para lo que realmente hace falta. Ver el otro browser
 	"
 	^result! !
 
-!Matrix methodsFor: 'operations' stamp: 'jmv 7/19/2012 12:36'!
+!Matrix methodsFor: 'operations' stamp: 'jmv 8/23/2014 23:27'!
 inverse
 	"Answers the inverse matrix"
 
 	| zeroElement bigMatrix result |
 	zeroElement _ self zeroElement.
 	self isSquare ifFalse: [ ^self error: 'Only for Square Matrices' ].
-	result _ self appropriateResultClass newHeight: height width: width.
-	bigMatrix _ self appropriateResultClass newHeight: height width: width + 1.
+	result _ self appropriateResultClass height: height width: width.
+	bigMatrix _ self appropriateResultClass height: height width: width + 1.
 	1 to: width do: [ :i |
 		bigMatrix fillWith: self.
 		1 to: width do: [ :j | bigMatrix i: j j: width+1 put: zeroElement ].
@@ -418,6 +529,18 @@ m
 	"Usual name in Linear Algebra"
 
 	^height! !
+
+!Matrix methodsFor: 'statistics' stamp: 'jmv 5/12/2015 11:52'!
+max
+	^ elements max! !
+
+!Matrix methodsFor: 'statistics' stamp: 'jmv 5/12/2015 11:55'!
+mean
+	^elements mean! !
+
+!Matrix methodsFor: 'statistics' stamp: 'jmv 5/12/2015 11:52'!
+min
+	^ elements min! !
 
 !Matrix methodsFor: 'operations' stamp: 'jmv 7/19/2012 12:21'!
 moveOriginToCenter: aBoolean
@@ -573,6 +696,17 @@ solveLinearSystem
 		x i: i j: 1 put: sum / (self i: i j: i) ].
 	^x! !
 
+!Matrix methodsFor: 'statistics' stamp: 'jmv 5/14/2015 13:04'!
+standardDeviation
+	"
+	See
+		http://en.wikipedia.org/wiki/Variance
+		http://www.mathsisfun.com/data/standard-deviation.html
+	{600. 470. 170. 430. 300} standardDeviation
+	"
+
+	^elements standardDeviation! !
+
 !Matrix methodsFor: 'accessing' stamp: 'jmv 9/30/2007 09:30'!
 subMatrixTopLeft: aPoint bottomRight: bPoint
 
@@ -596,6 +730,10 @@ substractRow: i multipliedBy: factor to: k startingAtColumn: jStart
 		self i: k j: j put:
 			(self i: k j: j) - ((self i: i j: j) * factor) ]! !
 
+!Matrix methodsFor: 'statistics' stamp: 'jmv 5/12/2015 11:56'!
+sum
+	^elements sum! !
+
 !Matrix methodsFor: 'operations' stamp: 'jmv 7/19/2012 12:17'!
 transpose
 	"Traspose the receiver. Modify it."
@@ -607,12 +745,12 @@ transpose
 			self i: ii j: jj put: (self i: jj j: ii).
 			self i: jj j: ii put: (aux) ] ].! !
 
-!Matrix methodsFor: 'operations' stamp: 'jmv 7/19/2012 12:17'!
+!Matrix methodsFor: 'operations' stamp: 'jmv 8/23/2014 23:27'!
 transposed
 	"Answer a new matrix, transposed."
 
 	| result |
-	result _ self appropriateResultClass newHeight: width width: height.
+	result _ self appropriateResultClass height: width width: height.
 	1 to: result height do: [ :i |
 		1 to: result width do: [ :j |
 			result i: i j: j put: (self i: j j: i) ] ].
@@ -648,57 +786,164 @@ triangleWithPartialPivoting
 	].
 	^ permutationCount! !
 
+!Matrix methodsFor: 'conversion' stamp: 'jmv 5/5/2016 15:41'!
+with8BitColorForm: aForm do: aBlock
+	"Assume that aForm has a colormap with at most 256 gray levels, going from black to white.
+	This is what we get, for instance, when reading a gray 8 bit bmp file.
+	Don't assume anything about the color palette
+	(i.e. don't assume all 256 gray levels will be present, and don't assume a prticular order of the entries)."
+
+	|  word aFormHeight aFormWidth i2 aFormBits aFormColorsReds c wholeLineWords aFormTotalLineWords loseElementsAtRight ii1 lineBase shift0 shift1 shift2 shift3 |
+	aFormHeight _ aForm extent y.
+	aFormWidth _ aForm extent x.
+	
+	wholeLineWords _ (width min: aFormWidth) // 4.
+	loseElementsAtRight _ (width min: aFormWidth) \\ 4.
+	
+	aFormTotalLineWords _ aFormWidth-1 // 4+1.
+	aFormBits _ aForm bits.
+	aFormColorsReds _ aForm colors collect: [ :each | each red ].
+	
+	aForm nativeDepth = -8 ifTrue: [
+		shift0 _ 0.
+		shift1 _ -8.
+		shift2 _ -16.
+		shift3 _ -24 ]
+	ifFalse: [
+		shift0 _ -24.
+		shift1 _ -16.
+		shift2 _ -8.
+		shift3 _ 0].
+
+	1 to: (height min: aFormHeight) do: [ :y |
+		i2 _ y-1 * width.
+		lineBase _ y-1 * aFormTotalLineWords.
+		lineBase+1 to: lineBase+wholeLineWords do: [ :i1 |
+			word _ aFormBits at: i1.
+			i2 _ i2 + 1.
+			c _ (word bitShift: shift0) bitAnd: 16rFF.
+			aBlock value: i2 value: (aFormColorsReds at: c+1).
+			i2 _ i2 + 1.
+			c _ (word bitShift: shift1) bitAnd: 16rFF.
+			aBlock value: i2 value: (aFormColorsReds at: c+1).
+			i2 _ i2 + 1.
+			c _ (word bitShift: shift2) bitAnd: 16rFF.
+			aBlock value: i2 value: (aFormColorsReds at: c+1).
+			i2 _ i2 + 1.
+			c _ (word bitShift: shift3) bitAnd: 16rFF.
+			aBlock value: i2 value: (aFormColorsReds at: c+1).
+		].
+		loseElementsAtRight > 0 ifTrue: [
+			ii1 _ lineBase+wholeLineWords + 1.
+			word _ aFormBits at: ii1.
+			i2 _ i2 + 1.
+			c _ (word bitShift: shift0) bitAnd: 16rFF.
+			aBlock value: i2 value: (aFormColorsReds at: c+1).
+			loseElementsAtRight > 1 ifTrue: [
+				i2 _ i2 + 1.
+				c _ (word bitShift: shift1) bitAnd: 16rFF.
+				aBlock value: i2 value: (aFormColorsReds at: c+1).
+				loseElementsAtRight = 3 ifTrue: [
+					i2 _ i2 + 1.
+					c _ (word bitShift: shift2) bitAnd: 16rFF.
+					aBlock value: i2 value: (aFormColorsReds at: c+1) ]]].
+	]! !
+
 !Matrix methodsFor: 'private' stamp: 'jmv 7/19/2012 12:35'!
 zeroElement
 	"We don't really restrict the kind of objects we might hold... Our best guess for a kind of null additive value is to just ask some element..."
 
 	^elements first class zero! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 9/28/2007 19:33'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:27'!
 columnFrom: anArray	
 "Example:
 	FloatMatrix columnFrom: #(1 2 0 0 0 0 3)."
 
 	| result |
-	result _ self newHeight: anArray size width: 1.
+	result _ self height: anArray size width: 1.
 	1 to: result height do: [ :i |
 		result i: i j: 1 put: (anArray at: i) ].
 	^result! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 17:54'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 5/3/2016 17:55'!
+from32BitColorForm: aForm component: aSymbol
+	"aSymbol must be in #(red green blue alpha)"
+
+	| instance |
+	instance _ self width: aForm width height: aForm height.
+	instance fillFrom32BitForm: aForm component: aSymbol.
+	^instance! !
+
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 5/3/2016 16:46'!
+from8BitColorForm: aForm
+	"Assume that aForm has a colormap with 256 gray levels, going from black to white.
+	This is what we get, for instance, when reading a gray 8 bit bmp file"
+
+	| instance |
+	instance _ self width: aForm width height: aForm height.
+	instance fillFrom8BitColorForm: aForm.
+	^instance! !
+
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 11/16/2014 19:56'!
+hilbert: n
+"
+(Matrix hilbert: 15) inverse inverse
+(FloatMatrix hilbert: 15) inverse inverse
+"
+	| result |
+	result _ self height: n width: n.
+	1 to: n do: [ :i |
+		1 to: n do: [ :j |
+			result i: j j: i put: 1/(i+j+1) ] ].
+	^result! !
+
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:28'!
 identity: size
 
 	| result |
-	result _ self newHeight: size width: size.
+	result _ self height: size width: size.
 	result fillWithIdentity.
 	^result
 ! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 9/30/2007 19:11'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 5/4/2016 11:52'!
+lena
+	"
+	(Base64MimeConverter mimeEncode: ((FileStream readOnlyFileNamed: 'Lena.png') binary)) upToEnd
+Form lena display.
+FloatImage lena display.
+ByteMatrix lena display.
+	"
+	| form |
+	form _ Form lena.
+	^self from32BitColorForm: form component: nil! !
+
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 9/2/2014 10:10'!
 m: height n: width
 
-	^self new initHeight: height width: width! !
+	^self basicNew initHeight: height width: width! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 19:43'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:28'!
 newColumnVectorSize: size
 	"A column vector is just a matrix with width 1"
 
-	^self newHeight: size width: 1! !
+	^self height: size width: 1! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 18:29'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:28'!
 newIdentity: size
 
 	| result |
-	result _ self newHeight: size width: size.
+	result _ self height: size width: size.
 	result fillWithIdentity.
 	^result
 ! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 20:42'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:28'!
 newRowVectorSize: size
 	"A row vector is just a matrix with height 1"
 
-	^self newHeight: 1 width: size! !
+	^self height: 1 width: size! !
 
 !Matrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 19:41'!
 newVectorSize: size
@@ -706,46 +951,189 @@ newVectorSize: size
 
 	^self newColumnVectorSize: size! !
 
-!Matrix class methodsFor: 'instance creation' stamp: 'jmv 9/28/2007 19:34'!
+!Matrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:28'!
 rowFrom: anArray	
 "Example:
 	FloatMatrix rowFrom: #(1 2 0 0 0 0 3)."
 
 	| result |
-	result _ self newHeight: 1 width: anArray size.
+	result _ self height: 1 width: anArray size.
 	1 to: result width do: [ :j |
 		result i: 1 j: j put: (anArray at: j) ].
 	^result! !
 
-!FloatMatrix methodsFor: 'misc' stamp: 'jmv 11/16/2012 12:14'!
-addNormalNoise: standardDeviation seed: randomSeed
-	| random |
-	random _ NormalRandom new seed: randomSeed.
-	self replaceValues: [ :i :j :v | random next * standardDeviation + v ]! !
+!ByteMatrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 10:47'!
+asForm
+	"Our pixel values are already constrained to 0..255.
+	Converting to an 8bit gray Form is straightforward."
 
-!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 8/1/2011 10:04'!
-bilinearInterpolationAtX: x y: y
-	"x and y are Floats"
-	| x1 x2 y1 y2 result f |
-	x1 _ x floor.
-	x2 _ x1 + 1.
-	y1 _ y floor.
-	y2 _ y1 + 1.
-	result _ ((self x: x1 y: y1) * (x2 - x) * (y2 - y)).
-	f _ (x2 - x) * (y - y1).
-	f = 0.0 ifFalse: [
-		result _ (self x: x1 y: y2) * f + result ].
-	f _ (x - x1) * (y2 - y).
-	f = 0.0 ifFalse: [
-		result _ (self x: x2 y: y1) * f + result ].
-	f _ (x - x1) * (y - y1).
-	f = 0.0 ifFalse: [
-		result _ (self x: x2 y: y2) * f + result].
-	^result! !
+	^ self as8bitFormEvaluating: [ :index | elements at: index ]! !
+
+!ByteMatrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 12:57'!
+fillFrom32BitForm: aForm component: aSymbol
+	"aSymbol must be in #(red green blue alpha) or nil"
+
+	| hack map componentIndex mask shift |
+	hack _ ColorForm extent: width@height nativeDepthFrom: 8 bits: elements.
+	map _ aSymbol ifNotNil: [
+		componentIndex _ #(alpha red green blue) indexOf: aSymbol.
+		shift _ #(-24 -16 -8 0) at: componentIndex.
+		mask _ #(16rFF000000 16rFF0000 16rFF00 16rFF) at: componentIndex.
+		ColorMap masks: { mask. 0. 0. 0 } shifts: { shift. 0. 0. 0 } ].
+	(BitBlt toForm: hack)
+		sourceForm: aForm;
+		combinationRule: Form over;
+		colorMap: map;
+		sourceRect: (0@0 extent: width@height);
+		destOrigin: 0@0;
+		copyBits! !
+
+!ByteMatrix methodsFor: 'conversion' stamp: 'jmv 5/5/2016 16:35'!
+fillFrom8BitColorForm: aForm
+	"Assume that aForm has a colormap with at most 256 gray levels, going from black to white.
+	This is what we get, for instance, when reading a gray 8 bit bmp file"
+"
+	self with8BitColorForm: aForm do: [ :i2 :v |
+		elements at: i2 put: (v * 255)  rounded]
+"
+	| hack |
+	hack _ ColorForm extent: width@height nativeDepthFrom: 8 bits: elements.
+	(BitBlt toForm: hack)
+		sourceForm: aForm;
+		combinationRule: Form over;
+		colorMap: nil;
+		sourceRect: (0@0 extent: width@height);
+		destOrigin: 0@0;
+		copyBits
+		! !
+
+!ByteMatrix methodsFor: 'initialization' stamp: 'jmv 5/18/2015 14:27'!
+initializeElements
+
+	elements _ ByteArray new: height * width! !
+
+!FloatMatrix methodsFor: 'noise generation' stamp: 'jmv 4/6/2015 12:30'!
+addNormalNoise: standardDeviation
+	| random |
+	random _ NormalProbabilityDistribution mean: 0.0 standardDeviation: standardDeviation.
+	self replaceValues: [ :i :j :v | random nextRandomNumber + v ]! !
+
+!FloatMatrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 11:07'!
+asGammaFormFullRange
+	"See comment at #fullRangeDisplayAt:"
+
+	| min scale |
+	min _ elements min.
+	scale _ elements max-min.
+	scale _ scale > 0.0
+		ifTrue: [ 1.0 / scale ]
+		ifFalse: [ 1.0 ].
+	^self as8bitFormEvaluating: [ :index | | value |
+		value _ Color linearTosRGBGamma: (elements at: index)-min * scale.
+		(value * 255 + 0.5) truncated ]! !
+
+!FloatMatrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 11:09'!
+asGammaFormFullRangeG: greenImage b: blueImage
+	"Assume all three images are exactly the same size.
+	See comment at #fullRangeDisplayAt:"
+
+	| answer bits rElements rMin rScale gElements gMin gScale bElements bMin bScale b g r word |
+	answer _ Form extent: width@height depth: 32.
+	bits _ answer bits.
+	rElements _ self elements.
+	rMin _ rElements min.
+	rScale _ rElements max - rMin. rScale _ rScale > 0.0 ifTrue: [ 1.0 / rScale ] ifFalse: [ 0.0 ].
+	gElements _ greenImage elements.
+	gMin _ gElements min.
+	gScale _ gElements max - gMin. gScale _ gScale > 0.0 ifTrue: [ 1.0 / gScale ] ifFalse: [ 0.0 ].
+	gScale print.
+	bElements _ blueImage elements.
+	bMin _ bElements min.
+	bScale _ bElements max - bMin. bScale _ bScale > 0.0 ifTrue: [ 1.0 / bScale ] ifFalse: [ 0.0 ].
+	1 to: elements size do: [ :i |
+		r _ ((Color linearTosRGBGamma: (rElements at: i)-rMin * rScale) * 255 + 0.5) truncated.
+		g _ ((Color linearTosRGBGamma: (gElements at: i)-gMin * gScale) * 255 + 0.5) truncated.
+		b _ ((Color linearTosRGBGamma: (bElements at: i)-bMin * bScale) * 255 + 0.5) truncated.
+		word _ (r bitShift: 16) + (g bitShift: 8) + b.
+		bits integerAt: i put: word ].
+	^answer! !
 
 !FloatMatrix methodsFor: 'norm and condition number' stamp: 'jmv 7/19/2012 10:57'!
 conditionNumber
 	^self norm * self inverse norm! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 12:21'!
+copy: aRectangle
+	"
+	| i |
+	i _ FloatMatrix width: 10 height: 10.
+	i x: 10 y: 10 put: Float pi.
+	i copy: (1@1 extent: 10@10)
+	"
+	| answer |
+	answer _ self appropriateResultClass width: aRectangle width height: aRectangle height.
+	self copyToTile: answer position: aRectangle origin.
+	^answer! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 13:24'!
+copyFromTile: aFloatMatrix position: aPoint
+	"
+	aPoint is the position in self where the contents of aFloatMatrix are to be stored
+	As in all Matrix protocol, aPoint is 1-based
+	"
+	| blitter formArgument formSelf |
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: aPoint-1 sourceOrigin: 0@0.
+	blitter copyBits! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 13:25'!
+copyFromTile: aFloatMatrix position: aPoint guardZone: borderWidth
+	"
+	aPoint is the position in self where the contents of aFloatMatrix are to be stored
+	As in all Matrix protocol, aPoint is 1-based
+	Exclude a border of width borderWidth from the copy
+
+	| i t |
+	t _ FloatImage from32BitColorForm: (Display copy: (100@100 extent: 100@100)) component: #red.
+	i _ FloatImage extent: 256@256.
+	i copyFromTile: t position: 10@10 guardZone: 10.
+	i display.
+	"
+
+	| blitter formArgument formSelf |
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: aPoint-1 + borderWidth sourceOrigin: borderWidth@borderWidth
+		extent: (formArgument width - (2*borderWidth))@(formArgument height - (2*borderWidth)).
+	blitter copyBits! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 13:24'!
+copyToTile: aFloatMatrix position: aPoint
+	"
+	aPoint is the position in self where the contents of aFloatMatrix are to be taken from
+	As in all Matrix protocol, aPoint is 1-based
+
+	| i t |
+	i _ FloatImage from32BitColorForm: (Display copy: (1@1 extent: 100@100)) component: #red.
+	t _ FloatImage extent: 256@256.
+	i copyToTile: t position: -10@0.
+	t display.
+	"
+	| blitter formArgument formSelf |
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+	blitter
+		setDestForm: formArgument sourceForm: formSelf
+		destOrigin: 0@0 sourceOrigin: aPoint-1.
+	blitter copyBits! !
 
 !FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 7/19/2012 10:56'!
 eigenvaluesAndEigenvectors
@@ -756,7 +1144,7 @@ eigenvaluesAndEigenvectors
 
 	^ self eigenvaluesAndEigenvectorsByQR! !
 
-!FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 7/19/2012 11:17'!
+!FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 8/23/2014 23:25'!
 eigenvaluesAndEigenvectorsByQR
 	"Answers a transposed vector (a row matrix) of eigenvalues and a matrix of eigenvectors.
 	Each eigenvector is a column of the eigenvector matrix. Column k is the eigenvector for the
@@ -771,10 +1159,10 @@ eigenvaluesAndEigenvectorsByQR
 	eigenvalues _ Bag new.
 	1 to: eigenvaluesVector height do: [ :j |
 		eigenvalues add: (eigenvaluesVector i: j j: 1) ].
-	eigenvectorSystem _ self appropriateResultClass newHeight: height width: width+1.
+	eigenvectorSystem _ self appropriateResultClass height: height width: width+1.
 	resultIndex _ 1.
 	resultEigenvalues _ self appropriateResultClass newRowVectorSize: width.
-	resultEigenvectors _ self appropriateResultClass newHeight: height width: width.
+	resultEigenvectors _ self appropriateResultClass height: height width: width.
 	eigenvalues asSet do: [ :eigenvalue |
 		"For each occurrence of an eigenvalue find a different eigenvector.
 		This part could be optimized. The correct way would be to implement a method
@@ -806,7 +1194,7 @@ eigenvaluesAndEigenvectorsByQR
 	result at: #eigenvectors put: resultEigenvectors.
 	^result! !
 
-!FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 7/19/2012 11:15'!
+!FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 8/23/2014 23:26'!
 eigenvaluesByQR
 	"This implementation only works if all the eigenvalues are real."
 	"(FloatMatrix fromArrayOfArrays: #(
@@ -818,8 +1206,8 @@ eigenvaluesByQR
 
 	| h q r loopCount |
 	h _ self hessembergSuperior.
-	q _ self appropriateResultClass newHeight: height width: width.
-	r _ self appropriateResultClass newHeight: height width: width.
+	q _ self appropriateResultClass height: height width: width.
+	r _ self appropriateResultClass height: height width: width.
 	loopCount _ 0.
 	[ h isFirstSubdiagonalZero ] whileFalse: [
 		h storeQRDecompositionOfHessemberSuperiorOnQ: q r: r.
@@ -828,11 +1216,197 @@ eigenvaluesByQR
 		loopCount > 200 ifTrue: [^self error: 'Could not find real eigenvalues'] ].
 	^h diagonal! !
 
-!FloatMatrix methodsFor: 'private' stamp: 'jmv 7/19/2012 12:18'!
+!FloatMatrix methodsFor: 'private' stamp: 'jmv 11/16/2014 19:52'!
 epsilon
 	"Something better is needed. For example, taking into accoung the largest elements, or the norm, or something like that... In any case it is better to check senders, and use a different strategy for ending iterative methods or such..."
 
-	^1e-3 asFloat! !
+	^1e-9 asFloat! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 12:23'!
+expandTo: newExtent
+	"
+	| i |
+	i _ FloatMatrix width: 5 height: 5.
+	i x: 5 y: 5 put: Float pi.
+	i expandTo:10@10
+	"
+	| answer |
+	answer _ self appropriateResultClass width: newExtent x height: newExtent y.
+	self copyToTile: answer position: 1@1.
+	^answer! !
+
+!FloatMatrix methodsFor: 'conversion' stamp: 'jmv 5/4/2016 12:11'!
+fillFrom32BitForm: aForm component: aSymbol
+	"aSymbol must be in #(red green blue alpha) or nil"
+
+	| componentIndex shift mask magic bb |
+	magic _ 128.0.
+	"If aSymbol is not supplied, just take blue.
+	This is for consistency with ByteMatrix, where no map takes blue, and is actually faster."
+	componentIndex _ aSymbol ifNil: [4] ifNotNil: [#(alpha red green blue) indexOf: aSymbol].
+	shift _ #(-16 -8 0 8 ) at: componentIndex.
+	mask _ #(16rFF000000 16rFF0000 16rFF00 16rFF) at: componentIndex.
+	bb _ BitBlt toForm: (Form new hackBitsForFloatMatrix: self).
+	bb sourceForm: aForm.
+	bb combinationRule: 7. "or"
+	bb sourceX: 0; sourceY: 0.
+	bb destX: 0 destY: 0 width: width height: height.
+	bb colorMap: (ColorMap masks: { mask. 0. 0. 0 } shifts: { shift. 0. 0. 0 }).
+
+	elements += magic.
+	bb copyBits.
+	elements -= magic! !
+
+!FloatMatrix methodsFor: 'conversion' stamp: 'jmv 5/5/2016 16:42'!
+fillFrom8BitColorForm: aForm
+	"Assume that aForm has a colormap with at most 256 gray levels, going from black to white.
+	This is what we get, for instance, when reading a gray 8 bit bmp file"
+"
+	self with8BitColorForm: aForm do: [ :i2 :v |
+		elements at: i2 put: v ]
+"
+	| magic bb |
+	magic _ 32768.0.
+	bb _ BitBlt toForm: (Form new hackBitsForFloatMatrix: self).
+	bb sourceForm: aForm.
+	bb combinationRule: 7. "or"
+	bb sourceX: 0; sourceY: 0.
+	bb destX: 0 destY: 0 width: width height: height.
+	bb colorMap: nil.
+
+	elements += magic.
+	bb copyBits.
+	elements -= magic! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 8/28/2015 11:29'!
+fillLowFFTFrequenciesWith: aFloatMatrix
+	"
+	Assume self extent > argument extent.
+	Assume frequency zero is at i=1;j=1 (topLeft) as #fftImaginary:forward: leaves them
+	fill low frequencies (i.e. areas closer to the 4 corners) with argument.
+	The effect is to zero-pad higher frequecies.
+
+	| i1 i2 |
+	i1 := FloatImage lena.
+	i2 := FloatImage extent: i1 extent * 2.
+	i2 += 0.5.
+	i1 displayAt: 0@0.
+	i2 fillLowFFTFrequenciesWith: i1.
+	i2 displayAt: 256@0.
+
+	| i1 i2 |
+	i1 := FloatImage lena.
+	i2 := FloatImage extent: i1 extent * 3//4.
+	i2 += 0.5.
+	i1 displayAt: 0@0.
+	i2 fillLowFFTFrequenciesWith: i1.
+	i2 displayAt: 256@0.
+	"
+	
+	| blitter formArgument formSelf deltaI deltaJ quarterExtent |
+	deltaI _ height // 2.
+	deltaJ _ width // 2.
+	quarterExtent _ aFloatMatrix extent // 2 min: deltaJ@deltaI.
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: 0@0 sourceOrigin: 0@0
+		extent: quarterExtent.
+	blitter copyBits.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: width-quarterExtent x@0 sourceOrigin: aFloatMatrix width - quarterExtent x@0
+		extent: quarterExtent.
+	blitter copyBits.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: 0@(height-quarterExtent) y sourceOrigin: 0@(aFloatMatrix height - quarterExtent y)
+		extent: quarterExtent.
+	blitter copyBits.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: width@height-quarterExtent sourceOrigin: aFloatMatrix extent -quarterExtent
+		extent: quarterExtent.
+	blitter copyBits.! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 12:17'!
+fillWith: aFloatMatrix
+	| blitter formArgument formSelf |
+
+	"Use inherited, more general and slower code if needed."
+	(aFloatMatrix is: #FloatMatrix) ifFalse: [
+		^super fillWith: aFloatMatrix ].
+
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: 0@0 sourceOrigin: 0@0.
+	blitter copyBits! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 13:14'!
+fillWith: aFloatMatrix displaced: deltaPoint
+	"
+	Assume self and argument are of the same extent
+	Do a  simple displacement. Leave unaffected areas unchanged.
+	deltaPoint is integer. Can be negative. (no resampling or interpolation)
+
+	| i1 i2 |
+	i1 _ FloatImage lena.
+	i2 _ FloatImage extent: i1 extent.
+	i1 displayAt: 0@0.
+	i2 fillWith: i1 displaced: 40@-30.
+	i2 displayAt: 256@0.
+	"
+	
+	| blitter formArgument formSelf |
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: deltaPoint sourceOrigin: 0@0.
+	blitter copyBits.! !
+
+!FloatMatrix methodsFor: 'copying' stamp: 'jmv 5/22/2015 13:12'!
+fillWith: aFloatMatrix displacedCircular: deltaPoint
+	"
+	Assume self and argument are of the same extent
+	Do a 'circular' displacement. deltaPoint is integer. Can be negative. (no resampling or interpolation)
+	| i1 i2 |
+	i1 _ FloatImage lena.
+	i2 _ FloatImage extent: i1 extent.
+	i1 displayAt: 0@0.
+	i2 fillWith: i1 displacedCircular: 120@140.
+	i2 displayAt: 256@0.
+	"
+	
+	| blitter formArgument formSelf deltaI deltaJ |
+	deltaI _ deltaPoint y \\ height.
+	deltaJ _ deltaPoint x \\ width.
+	formSelf _ Form new hackBitsForFloatMatrix: self.
+	formArgument _ Form new hackBitsForFloatMatrix: aFloatMatrix.
+	blitter _ BitBlt new.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: deltaJ@deltaI sourceOrigin: 0@0.
+	blitter copyBits.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: deltaJ-width@deltaI sourceOrigin: 0@0.
+	blitter copyBits.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: deltaJ@(deltaI-height) sourceOrigin: 0@0.
+	blitter copyBits.
+	blitter
+		setDestForm: formSelf sourceForm: formArgument
+		destOrigin: deltaJ-width@(deltaI-height) sourceOrigin: 0@0.
+	blitter copyBits.! !
 
 !FloatMatrix methodsFor: 'filling' stamp: 'jmv 7/19/2012 10:46'!
 fillWithIdentity
@@ -841,11 +1415,40 @@ fillWithIdentity
 	1 to: (width min: height) do: [ :j |
 		self i: j j: j put: 1 ]! !
 
+!FloatMatrix methodsFor: 'filling' stamp: 'jmv 8/4/2014 16:03'!
+fillWithOnes
+	self fillWithValue: 1.0! !
+
+!FloatMatrix methodsFor: 'filling' stamp: 'jmv 8/4/2014 16:05'!
+fillWithValue: value
+	elements *= 0.0.
+	elements += value! !
+
 !FloatMatrix methodsFor: 'accessing' stamp: 'jmv 9/17/2007 12:43'!
 fillWithZeroes
 	elements *= 0.0! !
 
-!FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 7/19/2012 11:15'!
+!FloatMatrix methodsFor: 'displaying' stamp: 'jmv 5/4/2016 11:05'!
+fullRangeDisplayAt: aPoint
+	"Assume the values are not normalized in the scale 0.0 to 1.0.
+	Apply appropriate scaling to use viewable dynamic range to show receiver actual range of values.
+	Assume receiver is in linear scale.
+	Apply appropriate gamma encoding to make good use of pixel dynamic range.
+	(See #linearSpaceToGammaEncoded and #linearSpaceToGammaEncoded)"
+
+	self asGammaFormFullRange displayAt: aPoint! !
+
+!FloatMatrix methodsFor: 'displaying' stamp: 'jmv 5/4/2016 11:09'!
+fullRangeG: greenImage b: blueImage displayAt: aPoint
+	"Assume the values are not normalized in the scale 0.0 to 1.0.
+	Apply appropriate scaling to use viewable dynamic range to show receiver actual range of values.
+	Assume receiver is in linear scale.
+	Apply appropriate gamma encoding to make good use of pixel dynamic range.
+	(See #linearSpaceToGammaEncoded and #linearSpaceToGammaEncoded)"
+
+	(self asGammaFormFullRangeG: greenImage b: blueImage) displayAt: aPoint! !
+
+!FloatMatrix methodsFor: 'eigenvalues and eigenvectors' stamp: 'jmv 8/23/2014 23:26'!
 hessembergSuperior
 	"Answers a new matrix that is the Hessember Superior transform of the receiver.
 	A Hessember Superior matrix has zero entries below the first subdiagonal.
@@ -854,7 +1457,7 @@ hessembergSuperior
 	| result u |
 	self isSquare ifFalse: [ ^self error: 'Only for Square Matrices' ].
 	result _ self copy.
-	u _ self appropriateResultClass newHeight: height width: width.
+	u _ self appropriateResultClass height: height width: width.
 	1 to: width-2 do: [ :j |
 		(result storeHouseholderTransformOn: u column: j forQR: false) ifTrue: [
 			result _ u * result * u.
@@ -862,6 +1465,43 @@ hessembergSuperior
 	].
 	^ result
 ! !
+
+!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 4/27/2015 10:09'!
+i: i
+	"Answers a row vector with the values at row y
+	Optimized for large Matrices
+	|m w h |
+	w _ 8. h _ 8.
+	m _ FloatMatrix extent: w@h. m elements += (1 to: w*h).
+	m i: 3
+	"
+
+	| result |
+	result _ self appropriateResultClass newRowVectorSize: width.
+	self i: i copyTo: result.
+	^result! !
+
+!FloatMatrix methodsFor: 'private' stamp: 'jmv 4/27/2015 10:21'!
+i: i copyTo: row
+	"Assumes row is of of apropriate size"
+	| ss |
+	ss _ i-1 * width + 1.
+	row elements replaceFrom: 1 to: width with: elements startingAt: ss! !
+
+!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 4/27/2015 10:01'!
+i: i put: row
+	"aVector must be a row vector, i.e. a matrix with height 1.
+	Optimized for large Matrices
+	|m w h |
+	w _ 8. h _ 8.
+	m _ FloatMatrix extent: w@h. m elements += (1 to: w*h).
+	m i: 7 put: (m i: 2).
+	m print.
+	"
+
+	| ss |
+	ss _ i-1 * width + 1.
+	elements replaceFrom: ss to: ss+width-1 with: row elements startingAt: 1! !
 
 !FloatMatrix methodsFor: 'aritmethic - complex' stamp: 'jmv 7/19/2012 11:15'!
 imaginary: imaginaryPart elementDivideBy: operandRealPart imaginary: operandImaginaryPart
@@ -959,13 +1599,14 @@ imaginary: imaginaryPart elementDivideBy: operandRealPart imaginary: operandImag
 			self i: i j: j put: e.
 			imaginaryPart i: i j: j put: f ]]! !
 
-!FloatMatrix methodsFor: 'aritmethic - complex' stamp: 'jmv 7/19/2012 11:15'!
+!FloatMatrix methodsFor: 'aritmethic - complex' stamp: 'jmv 4/27/2015 12:26'!
 imaginary: imaginaryPart elementMultiplyBy: operandRealPart imaginary: operandImaginaryPart
 	"The receiver and imaginaryPart conform a complex matrix.
 	operandRealPart and operandImaginaryPart conform another complex matrix.
 	fill the receiver (and imaginaryPart) with the result of complex multiplication with operand, element by element.
 	I.e., at each position of the matrix, compute (e+if) = (a+ib) * (c+id)"
 
+"
 	| a b c d e f |
 	1 to: height do: [ :i |
 		1 to: width do: [ :j |
@@ -976,18 +1617,88 @@ imaginary: imaginaryPart elementMultiplyBy: operandRealPart imaginary: operandIm
 			e _ a * c - (b * d).
 			f _ b * c + (a * d).
 			self i: i j: j put: e.
-			imaginaryPart i: i j: j put: f ]]! !
+			imaginaryPart i: i j: j put: f ]]
+"
+	| c d aByC bByC aByD bByD e f |
+	c _ FloatMatrix newRowVectorSize: width.
+	d _ FloatMatrix newRowVectorSize: width.
+	aByC _ FloatMatrix newRowVectorSize: width.
+	bByC _ FloatMatrix newRowVectorSize: width.
+	aByD _ FloatMatrix newRowVectorSize: width.
+	bByD _ FloatMatrix newRowVectorSize: width.
+	1 to: height do: [ :i |
+		
+		" Compute:
+		e _ a * c - (b * d).
+		f _ b * c + (a * d)."
+		
+		operandRealPart i: i copyTo: c.
+		self i: i copyTo: aByC.
+		aByC elements *= c elements.
+		imaginaryPart i: i copyTo: bByC.
+		bByC elements *= c elements.
+		
+		operandImaginaryPart i: i copyTo: d.
+		self i: i copyTo: aByD.
+		aByD elements *= d elements.
+		imaginaryPart i: i copyTo: bByD.
+		bByD elements *= d elements.
+		
+		e _ aByC.
+		e elements -= bByD elements.
+		f _ bByC.
+		f elements += aByD elements.
+
+		self i: i put: e.
+		imaginaryPart i: i put: f ]! !
 
 !FloatMatrix methodsFor: 'initialization' stamp: 'jmv 6/18/2001 19:10'!
 initializeElements
 
 	elements _ FloatArray new: height * width! !
 
+!FloatMatrix methodsFor: 'testing' stamp: 'jmv 5/22/2015 12:16'!
+is: aSymbol
+	^ aSymbol == #FloatMatrix or: [ super is: aSymbol ]! !
+
 !FloatMatrix methodsFor: 'testing' stamp: 'jmv 7/19/2012 13:06'!
 isFirstSubdiagonalZero
 
 	^(1 to: width-1) inject: true into: [ :previousValue :each |
 		previousValue and: [ (self i: each + 1 j: each) abs <= self epsilon ] ]! !
+
+!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 4/27/2015 10:11'!
+j: j
+	"Answers a column vector with the values at column x.
+	Optimized for large Matrices
+	|m w h |
+	w _ 8. h _ 8.
+	m _ FloatMatrix extent: w@h. m elements += (1 to: w*h).
+	m j: 3
+	"
+
+	| result |
+	result _ self appropriateResultClass newColumnVectorSize: height.
+	self j: j copyTo: result.
+	^result! !
+
+!FloatMatrix methodsFor: 'private' stamp: 'jmv 5/21/2015 12:44'!
+j: j copyTo: column
+	"Assumes column is of of apropriate size"
+	self copyToTile: column position: j@1! !
+
+!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 5/21/2015 12:45'!
+j: j put: column
+	"column can be a column vector (m x 1 matrix), or a kind of Array.
+	Optimized for large Matrices
+	| m w h |
+	w _ 8. h _ 8.
+	m _ FloatMatrix extent: w@h. m elements += (1 to: w*h).
+	m j: 3 put: (m j: 1).
+	m print.
+	"
+
+	self copyFromTile: column position: j@1! !
 
 !FloatMatrix methodsFor: 'linear equation systems' stamp: 'jmv 7/19/2012 11:16'!
 linesLost
@@ -1000,11 +1711,11 @@ linesLost
 	] whileTrue: [ result _ result + 1 ].
 	^result! !
 
-!FloatMatrix methodsFor: 'aritmethic - complex' stamp: 'jmv 7/19/2012 11:16'!
+!FloatMatrix methodsFor: 'aritmethic - complex' stamp: 'jmv 4/24/2015 10:27'!
 magnitudeWithImaginary: imaginaryPart
 	"answer a new matrix"
 	| result a b magnitude |
-	result _ FloatMatrix newSize: self size.
+	result _ self appropriateResultClass newSize: self size.
 	1 to: height do: [ :i |
 		1 to: width do: [ :j |
 			a _ self i: i j: j.
@@ -1012,14 +1723,6 @@ magnitudeWithImaginary: imaginaryPart
 			magnitude _ (a * a + (b * b)) sqrt.
 			result i: i j: j put: magnitude ]].
 	^result! !
-
-!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 9/18/2007 08:09'!
-max
-	^ elements max! !
-
-!FloatMatrix methodsFor: 'accessing' stamp: 'jmv 9/18/2007 08:09'!
-min
-	^ elements min! !
 
 !FloatMatrix methodsFor: 'norm and condition number' stamp: 'jmv 7/19/2012 10:57'!
 norm
@@ -1059,18 +1762,17 @@ preMultiplyByGivensRotationRowI: i rowK: k titaCosine: c titaSine: s
 		self i: i j: j put: c*elemI - (s*elemK).
 		self i: k j: j put: s*elemI + (c*elemK) ].! !
 
-!FloatMatrix methodsFor: 'printing' stamp: 'jmv 8/27/2012 18:31'!
+!FloatMatrix methodsFor: 'printing' stamp: 'jmv 1/9/2014 21:28'!
 printOn: aStream
 	aStream newLine.
 	1 to: height do: [ :i |
 		aStream nextPutAll: '| '.
 		1 to: width do: [ :j |
-			aStream nextPutAll: ((self i: i j: j) printPaddedLeft: 1 decimalPlaces: 3).
-			"aStream print: ((self i: i j: j) roundTo: 0.001)."
-			aStream nextPut: $  ].
+			(self i: i j: j) printOn: aStream integerDigits: 1 fractionDigits: 3.
+			aStream space ].
 		aStream nextPut: $|; newLine ]! !
 
-!FloatMatrix methodsFor: 'operations' stamp: 'jmv 7/19/2012 12:19'!
+!FloatMatrix methodsFor: 'operations' stamp: 'jmv 9/2/2014 11:28'!
 round
 
 	| a b |
@@ -1079,7 +1781,7 @@ round
 			(self i: i j: j) = 0.0 ifFalse: [
 				a _ self i: i j: j.
 				b _ (10.0 raisedTo: a abs log truncated - 5).
-				self i: i j: j put: (a / b) rounded * b ] ] ]! !
+				self i: i j: j put: (a roundTo: b) ] ] ]! !
 
 !FloatMatrix methodsFor: 'aux operations' stamp: 'jmv 7/19/2012 12:01'!
 rowsCloserToZero: count
@@ -1145,12 +1847,12 @@ storeQRDecompositionOfHessemberSuperiorOnQ: q r: r
 			q preMultiplyByGivensRotationRowI: j rowK: j+1 titaCosine: c titaSine: s ] ].
 	q transpose.! !
 
-!FloatMatrix class methodsFor: 'instance creation' stamp: 'jmv 9/28/2007 20:02'!
+!FloatMatrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:26'!
 form: aForm color: aSymbol
 	| h w answer color |
 	h _ aForm height.
 	w _ aForm width.
-	answer _ self newHeight: h width: w.
+	answer _ self height: h width: w.
 	1 to: h do: [ :i |
 		1 to: w do: [ :j |
 			color _ aForm colorAt: (j-1@(i-1)).
@@ -1172,11 +1874,11 @@ elementsIndexForI: i j: j
 		ifTrue: [ i*bandWidth + j-i ]
 		ifFalse: [ nil ]! !
 
-!FloatBandMatrix methodsFor: 'accessing' stamp: 'jmv 7/19/2012 10:27'!
+!FloatBandMatrix methodsFor: 'accessing' stamp: 'jmv 9/2/2014 10:11'!
 i: i j: j
 	"Answer element at row i, column j"
 
-	(self elementsIndexForI: i j: j)
+	^(self elementsIndexForI: i j: j)
 		ifNotNil: [ :position | elements at: position ]
 		ifNil: [ 0.0 ]! !
 
@@ -1201,42 +1903,70 @@ initializeElements
 
 	elements _ FloatArray new: height * bandWidth! !
 
-!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 9/30/2007 19:12'!
+!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:33'!
+height: height width: width
+
+	^self error: 'Please call #heightAndWidth:bandWidth: for Band Matrices'! !
+
+!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:32'!
+heightAndWidth: aNumber bandWidth: bw
+	"Must be square!!"
+
+	^self basicNew initHeightAndWidth: aNumber bandWidth: bw! !
+
+!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 9/2/2014 10:10'!
 m: size bandWidth: bw
 
-	^self new initHeightAndWidth: size bandWidth: bw! !
+	^self basicNew initHeightAndWidth: size bandWidth: bw! !
 
 !FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 9/30/2007 19:12'!
 m: height n: width
 
 	^self error: 'Please call #m:bandWidth: for Band Matrices'! !
 
-!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 17:52'!
-newHeight: height width: width
-
-	^self error: 'Please call #newHeightAndWidth:bandWidth: for Band Matrices'! !
-
-!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 17:43'!
-newHeightAndWidth: size bandWidth: bw
-
-	^self new initHeightAndWidth: size bandWidth: bw! !
-
-!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 7/3/2001 18:28'!
+!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:32'!
 newIdentity: size
 
 	| result |
-	result _ self newHeightAndWidth: size bandWidth: 1.
+	result _ self heightAndWidth: size bandWidth: 1.
 	result fillWithIdentity.
 	^result
 ! !
 
-!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 7/4/2001 11:41'!
+!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:33'!
 newWithDiagonalValues: aVectorOrArray
 
 	| size result |
 	size _ aVectorOrArray size.
 	size isPoint ifTrue: [ size _ size x max: size y ].
-	result _ self newHeightAndWidth: size bandWidth: 1.
+	result _ self heightAndWidth: size bandWidth: 1.
 	result fillDiagonalWith: aVectorOrArray.
 	^result
 ! !
+
+!FloatBandMatrix class methodsFor: 'instance creation' stamp: 'jmv 8/23/2014 23:35'!
+width: w height: h
+
+	^self error: 'Please call #heightAndWidth:bandWidth: for Band Matrices'! !
+
+!IntegerMatrix methodsFor: 'accessing' stamp: 'jmv 9/4/2015 10:59'!
+at: aPointOrIndex put: aNumber
+	
+	(aNumber between: -16r80000000 and: 16r7FFFFFFF)
+		ifTrue: [ self errorImproperStore ].
+
+	^super at: aPointOrIndex put: aNumber! !
+
+!IntegerMatrix methodsFor: 'initialization' stamp: 'jmv 9/4/2015 10:36'!
+initializeElements
+
+	elements _ IntegerArray new: height * width! !
+
+!ShortIntegerMatrix methodsFor: 'initialization' stamp: 'jmv 9/4/2015 13:12'!
+initializeElements
+
+	| n |
+	n _ height * width.
+	n even ifFalse: [
+		n _ n + 1 ].
+	elements _ ShortIntegerArray new: n! !

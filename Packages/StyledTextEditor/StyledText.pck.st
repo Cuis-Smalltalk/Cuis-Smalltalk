@@ -1,10 +1,12 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1762] on 17 July 2013 at 10:10:53.56446 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2720] on 7 April 2016 at 5:49:41.350004 pm'!
 'Description Please enter a description for this package.'!
-!provides: 'StyledText' 1 0!
-!requires: 'RTFTests' 1 nil!
-!requires: 'RTFExporting' 1 nil!
-!requires: 'ExtendedClipboard' 1 nil!
-!requires: 'RTFImporting' 1 nil!
+!provides: 'StyledText' 1 24!
+!requires: 'Morphic-Widgets-Extras' 1 nil nil!
+!requires: 'Cuis-Base' 42 2621 nil!
+!requires: 'RTFTests' 1 nil nil!
+!requires: 'ExtendedClipboard' 1 nil nil!
+!requires: 'RTFImporting' 1 nil nil!
+!requires: 'RTFExporting' 1 nil nil!
 !classDefinition: #StyleSet category: #StyledText!
 ActiveModel subclass: #StyleSet
 	instanceVariableNames: 'paragraphStyles characterStyles volatileParaStyles volatileCharStyles'
@@ -37,7 +39,7 @@ STECompleter class
 
 !classDefinition: #CharacterStyle category: #StyledText!
 Object subclass: #CharacterStyle
-	instanceVariableNames: 'name familyName pointSize emphasis color kern'
+	instanceVariableNames: 'name familyName pointSize emphasis color'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'StyledText'!
@@ -259,8 +261,8 @@ STETheme class
 !StyleSet commentStamp: '<historical>' prior: 0!
 My instances know some styles (and the keyboard shortcuts to apply them).!
 
-!StyledTextModel commentStamp: 'jmv 3/13/2012 11:36' prior: 0!
-A StyledText is a Text where every character has a ParagraphStyle. All the characters in a Paragraph (including the ending Character crCharacter) share the same ParagraphStyle.!
+!StyledTextModel commentStamp: 'jmv 10/16/2013 21:43' prior: 0!
+A StyledText is a Text where every character has a ParagraphStyle. All the characters in a Paragraph (including the ending Character newLineCharacter) share the same ParagraphStyle.!
 
 !CharacterStyle commentStamp: '<historical>' prior: 0!
 A CharacterStyle comprises a font and color, and can be applied to any part of a Text via a CharacterStyleReference.
@@ -366,7 +368,7 @@ asStyledTextWith: aStyleSet
 "	self isStyledText ifTrue: [ ^self ]."
 	^self copy beStyledTextWith: aStyleSet! !
 
-!Text methodsFor: '*styledText' stamp: 'jmv 4/11/2011 18:28'!
+!Text methodsFor: '*styledText' stamp: 'jmv 4/19/2014 11:07'!
 beNonStyledText
 	"Modify the receiver so that it doesn't include any ParagraphStyle or CharacterStyle.
 	Turn them into TextFontFamilyAndSize, TextEmphasis, TextColor, and TextAlignment as appropriate.
@@ -374,8 +376,8 @@ beNonStyledText
 
 	runs mapValues: [ :attributes |
 		Array streamContents: [ :strm |
-			self withFormattingAttributeValues: attributes do: [
-					:familyName :pointSize :emphasis :kern :color :alignment :characterStyle :paragraphStyle |
+			self withAttributeValues: attributes do: [
+					:familyName :pointSize :emphasis :color :alignment :characterStyle :paragraphStyle |
 				familyName ifNotNil: [
 					strm nextPut: (TextFontFamilyAndSize familyName: familyName pointSize: pointSize) ].	
 				emphasis = 0 ifFalse: [
@@ -383,9 +385,7 @@ beNonStyledText
 				color ifNotNil: [
 					strm nextPut: (TextColor color: color) ].
 				alignment = 0 ifFalse: [
-					strm nextPut: (TextAlignment new alignment: alignment) ].
-				kern = 0 ifFalse: [
-					strm nextPut: (TextKern new kern: kern) ]].
+					strm nextPut: (TextAlignment new alignment: alignment) ]].
 			attributes do: [ :attribute |
 				attribute isForFormatting ifFalse: [
 					strm nextPut: attribute ]]
@@ -393,9 +393,9 @@ beNonStyledText
 	].
 	runs coalesce! !
 
-!Text methodsFor: '*styledText' stamp: 'jmv 3/14/2012 08:30'!
+!Text methodsFor: '*styledText' stamp: 'jmv 4/19/2014 11:11'!
 beStyledTextWith: aStyleSet
-	"Modify the receiver so that it doesn't include any TextFontFamilyAndSize, TextEmphasis, TextColor, TextAlignment, TextKern. Turn all of them into ParagraphStyleReference or CharacterStyleReference as appropriate.
+	"Modify the receiver so that it doesn't include any TextFontFamilyAndSize, TextEmphasis, TextColor, TextAlignment. Turn all of them into ParagraphStyleReference or CharacterStyleReference as appropriate.
 	Keep any TextAttribute that doesn't fit into the Styles: TextAction (and subclasses) and TextAnchor.
 	Create new ParagraphStyle and CharacterStyle as needed."
 	
@@ -421,16 +421,14 @@ beStyledTextWith: aStyleSet
 	newRunArray _ nil.
 	newRunSegments do: [ :runArray |
 		self
-			withFormattingAttributeValues: runArray last 
-			do: [ :familyName :pointSize :emphasis :kern :color :alignment :characterStyle :paragraphStyle |
+			withAttributeValues: runArray last 
+			do: [ :familyName :pointSize :emphasis :color :alignment :characterStyle :paragraphStyle |
 				originalParagraphStyle _ paragraphStyle.
 				originalParagraphStyle ifNil: [
 					originalParagraphStyle _ familyName
 						ifNil: [ (aStyleSet defaultStyle) ]
 						ifNotNil: [ ParagraphStyle new
-							privateFamilyName: familyName pointSize: pointSize emphasis: emphasis color: color alignment: alignment ].
-					kern = 0 ifFalse: [
-						originalParagraphStyle privateKern: kern ]]].
+							privateFamilyName: familyName pointSize: pointSize emphasis: emphasis color: color alignment: alignment ]]].
 
 		thisParagraphStyle _ aStyleSet equivalentOrSameNamePSTo: originalParagraphStyle orAddVolatile: 'Imported '.
 		"thisParagraphStyle _ aStyleSet equivalentPSTo: thisParagraphStyle orAddVolatile: 'Imported '."
@@ -440,17 +438,15 @@ beStyledTextWith: aStyleSet
 			attributes = nonFormattingAttributes
 				ifTrue: [ { ParagraphStyleReference for: thisParagraphStyle }, nonFormattingAttributes ]					"If only attribute is, for example, a TextAnchor (to a Form), then just add paragraph style"
 				ifFalse: [
-					self withFormattingAttributeValues: attributes do: [ :familyName :pointSize :emphasis :kern :color :alignment :characterStyle :paragraphStyle |
+					self withAttributeValues: attributes do: [ :familyName :pointSize :emphasis :color :alignment :characterStyle :paragraphStyle |
 						thisCharStyle _ characterStyle.
 						(thisCharStyle isNil and: [ familyName = originalParagraphStyle familyName and: [ pointSize = originalParagraphStyle pointSize and: [ 
-								emphasis = originalParagraphStyle emphasis and: [ color = originalParagraphStyle color and: [kern = originalParagraphStyle kern ]]]]])
+								emphasis = originalParagraphStyle emphasis and: [ color = originalParagraphStyle color ]]]])
 							ifTrue: [ { ParagraphStyleReference for: thisParagraphStyle }, nonFormattingAttributes ]
 							ifFalse: [
 								thisCharStyle ifNil: [
 									thisCharStyle _ CharacterStyle new
-										privateFamilyName: familyName pointSize: pointSize emphasis: emphasis color: color.
-									kern = 0 ifFalse: [
-										thisCharStyle privateKern: kern ]].
+										privateFamilyName: familyName pointSize: pointSize emphasis: emphasis color: color].
 
 								thisCharStyle _ aStyleSet equivalentOrSameNameCSTo: thisCharStyle orAddVolatile: 'Imported '.
 								"thisCharStyle _ aStyleSet equivalentCSTo: thisCharStyle orAddVolatile: 'Imported '."
@@ -530,14 +526,16 @@ buildWithStyles: aDictionary contents: aBlock
 	aBlock value: builder.
 	^builder text! !
 
-!SystemWindow class methodsFor: '*styledText' stamp: 'bp 12/21/2011 10:04'!
+!SystemWindow class methodsFor: '*styledText' stamp: 'jmv 7/24/2014 10:26'!
 editFancierStyledText: aTextModel label: labelString
-	| window |
+	| window textMorph |
+	textMorph _ PluggableStyledTextMorph withModel: aTextModel in: LayoutMorph newColumn.
 	window _ SystemWindow new model: aTextModel.
 	window setLabel: labelString.
 	window layoutMorph
-		addMorph: (PluggableStyledTextMorph withModel: aTextModel in: LayoutMorph newColumn)
+		addMorph: textMorph
 		proportionalHeight: 1.
+	window setProperty: #minimumExtent toValue: 660@300.
 	^ window openInWorld! !
 
 !SystemWindow class methodsFor: '*styledText' stamp: 'jmv 5/24/2011 08:24'!
@@ -555,21 +553,11 @@ editStyledText: aTextModel label: labelString
 isStyle
 	^false! !
 
-!TheWorldMenu methodsFor: '*styledText' stamp: 'jmv 5/24/2011 08:26'!
-openFancierStyledTextEditor
-
-	SystemWindow editFancierStyledText: StyledTextModel new label: 'Styled Text Editor'! !
-
-!TheWorldMenu methodsFor: '*styledText' stamp: 'jmv 5/24/2011 08:17'!
-openStyledTextEditor
-
-	SystemWindow editStyledText: StyledTextModel new label: 'Styled Text Editor'! !
-
 !StyleSet methodsFor: 'accessing' stamp: 'jmv 8/9/2011 11:03'!
 autoCompletedStyle
 	^self characterStyleNamed: 'Completed Text'! !
 
-!StyleSet methodsFor: 'accessing' stamp: 'jmv 12/19/2011 14:05'!
+!StyleSet methodsFor: 'accessing' stamp: 'jmv 4/2/2016 23:07'!
 characterStyleAt: index
 	| i ii |
 	index <= characterStyles size ifTrue: [
@@ -577,7 +565,7 @@ characterStyleAt: index
 	volatileParaStyles ifNotNil: [
 		i _ index - characterStyles size.
 		ii _ 0.
-		volatileCharStyles doWithIndex: [ :each :iii |
+		volatileCharStyles withIndexDo: [ :each :iii |
 			each ifNotNil: [
 				ii _ ii + 1.
 				ii = i ifTrue: [ ^each ]]]].
@@ -590,7 +578,7 @@ characterStyleForShortcut: aCharacter
 		pair first = aCharacter ifTrue: [ ^pair second ]].
 	^nil! !
 
-!StyleSet methodsFor: 'accessing' stamp: 'jmv 12/20/2011 12:06'!
+!StyleSet methodsFor: 'accessing' stamp: 'jmv 4/2/2016 23:07'!
 characterStyleIndexOf: aCharacterStyle
 	| index ii |
 	index _ characterStyles findFirst: [ :pair | pair second = aCharacterStyle ].
@@ -598,7 +586,7 @@ characterStyleIndexOf: aCharacterStyle
 
 	volatileCharStyles ifNotNil: [
 		ii _ 0.
-		volatileCharStyles doWithIndex: [ :each :iii |
+		volatileCharStyles withIndexDo: [ :each :iii |
 			each ifNotNil: [
 				ii _ ii + 1.
 				each = aCharacterStyle ifTrue: [ ^characterStyles size + ii ]]]].
@@ -1092,7 +1080,7 @@ makeStylesSmaller
 
 	self triggerEvent: #stylesChanged! !
 
-!StyleSet methodsFor: 'accessing' stamp: 'jmv 12/19/2011 14:04'!
+!StyleSet methodsFor: 'accessing' stamp: 'jmv 4/2/2016 23:07'!
 paragraphStyleAt: index
 	| i ii |
 	index <= paragraphStyles size ifTrue: [
@@ -1100,7 +1088,7 @@ paragraphStyleAt: index
 	volatileParaStyles ifNotNil: [
 		i _ index - paragraphStyles size.
 		ii _ 0.
-		volatileParaStyles doWithIndex: [ :each :iii |
+		volatileParaStyles withIndexDo: [ :each :iii |
 			each ifNotNil: [
 				ii _ ii + 1.
 				ii = i ifTrue: [ ^each ]]]].
@@ -1113,7 +1101,7 @@ paragraphStyleForShortcut: aCharacter
 		pair first = aCharacter ifTrue: [ ^pair second ]].
 	^nil! !
 
-!StyleSet methodsFor: 'accessing' stamp: 'jmv 12/19/2011 14:08'!
+!StyleSet methodsFor: 'accessing' stamp: 'jmv 4/2/2016 23:07'!
 paragraphStyleIndexOf: aParagraphStyle
 	| index ii |
 	index _ paragraphStyles findFirst: [ :pair | pair second = aParagraphStyle ].
@@ -1121,7 +1109,7 @@ paragraphStyleIndexOf: aParagraphStyle
 
 	volatileParaStyles ifNotNil: [
 		ii _ 0.
-		volatileParaStyles doWithIndex: [ :each :iii |
+		volatileParaStyles withIndexDo: [ :each :iii |
 			each ifNotNil: [
 				ii _ ii + 1.
 				each = aParagraphStyle ifTrue: [ ^paragraphStyles size + ii ]]]].
@@ -1192,9 +1180,9 @@ actualContents: aTextOrString
 			asText
 			beStyledTextWith: styleSet])! !
 
-!StyledTextModel methodsFor: 'as yet unclassified' stamp: 'jmv 7/14/2011 14:00'!
-autoCompleter
-	^STECompleter withModel: self! !
+!StyledTextModel methodsFor: 'user interface support' stamp: 'jmv 2/16/2016 16:29'!
+autoCompleterClass
+	^STECompleter! !
 
 !StyledTextModel methodsFor: 'accessing' stamp: 'jmv 8/11/2011 11:27'!
 basicActualContents: aTextOrString
@@ -1204,9 +1192,13 @@ basicActualContents: aTextOrString
 			asText
 			beStyledTextWith: styleSet])! !
 
-!StyledTextModel methodsFor: 'as yet unclassified' stamp: 'jmv 12/20/2010 14:53'!
+!StyledTextModel methodsFor: 'user interface support' stamp: 'jmv 2/16/2016 16:29'!
 editorClass
 	^StyledTextEditor! !
+
+!StyledTextModel methodsFor: 'accessing' stamp: 'KenD 4/1/2016 14:35'!
+fileName
+	^fileName! !
 
 !StyledTextModel methodsFor: 'accessing' stamp: 'jmv 4/30/2012 00:08'!
 fileName: aString
@@ -1270,13 +1262,15 @@ save
 	self saveAs: fileName.
 	^true! !
 
-!StyledTextModel methodsFor: 'file save' stamp: 'bp 4/22/2012 13:38'!
+!StyledTextModel methodsFor: 'file save' stamp: 'KenD 12/5/2015 09:00'!
 saveAs: aName
 	| refStream |
 	fileName _ self class withExtension: aName.
 	self flushUndoRedoCommands.
-	refStream _ SmartRefStream forceNewFileNamed: fileName.
-	[ refStream nextPut: self ] ensure: [ refStream close ]! !
+	fileName asFileEntry forceWriteStream: [ :strm |
+		refStream _ SmartRefStream on: strm.
+		refStream nextPut: self 
+	].! !
 
 !StyledTextModel methodsFor: 'Shout Styling' stamp: 'jmv 12/21/2010 23:48'!
 shoutAboutToStyle: aSHTextStyler
@@ -1303,12 +1297,13 @@ styleSetChanged
 	actualContents beStyledTextWith: styleSet.
 	self triggerEvent: #stylesChanged! !
 
-!StyledTextModel class methodsFor: 'as yet unclassified' stamp: 'jmv 7/17/2013 09:54'!
+!StyledTextModel class methodsFor: 'as yet unclassified' stamp: 'KenD 12/4/2015 21:07'!
 fromFileNamed: aFileName
-	| fileName file model |
+	| fileName model |
 	fileName _ self withExtension: aFileName.
-	file _ FileStream oldFileNamed: fileName.
-	[ model _ (SmartRefStream on: file) next ] ensure: [ file close ].
+	fileName asFileEntry readStream: [ :strm |
+		model _ (SmartRefStream on: strm) next
+	].
 	model fileName: fileName.
 	"Crude way to fix old Color subInstances in files"
 	"
@@ -1330,7 +1325,7 @@ styleSet: aStyleSet
 !StyledTextModel class methodsFor: 'as yet unclassified' stamp: 'jmv 4/28/2012 19:10'!
 withExtension: aName
 	| suffix |
-	suffix _ FileDirectory extensionDelimiter asString, 'object'.
+	suffix := '.object'.
 	^(aName endsWith: suffix)
 		ifTrue: [ aName ]
 		ifFalse: [ aName , suffix ]! !
@@ -1348,9 +1343,25 @@ addEntriesTo: aStream
 		aStream nextPut: (capitalize ifTrue: [key capitalized] ifFalse: [key]).
 		count _ count + 1 ]! !
 
+!STECompleter methodsFor: 'initialization' stamp: 'jmv 8/5/2013 10:45'!
+clearWords
+	words _ nil! !
+
+!STECompleter methodsFor: 'objects from disk' stamp: 'jmv 8/5/2013 10:44'!
+comeFullyUpOnReload: smartRefStream
+	"This is not the proper way to handle multiple dictionaries!!"
+	
+	words _ EnglishDict.
+	^ self! !
+
 !STECompleter methodsFor: 'initialization' stamp: 'jmv 7/14/2011 13:58'!
 initialize
 	words _ EnglishDict! !
+
+!STECompleter methodsFor: 'objects from disk' stamp: 'jmv 8/5/2013 10:45'!
+objectForDataStream: refStrm
+
+	^self shallowCopy clearWords; yourself! !
 
 !STECompleter methodsFor: 'entries' stamp: 'jmv 9/21/2011 11:14'!
 selectedEntry
@@ -1365,27 +1376,34 @@ initialize
 	An English dictionary with (at this time of writing) 166211 words, taking 7.5Mbytes.
 	Load a dictionary from (for example)  ./scowl-7.1/final/ up to a certain level.
 	"
-	| level baseDirectory possibleDirectoryNames scowlName directory  strm |
+	| level baseDirectory possibleDirs dirEntry |
 	level _ 70.
 	EnglishDict _ Trie new.
-	baseDirectory _ (FileDirectory on: (CodePackage named: 'StyledText' createIfAbsent: false registerIfNew: false) fullFileName) containingDirectory.
-	possibleDirectoryNames _ (baseDirectory directoryNames select: [ :any | any beginsWith: 'scowl']) asArray sort.
-	possibleDirectoryNames ifEmpty: [
+	baseDirectory := self package fullFileName asFileEntry parent.
+	possibleDirs := baseDirectory directories select: [ :dir | 'scowl*' match: dir name ]  .
+	possibleDirs ifEmpty: [
 		Transcript newLine; show: 'No word list for English spell checker was found.'.
-		^self ].
-	scowlName _ possibleDirectoryNames last.
-	directory _ ((baseDirectory directoryNamed: scowlName) directoryNamed: 'final').
-	directory fileNames do: [ :filename |
-		(filename prefixAndSuffix: FileDirectory extensionDelimiter) last asNumber <= level ifTrue: [
-			strm _ directory oldFileOrNoneNamed: filename.
-			filename print.
-			[
-				strm reset.
+		^self 
+	].
+	dirEntry := possibleDirs detect: [ :dir | dir directoryNames includes: 'final' ].
+	dirEntry ifNil: [
+		Transcript newLine; show: 'No word list for English spell checker was  found.'.
+		^self 
+	].
+	dirEntry allFilesDo: [ :fileEntry | | fileLevel |
+		fileLevel := fileEntry extension asInteger.
+		((fileLevel isNil not) and: [fileLevel <= level])
+		ifTrue: [ fileEntry readStream: [ :strm |
+				fileEntry name print.
 				[ strm atEnd ] whileFalse: [
 					strm nextLine substrings do: [ :word | 
-						EnglishDict add: word asLowercase ]
+						EnglishDict add: word asLowercase 
 					]
-				] ensure: [strm close]]].
+				]
+			]
+		]
+	].
+
 	'Spell Checker importing done.' print.! !
 
 !CharacterStyle methodsFor: 'accessing' stamp: 'jmv 8/26/2009 22:52'!
@@ -1406,13 +1424,12 @@ font
 	base _ (AbstractFont familyName: familyName pointSize: pointSize) ifNil: [ AbstractFont default baseFont ].
 	^base emphasized: emphasis! !
 
-!CharacterStyle methodsFor: 'initialization' stamp: 'jmv 8/11/2011 10:37'!
+!CharacterStyle methodsFor: 'initialization' stamp: 'jmv 4/19/2014 11:09'!
 initialize
 	name _ ''.
-	emphasis _ 0.
-	kern _ 0! !
+	emphasis _ 0! !
 
-!CharacterStyle methodsFor: 'comparing' stamp: 'jmv 8/9/2011 15:50'!
+!CharacterStyle methodsFor: 'comparing' stamp: 'jmv 4/19/2014 11:08'!
 isEquivalentTo: aStyle
 	"Compare all 'functional' attributes. I.e. ignore name."
 	self class == aStyle class ifFalse: [ ^false ].
@@ -1420,16 +1437,11 @@ isEquivalentTo: aStyle
 	^ pointSize = aStyle pointSize and: [
 		emphasis = aStyle emphasis and: [
 			color = aStyle color and: [
-				kern = aStyle kern and: [
-					familyName = aStyle familyName ]]]]! !
+				familyName = aStyle familyName ]]]! !
 
 !CharacterStyle methodsFor: 'testing' stamp: 'jmv 8/9/2011 10:44'!
 isNullStyle
 	^ name = '-none-'! !
-
-!CharacterStyle methodsFor: 'accessing' stamp: 'jmv 4/7/2011 11:18'!
-kern
-	^kern! !
 
 !CharacterStyle methodsFor: 'accessing' stamp: 'jmv 8/26/2009 22:52'!
 name
@@ -1444,7 +1456,7 @@ printOn: aStream
 	super printOn: aStream.
 	aStream space; nextPutAll: self name! !
 
-!CharacterStyle methodsFor: 'private' stamp: 'jmv 8/11/2011 10:48'!
+!CharacterStyle methodsFor: 'private' stamp: 'jmv 4/19/2014 19:29'!
 privateFamilyName: otherString pointSize: aNumber emphasis: otherNumber color: aColor
 	"To be used from CharacterStyle instance creation methods.
 	If used on existing instances, existing text will be modified, but in any case, senders are responsible
@@ -1453,15 +1465,7 @@ privateFamilyName: otherString pointSize: aNumber emphasis: otherNumber color: a
 	familyName _ otherString.
 	pointSize _ aNumber.
 	emphasis _ otherNumber.
-	color _ aColor.
-"	kern _ 0"! !
-
-!CharacterStyle methodsFor: 'private' stamp: 'jmv 8/11/2011 10:48'!
-privateKern: anInteger
-	"To be used from CharacterStyle instance creation methods.
-	If used on existing instances, existing text will be modified, but in any case, senders are responsible
-	for updating any text editor using us, or any text that should start using us (i.e. users of a StyleSet to which we are added)."
-	kern _ anInteger! !
+	color _ aColor! !
 
 !CharacterStyle methodsFor: 'private' stamp: 'jmv 8/11/2011 10:48'!
 privateName: aString
@@ -1482,7 +1486,7 @@ shortDescription
 	"note: Does not use all state. Two different instances could answer the same shortDescription."
 	^String streamContents: [ :strm | self shortPrintOn: strm ]! !
 
-!CharacterStyle methodsFor: 'printing' stamp: 'jmv 4/12/2011 09:52'!
+!CharacterStyle methodsFor: 'printing' stamp: 'KenD 12/5/2015 08:31'!
 shortPrintOn: strm
 	familyName ifNotNil: [
 		strm nextPutAll: familyName ].
@@ -1497,11 +1501,11 @@ shortPrintOn: strm
 		strm nextPutAll: ' underlined' ].
 	(emphasis anyMask: AbstractFont struckThroughCode) ifTrue: [
 		strm nextPutAll: ' struckThrough' ].
-	(emphasis anyMask: AbstractFont outlineCode) ifTrue: [
-		strm nextPutAll: ' outline' ].
+	(emphasis anyMask: AbstractFont normalCode) ifTrue: [
+		strm nextPutAll: ' plain' ].
 	color ifNotNil: [
 		strm nextPut: $ .
-		color shortPrintOn: strm ]! !
+		color printOn: strm ]! !
 
 !CharacterStyle class methodsFor: 'instance creation' stamp: 'jmv 8/9/2011 10:45'!
 nullStyle
@@ -1585,7 +1589,7 @@ nextTabXFrom: anX leftMargin: leftMargin rightMargin: rightMargin
 				ifTrue: [^leftMargin + tabX min: rightMargin]].
 	^rightMargin! !
 
-!ParagraphStyle methodsFor: 'private' stamp: 'jmv 8/11/2011 10:49'!
+!ParagraphStyle methodsFor: 'private' stamp: 'jmv 4/19/2014 19:30'!
 privateFamilyName: aString pointSize: aNumber emphasis: otherNumber color: aColor alignment: code
 	"To be used from ParagraphStyle instance creation methods.
 	If used on existing instances, existing text will be modified, but in any case, senders are responsible
@@ -1594,7 +1598,6 @@ privateFamilyName: aString pointSize: aNumber emphasis: otherNumber color: aColo
 	pointSize _ aNumber.
 	emphasis _ otherNumber.
 	color _ aColor.
-"	kern _ 0."
 	alignment _ code.
 "	tabsArray _ ParagraphStyle defaultTabsArray."
 "	firstIndent _ fi.
@@ -1605,7 +1608,7 @@ privateFamilyName: aString pointSize: aNumber emphasis: otherNumber color: aColo
 "	listBulletPattern 
 	doesShout"! !
 
-!ParagraphStyle methodsFor: 'private' stamp: 'jmv 8/11/2011 10:49'!
+!ParagraphStyle methodsFor: 'private' stamp: 'jmv 4/19/2014 19:30'!
 privateFamilyName: aString pointSize: aNumber emphasis: otherNumber color: aColor alignment: code firstIndent: fi restIndent: ri rightIndent: rri spaceBefore: sb spaceAfter: sa
 	"To be used from ParagraphStyle instance creation methods.
 	If used on existing instances, existing text will be modified, but in any case, senders are responsible
@@ -1614,7 +1617,6 @@ privateFamilyName: aString pointSize: aNumber emphasis: otherNumber color: aColo
 	pointSize _ aNumber.
 	emphasis _ otherNumber.
 	color _ aColor.
-"	kern _ 0."
 	alignment _ code.
 "	tabsArray _ ParagraphStyle defaultTabsArray."
 	firstIndent _ fi.
@@ -1816,17 +1818,18 @@ model: aModel
 	emphasisHere _ { ParagraphStyleReference for: model styleSet defaultStyle }.
 	self buildCmdShortcuts! !
 
-!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 3/11/2011 16:55'!
+!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 4/1/2016 13:47'!
 quit: aKeyboardEvent
 	morph hasUnacceptedEdits ifTrue: [
 		(self confirm: 'Save changes before quitting?' orCancel: [^ true]) ifTrue: [
 			self save: aKeyboardEvent ]].
 	Smalltalk 
 		snapshot: false
-		andQuit: true.
+		andQuit: true
+		clearAllClassState: false.
 	^true! !
 
-!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 12/29/2011 15:22'!
+!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 10/16/2013 20:10'!
 removeCharacterStyles
 	"Let user remove character styles for the current selection."
 	"This is a user command, and generates undo"
@@ -1839,7 +1842,7 @@ removeCharacterStyles
 		interval notEmpty ifTrue: [
 			anythingDone _ true.
 			model logUndoAndRemoveCharacterStylesIn: interval.
-			paragraph recomposeFrom: interval first to: interval last delta: 0 ]].
+			textComposition recomposeFrom: interval first to: interval last delta: 0 ]].
 
 	anythingDone ifTrue: [
 		self recomputeSelection.	"Needed so visible selection is updated to reflect new visual extent of selection"
@@ -1893,11 +1896,36 @@ replaceAllCurrentStyle
 					self someStyleChanged ]].
 	^ true! !
 
-!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 1/6/2012 14:24'!
+!StyledTextEditor methodsFor: 'commands' stamp: 'KenD 4/1/2016 14:36'!
+save
+	"Save command"
+	model fileName ifNotNil: [
+		model save
+			ifTrue: [ morph hasUnacceptedEdits: false ]
+		]
+		 ifNil: [ self saveAs ].
+	^true! !
+
+!StyledTextEditor methodsFor: 'commands' stamp: 'KenD 4/1/2016 14:37'!
 save: aKeyboardEvent
 	"Save keystroke"
-	model save
-		ifTrue: [ morph hasUnacceptedEdits: false ].
+	^self save! !
+
+!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 4/7/2016 17:48'!
+saveAs
+	"SaveAs command"
+	| fileName |
+	fileName _ FillInTheBlankMorph
+			request: 'File name?'
+			initialAnswer: ''.
+	fileName isEmpty ifTrue: [ ^false ]. "abort"
+
+	model saveAs: fileName.	
+	morph hasUnacceptedEdits: false.
+	morph owningWindow
+		setLabel: model fileName;
+		invalidateTitleArea.
+	
 	^true! !
 
 !StyledTextEditor methodsFor: 'selecting' stamp: 'jmv 11/18/2011 14:08'!
@@ -1910,7 +1938,7 @@ selectAllWithCurrentStyle
 
 	self selectAllWithStyle: self currentParagraphStyle! !
 
-!StyledTextEditor methodsFor: 'selecting' stamp: 'jmv 12/10/2011 13:44'!
+!StyledTextEditor methodsFor: 'selecting' stamp: 'jmv 10/16/2013 20:10'!
 selectAllWithStyle: aParagraphOrCharacterStyle
 
 	| i startIndexes stopIndexes |
@@ -1924,11 +1952,11 @@ selectAllWithStyle: aParagraphOrCharacterStyle
 					startIndexes add: i.
 					stopIndexes add: i+count ]].
 		i _ i + count.].
-	selectionStartBlocks _ startIndexes collect: [ :index | (paragraph characterBlockForIndex: index) ].
-	selectionStopBlocks _ stopIndexes collect: [ :index | (paragraph characterBlockForIndex: index) ].
-	self storeSelectionInParagraph! !
+	selectionStartBlocks _ startIndexes collect: [ :index | (textComposition characterBlockForIndex: index) ].
+	selectionStopBlocks _ stopIndexes collect: [ :index | (textComposition characterBlockForIndex: index) ].
+	self storeSelectionInComposition! !
 
-!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 12/29/2011 15:27'!
+!StyledTextEditor methodsFor: 'commands' stamp: 'KenD 12/5/2015 08:28'!
 selectCharacterStyle
 	"Let user add or change character styles for the current selection, or for text to be typed."
 	"This is a user command, and generates undo"
@@ -1941,7 +1969,7 @@ selectCharacterStyle
 				ifTrue: [ '<on>' ]
 				ifFalse: [ '<off>' ]),  
 			pair second name, ' (', pair first asString, ')' ].
-	((SelectionMenu labelList: menuList lines: #() selections: styles) startUp)
+	((SelectionMenu labelList: menuList lines: #() selections: styles) startUpWithCaption: 'Set Style')
 		ifNotNil: [ :style |
 			style isNullStyle ifTrue: [
 				self removeCharacterStyles.
@@ -1957,7 +1985,7 @@ selectCharacterStyle: aKeyboardEvent
 
 	^self selectCharacterStyle! !
 
-!StyledTextEditor methodsFor: 'commands' stamp: 'jmv 9/19/2011 17:22'!
+!StyledTextEditor methodsFor: 'commands' stamp: 'KenD 12/5/2015 08:38'!
 selectCurrentStyle
 	"Let user change styles for the current selection or pragraph."
 	"This is a user command, and generates undo"
@@ -1970,7 +1998,7 @@ selectCurrentStyle
 				ifTrue: [ '<on>' ]
 				ifFalse: [ '<off>' ]),  
 			pair second name, ' (', pair first asString, ')' ].
-	((SelectionMenu labelList: menuList lines: #() selections: styles) startUp)
+	((SelectionMenu labelList: menuList lines: #() selections: styles) startUpWithCaption: 'Set Style')
 		ifNotNil: [ :style |
 			style = current
 				ifFalse: [ self applyAttribute: (ParagraphStyleReference for: style) ]
@@ -1992,11 +2020,11 @@ setEmphasisHereFromTextForward: f
 			morph possiblyChanged ]
 		ifFalse: [ super setEmphasisHereFromTextForward: f ]! !
 
-!StyledTextEditor methodsFor: 'notifications' stamp: 'jmv 6/13/2012 18:07'!
+!StyledTextEditor methodsFor: 'notifications' stamp: 'jmv 10/16/2013 20:10'!
 someStyleChanged
-	paragraph composeAll.
+	textComposition composeAll.
 	self recomputeSelection.
-	morph updateFromParagraph.
+	morph updateFromTextComposition.
 
 	"Update keyboard shortcuts"
 	self buildCmdShortcuts! !
@@ -2015,14 +2043,24 @@ cmdShortcutsSpec
 		#(		$k 	#selectCharacterStyle:	'Select Character Style')
 	)! !
 
-!StyledTextEditor class methodsFor: 'class initialization' stamp: 'jmv 11/4/2011 11:05'!
+!StyledTextEditor class methodsFor: 'file reader registration' stamp: 'KenD 2/3/2016 16:01'!
+fileReaderServicesForFile: filename suffix: suffix
+	"FileList buttons that open a CodeFileBrowserWindow on contents."
+
+	(#('object' 'ste') includes: suffix) ifTrue: [
+		^ { self serviceSTEEdit } ].
+
+	^#()! !
+
+!StyledTextEditor class methodsFor: 'class initialization' stamp: 'KenD 2/3/2016 15:53'!
 initialize
 	"
 	StyledTextEditor initialize
 	"
-	super initialize! !
+	super initialize.
+	FileList registerFileReader: self.! !
 
-!StyledTextEditor class methodsFor: 'keyboard shortcut tables' stamp: 'jmv 6/13/2012 18:16'!
+!StyledTextEditor class methodsFor: 'keyboard shortcut tables' stamp: 'KenD 4/1/2016 13:42'!
 initializeMenu
 	"Initialize the yellow button pop-up menu and corresponding messages."
 
@@ -2031,6 +2069,9 @@ initializeMenu
 	"
 	menu _ SelectionMenu fromArray: {
 		{'Help...'.									#openHelp}.
+		#-.
+		{'Save (s)'.									#save}.
+		{'SaveAs...'.								#saveAs}.
 		#-.
 		{'Find...(f)'.									#find}.
 		{'Find Again (g)'.							#findAgain}.
@@ -2056,6 +2097,65 @@ initializeMenu
 		{'Replace all uses of Paragraph Style...'.	#replaceAllCurrentStyle}.
 		{'Replace all uses of Character Style...'.		#replaceAllCharacterStyle}.
 	}! !
+
+!StyledTextEditor class methodsFor: 'instance creation' stamp: 'KenD 4/1/2016 13:46'!
+open
+	"Open a new instance on an empty file"
+"
+	StyledTextEditor open.
+"
+	| model |
+	model _ StyledTextModel new.
+	^SystemWindow editFancierStyledText: model label: 'Styled Text Editor'! !
+
+!StyledTextEditor class methodsFor: 'instance creation' stamp: 'KenD 2/3/2016 16:07'!
+openFromFileEntry: fileEntry
+	| model |
+	model _ StyledTextModel fromFileNamed: fileEntry pathName.
+	^SystemWindow editFancierStyledText: model label: fileEntry name! !
+
+!StyledTextEditor class methodsFor: 'file reader registration' stamp: 'KenD 2/3/2016 16:07'!
+serviceSTEEdit
+	"Answer the service of opening a file in a STEditor"
+
+	^ (SimpleServiceEntry
+		provider: self 
+		label: 'open Styled Text Editor file'
+		selector: #openFromFileEntry:
+		description: 'open this file with a Styled Text Editor'
+		buttonLabel: 'open STE')
+		argumentGetter: [ :fileList | fileList selectedFileEntry ]! !
+
+!StyledTextEditor class methodsFor: 'file reader registration' stamp: 'KenD 2/3/2016 16:08'!
+unload
+"
+	self unload.
+"
+
+	FileList unregisterFileReader: self ! !
+
+!StyledTextEditor class methodsFor: 'menu-world' stamp: 'KenD 4/1/2016 14:32'!
+worldMenuForOpenGroup
+	^ Dictionary new
+		
+			at: #itemGroup
+			put: 10;
+		
+			at: #itemOrder
+			put: 10;
+		
+			at: #label
+			put: 'Styled Text Editor';
+		
+			at: #object
+			put: self;
+		
+			at: #selector
+			put: #open;
+		
+			at: #balloonText
+			put: 'A window for composing Styled text';
+		yourself.! !
 
 !FancyDraggeableButtonMorph methodsFor: 'drawing' stamp: 'jmv 4/12/2012 22:14'!
 drawOn: aCanvas
@@ -2084,21 +2184,21 @@ iconColor
 				ifTrue: [ Color gray: 0.75 ]
 				ifFalse: [ Color white ]].! !
 
-!FancyButtonMorph methodsFor: 'drawing' stamp: 'jmv 4/12/2012 22:15'!
+!FancyButtonMorph methodsFor: 'drawing' stamp: 'jmv 8/4/2014 08:39'!
 drawOn: aCanvas
-
+			
 	self isRoundButton
-		ifTrue: [ icon ifNil: [ self drawRoundGradientLookOn: aCanvas ]]
+		ifTrue: [
+			aCanvas drawButtonIconFromCurrentMorph ifFalse: [
+				self drawRoundGradientLookOn: aCanvas ]]
 		ifFalse: [
-			self drawSTELookOn: aCanvas].
+			self drawSTELookOn: aCanvas.
+			aCanvas drawButtonIconFromCurrentMorph ]! !
 
-	icon ifNotNil: [
-		self drawInconOn: aCanvas ].! !
-
-!FancyButtonMorph methodsFor: 'drawing' stamp: 'jmv 2/14/2013 13:14'!
+!FancyButtonMorph methodsFor: 'drawing' stamp: 'jmv 11/30/2014 18:51'!
 drawSTELookOn: aCanvas
 
-	aCanvas image: (FormCanvas steButtonForm: extent) at:0@0! !
+	aCanvas image: (BitBltCanvas steButtonForm: extent) at:0@0! !
 
 !FancyButtonMorph methodsFor: 'drawing' stamp: 'jmv 4/12/2012 22:37'!
 iconColor
@@ -2110,48 +2210,49 @@ iconColor
 				ifTrue: [ Color gray: 0.75 ]
 				ifFalse: [ Color white ]].! !
 
-!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'jmv 4/12/2012 22:17'!
+!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'KenD 12/4/2015 21:19'!
 updateDownButtonImage
 	"update the receiver's as a downButton.  put a new image inside"
 
-	icon _ FormCanvas arrowWithGradientOfDirection: #down.
+	icon _ BitBltCanvas buildArrowOfDirection: #down size: ScrollBar scrollbarThickness.
+	"##FIXME@@ arrowWithGradientOfDirection: #down."
 	actionSelector _ #scrollDown.
 	self
 		roundButtonStyle: false;
-		actWhen: #buttonStillDown;		"to enable multiple action if held down"
 		redrawNeeded! !
 
-!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'jmv 4/12/2012 22:17'!
+!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'KenD 12/4/2015 21:16'!
 updateLeftButtonImage
 	"update the receiver's as a downButton.  put a new image inside"
 
-	icon _ FormCanvas arrowWithGradientOfDirection: #left.
+	icon _ BitBltCanvas buildArrowOfDirection: #left size: ScrollBar scrollbarThickness. 
+	"@@FIXME@@ arrowWithGradientOfDirection: #left."
 	actionSelector _ #scrollUp.
 	self
 		roundButtonStyle: false;
-		actWhen: #buttonStillDown;		"to enable multiple action if held down"
 		redrawNeeded! !
 
-!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'jmv 4/12/2012 22:17'!
+!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'KenD 12/4/2015 21:20'!
 updateRightButtonImage
 	"update the receiver's as a downButton.  put a new image inside"
 
-	icon _ FormCanvas arrowWithGradientOfDirection: #right.
+	icon _ BitBltCanvas buildArrowOfDirection: #right size: ScrollBar scrollbarThickness.
+
+	"##FIXME@@ arrowWithGradientOfDirection: #right."
 	actionSelector _ #scrollDown.
 	self
 		roundButtonStyle: false;
-		actWhen: #buttonStillDown;		"to enable multiple action if held down"
 		redrawNeeded! !
 
-!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'jmv 4/12/2012 22:17'!
+!FancyButtonMorph methodsFor: 'scrollbar button' stamp: 'KenD 12/4/2015 21:18'!
 updateUpButtonImage
 	"update the receiver's as a upButton. put a new image inside"
 
-	icon _ FormCanvas arrowWithGradientOfDirection: #up.
+	icon _ BitBltCanvas buildArrowOfDirection: #up size: ScrollBar scrollbarThickness.. 
+	"@@FIXME@@ arrowWithGradientOfDirection: #up"
 	actionSelector _ #scrollUp.
 	self
 		roundButtonStyle: false;
-		actWhen: #buttonStillDown;		"to enable multiple action if held down"
 		redrawNeeded! !
 
 !PluggableDropDownListMorph methodsFor: 'private' stamp: 'jmv 2/25/2013 15:21'!
@@ -2259,7 +2360,7 @@ handlesMouseOver: anEvent
 	"So our #mouseLeave: method is called"
 	^ true! !
 
-!PluggableDropDownListMorph methodsFor: 'initialization' stamp: 'jmv 12/20/2012 13:10'!
+!PluggableDropDownListMorph methodsFor: 'initialization' stamp: 'KenD 12/4/2015 21:21'!
 initialize
 	| icon |
 	super initialize.
@@ -2268,8 +2369,9 @@ initialize
 	self getLabel.
 "	self extent: 120 @ 20."
 	icon _ "Theme current steButtons" true
-		ifFalse: [ FormCanvas arrowOfDirection: #down size: ScrollBar scrollbarThickness ]
-		ifTrue: [ FormCanvas arrowWithGradientOfDirection: #down ].
+		ifFalse: [ BitBltCanvas arrowOfDirection: #down size: ScrollBar scrollbarThickness ]
+		ifTrue: [ BitBltCanvas buildArrowOfDirection: #down size: ScrollBar scrollbarThickness].
+			 "@@FIXME@@ arrowWithGradientOfDirection: #down"
 	downButton _ FancyButtonMorph new.
 	downButton
 		model: self;
@@ -2612,7 +2714,7 @@ currentCharacterStyleIndex
 	cs ifNil: [ ^0 ].
 	^(model styleSet characterStyleIndexOf: cs)! !
 
-!PluggableStyledTextMorph methodsFor: 'services' stamp: 'jmv 11/16/2011 17:13'!
+!PluggableStyledTextMorph methodsFor: 'services' stamp: 'jmv 10/16/2013 19:54'!
 currentCharacterStyleIndex: index
 	"This is a user command, and generates undo"
 	(model styleSet characterStyleAt: index)
@@ -2622,19 +2724,19 @@ currentCharacterStyleIndex: index
 			style isNullStyle
 				ifTrue: [ self textMorph editor removeCharacterStyles ]
 				ifFalse: [ self textMorph editor applyAttribute: (CharacterStyleReference for: style) ]].
-	self textMorph updateFromParagraph! !
+	self textMorph updateFromTextComposition! !
 
 !PluggableStyledTextMorph methodsFor: 'services' stamp: 'jmv 11/16/2011 17:12'!
 currentParagraphStyleIndex
 	^model styleSet paragraphStyleIndexOf: self textMorph editor currentParagraphStyle! !
 
-!PluggableStyledTextMorph methodsFor: 'services' stamp: 'jmv 11/16/2011 17:13'!
+!PluggableStyledTextMorph methodsFor: 'services' stamp: 'jmv 10/16/2013 19:54'!
 currentParagraphStyleIndex: index
 	"This is a user command, and generates undo"
 	| style |
 	style _ model styleSet paragraphStyleAt: index.
 	self textMorph editor applyAttribute: (ParagraphStyleReference for: style).
-	self textMorph updateFromParagraph! !
+	self textMorph updateFromTextComposition! !
 
 !PluggableStyledTextMorph methodsFor: 'services' stamp: 'jmv 8/3/2011 17:03'!
 paragraphStyleNamesAndShortcuts
@@ -2648,18 +2750,17 @@ possiblyChanged
 scrollBarClass
 	^FancyScrollBar! !
 
-!PluggableStyledTextMorph class methodsFor: 'class initialization' stamp: 'jmv 11/4/2011 10:39'!
-initialize
-	"
-	PluggableStyledTextMorph initialize
-	"
-	TheWorldMenu addExtraOpenCommands: {
-		{'Styled Text Editor' . {#theWorldMenu . #openFancierStyledTextEditor}. 'A window for composing styled text' }.
-"		{'Styled Text Editor' . {#theWorldMenu . #openStyledTextEditor}. 'A window for composing styled text' }."
-	}.
-	Theme current class beCurrent! !
+!PluggableStyledTextMorph class methodsFor: 'menu-world' stamp: 'jmv 2/20/2016 18:40'!
+openBasicStyledTextEditor
 
-!PluggableStyledTextMorph class methodsFor: 'class initialization' stamp: 'jmv 4/12/2013 20:25'!
+	SystemWindow editStyledText: StyledTextModel new label: 'Styled Text Editor'! !
+
+!PluggableStyledTextMorph class methodsFor: 'menu-world' stamp: 'jmv 2/20/2016 18:38'!
+openFancierStyledTextEditor
+
+	SystemWindow editFancierStyledText: StyledTextModel new label: 'Styled Text Editor'! !
+
+!PluggableStyledTextMorph class methodsFor: 'class initialization' stamp: 'jmv 8/13/2013 12:24'!
 withModel: aStyledTextModel in: aLayoutMorph
 	| topRow paragraphStyleList characterStyleList textMorph m topRowHeight labelFont topRowElementsWidth |
 	textMorph _ self withModel: aStyledTextModel.
@@ -2668,7 +2769,7 @@ withModel: aStyledTextModel in: aLayoutMorph
 		drawKeyboardFocusIndicator: false;
 		wrapFlag: true.
 	aLayoutMorph separation: 0.
-	topRow _ ToolbarMorph newRow separation: 10@0.
+	topRow _ ToolbarMorph newRow separation: 10@4.
 
 	topRowHeight _ 32.
 	topRow
@@ -2723,7 +2824,31 @@ withModel: aStyledTextModel in: aLayoutMorph
 
 	^aLayoutMorph! !
 
-!FancyScrollBar methodsFor: 'initialize' stamp: 'jmv 4/12/2012 22:12'!
+!PluggableStyledTextMorph class methodsFor: 'menu-world' stamp: 'jmv 2/20/2016 18:38'!
+worldMenu: aMenu menuGroup: aGroupSymbol
+	^ aGroupSymbol = #worldOpenMenu ifTrue: [
+		Dictionary new
+			
+				at: #itemGroup
+				put: 10;
+			
+				at: #itemOrder
+				put: 5;
+			
+				at: #label
+				put: 'Styled Text Editor';
+			
+				at: #object
+				put: self;
+			
+				at: #selector
+				put: #openFancierStyledTextEditor;
+			
+				at: #balloonText
+				put: 'A window for composing styled text';
+			yourself ].! !
+
+!FancyScrollBar methodsFor: 'initialization' stamp: 'jmv 4/12/2012 22:12'!
 buttonClass
 	^FancyButtonMorph! !
 
@@ -2739,7 +2864,7 @@ drawOn: aCanvas
 		color: (Color gray: 0.95)
 		radius: 4! !
 
-!FancyScrollBar methodsFor: 'initialize' stamp: 'jmv 4/12/2012 22:23'!
+!FancyScrollBar methodsFor: 'initialization' stamp: 'jmv 4/12/2012 22:23'!
 sliderClass
 	^FancyDraggeableButtonMorph! !
 
@@ -2751,33 +2876,34 @@ sliderGrabbedAt: handPositionRelativeToSlider
 		morphBoundsInWorld: (slider morphBoundsInWorld insetBy: (extent x > extent y ifTrue: [0@3] ifFalse: [3@0]));
 		show! !
 
-!FancyScrollBar class methodsFor: 'constants' stamp: 'jmv 4/12/2012 22:27'!
+!FancyScrollBar class methodsFor: 'constants' stamp: 'jmv 8/13/2013 12:29'!
 scrollbarThickness
 
-	^super scrollbarThickness + 10! !
+	^super scrollbarThickness + 11! !
 
-!STEMainMorph methodsFor: 'initialization' stamp: 'jmv 5/24/2011 09:02'!
-initialize
-	super initialize.
-	self step; startStepping! !
-
-!STEMainMorph methodsFor: 'stepping' stamp: 'jmv 12/20/2012 12:24'!
-step
+!STEMainMorph methodsFor: 'stepping' stamp: 'jmv 2/27/2016 20:07'!
+stepAt: millisecondSinceLast
 
 	"My dimensions are constrained live."
+	"
 	| r |
-	owner isWorldMorph ifTrue: [
+	(owner notNil and: [ owner isWorldMorph ]) ifTrue: [
 		r _ owner morphBoundsInWorld.
 		self morphBoundsInWorld = r ifFalse: [
-			self morphBoundsInWorld: r]]! !
+			self morphBoundsInWorld: r ]]
+	"
+	"My dimensions are constrained live."
+	(owner notNil and: [ owner isWorldMorph ]) ifTrue: [
+		self morphExtent: (self internalize: owner morphExtent).
+		self morphPosition: 0@0 ]! !
 
 !STEMainMorph methodsFor: 'stepping' stamp: 'jmv 5/24/2011 09:04'!
 stepTime
 	^ 0  "every cycle"! !
 
-!ToolbarMorph methodsFor: 'as yet unclassified' stamp: 'jmv 4/12/2013 20:18'!
-clipsSubmorphs
-	^true! !
+!ToolbarMorph methodsFor: 'hacks' stamp: 'jmv 8/4/2014 08:37'!
+adoptWidgetsColor: paneColor
+	"We hold a Form in the color instance variable..."! !
 
 !ToolbarMorph methodsFor: 'drawing' stamp: 'jmv 4/12/2013 20:23'!
 drawOn: aCanvas
@@ -2801,7 +2927,7 @@ keyStroke: aKeyboardEvent
 	"We know that our owner is a PluggableFilteringDropDownListMorph"
 	owner keyStrokeInText: aKeyboardEvent! !
 
-!RTFStyledTextBuilder methodsFor: 'private' stamp: 'jmv 8/11/2011 10:44'!
+!RTFStyledTextBuilder methodsFor: 'private' stamp: 'jmv 4/19/2014 19:31'!
 addToText: aString specialAttributes: nonFormattingAttributesOrNil
 	"nonFormattingAttributesOrNil should only contains attributes that answer false to #isForFormatting"
 	| attributes emphasis ps cs |
@@ -2813,7 +2939,7 @@ addToText: aString specialAttributes: nonFormattingAttributesOrNil
 	underline ifTrue: [ emphasis _ emphasis + 4 ].
 	attributes _ Array streamContents: [ :strm |
 		strm nextPut: (ParagraphStyleReference for: ps).
-		(fontFamilyName = ps familyName and: [ fontPointSize = ps pointSize and: [ emphasis = ps emphasis and: [ currentFgColor = ps color "and: [kern = thisParagraphStyle kern ]"]]]) ifFalse: [
+		(fontFamilyName = ps familyName and: [ fontPointSize = ps pointSize and: [ emphasis = ps emphasis and: [ currentFgColor = ps color ]]]) ifFalse: [
 			cs _ CharacterStyle new
 				privateFamilyName: fontFamilyName pointSize: fontPointSize emphasis: emphasis color: currentFgColor.
 			strm nextPut: (CharacterStyleReference for: cs) ].
@@ -2883,9 +3009,9 @@ self changed: #list
 				ifTrue: [ #() ]
 				ifFalse: [ {CharacterStyleReference for: (styleDict at: characterStyleStack last)} ])! !
 
-!StyledTextBuilder methodsFor: 'building' stamp: 'jmv 3/13/2012 16:57'!
+!StyledTextBuilder methodsFor: 'building' stamp: 'jmv 10/16/2013 21:40'!
 / aParagraphStyleKey
-	"Finish the current paragraph (adding a CR). Apply a ParagraphStyle to it. "
+	"Finish the current paragraph (adding a newLine). Apply a ParagraphStyle to it. "
 	textStream
 		nextPutAllString: String newLineString
 		withAttributes: {ParagraphStyleReference for: (styleDict at: aParagraphStyleKey)}! !
@@ -2902,10 +3028,10 @@ self changed: #list
 	characterStyleStack removeLast.
 	self , aString! !
 
-!StyledTextBuilder methodsFor: 'building' stamp: 'jmv 1/25/2011 14:31'!
+!StyledTextBuilder methodsFor: 'building' stamp: 'jmv 10/16/2013 21:40'!
 >/ aParagraphStyleKey
 	"Stop using the CharacterStyle that was added last.
-	Finish the current paragraph (adding a CR). Apply a ParagraphStyle to it. 
+	Finish the current paragraph (adding a newLine). Apply a ParagraphStyle to it. 
 	The effect is the same as sending
 		> ''
 		/ aParagraphStyleKey"
@@ -3074,29 +3200,28 @@ testDropDownKeyboardNavigation
 
 	window delete! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:57'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 4/2/2016 14:47'!
 testEmpasizeScanner
 	"Create a few instances of styled text (i.e. Text using various styles)
 	and assert their properties
 	StyledTextEditorTest new testEmpasizeScanner
 	"
 	
-	| model style unstyled heading1 paragraph canvas scanner 
+	| model style unstyled heading1 composition canvas scanner 
 	boundsInWorld leftInRun line |
 	unstyled _ Text string: 'Non-styled part. should use no paragraph style', String newLineString.
 	model _ StyledTextModel new.
 	style _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1 _ Text string: 'This should have the "Heading 1" style', String newLineString attribute: (ParagraphStyleReference for: style).
 
-	paragraph _ Paragraph new.
-	paragraph setModel: (model contents: unstyled, heading1); extentForComposing: 300@300.
-	paragraph composeAll.
+	composition _ TextComposition new.
+	composition setModel: (model contents: unstyled, heading1); extentForComposing: 300@300.
+	composition composeAll.
 	
 	canvas _ Display getCanvas.
 	scanner _ MorphicScanner new 
-			text: paragraph paragraphText
-			foreground: Color black
-			ignoreColorChanges: false.
+			text: composition textComposed
+			foreground: Color black.
 	scanner canvas: canvas.
 	
 	self 
@@ -3106,16 +3231,16 @@ testEmpasizeScanner
 "	canvas display: paragraph using: scanner in: (10@10 extent: 300@300)."
 	boundsInWorld _ (10@10 extent: 300@300).
 	leftInRun _ 0.
-	(paragraph lineIndexForPoint: 0@0)
-		to: (paragraph lineIndexForPoint: boundsInWorld extent)
+	(composition lineIndexForPoint: 0@0)
+		to: (composition lineIndexForPoint: boundsInWorld extent)
 		do: [ :i |
-			line _ paragraph lines at: i.
-			paragraph
+			line _ composition lines at: i.
+			composition
 				displaySelectionInLine: line
 				on: canvas
-				paragraphTopLeft: boundsInWorld topLeft
+				textTopLeft: boundsInWorld topLeft
 				selectionColor: Color blue.
-			leftInRun _ scanner displayLine: line paragraphTopLeft: boundsInWorld topLeft leftInRun: leftInRun  ].
+			leftInRun _ scanner displayLine: line textTopLeft: boundsInWorld topLeft leftInRun: leftInRun  ].
 	
 	self 
 		assert: (scanner instVarNamed: 'paragraphStyle') = style 
@@ -3123,7 +3248,7 @@ testEmpasizeScanner
 		
 	Display restore! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 12/5/2011 17:09'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 19:56'!
 testEmptyLine
 	"
 	StyledTextEditorTest new testEmptyLine
@@ -3141,7 +3266,7 @@ testEmptyLine
 				builder , 'Hi' / #N ].
 	model contents: t.
 	morph _ (TextModelMorph withModel: model) textMorph.
-	block _ morph paragraph characterBlockAtPoint: 100@100.
+	block _ morph textComposition characterBlockAtPoint: 100@100.
 	self assert: block width = 0.
 
 	oldFont _ style font.
@@ -3152,11 +3277,11 @@ testEmptyLine
 	morph stylerStyled.
 	self deny: morph editor lastFont = oldFont.
 	self assert: morph editor lastFont = style font.
-	block _ morph paragraph characterBlockAtPoint: 100@100.
+	block _ morph textComposition characterBlockAtPoint: 100@100.
 	self assert: block width = 0.
 	self assert: block left = style firstIndent.! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 12/5/2011 17:02'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 21:42'!
 testEmptyText
 	"
 	StyledTextEditorTest new testEmptyText
@@ -3166,7 +3291,7 @@ testEmptyText
 
 	model _ StyledTextModel new contents: '' asText.
 	morph _ (TextModelMorph withModel: model) textMorph.
-	block _ morph paragraph characterBlockAtPoint: 0@0.
+	block _ morph textComposition characterBlockAtPoint: 0@0.
 	style _ model styleSet paragraphStyleNamed: 'Normal'.
 	self assert: block width = 0.
 	self assert: block left = style firstIndent.
@@ -3178,11 +3303,11 @@ testEmptyText
 	morph stylerStyled.
 	self deny: morph editor lastFont = oldFont.
 	self assert: morph editor lastFont = style font.
-	block _ morph paragraph characterBlockAtPoint: 0@0.
+	block _ morph textComposition characterBlockAtPoint: 0@0.
 	self assert: block width = 0.
 	self assert: block left = style firstIndent.! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 2/14/2013 12:15'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 19:56'!
 testEmptyTextClick
 	"
 	StyledTextEditorTest new testEmptyTextClick
@@ -3192,7 +3317,7 @@ testEmptyTextClick
 
 	model _ StyledTextModel new contents: '' asText.
 	morph _ (TextModelMorph withModel: model) textMorph.
-	block _ morph paragraph characterBlockAtPoint: 0@0.
+	block _ morph textComposition characterBlockAtPoint: 0@0.
 	style _ model styleSet paragraphStyleNamed: 'Normal'.
 	self assert: block width = 0.
 	self assert: block left = style firstIndent.
@@ -3209,17 +3334,17 @@ testEmptyTextClick
 	
 	self deny: morph editor lastFont = oldFont.
 	self assert: morph editor lastFont = style font.
-	block _ morph paragraph characterBlockAtPoint: 0@0.
+	block _ morph textComposition characterBlockAtPoint: 0@0.
 	self assert: block width = 0.
 	self assert: block left = style firstIndent.! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:57'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 22:11'!
 testEmptyTrailingLine
 	"Test that the special case of an artificial empty last line behaves as normal lines.
 	StyledTextEditorTest new testEmptyTrailingLine
 	"
 	
-	| emptyText notEmptyText model style paragraph canvas form1 form2 |
+	| emptyText notEmptyText model style textComposition canvas form1 form2 |
 	emptyText _ Text string: ''.
 	model _ StyledTextModel new.
 	style _ model styleSet paragraphStyleNamed: 'Normal'.
@@ -3229,30 +3354,30 @@ testEmptyTrailingLine
 	form2 _ Form extent: 100@50 depth: 32.
 	form2 fillWhite.
 
-	paragraph _ Paragraph new.
+	textComposition _ TextComposition new.
 
 	canvas _ form1 getCanvas.
-	paragraph setModel: (model contents: emptyText); extentForComposing: 300@300.
-	paragraph composeAll.
-	paragraph selectionStartBlocks: {paragraph defaultCharacterBlock} selectionStopBlocks: {paragraph defaultCharacterBlock}.
-	canvas paragraph: paragraph bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
+	textComposition setModel: (model contents: emptyText); extentForComposing: 300@300.
+	textComposition composeAll.
+	textComposition selectionStartBlocks: {textComposition defaultCharacterBlock} selectionStopBlocks: {textComposition defaultCharacterBlock}.
+	canvas textComposition: textComposition bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
 
 	canvas _ form2 getCanvas.
-	paragraph  setModel: (model contents: notEmptyText); extentForComposing: 300@300.
-	paragraph composeAll.
-	paragraph selectionStartBlocks: {paragraph defaultCharacterBlock} selectionStopBlocks: {paragraph defaultCharacterBlock}.
-	canvas paragraph: paragraph bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
+	textComposition  setModel: (model contents: notEmptyText); extentForComposing: 300@300.
+	textComposition composeAll.
+	textComposition selectionStartBlocks: {textComposition defaultCharacterBlock} selectionStopBlocks: {textComposition defaultCharacterBlock}.
+	canvas textComposition: textComposition bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
 
 	form1 addDeltasFrom: form2.
-	self assert: form1 primCountBits = 0 description: 'Incorrect insertion point mark for empty text.'! !
+	self assert: form1 primCountBits = 0 description: 'Incorrect text cursor for empty text.'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:57'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 22:11'!
 testEmptyTrailingLineNumberedStyle
 	"Test that the special case of an artificial empty last line behaves as normal lines.
 	StyledTextEditorTest new testEmptyTrailingLineNumberedStyle
 	"
 	
-	| emptyText emptyTextModel notEmptyText model style paragraph canvas form1 form2 editor inner |
+	| emptyText emptyTextModel notEmptyText model style textComposition canvas form1 form2 editor inner |
 	emptyText _ Text string: ''.
 	model _ StyledTextModel new.
 	style _ model styleSet paragraphStyleNamed: 'Numbered List'.
@@ -3262,53 +3387,53 @@ testEmptyTrailingLineNumberedStyle
 	form2 _ Form extent: 100@50 depth: 32.
 	form2 fillWhite.
 
-	paragraph _ Paragraph new.
+	textComposition _ TextComposition new.
 
 	canvas _ form1 getCanvas.
 	editor _ TextEditor new.
 	emptyTextModel _ model contents: emptyText.
-	paragraph setModel: emptyTextModel; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition setModel: emptyTextModel; extentForComposing: 300@300.
+	textComposition composeAll.
 	inner _ InnerTextMorph new.
 	editor morph: inner.
 	inner privateOwner: TextModelMorph new.
 	editor model: emptyTextModel.
-	editor instVarNamed: 'paragraph' put: paragraph.
-	paragraph editor: editor.
+	editor instVarNamed: 'textComposition' put: textComposition.
+	textComposition editor: editor.
 	editor resetState.
 	editor instVarNamed: 'emphasisHere' put: ({ParagraphStyleReference for: style}).
 	"Set model again, so editor emhasisHere is considered."
-	paragraph setModel: (model contents: emptyText); extentForComposing: 300@300.
-	paragraph composeAll.
-	paragraph selectionStartBlocks: {paragraph defaultCharacterBlock} selectionStopBlocks: {paragraph defaultCharacterBlock}.
-	canvas paragraph: paragraph bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
+	textComposition setModel: (model contents: emptyText); extentForComposing: 300@300.
+	textComposition composeAll.
+	textComposition selectionStartBlocks: {textComposition defaultCharacterBlock} selectionStopBlocks: {textComposition defaultCharacterBlock}.
+	canvas textComposition: textComposition bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
 
 	canvas _ form2 getCanvas.
-	paragraph setModel: (model contents: notEmptyText); extentForComposing: 300@300.
-	paragraph composeAll.
-	paragraph selectionStartBlocks: {paragraph defaultCharacterBlock} selectionStopBlocks: {paragraph defaultCharacterBlock}.
-	canvas paragraph: paragraph bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
+	textComposition setModel: (model contents: notEmptyText); extentForComposing: 300@300.
+	textComposition composeAll.
+	textComposition selectionStartBlocks: {textComposition defaultCharacterBlock} selectionStopBlocks: {textComposition defaultCharacterBlock}.
+	canvas textComposition: textComposition bounds:  (10@10 extent: 300@300) color: Color black selectionColor: Color blue.
 
 	form1 addDeltasFrom: form2.
-	self assert: form1 primCountBits = 0 description: 'Incorrect insertion point mark for empty text.'! !
+	self assert: form1 primCountBits = 0 description: 'Incorrect text cursor for empty text.'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:58'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 21:42'!
 testKeepParagraphStyleOnDeleteAll
 	"
 	StyledTextEditorTest new testKeepParagraphStyleOnDeleteAll
 	"
-	| editor paragraph model heading1 heading1Text |
+	| editor composition model heading1 heading1Text |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
-	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a cr, so our paragraphStyle is applied to resulting paragraph"
+	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a newLine, so our paragraphStyle is applied to resulting paragraph"
 
 	model contents: heading1Text.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	composition _ TextComposition new.
+	composition setModel: model; extentForComposing: 300@300.
+	composition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: composition; resetState.
 
 	editor selectAll.
 	self assert: editor currentParagraphStyle = heading1 description: 'Please check this test'.
@@ -3323,14 +3448,14 @@ testRecentClipping
 	Clipboard default: Clipboard new.
 	self shouldnt: [ Clipboard chooseRecentClipping ] raise: Error! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:58'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 22:12'!
 testSelectStyle
 	"Create a few instances of styled text (i.e. Text using various styles)
 	and assert their properties
 	StyledTextEditorTest new testSelectStyle
 	"
 	
-	| model normal heading1 heading2 unstyled heading1Text editor paragraph text |
+	| model normal heading1 heading2 unstyled heading1Text editor composition text |
 	model _ StyledTextModel new.
 	normal _ model styleSet paragraphStyleNamed: 'Normal'.
 	unstyled _ Text string: 'Part with "Normal" style', String newLineString attribute: (ParagraphStyleReference for: normal).
@@ -3342,29 +3467,29 @@ testSelectStyle
 	model contents: text.
 	text _ model actualContents.	"Might have created a new instance"
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	composition _ TextComposition new.
+	composition setModel: model; extentForComposing: 300@300.
+	composition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: composition; resetState.
 	
 	editor pointIndex: 2.
 	editor setEmphasisHereFromText.
 	self
 		assert: (editor instVarNamed: 'emphasisHere') first style = normal
-		description: 'Incorrect style at insertion point'.
+		description: 'Incorrect style at text cursor'.
 
 	editor markIndex: 26 pointIndex: 28.
 	editor setEmphasisHereFromText.
 	self
 		assert: (editor instVarNamed: 'emphasisHere') first style = heading1
-		description: 'Incorrect style at insertion point'.
+		description: 'Incorrect style at text cursor'.
 	
 	editor applyAttribute: (ParagraphStyleReference for: heading2).
 	editor setEmphasisHereFromText.
 	self
 		assert: (editor instVarNamed: 'emphasisHere') first style = heading2
-		description: 'Should have new style at selection point'.
+		description: 'Should have new style at text cursor'.
 	
 	self
 		assert: (text paragraphStyleOrNilAt: 1) = normal
@@ -3422,25 +3547,25 @@ testShiftClickSelection
 	self assert: (editor stopBlock left > (point2 - p)) description: 'Incorrect selection when shift-click'.
 	morph delete! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:58'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 21:42'!
 testStylesInPaste1
 	"
 	StyledTextEditorTest new testStylesInPaste1
 	"
-	| heading1 heading1Text simpleText editor paragraph concatenation initialText model |
+	| heading1 heading1Text simpleText editor composition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
-	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a cr, so our paragraphStyle is applied to resulting paragraph"
+	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a newLine, so our paragraphStyle is applied to resulting paragraph"
 	simpleText _ 'This is a text without style' asText.
 
 	initialText _ simpleText copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	composition _ TextComposition new.
+	composition setModel: model; extentForComposing: 300@300.
+	composition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: composition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: heading1Text. editor paste.		"Extends heading 1 to beginning, runs must be compacted"
@@ -3449,25 +3574,25 @@ testStylesInPaste1
 	self assert: concatenation runs first size = 1 description: 'Should apply just the "Heading 1" paragraph style to the whole text'.
 	self assert: concatenation runs first first style == heading1 description: 'Should apply the "Heading 1" paragraph style to the whole text'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 08:56'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 21:42'!
 testStylesInPaste2
 	"
 	StyledTextEditorTest new testStylesInPaste2
 	"
-	| heading1 heading1Text simpleText editor paragraph concatenation initialText model |
+	| heading1 heading1Text simpleText editor composition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
-	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a cr, so our paragraphStyle is applied to resulting paragraph"
+	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a newLine, so our paragraphStyle is applied to resulting paragraph"
 	simpleText _ 'This is a text without style' asText.
 
 	initialText _ simpleText copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	composition _ TextComposition new.
+	composition setModel: model; extentForComposing: 300@300.
+	composition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: composition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: String newLineString. editor paste.	
@@ -3481,12 +3606,12 @@ testStylesInPaste2
 	self assert: concatenation runs values second size = 1 description: 'Should apply the "Heading 1" paragraph style to the second part'.
 	self assert: concatenation runs values second first style == heading1 description: 'Should apply the "Heading 1" paragraph style to the second part'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 12/19/2011 12:19'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:57'!
 testStylesInPaste3
 	"
 	StyledTextEditorTest new testStylesInPaste3
 	"
-	| heading1Text simpleText editor paragraph concatenation initialText model heading1 |
+	| heading1Text simpleText editor composition concatenation initialText model heading1 |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -3495,11 +3620,11 @@ testStylesInPaste3
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	composition _ TextComposition new.
+	composition setModel: model; extentForComposing: 300@300.
+	composition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: composition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: simpleText. editor paste.		"Extends style to beginning. I.e., lose the style, style comes from paragraph end"
@@ -3507,12 +3632,12 @@ testStylesInPaste3
 	self assert: concatenation runs runs size = 1 description: 'Should apply no character style to the whole text'.
 	self assert: concatenation runs first first style == heading1 description: 'Should apply just the "Heading 1" paragraph style to the whole text'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:59'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:06'!
 testStylesInPaste4
 	"
 	StyledTextEditorTest new testStylesInPaste4
 	"
-	| heading1Text heading1 simpleText editor paragraph concatenation initialText model |
+	| heading1Text heading1 simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -3521,11 +3646,11 @@ testStylesInPaste4
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	"Enter styled text. Then press return and paste text without style.
@@ -3539,12 +3664,12 @@ testStylesInPaste4
 	self assert: concatenation runs values first first style name = 'Heading 1'.
 	self assert: concatenation runs values second first style name = 'Normal'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:58'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:06'!
 testStylesInPaste5
 	"
 	StyledTextEditorTest new testStylesInPaste5
 	"
-	| heading1Text heading1 simpleText editor paragraph concatenation initialText model |
+	| heading1Text heading1 simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -3553,11 +3678,11 @@ testStylesInPaste5
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	"Enter styled text. Then press return and paste a simple string.
@@ -3568,12 +3693,12 @@ testStylesInPaste5
 	self assert: concatenation runs runs size = 1 description: 'Should apply same attributes to the whole text'.
 	self assert: concatenation runs runs first = concatenation size description: 'Should apply the "Heading 1" paragraph style to all the text'.! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:59'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:06'!
 testStylesInPaste6
 	"
 	StyledTextEditorTest new testStylesInPaste6
 	"
-	| heading1 heading1Text heading2 heading2Text editor paragraph concatenation initialText model |
+	| heading1 heading1Text heading2 heading2Text editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading 1' attribute: (ParagraphStyleReference for: heading1).
@@ -3583,11 +3708,11 @@ testStylesInPaste6
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: String newLineString. editor paste.
@@ -3601,12 +3726,12 @@ testStylesInPaste6
 	self assert: concatenation runs values first first style == heading1 description: 'Should apply the "Heading 1" paragraph style to the first part'.
 	self deny: concatenation runs values second first style == heading1 description: 'Should not apply the "Heading 1" paragraph style to the second part'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 12/6/2011 10:09'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:06'!
 testStylesInPaste7
 	"
 	StyledTextEditorTest new testStylesInPaste7
 	"
-	| heading1 heading1Text simpleText editor paragraph concatenation initialText model |
+	| heading1 heading1Text simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).	"Do not include a cr"
@@ -3615,11 +3740,11 @@ testStylesInPaste7
 	initialText _ simpleText copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor selectAll.
 	Clipboard storeObject: heading1Text. editor paste.		"Extends heading 1 to beginning, runs must be compacted"
@@ -3628,13 +3753,13 @@ testStylesInPaste7
 	self assert: concatenation runs first size = 1 description: 'Should apply just the "Heading 1" paragraph style to the whole text, as no part of original text is left.'.
 	self assert: concatenation runs first first style == heading1 description: 'Should apply the "Heading 1" paragraph style to the whole text, as no part of original text is left.'! !
 
-!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 1/13/2012 13:35'!
+!StyledTextEditorTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:06'!
 testStylesInPaste8
 	"
 	Not exactly a Paste operation, but #replaceSelectionWith: , as done by the autocompletter
 	StyledTextEditorTest new testStylesInPaste8
 	"
-	| simpleText editor paragraph concatenation initialText model |
+	| simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	simpleText _ (Text
 		string: 'Aardvark'
@@ -3643,11 +3768,11 @@ testStylesInPaste8
 	initialText _ '' asText.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	editor replaceSelectionWith: simpleText.
@@ -3658,7 +3783,7 @@ testStylesInPaste8
 
 !StyledTextModelTest methodsFor: 'as yet unclassified' stamp: 'bp 4/22/2012 12:14'!
 tearDown
-	FileDirectory default deleteFileNamed: 'StyledTextModelTest.object'! !
+	(FmDirectoryEntry currentDirectory // 'StyledTextModelTest.object') delete! !
 
 !StyledTextModelTest methodsFor: 'as yet unclassified' stamp: 'bp 4/22/2012 13:15'!
 testFromFileNamed
@@ -3674,9 +3799,9 @@ testFromFileNamed
 testSave
 	| model |
 	model _ StyledTextModel new.
-	self deny: (FileDirectory default fileExists: 'StyledTextModelTest.object').
+	self deny:   (FmDirectoryEntry currentDirectory // 'StyledTextModelTest.object') exists.
 	model saveAs: 'StyledTextModelTest'.
-	self assert: (FileDirectory default fileExists: 'StyledTextModelTest.object')! !
+	self assert: (FmDirectoryEntry currentDirectory // 'StyledTextModelTest.object') exists! !
 
 !StyledTextTest methodsFor: 'tests' stamp: 'jmv 12/20/2011 12:41'!
 testAsStyledAsNonStyledSample5
@@ -3692,7 +3817,7 @@ testAsStyledAsNonStyledSample5
 	self assert: (unstyled attributesAt: 7) first class = TextAnchor.	"Or test is broken"
 	self assert: ((styled attributesAt: 7) anySatisfy: [ :att | att class = TextAnchor])! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/13/2012 16:59'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 21:43'!
 testCharacterStyleConcatenation
 	"
 	self new testCharacterStyleConcatenation
@@ -3703,7 +3828,7 @@ testCharacterStyleConcatenation
 	normalText1 _ Text string: 'This is just ' attribute: (ParagraphStyleReference for: normal).
 	red10Bold _ model styleSet characterStyleNamed: 'Red 10 bold'.
 	simpleColoredText _ Text string: 'colored' attribute: (CharacterStyleReference for: red10Bold).
-	normalText3 _ Text string: ' normal text', String newLineString attribute: (ParagraphStyleReference for: normal).	"End with a cr, so our paragraph style is applied all over the resulting paragraph"
+	normalText3 _ Text string: ' normal text', String newLineString attribute: (ParagraphStyleReference for: normal).	"End with a newLine, so our paragraph style is applied all over the resulting paragraph"
 	concatenation5 _ normalText1, simpleColoredText, normalText3.
 
 	self assert: concatenation5 runs runs size = 3 description: 'Should have 3 parts with distinct CharacterStyles'.
@@ -3813,12 +3938,13 @@ testSample1ToAndFromRTFClipboardStyle
 	self assert: text2 = text.
 	self assert: text2 asNonStyledText runs = text runs.! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 09:50'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 4/2/2016 14:48'!
 testSample2ToAndFromRTFClipboardStyle
 	"
 	StyledTextTest new testSample2ToAndFromRTFClipboardStyle
 	"
 	| text text2 |
+	self assert: Clipboard default extendedClipboardInterface canStore description: 'Extended Clipboard cant store'.
 	text _ RTFConversionTest textSample2.
 
 	"This will use a refStreamed object"
@@ -4116,12 +4242,12 @@ And now another paragraph. This one may be smaller than previous ones
 	self assert: (t paragraphStyleOrNilAt: t size) name = 'Normal' description: 'Wrong paragraphStyle'.
 	self assert: (t characterStyleOrNilAt: t size) isNil description: 'Should not have a char style any longer'.! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 09:53'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:05'!
 testStylesInPaste1
 	"
 	self new testStylesInPaste1
 	"
-	| heading1 heading1Text simpleText editor paragraph concatenation initialText model |
+	| heading1 heading1Text simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a cr, so our paragraphStyle is applied to resulting paragraph"
@@ -4130,11 +4256,11 @@ testStylesInPaste1
 	initialText _ simpleText copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	ExtendedClipboardInterface current
@@ -4146,12 +4272,12 @@ testStylesInPaste1
 	self assert: concatenation runs first size = 1 description: 'Should apply just the "Heading 1" paragraph style to the whole text'.
 	self assert: concatenation runs first first style == heading1 description: 'Should apply the "Heading 1" paragraph style to the whole text'! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 09:52'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:05'!
 testStylesInPaste2
 	"
 	self new testStylesInPaste2
 	"
-	| heading1 heading1Text simpleText editor paragraph concatenation initialText model |
+	| heading1 heading1Text simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading', String newLineString attribute: (ParagraphStyleReference for: heading1).	"Include a cr, so our paragraphStyle is applied to resulting paragraph"
@@ -4160,11 +4286,11 @@ testStylesInPaste2
 	initialText _ simpleText copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: String newLineString. editor paste.
@@ -4181,12 +4307,12 @@ testStylesInPaste2
 	self assert: concatenation runs values second size = 1 description: 'Should apply the "Heading 1" paragraph style to the second part'.
 	self assert: concatenation runs values second first style == heading1 description: 'Should apply the "Heading 1" paragraph style to the second part'! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 09:56'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:05'!
 testStylesInPaste3
 	"
 	self new testStylesInPaste3
 	"
-	| heading1Text simpleText editor paragraph concatenation initialText model heading1 |
+	| heading1Text simpleText editor textComposition concatenation initialText model heading1 |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -4195,11 +4321,11 @@ testStylesInPaste3
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	ExtendedClipboardInterface current
@@ -4210,12 +4336,12 @@ testStylesInPaste3
 	self assert: concatenation runs runs size = 1 description: 'Should apply no character style to the whole text'.
 	self assert: concatenation runs first first style == heading1 description: 'Should apply just the "Heading 1" paragraph style to the whole text'! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 09:52'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:05'!
 testStylesInPaste4
 	"
 	self new testStylesInPaste4
 	"
-	| heading1Text heading1 simpleText editor paragraph concatenation initialText model |
+	| heading1Text heading1 simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -4224,11 +4350,11 @@ testStylesInPaste4
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: String newLineString. editor paste.
@@ -4244,12 +4370,12 @@ testStylesInPaste4
 	self assert: concatenation runs values first first style name = 'Heading 1'.
 	self assert: concatenation runs values second first style name = 'Imported '! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 2/14/2013 12:19'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:05'!
 testStylesInPaste5
 	"
 	self new testStylesInPaste5
 	"
-	| heading1Text heading1 simpleText editor paragraph concatenation initialText model |
+	| heading1Text heading1 simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -4258,11 +4384,11 @@ testStylesInPaste5
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: String newLineString. editor paste.
@@ -4275,12 +4401,12 @@ testStylesInPaste5
 	self assert: concatenation runs runs size = 1 description: 'Should apply same attributes to the whole text'.
 	self assert: concatenation runs runs first = concatenation size description: 'Should apply the "Heading 1" paragraph style to all the text'.! !
 
-!StyledTextTest methodsFor: 'tests' stamp: 'jmv 3/14/2012 09:51'!
+!StyledTextTest methodsFor: 'tests' stamp: 'jmv 10/16/2013 20:05'!
 testStylesInPaste6
 	"
 	self new testStylesInPaste6
 	"
-	| heading1 heading1Text simpleText editor paragraph concatenation initialText model |
+	| heading1 heading1Text simpleText editor textComposition concatenation initialText model |
 	model _ StyledTextModel new.
 	heading1 _ model styleSet paragraphStyleNamed: 'Heading 1'.
 	heading1Text _ Text string: 'This is the heading' attribute: (ParagraphStyleReference for: heading1).
@@ -4289,11 +4415,11 @@ testStylesInPaste6
 	initialText _ heading1Text copy.
 	model contents: initialText.
 	editor _ StyledTextEditor new model: model.
-	paragraph _ Paragraph new.
-	paragraph setModel: model; extentForComposing: 300@300.
-	paragraph composeAll.
+	textComposition _ TextComposition new.
+	textComposition setModel: model; extentForComposing: 300@300.
+	textComposition composeAll.
 	editor morph: TextModelMorph new textMorph.
-	editor paragraph: paragraph; resetState.
+	editor textComposition: textComposition; resetState.
 
 	editor deselectAndPlaceCursorAt: initialText size+1.
 	Clipboard storeObject: String newLineString. editor paste.
@@ -4348,12 +4474,11 @@ style
 style: aCharacterStyle
 	characterStyle _ aCharacterStyle! !
 
-!CharacterStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/12/2011 09:59'!
+!CharacterStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/1/2016 13:45'!
 writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute start. Return number of characters to skip (usually 0)"
 	
 	"familyName and pointSize"
-	| kern quarterPoints twips |
 	characterStyle pointSize ifNotNil: [ :ps |
 		aStream nextPutAll: '\fs'; nextPutAll: ((ps * Text pointSizeConversionFactor ) rounded * 2) asString; space ].
 
@@ -4366,25 +4491,14 @@ writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 		aStream nextPutAll: '\ul ' ].
 	(characterStyle emphasis allMask: AbstractFont struckThroughCode) ifTrue: [
 		aStream nextPutAll: '\strike \strikec0 ' ].
-	(characterStyle emphasis allMask: AbstractFont outlineCode) ifTrue: [
-		aStream nextPutAll: '\outl\strokewidth60 ' ].
 
 	"color"
 	characterStyle color ifNotNil: [ :c |
 		aStream nextPutAll: '\cf'; nextPutAll: (colorArray indexOf: c) asString; space ].
-	
-	"kern"
-	kern _ characterStyle kern.
-	kern = 0 ifFalse: [
-		quarterPoints _ kern * 4.	"This maybe needs tweaking!!"
-		twips _ kern * 12.
-		aStream nextPutAll:
-			'\kerning1\expnd', quarterPoints asString,
-			'\expndtw', twips asString; space ].
 
 	^0! !
 
-!CharacterStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/12/2011 09:59'!
+!CharacterStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/1/2016 13:45'!
 writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop.
 	Do it in the inverse order of writeRTFStartOn:colorTable:fontTable:"
@@ -4396,8 +4510,6 @@ writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	aStream nextPutAll: '\cf0 '.
 
 	"emphasis"
-	(characterStyle emphasis allMask: AbstractFont outlineCode) ifTrue: [
-		aStream nextPutAll: '\outl0\strokewidth0 ' ].
 	(characterStyle emphasis allMask: AbstractFont struckThroughCode) ifTrue: [
 		aStream nextPutAll: '\strike0\striked0 ' ].
 	(characterStyle emphasis allMask: AbstractFont underlinedCode) ifTrue: [
@@ -4479,12 +4591,12 @@ style
 style: aParagraphStyle
 	paragraphStyle _ aParagraphStyle! !
 
-!ParagraphStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/12/2011 09:59'!
+!ParagraphStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/1/2016 13:45'!
 writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute start. Return number of characters to skip (usually 0)"
 	"paragraph attributes still missing..."
 
-	| kern quarterPoints twips k |
+	| twips k |
 
 	"familyName and pointSize"
 	paragraphStyle pointSize ifNotNil: [ :ps |
@@ -4499,21 +4611,10 @@ writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 		aStream nextPutAll: '\ul ' ].
 	(paragraphStyle emphasis allMask: AbstractFont struckThroughCode) ifTrue: [
 		aStream nextPutAll: '\strike \strikec0 ' ].
-	(paragraphStyle emphasis allMask: AbstractFont outlineCode) ifTrue: [
-		aStream nextPutAll: '\outl\strokewidth60 ' ].
 
 	"color"
 	paragraphStyle color ifNotNil: [ :c |
 		aStream nextPutAll: '\cf'; nextPutAll: (colorArray indexOf: c) asString; space ].
-	
-	"kern"
-	kern _ paragraphStyle kern.
-	kern = 0 ifFalse: [
-		quarterPoints _ kern * 4.	"This maybe needs tweaking!!"
-		twips _ kern * 12.
-		aStream nextPutAll:
-			'\kerning1\expnd', quarterPoints asString,
-			'\expndtw', twips asString; space ].
 
 	"alignment"
 	paragraphStyle alignment caseOf: {
@@ -4550,7 +4651,7 @@ writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 
 	^0! !
 
-!ParagraphStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/12/2011 09:59'!
+!ParagraphStyleReference methodsFor: 'rtf exporting' stamp: 'jmv 4/1/2016 13:45'!
 writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop.
 	Do it in the inverse order of writeRTFStartOn:colorTable:fontTable:"
@@ -4565,8 +4666,6 @@ writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	aStream nextPutAll: '\cf0 '.
 
 	"emphasis"
-	(paragraphStyle emphasis allMask: AbstractFont outlineCode) ifTrue: [
-		aStream nextPutAll: '\outl0\strokewidth0 ' ].
 	(paragraphStyle emphasis allMask: AbstractFont struckThroughCode) ifTrue: [
 		aStream nextPutAll: '\strike0\striked0 ' ].
 	(paragraphStyle emphasis allMask: AbstractFont underlinedCode) ifTrue: [
@@ -4604,4 +4703,3 @@ unfocusedTextHighlightFrom: aColor
 	^Color r: 218 g: 228 b: 228 range: 255! !
 STECompleter initialize!
 StyledTextEditor initialize!
-PluggableStyledTextMorph initialize!

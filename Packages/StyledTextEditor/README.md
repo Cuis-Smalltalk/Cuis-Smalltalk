@@ -3,23 +3,27 @@ StyledTextEditor
 
 This is the StyledTextEditor project for Cuis, brought to you by Bernhard Pieber and Juan Vuletich. The design of the Styled Text Editor toolbar and scrollbars was done by Sabine Gasper-Mautes.
 
-
 ### Installation ###
 
 Steps to install:
-If you want to install StyledTextEditor in an image for the first time do the following steps:
-- Uncompress scowl-7.1.tar.gz into the directory where the Cuis image resides (so contents are in a subdirectory named 'scowl-7.1')
-- Start Cuis 4.0, preferably with a VM that includes support for the ExtendedClipboardPlugin (like this: http://www.squeakvm.org/mac/release/Squeak%204.2.5beta1U.zip , currently only on the Mac)
-- Install StyledTextInstaller.pck (e.g. using File List > install package)
-- Do the following: StyledTextInstaller new install
 
-Steps to update:
-If you already installed StyledTextEditor in an image you can update it to a newer version like this:
-- Open… > Installed Packages
-- Save unsaved packages if necessary so that Git can merge your changes
-- Pull from the GitHub repository of Cuis-StyledTextEditor you are using
-- Do the following: StyledTextInstaller new update
+If you have Git installed and configured you can use the following in a shell. (Disclaimer: I only tested it on OS X. I appreciate pull requests for other platforms.)
+```
+mkdir STE
+cd STE
+git clone https://github.com/bpieber/Cuis-Smalltalk-Dev.git
+Cuis-Smalltalk-Dev/bin/newImage.sh STE
 
+git clone https://github.com/bpieber/Cuis-Smalltalk-StyledTextEditor.git
+Cuis-Smalltalk-StyledTextEditor/bin/prepareImage.sh STE
+```
+The above script creates a new image named STE and downloads a current Cog VM. It also adds the ClipboardExtendedPlugin to the VM.
+- Start the image by dragging the STE.image and drop it on the VM.
+- Execute the following Smalltalk code in a Workspace:
+
+```
+Feature require: 'StyledTextInstaller'
+```
 
 ### Features ###
 
@@ -44,7 +48,6 @@ Bernhard and Juan are looking forward to feedback from you. Fork it, create issu
 
 
 ### References ###
-
 
 [1] http://www.esug.org/wiki/pier/Conferences/2011/Schedule-And-Talks/StyledTextEditor
 

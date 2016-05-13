@@ -1,8 +1,8 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1759] on 17 July 2013 at 12:57:05.099612 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #1976] on 19 April 2014 at 11:12:07.79669 am'!
 'Description Please enter a description for this package.'!
-!provides: 'RTFTests' 1 0!
-!requires: 'RTFExporting' 1 nil!
-!requires: 'RTFImporting' 1 nil!
+!provides: 'RTFTests' 1 1!
+!requires: 'RTFImporting' 1 nil nil!
+!requires: 'RTFExporting' 1 nil nil!
 !classDefinition: #RTFConversionTest category: #RTFtests!
 TestCase subclass: #RTFConversionTest
 	instanceVariableNames: ''
@@ -660,7 +660,7 @@ textSample3
 		(Text string: 'normal ' attributes: #())
 	)! !
 
-!RTFConversionTest class methodsFor: 'text samples' stamp: 'jmv 4/12/2011 10:00'!
+!RTFConversionTest class methodsFor: 'text samples' stamp: 'jmv 4/19/2014 11:11'!
 textSample4
 	"
 	| text |
@@ -673,8 +673,8 @@ textSample4
 		(Text string: 'bold ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 17). TextEmphasis bold }),
 		(Text string: 'italic ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 6). TextEmphasis italic }),
 		(Text string: 'boldGreen ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 12). TextEmphasis bold. TextColor green }),
-		(Text string: 'boldGreen ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 12). TextEmphasis bold. TextColor green. TextKern kern: 2}),
-		(Text string: 'boldGreen ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 12). TextEmphasis bold. TextColor green. TextKern kern: -2}),
+		(Text string: 'boldGreen ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 12). TextEmphasis bold. TextColor green }),
+		(Text string: 'boldGreen ' attributes: { (TextFontFamilyAndSize familyName: 'DejaVu' pointSize: 12). TextEmphasis bold. TextColor green }),
 		(Text string: 'red ' attributes: {TextColor red}),
 		(Text string: 'underlined ' attribute: (TextEmphasis underlined)),
 		(Text string: 'struckThrough ' attribute: (TextEmphasis struckThrough)),

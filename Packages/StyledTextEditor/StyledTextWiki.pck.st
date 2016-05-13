@@ -1,7 +1,7 @@
-'From Cuis 4.1 of 12 December 2012 [latest update: #1759] on 17 July 2013 at 12:57:17.457537 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #1823] on 11 September 2013 at 12:05:22.900264 am'!
 'Description Please enter a description for this package.'!
-!provides: 'StyledTextWiki' 1 0!
-!requires: 'StyledText' 1 nil!
+!provides: 'StyledTextWiki' 1 1!
+!requires: 'StyledText' 1 nil nil!
 !classDefinition: #StyledTextWiki category: #StyledTextWiki!
 Object subclass: #StyledTextWiki
 	instanceVariableNames: 'textModel pages currentPage'
@@ -83,7 +83,7 @@ pageNames
 textModel
 	^textModel! !
 
-!StyledTextWikiEditor methodsFor: 'as yet unclassified' stamp: 'bp 12/21/2011 10:04'!
+!StyledTextWikiEditor methodsFor: 'as yet unclassified' stamp: 'jmv 9/11/2013 00:01'!
 createMorph
 	| appMorph pagesList newPageButton toolbar |
 	textModel := StyledTextModel withText: wiki currentPage text.
@@ -99,7 +99,7 @@ createMorph
 		layoutSpec: (LayoutSpec morphHeightProportionalWidth: 0.5).
 	newPageButton := PluggableButtonMorph model: self action: #newPage.
 	newPageButton
-		extent: 22@22;
+		morphExtent: 22@22;
 		icon: Theme current newIcon;
 		layoutSpec: LayoutSpec keepMorphExtent.
 	toolbar := appMorph submorphs last.
