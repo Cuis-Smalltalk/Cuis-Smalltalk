@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2761] on 10 May 2016 at 9:39:43.595995 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2933] on 6 September 2016 at 10:16:02 am'!
 'Description Please enter a description for this package '!
-!provides: 'Graphics-Files-Additional' 1 12!
+!provides: 'Graphics-Files-Additional' 1 18!
 !requires: 'Compression' 1 nil nil!
 !classDefinition: #PNGReadWriter category: #'Graphics-Files-Additional'!
 ImageReadWriter subclass: #PNGReadWriter
@@ -195,11 +195,11 @@ copyPixels: y at: startX by: incX
 	self perform: s asSymbol with: y with: startX with: incX
 ! !
 
-!PNGReadWriter methodsFor: 'pixel copies' stamp: 'jmv 5/9/2016 14:01'!
+!PNGReadWriter methodsFor: 'pixel copies' stamp: 'jmv 6/7/2016 10:36'!
 copyPixelsGray: y
 	"Handle non-interlaced grayscale color mode (colorType = 0)"
 
-	| blitter high low value |
+	| blitter high low value base bits bytesLeft word |
 
 	bitsPerChannel = 16 ifTrue: [
 		"Warning: This is extremely slow. Besides we are downsampling to 8 bits!!"
@@ -214,34 +214,52 @@ copyPixelsGray: y
   			^self ].
 
 	"Just copy the bits"
-	"This interesting technique (By Andreas Raab) is a bit obscure, but it is so fast that we leave it active"
-	bitsPerChannel = 1 ifTrue: [ ^self copyPixelsGrayWeirdBitBltHack: y ].
+	"This interesting technique (By Andreas Raab) is a bit obscure, but it is so fast that we leave it active
+	Note that currently it only works on 1bpp PNG, building a BigEndian form."
+	(bitsPerChannel = 1 and: [ form isBigEndian ]) ifTrue: [ ^self copyPixelsGrayWeirdBitBltHack: y ].
 
-	"This interesting technique  (By Yoshiki Ohshima) is also instructive"
-	true ifTrue: [ ^form copyFromByteArray2: thisScanline to: y * (form width* bitsPerChannel // 32) ].
+	"This interesting technique  (By Yoshiki Ohshima) is very fast, although only works with whole word image width"
+	(thisScanline size bitAnd: 3) = 0 ifTrue: [
+		^form copyFromByteArray2: thisScanline to: y * (form width* bitsPerChannel // 32) ].
 
 	"This Smalltalk version might be easier to understand and is quite fast too."
 	"This somewhat weird mixture of (#* and #+) with (#bitShift: and #bitOr:) 
 	is to make use of faster arithmetic bytecodes, but not of slow largeintegers."
-	"
+	"This works for GrayForms of any endianness and width"
 	base _ y * (form width * bitsPerChannel + 31 // 32) + 1.
 	bits _ form bits.
-	0 to: thisScanline size // 4 - 1 do: [ :i |
-		| ii |
-		ii _ i * 4.
-		word _
-	           ((thisScanline at: ii+1) *256 + 
-	           (thisScanline at: ii+2) *256 + 
-	           ((thisScanline at: ii+3)) bitShift: 8) bitOr: 
-	           (thisScanline at: ii+4).
-		bits at: base + i put: word.].
-	(bytesLeft := thisScanline size bitAnd: 3) = 0 ifFalse: [
-		word := 0.
-		thisScanline size - bytesLeft + 1 to: thisScanline size do: [ :ii |
-			word := word * 256 + (thisScanline at: ii) ].
-		word := word bitShift: 8 * (4 - bytesLeft).
-		bits at: base + (thisScanline size // 4) put: word ].
-	"! !
+	form isBigEndian ifTrue: [
+		0 to: thisScanline size // 4 - 1 do: [ :i |
+			| ii |
+			ii _ i * 4.
+			word _
+		           ((thisScanline at: ii+1) *256 + 
+		           (thisScanline at: ii+2) *256 + 
+		           ((thisScanline at: ii+3)) bitShift: 8) bitOr: 
+		           (thisScanline at: ii+4).
+			bits at: base + i put: word.].
+		(bytesLeft := thisScanline size bitAnd: 3) = 0 ifFalse: [
+			word := 0.
+			thisScanline size - bytesLeft + 1 to: thisScanline size do: [ :ii |
+				word := word * 256 + (thisScanline at: ii) ].
+			word := word bitShift: 8 * (4 - bytesLeft).
+			bits at: base + (thisScanline size // 4) put: word ].
+	] ifFalse: [
+		0 to: thisScanline size // 4 - 1 do: [ :i |
+			| ii |
+			ii _ i * 4.
+			word _
+		           ((thisScanline at: ii+4) *256 + 
+		           (thisScanline at: ii+3) *256 + 
+		           ((thisScanline at: ii+2)) bitShift: 8) bitOr: 
+		           (thisScanline at: ii+1).
+			bits at: base + i put: word ].
+		(bytesLeft := thisScanline size bitAnd: 3) = 0 ifFalse: [
+			word := 0.
+			thisScanline size to: thisScanline size - bytesLeft + 1 by: -1 do: [ :ii |
+				word := word * 256 + (thisScanline at: ii) ].
+			bits at: base + (thisScanline size // 4) put: word ].
+	]! !
 
 !PNGReadWriter methodsFor: 'pixel copies' stamp: 'nice 5/10/2014 20:14'!
 copyPixelsGray: y at: startX by: incX
@@ -832,7 +850,7 @@ grayColorsFor: d
 		].
 ! !
 
-!PNGReadWriter methodsFor: 'accessing' stamp: 'jmv 5/9/2016 17:13'!
+!PNGReadWriter methodsFor: 'accessing' stamp: 'jmv 5/13/2016 15:14'!
 nextImage
 	bigEndian := Smalltalk isBigEndian.
 	filtersSeen _ Bag new.
@@ -842,18 +860,22 @@ nextImage
 	stream reset.
 	stream skip: 8.
 	[stream atEnd] whileFalse: [self processNextChunk].
-	"Set up our form"
-	palette ifNotNil:[
-		"Dump the palette if it's the same as our standard palette"
-		palette = (StandardColors copyFrom: 1 to: palette size) 
-			ifTrue:[palette := nil]].
 
-	(depth <= 8 and:[palette notNil]) ifTrue:[
-		form := ColorForm extent: width@height nativeDepthFrom: depth.
-		form colors: palette.
-	] ifFalse:[
-		form := Form extent: width@height depth: depth.
+	"Set up our form"
+	(depth = 8 and: [ palette isNil ]) ifTrue: [
+		form _ GrayForm extent: width@height
+	] ifFalse: [
+		palette ifNotNil: [ 		"Dump the palette if it's the same as our standard palette"
+			palette = (StandardColors copyFrom: 1 to: palette size) 
+				ifTrue: [palette := nil]].
+		(depth <= 8 and: [ palette notNil ]) ifTrue: [
+			form := ColorForm extent: width@height nativeDepthFrom: depth.
+			form colors: palette.
+		] ifFalse:[
+			form := Form extent: width@height depth: depth.
+		]
 	].
+
 	backColor ifNotNil:[form fillColor: backColor].
 	chunk _ globalDataChunk ifNil:[self error: 'image data is missing'].
 	chunk ifNotNil: [self processIDATChunk].
@@ -874,7 +896,7 @@ nextPutImage: aForm
 	"Write out the given form. We're keeping it simple here, no interlacing, no filters."
 	^self nextPutImage: aForm interlace: 0 filter: 0. "no filtering"! !
 
-!PNGReadWriter methodsFor: 'writing' stamp: 'jmv 1/12/2010 12:12'!
+!PNGReadWriter methodsFor: 'writing' stamp: 'jmv 5/13/2016 14:48'!
 nextPutImage: aForm interlace: aMethod filter: aFilterType
 	"Note: For now we keep it simple - interlace and filtering are simply ignored"
 	| crcStream |
@@ -882,14 +904,20 @@ nextPutImage: aForm interlace: aMethod filter: aFilterType
 	form := aForm.
 	width := aForm width.
 	height := aForm height.
-	aForm depth <= 8 ifTrue:[
+	(aForm is: #GrayForm) ifTrue: [
 		bitsPerChannel := aForm depth.
-		colorType := 3.
+		colorType := 0.
 		bytesPerScanline _ width * aForm depth + 7 // 8.
-	] ifFalse:[
-		bitsPerChannel := 8.
-		colorType := 6.
-		bytesPerScanline _ width * 4.
+	] ifFalse: [
+		aForm depth <= 8 ifTrue: [
+			bitsPerChannel := aForm depth.
+			colorType := 3.
+			bytesPerScanline _ width * aForm depth + 7 // 8.
+		] ifFalse: [
+			bitsPerChannel := 8.
+			colorType := 6.
+			bytesPerScanline _ width * 4.
+		]
 	].
 
 	self writeFileSignature.
@@ -899,7 +927,7 @@ nextPutImage: aForm interlace: aMethod filter: aFilterType
 	self writeIHDRChunkOn: crcStream.
 	self writeChunk: crcStream.
 
-	(form depth <= 8) ifTrue:[
+	(form depth <= 8 and: [(aForm is: #GrayForm) not]) ifTrue:[
 		crcStream resetToStart.
 		self writePLTEChunkOn: crcStream.
 		self writeChunk: crcStream.
@@ -1003,7 +1031,7 @@ processIDATChunk
 		ifFalse: [ self processInterlaced ]
 ! !
 
-!PNGReadWriter methodsFor: 'chunks' stamp: 'ar 2/10/2004 23:55'!
+!PNGReadWriter methodsFor: 'chunks' stamp: 'jmv 5/13/2016 15:04'!
 processIHDRChunk
 	width _ chunk longAt: 1 bigEndian: true.
 	height _ chunk longAt: 5 bigEndian: true.
@@ -1014,12 +1042,14 @@ processIHDRChunk
 	interlaceMethod _ chunk at: 13. "TODO - validate interlace method"
 	(#(2 4 6) includes: colorType)
 		ifTrue: [depth _ 32].
-	(#(0 3) includes: colorType) ifTrue: [
-		depth _ bitsPerChannel min: 8.
-		colorType = 0 ifTrue: [ "grayscale"
-			palette := self grayColorsFor: depth.
-		].
-	].
+	(colorType = 0 and: [ bitsPerChannel = 8 ]) ifTrue: [
+		depth _ 8.
+		palette _ nil.		"Meaning: 'please use a GrayForm'"
+	] ifFalse: [
+		(#(0 3) includes: colorType) ifTrue: [
+			depth _ bitsPerChannel min: 8.
+			colorType = 0 ifTrue: [ "grayscale"
+				palette := self grayColorsFor: depth ]]].
 	bitsPerPixel _ (BPP at: colorType+1) at: bitsPerChannel highBit.
 	bytesPerScanline _ width * bitsPerPixel + 7 // 8.
 	rowSize _ width * depth + 31 >> 5.
@@ -1263,14 +1293,16 @@ writeChunk: crcStream
 writeFileSignature
 	stream nextPutAll: #[ 16r89 16r50 16r4E  16r47 16r0D 16r0A 16r1A 16r0A ]! !
 
-!PNGReadWriter methodsFor: 'writing' stamp: 'jmv 10/7/2015 15:53'!
+!PNGReadWriter methodsFor: 'writing' stamp: 'jmv 5/13/2016 14:59'!
 writeIDATChunkOn: aStream
 	"Write the IDAT chunk"
 	| z |
 	aStream nextPutAll: 'IDAT' asByteArray.
 	z _ ZLibWriteStream on: aStream.
 	form depth <= 8 
-		ifTrue: [ self writeType3DataOn: z ]
+		ifTrue: [ 
+			"Same format for type 3 (indexed color) and type 0 (grayscale, GrayForm)"
+			self writeType3DataOn: z ]
 		ifFalse: [ self writeType6DataOn: z ].
 	z close.
 	self debugging ifTrue: [
@@ -1558,7 +1590,7 @@ printOn: aStream
 	super printOn: aStream.
 	values printOn: aStream.! !
 
-!TIFFField methodsFor: 'private-value reading' stamp: 'jmv 1/8/2015 18:50'!
+!TIFFField methodsFor: 'private-value reading' stamp: 'jmv 9/5/2016 16:57:57'!
 read: count charsFrom: aTIFFStream
 	"Read count bytes from the current position of aTIFFStream and return them as an Array of Strings, using NUL as the separating character between strings. Don't worry about the ending position of aTIFFStream."
 	| strings oneString size |
@@ -1567,7 +1599,7 @@ read: count charsFrom: aTIFFStream
 	1 to: count do: [ :i |
 		aTIFFStream peek = 0
 			ifFalse: [
-				oneString add: (Character value: aTIFFStream nextByte) ]
+				oneString add: (Character numericValue: aTIFFStream nextByte) ]
 			ifTrue: [ "Null, so that's the end of this string. "
 				size _ oneString size.
 				strings add: ((String new: size) replaceFrom: 1 to: size with: oneString) ]].
@@ -1948,7 +1980,7 @@ positionStreamToStripNum: anInteger
 	stream position: ((structure at: #StripOffsets) at: anInteger).
 	stream newStrip! !
 
-!TIFFReader methodsFor: 'reading' stamp: 'jmv 4/8/2015 11:14'!
+!TIFFReader methodsFor: 'reading' stamp: 'jmv 8/1/2016 10:37:24'!
 readForm
 	"Answer a Form created from the data in my stream and structure."
 	| result bps |
@@ -1976,56 +2008,56 @@ readForm
 		bps caseOf: {
 			[ 8 ] -> [
 				"ColorForm set for 8bpp gray scale images"
-				result _ ColorForm grayScaleExtent: self extent.
+				result _ GrayForm extent: self extent.
 				self
 					readGray8PixelsInto: result
 					horizontalPredictor: ((structure at: #Predictor) = 2) ].
 
 			[ 16 ] -> [
 				"float image"
-				result _ (Smalltalk at: #FloatImage ifAbsent: [
-						self error: '16bpp TIFF requires FloatImage (SignalProcessing package)' ])
-					extent: self extent. 
+				result _ (Smalltalk at: #ShortWordMatrix ifAbsent: [
+						self error: '16bpp TIFF requires ShortWordMatrix (LinearAlgebra package)' ])
+					extent: self extent.
 				self readGray16PixelsInto: result ] }].
 
 	^ result! !
 
-!TIFFReader methodsFor: 'private' stamp: 'jmv 2/29/2016 11:22'!
-readGray16PixelsInto: aFloatMatrix
+!TIFFReader methodsFor: 'private' stamp: 'jmv 7/26/2016 15:55:59'!
+readGray16PixelsInto: aShortWordMatrix
 	"Replace the given Form's pixel values with pixel values from my TIFFStream. aForm must have the correct extent.
 	Handles 16 bit pixels on source, float as destination."
 
-	| floats totalPixels pixelsPerStrip currentStripNum pixel | 
-	floats _ aFloatMatrix elements.
-	totalPixels _ floats size.
-	pixelsPerStrip _ aFloatMatrix extent x * (structure at: #RowsPerStrip).
+	| elements totalPixels pixelsPerStrip currentStripNum pixel | 
+	elements _ aShortWordMatrix elements.
+	totalPixels _ elements size.
+	pixelsPerStrip _ aShortWordMatrix extent x * (structure at: #RowsPerStrip).
 	currentStripNum _ 0.
 
 	1 to: totalPixels do: [ :pixNum |
-		(pixNum-1 \\ aFloatMatrix width = 0) ifTrue: [
+		(pixNum-1 \\ aShortWordMatrix width = 0) ifTrue: [
 			(pixNum - 1 \\ pixelsPerStrip = 0) ifTrue: [
 				"Time to go to next strip"
 				currentStripNum _ currentStripNum + 1.
 				self positionStreamToStripNum: currentStripNum ]].
 
-		pixel _ stream nextUnsignedInt16 / 65535.0.
-		floats at: pixNum put: pixel ]! !
+		pixel _ stream nextUnsignedInt16.
+		elements at: pixNum put: pixel ]! !
 
-!TIFFReader methodsFor: 'private' stamp: 'jmv 5/4/2016 17:29'!
-readGray8PixelsInto: aColorForm horizontalPredictor: useHorizontalPredictor
+!TIFFReader methodsFor: 'private' stamp: 'jmv 5/12/2016 18:27'!
+readGray8PixelsInto: aGrayForm horizontalPredictor: useHorizontalPredictor
 	"Replace the given Form's pixel values with pixel values from my TIFFStream. aForm must have the correct extent.
 	Only handles 8-bit gray pixels on both source and destination."
 
 	| bits totalPixels pixelsPerStrip currentStripNum g gg pixel bytesPerRow row column |
-	bits _ aColorForm bits.
-	totalPixels _ aColorForm width * aColorForm height.
-	pixelsPerStrip _ aColorForm width * (structure at: #RowsPerStrip).
+	bits _ aGrayForm bits.
+	totalPixels _ aGrayForm width * aGrayForm height.
+	pixelsPerStrip _ aGrayForm width * (structure at: #RowsPerStrip).
 	currentStripNum _ 0.
 	row _ -1.
 	column _ 0.
-	bytesPerRow _ aColorForm width + 3 // 4 * 4.
+	bytesPerRow _ aGrayForm width + 3 // 4 * 4.
 	1 to: totalPixels do: [ :pixNum |
-		(pixNum-1 \\ aColorForm width = 0) ifTrue: [
+		(pixNum-1 \\ aGrayForm width = 0) ifTrue: [
 			row _ row + 1.
 			column _ 0.
 			(pixNum - 1 \\ pixelsPerStrip = 0) ifTrue: [
@@ -2044,7 +2076,7 @@ readGray8PixelsInto: aColorForm horizontalPredictor: useHorizontalPredictor
 			ifFalse: [
 				g _ gg ].
 		pixel _ g.
-		bits byteAt: (row *  bytesPerRow) + column put: pixel bigEndian: aColorForm isBigEndian ]! !
+		bits byteAt: (row *  bytesPerRow) + column put: pixel bigEndian: aGrayForm isBigEndian ]! !
 
 !TIFFReader methodsFor: 'private' stamp: 'jmv 4/8/2015 11:54'!
 readPlanarRGB8PixelsInto: a32BitForm readAlpha: doReadAlpha horizontalPredictor: useHorizontalPredictor

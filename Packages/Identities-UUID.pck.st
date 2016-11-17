@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2520] on 5 October 2015 at 12:04:28.963745 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2781] on 31 May 2016 at 12:06:44.61949 pm'!
 'Description Code was filed out from Squeak 4.5 and ported to Cuis with few changes by David Graham.'!
-!provides: 'Identities-UUID' 1 5!
+!provides: 'Identities-UUID' 1 7!
 !requires: 'Sound' 1 3 nil!
 !classDefinition: #UUID category: #'Identities-UUID'!
 ByteArray variableByteSubclass: #UUID
@@ -378,11 +378,11 @@ makeSeedFromSound
 	^[SoundSystem default randomBitsFromSoundInput: 32]
 		ifError: [nil].! !
 
-!UUIDGenerator methodsFor: 'random seed' stamp: 'jmv 10/3/2015 14:31'!
+!UUIDGenerator methodsFor: 'random seed' stamp: 'pb 5/25/2016 01:34'!
 makeUnixSeed
 	
 	^[
-		'/dev/urandom' asFileEntry readStream: [ :stream |
+		'/dev/urandom' asFileEntry readStreamDo: [ :stream |
 			stream binary.
 			(Integer
 				byte1: stream next

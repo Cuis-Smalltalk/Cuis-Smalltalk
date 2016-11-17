@@ -1,9 +1,9 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2710] on 1 April 2016 at 2:12:23.069542 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2933] on 6 September 2016 at 10:05:12 am'!
 'Description Please enter a description for this package.'!
-!provides: 'RTFExporting' 1 2!
+!provides: 'RTFExporting' 1 3!
 !requires: 'Graphics-Files-Additional' 1 nil nil!
 
-!String methodsFor: '*rtfExporting' stamp: 'jmv 11/22/2011 14:52'!
+!String methodsFor: '*rtfExporting' stamp: 'jmv 9/5/2016 20:27:00'!
 iso8859s15ToRTFEncoding
 	"Convert the given string to RTF escaped Unicode from the internal encoding: ISO Latin 9 (ISO 8859-15)"
 	"
@@ -14,7 +14,7 @@ iso8859s15ToRTFEncoding
 		characters _ self readStream.
 		[ characters atEnd ] whileFalse: [
 			c _  characters next.
-			cp _ c unicodeCodePoint.
+			cp _ c codePoint.
 			cp < 128
 				ifTrue: [ strm nextPut: c ]
 				ifFalse: [
@@ -122,20 +122,6 @@ writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop."
 	aStream nextPutAll: '\ql '! !
 
-!TextAnchor methodsFor: '*rtfExporting' stamp: 'jmv 4/7/2011 15:08'!
-writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
-	"Write the RTF code for attribute start. Return number of characters to skip: one in this case"
-	aStream
-		nextPutAll: '{\*\shppict{\pict\pngblip ';
-		nextPutAll: (PNGReadWriter bytesFor: anchoredFormOrMorph) hex;
-		nextPutAll: '}}'.
-	"Skip the character holding the attribute"
-	^1! !
-
-!TextAnchor methodsFor: '*rtfExporting' stamp: 'jmv 1/24/2011 11:12'!
-writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
-	"Write the RTF code for attribute stop."! !
-
 !TextColor methodsFor: '*rtfExporting' stamp: 'jmv 1/24/2011 11:52'!
 writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute start. Return number of characters to skip (usually 0)"
@@ -187,3 +173,17 @@ writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
 writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
 	"Write the RTF code for attribute stop."
 	aStream nextPutAll: '\fs0 '! !
+
+!TextAnchor methodsFor: '*rtfExporting' stamp: 'jmv 4/7/2011 15:08'!
+writeRTFStartOn: aStream colorTable: colorArray fontTable: fontArray
+	"Write the RTF code for attribute start. Return number of characters to skip: one in this case"
+	aStream
+		nextPutAll: '{\*\shppict{\pict\pngblip ';
+		nextPutAll: (PNGReadWriter bytesFor: anchoredFormOrMorph) hex;
+		nextPutAll: '}}'.
+	"Skip the character holding the attribute"
+	^1! !
+
+!TextAnchor methodsFor: '*rtfExporting' stamp: 'jmv 1/24/2011 11:12'!
+writeRTFStopOn: aStream colorTable: colorArray fontTable: fontArray
+	"Write the RTF code for attribute stop."! !

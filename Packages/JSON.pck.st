@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #1815] on 3 September 2013 at 5:01:28.212224 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2968] on 4 November 2016 at 10:07:31 am'!
 'Description Please enter a description for this package '!
-!provides: 'JSON' 1 3!
+!provides: 'JSON' 1 10!
 !classDefinition: #JsonObject category: #JSON!
 Dictionary subclass: #JsonObject
 	instanceVariableNames: ''
@@ -19,6 +19,16 @@ Error subclass: #JsonSyntaxError
 	category: 'JSON'!
 !classDefinition: 'JsonSyntaxError class' category: #JSON!
 JsonSyntaxError class
+	instanceVariableNames: ''!
+
+!classDefinition: #JsonTests category: #JSON!
+TestCase subclass: #JsonTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'JSON'!
+!classDefinition: 'JsonTests class' category: #JSON!
+JsonTests class
 	instanceVariableNames: ''!
 
 !classDefinition: #Json category: #JSON!
@@ -41,25 +51,15 @@ Object subclass: #JsonDummyTestObject
 JsonDummyTestObject class
 	instanceVariableNames: ''!
 
-!classDefinition: #JsonTests category: #JSON!
-TestCase subclass: #JsonTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'JSON'!
-!classDefinition: 'JsonTests class' category: #JSON!
-JsonTests class
-	instanceVariableNames: ''!
-
 
 !JsonSyntaxError commentStamp: '<historical>' prior: 0!
 Class Json signals instances of me when an input stream contains invalid JSON input.!
 
-!Json commentStamp: '<historical>' prior: 0!
-This class reads and writes JSON format data - strings, numbers, boolean, nil, arrays and dictionaries. See http://www.json.org . It has been extended with syntax for invoking a prearranged list of constructors on read objects.!
-
 !JsonTests commentStamp: '<historical>' prior: 0!
 I provide a number of test cases for class Json.!
+
+!Json commentStamp: '<historical>' prior: 0!
+This class reads and writes JSON format data - strings, numbers, boolean, nil, arrays and dictionaries. See http://www.json.org . It has been extended with syntax for invoking a prearranged list of constructors on read objects.!
 
 !Object methodsFor: '*JSON' stamp: 'Igor.Stasenko 1/9/2010 16:18'!
 asJsonString
@@ -74,6 +74,44 @@ jsonWriteOn: aStream
 !True methodsFor: '*JSON-writing' stamp: 'tonyg 8/17/2005 00:44'!
 jsonWriteOn: aStream
 	aStream nextPutAll: 'true'! !
+
+!UndefinedObject methodsFor: '*JSON-writing' stamp: 'tonyg 8/17/2005 00:45'!
+jsonWriteOn: aWriteStream 
+	aWriteStream nextPutAll: 'null'! !
+
+!Number methodsFor: '*JSON-writing' stamp: 'ul 11/4/2008 04:46'!
+jsonWriteOn: aWriteStream 
+
+	self printOn: aWriteStream base: 10! !
+
+!Integer methodsFor: '*JSON-writing' stamp: 'Igor.Stasenko 12/27/2009 08:05'!
+jsonWriteOn: aWriteStream
+	^ self printOn: aWriteStream base: 10
+! !
+
+!Association methodsFor: '*JSON-writing' stamp: 'jmv 6/2/2016 09:35'!
+jsonWriteOn: aStream
+	self key asString jsonWriteOn: aStream.
+	aStream nextPut: $:; space.
+	self value jsonWriteOn: aStream.! !
+
+!Collection methodsFor: '*JSON' stamp: 'jmv 5/17/2016 13:11'!
+jsonObjectWriteOn: aStream
+	"Write as 'JSON Object' format
+	This is a list of (name:value) pairs, and is analogous to Smalltalk Dictionaries where names (keys) are strings.
+	Assume the receiver is either:
+	- a Dictionary
+	- a collection of Association objects (or some sort of object that on #jsonWriteOn: print like an Association)"
+
+	| needComma |
+	needComma := false.
+	aStream nextPut: ${.
+	self associationsDo: [ :assoc |
+		needComma
+			ifTrue: [ aStream nextPut: $, ; space]
+			ifFalse: [ needComma := true ].
+		assoc jsonWriteOn: aStream ].
+	aStream nextPut: $}! !
 
 !Collection methodsFor: '*JSON' stamp: 'Igor.Stasenko 12/27/2009 08:03'!
 jsonWriteOn: aStream
@@ -102,44 +140,24 @@ jsonWriteOn: aStream
 jsonWriteOn: aStream
 	self string jsonWriteOn: aStream! !
 
-!Dictionary methodsFor: '*JSON-writing' stamp: 'Igor.Stasenko 12/27/2009 08:10'!
+!Dictionary methodsFor: '*JSON-writing' stamp: 'jmv 5/17/2016 12:47'!
 jsonWriteOn: aStream
+	"Dictionaries are written as 'JSON Objects'
+	Use the general implementation for that."
 
-	| needComma |
-	needComma := false.
-	aStream nextPut: ${.
-	self associationsDo: [ :assoc |
-		needComma
-			ifTrue: [ aStream nextPut: $, ]
-			ifFalse: [ needComma := true ].
-		assoc key jsonWriteOn: aStream.
-		aStream nextPut: $:.
-		assoc value jsonWriteOn: aStream ].
-	aStream nextPut: $}.! !
-
-!Association methodsFor: '*JSON-writing' stamp: 'matthias.berth 11/19/2009 10:21'!
-jsonWriteOn: aStream
-	self key asString jsonWriteOn: aStream.
-	aStream nextPut: $:; space.
-	self value jsonWriteOn: aStream.! !
-
-!Number methodsFor: '*JSON-writing' stamp: 'ul 11/4/2008 04:46'!
-jsonWriteOn: aWriteStream 
-
-	self printOn: aWriteStream base: 10! !
-
-!Integer methodsFor: '*JSON-writing' stamp: 'Igor.Stasenko 12/27/2009 08:05'!
-jsonWriteOn: aWriteStream
-	^ self printOn: aWriteStream base: 10
-! !
+	self jsonObjectWriteOn: aStream! !
 
 !WriteStream methodsFor: '*JSON-printing' stamp: 'cwp 10/25/2006 12:27'!
 jsonPrint: anObject
 	anObject jsonWriteOn: self! !
 
-!UndefinedObject methodsFor: '*JSON-writing' stamp: 'tonyg 8/17/2005 00:45'!
-jsonWriteOn: aWriteStream 
-	aWriteStream nextPutAll: 'null'! !
+!FileEntry methodsFor: '*json' stamp: 'pb 5/25/2016 01:32'!
+jsonContents
+	"
+	'noesta.json' asFileEntry jsonContents
+	"
+	^self readStreamDo: [ :stream |
+		Json readFrom: stream ]! !
 
 !JsonObject methodsFor: 'accessing' stamp: 'rh 2/19/2010 21:34'!
 at: aKey
@@ -179,6 +197,140 @@ fromAssociations: collectionOfAssociations
 		result at: each key put: each value ].
 	^ result! !
 
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 18:03'!
+json: aString equals: aValue
+	| readValue |
+	readValue := self readFrom: aString.
+	self assert: readValue = aValue.! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 18:03'!
+readFrom: aString
+	^ (Json newWithConstructors: {JsonDummyTestObject.}) readFrom: aString readStream
+! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/17/2005 16:24'!
+render: anObject equals: aString
+	self assert: (Json render: anObject) = aString! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 17:51'!
+simpleDummyObject
+	^ JsonDummyTestObject new a: 1; b: 2; c: 3; yourself! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:51'!
+testArray
+	self json: '[]' equals: #().
+	self json: '[[]]' equals: #(#()).
+	self json: '[[], []]' equals: #(#() #()).
+	self json: '["hi", "there"]' equals: #('hi' 'there').
+	self json: '[["a", "b", null]]' equals: #(('a' 'b' nil)).! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:42'!
+testAtomFalse
+	self json: 'false' equals: false.
+	self json: '  false' equals: false.
+	self json: 'false  ' equals: false.
+	self json: '  false  ' equals: false.
+! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:43'!
+testAtomNull
+	self json: 'null' equals: nil.
+	self json: '  null' equals: nil.
+	self json: 'null  ' equals: nil.
+	self json: '  null  ' equals: nil.
+! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/17/2005 09:10'!
+testAtomNumber
+	self json: '1' equals: 1.
+	self json: '0123' equals: 123.
+	self json: '1.23e2' equals: 123.
+	self json: '-1' equals: -1.
+	self json: '-0' equals: 0.
+	self json: '[-1.2]' equals: #(-1.2).! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'jmv 11/4/2016 10:04:05'!
+testAtomSpecialFloats
+	| read |
+	read _ self readFrom: 'NaN'.
+	self assert: read isNaN.
+	read _ self readFrom: 'Infinity'.
+	self assert: read  = Float infinity.
+	read _ self readFrom: '-Infinity'.
+	self assert: read  = Float negativeInfinity.! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'jmv 9/5/2016 16:53:32'!
+testAtomString
+	self json: '"hi"' equals: 'hi'.
+	self json: '"\""' equals: '"'.
+	self json: '"\\"' equals: '\'.
+	self json: '""' equals: ''.
+	self json: '"a\u0004b"' equals: ({$a. Character numericValue: 4. $b} as: String).
+	self json: '"a\nb"' equals: ({$a. Character lf. $b} as: String).! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:36'!
+testAtomTrue
+	self json: 'true' equals: true.
+	self json: '  true' equals: true.
+	self json: 'true  ' equals: true.
+	self json: '  true  ' equals: true.
+! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 17:58'!
+testCtor
+	self json: '@JsonDummyTestObject {"a": 1, "b": 2, "c": 3}' equals: self simpleDummyObject.
+	self json: (Json render: self simpleDummyObject) equals: self simpleDummyObject.! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'Igor.Stasenko 12/27/2009 08:19'!
+testDictionary
+	self json: '{}' equals: (JsonObject new).
+	self json: '{"a": "a"}' equals: (JsonObject new at: 'a' put: 'a'; yourself).
+	self json: '{"a": [[]]}' equals: (JsonObject new at: 'a' put: #(#()); yourself).
+	self json: '{"a":"b", "b":"a"}' equals: (JsonObject new add: 'a'->'b'; add: 'b'->'a';yourself).! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'cwp 10/19/2006 19:06'!
+testMissingCtor
+	self 
+		should: [self readFrom: '@Missing[]']
+		raise: JsonSyntaxError
+! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'cwp 10/19/2006 19:06'!
+testMissingCtorNoMap
+	self 
+		should: [Json new readFrom: '@Missing[]' readStream]
+		raise: JsonSyntaxError! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 12:29'!
+testStringWithUnicode
+	| unicodeString |
+	unicodeString _ '(Unicode value: 16r263A)' asString.
+	unicodeString _ String streamContents: [ :strm |
+		String addUnicodeCodePoint: 16r263A to: strm hex: true ].
+	self json: '"\u263A"' equals: unicodeString.
+	self json: '"', unicodeString, '"' equals: unicodeString.
+	self render: unicodeString equals: '"', unicodeString, '"'! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'matthias.berth 11/19/2009 10:21'!
+testWriteAssociation
+	self render: 'key' -> 'value' equals: '"key": "value"'.
+	self render: 'key' -> 2 equals: '"key": 2'.
+	"keys should be strings"
+	self render: 42 -> 2 equals: '"42": 2'.
+	"try to do _something_ for more complex keys"
+	self render: #(42 43 44) -> 2 equals:  '"#(42 43 44)": 2'.
+	
+	
+	! !
+
+!JsonTests methodsFor: 'as yet unclassified' stamp: 'jmv 9/5/2016 16:53:37'!
+testWriteString
+	self render: '"' equals: '"\""'.
+	self render: '\' equals: '"\\"'.
+	self render: 'hi' equals: '"hi"'.
+	self render: ({$a. Character lf. $b} as: String) equals: '"a\nb"'.
+	self render: ({$a. Character numericValue: 4. $b} as: String) equals: '"a\u0004b"'.! !
+
 !Json methodsFor: 'private' stamp: 'Igor.Stasenko 4/7/2010 01:19'!
 consume: aString returning: anObject
 	aString do: [:c | stream next == c ifFalse: [JsonSyntaxError signal: 'Expected ''', aString, ''''] ].
@@ -216,12 +368,12 @@ interpretStringEscapeTo: aStream
 		^ self ].
 	aStream nextPut: c! !
 
-!Json methodsFor: 'parsing' stamp: 'Igor.Stasenko 4/7/2010 01:45'!
+!Json methodsFor: 'parsing' stamp: 'jmv 11/4/2016 10:04:22'!
 readAny
 	"This is the main entry point for the JSON parser. See also readFrom: on the class side."
 	| c |
 	self skipWhitespace.
-	c := stream peek asLowercase.
+	c := stream peek.
 	c == ${ ifTrue: [stream next. ^ self readDictionary].
 	c == $[ ifTrue: [stream next. ^ self readArray].
 	c == $" ifTrue: [stream next. ^ self readString].
@@ -230,6 +382,9 @@ readAny
 	c == $n ifTrue: [^ self consume: 'null' returning: nil].
 	c == $@ ifTrue: [stream next. ^ self readConstructor].
 	(Json numbersMayContain: c) ifTrue: [^ self readNumber].
+"c == $N ifTrue: [^ self consume: 'NaN' returning: Float nan]."
+	c == $N ifTrue: [^ self readNumber].
+	c == $I ifTrue: [^ self readNumber].
 	JsonSyntaxError signal: 'Unknown Json input'! !
 
 !Json methodsFor: 'private' stamp: 'Igor.Stasenko 4/7/2010 01:39'!
@@ -296,8 +451,9 @@ readFrom: aStream
 	self stream: aStream.
 	^ self readAny! !
 
-!Json methodsFor: 'private' stamp: 'Igor.Stasenko 4/7/2010 01:21'!
+!Json methodsFor: 'private' stamp: 'jmv 11/4/2016 10:04:44'!
 readNumber
+"
 	| acc c |
 	acc := WriteStream on: ''.
 	[
@@ -306,7 +462,10 @@ readNumber
 			[^ acc contents asNumber] on: Error do: [JsonSyntaxError signal: 'Invalid number']].
 		acc nextPut: c.
 		stream next.
-	] repeat.! !
+	] repeat.
+"
+	"Allow Nan, Infinity and -Infinity"
+	^Number readFrom: stream! !
 
 !Json methodsFor: 'private' stamp: 'jmv 8/28/2013 12:18'!
 readString
@@ -498,128 +657,4 @@ jsonWriteOn: s
 !JsonDummyTestObject class methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 17:49'!
 constructFromJson: j
 	^ self new a: (j at: 'a'); b: (j at: 'b'); c: (j at: 'c'); yourself! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 18:03'!
-json: aString equals: aValue
-	| readValue |
-	readValue := self readFrom: aString.
-	self assert: readValue = aValue.! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 18:03'!
-readFrom: aString
-	^ (Json newWithConstructors: {JsonDummyTestObject.}) readFrom: aString readStream
-! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/17/2005 16:24'!
-render: anObject equals: aString
-	self assert: (Json render: anObject) = aString! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 17:51'!
-simpleDummyObject
-	^ JsonDummyTestObject new a: 1; b: 2; c: 3; yourself! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:51'!
-testArray
-	self json: '[]' equals: #().
-	self json: '[[]]' equals: #(#()).
-	self json: '[[], []]' equals: #(#() #()).
-	self json: '["hi", "there"]' equals: #('hi' 'there').
-	self json: '[["a", "b", null]]' equals: #(('a' 'b' nil)).! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:42'!
-testAtomFalse
-	self json: 'false' equals: false.
-	self json: '  false' equals: false.
-	self json: 'false  ' equals: false.
-	self json: '  false  ' equals: false.
-! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:43'!
-testAtomNull
-	self json: 'null' equals: nil.
-	self json: '  null' equals: nil.
-	self json: 'null  ' equals: nil.
-	self json: '  null  ' equals: nil.
-! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/17/2005 09:10'!
-testAtomNumber
-	self json: '1' equals: 1.
-	self json: '0123' equals: 123.
-	self json: '1.23e2' equals: 123.
-	self json: '-1' equals: -1.
-	self json: '-0' equals: 0.
-	self json: '[-1.2]' equals: #(-1.2).! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/21/2009 22:57'!
-testAtomString
-	self json: '"hi"' equals: 'hi'.
-	self json: '"\""' equals: '"'.
-	self json: '"\\"' equals: '\'.
-	self json: '""' equals: ''.
-	self json: '"a\u0004b"' equals: ({$a. Character value: 4. $b} as: String).
-	self json: '"a\nb"' equals: ({$a. Character lf. $b} as: String).! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 8/16/2005 23:36'!
-testAtomTrue
-	self json: 'true' equals: true.
-	self json: '  true' equals: true.
-	self json: 'true  ' equals: true.
-	self json: '  true  ' equals: true.
-! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'tonyg 11/29/2005 17:58'!
-testCtor
-	self json: '@JsonDummyTestObject {"a": 1, "b": 2, "c": 3}' equals: self simpleDummyObject.
-	self json: (Json render: self simpleDummyObject) equals: self simpleDummyObject.! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'Igor.Stasenko 12/27/2009 08:19'!
-testDictionary
-	self json: '{}' equals: (JsonObject new).
-	self json: '{"a": "a"}' equals: (JsonObject new at: 'a' put: 'a'; yourself).
-	self json: '{"a": [[]]}' equals: (JsonObject new at: 'a' put: #(#()); yourself).
-	self json: '{"a":"b", "b":"a"}' equals: (JsonObject new add: 'a'->'b'; add: 'b'->'a';yourself).! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'cwp 10/19/2006 19:06'!
-testMissingCtor
-	self 
-		should: [self readFrom: '@Missing[]']
-		raise: JsonSyntaxError
-! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'cwp 10/19/2006 19:06'!
-testMissingCtorNoMap
-	self 
-		should: [Json new readFrom: '@Missing[]' readStream]
-		raise: JsonSyntaxError! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 12:29'!
-testStringWithUnicode
-	| unicodeString |
-	unicodeString _ '(Unicode value: 16r263A)' asString.
-	unicodeString _ String streamContents: [ :strm |
-		String addUnicodeCodePoint: 16r263A to: strm hex: true ].
-	self json: '"\u263A"' equals: unicodeString.
-	self json: '"', unicodeString, '"' equals: unicodeString.
-	self render: unicodeString equals: '"', unicodeString, '"'! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'matthias.berth 11/19/2009 10:21'!
-testWriteAssociation
-	self render: 'key' -> 'value' equals: '"key": "value"'.
-	self render: 'key' -> 2 equals: '"key": 2'.
-	"keys should be strings"
-	self render: 42 -> 2 equals: '"42": 2'.
-	"try to do _something_ for more complex keys"
-	self render: #(42 43 44) -> 2 equals:  '"#(42 43 44)": 2'.
-	
-	
-	! !
-
-!JsonTests methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 10:28'!
-testWriteString
-	self render: '"' equals: '"\""'.
-	self render: '\' equals: '"\\"'.
-	self render: 'hi' equals: '"hi"'.
-	self render: ({$a. Character lf. $b} as: String) equals: '"a\nb"'.
-	self render: ({$a. Character value: 4. $b} as: String) equals: '"a\u0004b"'.! !
 Json initialize!

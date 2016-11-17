@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2761] on 10 May 2016 at 9:41:54.885995 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2829] on 19 June 2016 at 8:49:43.796516 pm'!
 'Description A port of Bouncing Atoms with the atoms in a SystemWindow. A pop-up menu enables selection of options, including an active plot of infection history, also in a SystemWindow.'!
-!provides: 'BouncingAtoms' 1 23!
+!provides: 'BouncingAtoms' 1 29!
 !requires: 'Morphic-Widgets-Extras' 1 0 nil!
 !classDefinition: #AtomMorph category: #BouncingAtoms!
 EllipseMorph subclass: #AtomMorph
@@ -24,7 +24,7 @@ HeaterCoolerAtom class
 
 !classDefinition: #BouncingAtomsMorph category: #BouncingAtoms!
 RectangleLikeMorph subclass: #BouncingAtomsMorph
-	instanceVariableNames: 'infectionHistory transmitInfection recentTemperatures temperature historyWindow nAtoms fpsEnabled fps fpsCurrentFrameCount fpsCurrentFrameCountTime'
+	instanceVariableNames: 'infectionHistory transmitInfection recentTemperatures temperature historyWindow nAtoms fpsEnabled fps fpsCurrentFrameCount fpsCurrentFrameCountTime resume'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'BouncingAtoms'!
@@ -32,14 +32,14 @@ RectangleLikeMorph subclass: #BouncingAtomsMorph
 BouncingAtomsMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #GraphMorph category: #BouncingAtoms!
-FunctionGraphMorph subclass: #GraphMorph
-	instanceVariableNames: 'data points yScaleFactor'
+!classDefinition: #InfectionGraph category: #BouncingAtoms!
+FunctionGraphMorph subclass: #InfectionGraph
+	instanceVariableNames: 'data points yScaleFactor startTime deltaT ticN tics yFactor xFactor resumed'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'BouncingAtoms'!
-!classDefinition: 'GraphMorph class' category: #BouncingAtoms!
-GraphMorph class
+!classDefinition: 'InfectionGraph class' category: #BouncingAtoms!
+InfectionGraph class
 	instanceVariableNames: ''!
 
 
@@ -74,8 +74,8 @@ This morph shows how simulation of an ideal gas might work. When the morph gets 
      start an infection and note the effect as atoms pass over the Heater/Cooler Atom(s).
   8. Repeatedly start an infection with the same atoms from step 7.!
 
-!GraphMorph commentStamp: '<historical>' prior: 0!
-Normalize points in a collection, plot them in a graph, with lines drawn between them.!
+!InfectionGraph commentStamp: 'dhn 5/11/2016 15:55' prior: 0!
+Normalize the number of infected atoms, treat them as a time series, and plot them in a graph.!
 
 !AtomMorph methodsFor: 'private' stamp: 'jm 8/10/1998 17:40'!
 bounceIn: aRect
@@ -333,7 +333,7 @@ drawOn: aCanvas
 handlesMouseDown: aMouseButtonEvent
 	^ true! !
 
-!BouncingAtomsMorph methodsFor: 'initialization' stamp: 'jmv 2/27/2016 19:47'!
+!BouncingAtomsMorph methodsFor: 'initialization' stamp: 'dhn 6/11/2016 11:26'!
 initialize
 	"initialize the state of the receiver"
 	super initialize.
@@ -341,37 +341,54 @@ initialize
 	fps _ 0.
 	fpsCurrentFrameCount _ 0.
 	fpsCurrentFrameCountTime _ 0.
+	resume _ true.
 	self reset.! !
 
-!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 7/4/2015 13:46'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/3/2016 19:45'!
 installHeaterCooler
-	"Replace an atom with a heater/cooler atom"
-	| a x |
+	"Replace a regular atom with a heater/cooler atom"
+	| non x |
 
-	x _ self submorphs at: self submorphs size atRandom.
-	x delete.	"Take away an atom"
-	nAtoms _ nAtoms - 1.
+	non _ self submorphs select: [:a | (a hasProperty: #velocityDelta) not].
+	non ifNotEmpty: [	
+		
+		non shuffled first delete.	"Take away an atom"
+		nAtoms _ nAtoms - 1.
 
-	a _ HeaterCoolerAtom new.
-	a randomPositionIn: self morphLocalBounds maxVelocity: 10.
-	self addMorph: a.	"Add an atom"
+		x _ HeaterCoolerAtom new.
+		x randomPositionIn: self morphLocalBounds maxVelocity: 10.
+		self addMorph: x]	"Add an atom"
 ! !
 
 !BouncingAtomsMorph methodsFor: 'testing' stamp: 'jmv 8/16/2015 11:41'!
 is: aSymbol
 	^aSymbol == #BouncingAtomsMorph or: [ super is: aSymbol ]! !
 
-!BouncingAtomsMorph methodsFor: 'menu' stamp: 'pb 7/16/2015 19:59'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/11/2016 11:41'!
 mouseButton2Activity
 	"Show a pop-up menu"
 	| tuples list index |
-	tuples _ #(#('Set Atom Count...' #setAtomCount) #('Start Infection' #startInfection) #('Show Infection History' #showInfectionHistory) #('Toggle Atom as Rectangle' #drawAsRect) #('Heater/Cooler Atom' #installHeaterCooler) #('Toggle FPS' #toggleFPS) ).
-	list _ tuples collect: [ :ea |
-		ea first ].
+	
+	tuples _ #(
+		#('Set Atom Count...' 			#setAtomCount) 
+		#('Start Infection' 				#startInfection) 
+		#('Show Infection History' 		#showInfectionHistory) 
+		#('Toggle Atom as Rectangle' 	#drawAsRect) 
+		#('Heater/Cooler Atom' 		#installHeaterCooler) 
+		#('Toggle FPS' 					#toggleFPS) 
+		#('Pause/Resume' 				#pauseResume)).
+		
+	list _ tuples collect: [ :ea | ea first ].
 	index _ (PopUpMenu labelArray: list) startUpWithCaption: 'Bouncing Atoms'.
 	index > 0 ifTrue: [ self perform: ((tuples at: index) at: 2) ].! !
 
-!BouncingAtomsMorph methodsFor: 'other' stamp: 'dhn 7/4/2015 13:50'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/11/2016 11:37'!
+pauseResume
+	"Toggle the action"
+	
+	resume _ resume not! !
+
+!BouncingAtomsMorph methodsFor: 'other' stamp: 'dhn 6/19/2016 18:50'!
 reportInfection
 	"Produce a graph of infection history"
 	| count |
@@ -388,7 +405,7 @@ reportInfection
 		historyWindow 
 			data: infectionHistory;
 			yScaleFactor: nAtoms;
-			update: #redraw].
+			plotData].
 	count = nAtoms ifTrue: [
 		transmitInfection := false.
 		self stopStepping].
@@ -415,53 +432,65 @@ setAtomCount
 	self reset.
 	self startStepping.! !
 
-!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 5/26/2015 19:49'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/19/2016 18:50'!
 showInfectionHistory
 	"Show a graph of the infection history"
-	historyWindow _ GraphMorph new.
+	historyWindow _ InfectionGraph new.
 	historyWindow 
 		data: infectionHistory;
 		yScaleFactor: nAtoms;
 		domain: (-0.8 to: 11);
-		update: #redraw.
+		setXYFactors;
+		plotData.
 	(historyWindow embeddedInMorphicWindowLabeled: 'Infection History') openInWorld
 ! !
 
-!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/2/2015 19:49'!
+!BouncingAtomsMorph methodsFor: 'menu' stamp: 'dhn 6/3/2016 19:45'!
 startInfection
-
-	self submorphsDo: [:m | m infected: false].
-	(self submorphs at: self submorphs size atRandom) infected: true.
+	"Introduce one infected atom in the collection"
+	| non |
+	
+	non _ self submorphs select: [:a | (a hasProperty: #velocityDelta) not].
+	non ifNotEmpty: [	
+		non do: [:ea | ea infected: false].	"disinfect"
+		non shuffled first infected: true].	"randomly infect one"
+	
 	infectionHistory := OrderedCollection new: 500.
 	infectionHistory add: 0.
 	transmitInfection := true.
 	self startStepping.
 ! !
 
-!BouncingAtomsMorph methodsFor: 'stepping and presenter' stamp: 'jmv 2/27/2016 19:51'!
+!BouncingAtomsMorph methodsFor: 'stepping and presenter' stamp: 'dhn 6/11/2016 12:13'!
 stepAt: millisecondSinceLast
 	"Bounce those atoms!!"
 	| r bounces |
-	bounces := 0.
-	r := 0 @ 0 corner: self morphExtent - (8 @ 8).
-	self submorphsDo: [ :m |
-		(m is: #AtomMorph) ifTrue: [
-			(m bounceIn: r) ifTrue: [ bounces := bounces + 1 ]]].
-	"compute a 'temperature' that is proportional to the number of bounces
-	 divided by the circumference of the enclosing rectangle"
-	self updateTemperature: 10000.0 * bounces / (r width + r height).
-	transmitInfection ifTrue: [ self reportInfection ].
-	fpsEnabled ifTrue: [
-		fpsCurrentFrameCountTime < 1000
-			ifTrue: [
-				fpsCurrentFrameCount := fpsCurrentFrameCount + 1.
-				fpsCurrentFrameCountTime _ fpsCurrentFrameCountTime + millisecondSinceLast.
-				]
-			ifFalse: [
-				fps := fpsCurrentFrameCount.
-				fpsCurrentFrameCount := 1.
-				fpsCurrentFrameCountTime _ 0 ]].
-	self redrawNeeded! !
+	
+	historyWindow ifNotNil: [historyWindow resumed: resume].
+	
+	resume ifTrue: [
+		bounces := 0.
+		r := 0 @ 0 corner: self morphExtent - (8 @ 8).
+		self submorphsDo: [ :m |
+			(m is: #AtomMorph) ifTrue: [
+				(m bounceIn: r) ifTrue: [ bounces := bounces + 1 ]]].
+		"compute a 'temperature' that is proportional to the number of bounces
+		 divided by the circumference of the enclosing rectangle"
+		self updateTemperature: 10000.0 * bounces / (r width + r height).
+		transmitInfection ifTrue: [ self reportInfection ].
+		fpsEnabled ifTrue: [
+			fpsCurrentFrameCountTime < 1000
+				ifTrue: [
+					fpsCurrentFrameCount := fpsCurrentFrameCount + 1.
+					fpsCurrentFrameCountTime _ fpsCurrentFrameCountTime + millisecondSinceLast.
+					]
+				ifFalse: [
+					fps := fpsCurrentFrameCount.
+					fpsCurrentFrameCount := 1.
+					fpsCurrentFrameCountTime _ 0 ]].
+		self redrawNeeded]
+	
+! !
 
 !BouncingAtomsMorph methodsFor: 'testing' stamp: 'pb 7/16/2015 21:07'!
 stepTime
@@ -524,34 +553,39 @@ open
 
 	self initializedInstance openInHand! !
 
-!GraphMorph methodsFor: 'drawing' stamp: 'dhn 5/26/2015 20:12'!
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/12/2016 10:50'!
 asNormalizedPoints: aCollection
 	"Answer an array of points which are mapped on [0, T] in both dimensions, where T is a multiple of 10"
-	| yArray yFactor xArray xFactor result |
-	yFactor _ 10 raisedTo: yMax log asInteger.
+	| yArray xArray result |
+	
+	aCollection size == 2 ifTrue: [
+		self ticN: 1000.
+		self startTime: Time localMillisecondClock.
+		tics _ OrderedCollection new].
+	((deltaT _ Time localMillisecondClock - self startTime) > self ticN) ifTrue: [
+		self tics add: aCollection size.
+		ticN _ ticN + 1000].
 	yArray _ yFactor * (self normalize: aCollection asOrderedCollection with: yScaleFactor).
-	xFactor _ 10 raisedTo: xMax log asInteger.
 	xArray _ xFactor * (self normalize: (0 to: aCollection size) asArray).
+	
 	result _ OrderedCollection new.
-	1
-		to: yArray size
-		do: [ :i |
-			result add: (xArray at: i) @ (yArray at: i) ].
+	1 to: yArray size	do: [ :i | result add: (xArray at: i) @ (yArray at: i) ].
+	
 	^ result.! !
 
-!GraphMorph methodsFor: 'accessing' stamp: 'dhn 5/6/2015 09:33'!
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/6/2015 09:33'!
 color: aColor
 
 	super color: aColor.
 ! !
 
-!GraphMorph methodsFor: 'accessing' stamp: 'dhn 5/23/2015 16:09'!
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/23/2015 16:09'!
 data: aCollection
 
 	data _ aCollection
 ! !
 
-!GraphMorph methodsFor: 'drawing' stamp: 'dhn 5/29/2015 18:21'!
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/12/2016 12:28'!
 drawOn: aCanvas
 	| fully |
 	fully _ 10 raisedTo: yMax log asInteger.
@@ -561,16 +595,23 @@ drawOn: aCanvas
 	aCanvas line: (self toMorphic: 0@fully) to: (self toMorphic: xMax@fully) width: 2 color: Color lightRed.
 
 	points ifNotNil: [
-		1 to: points size - 1 do: [:n |
-			aCanvas line: (self toMorphic: (points at: n)) to: (self toMorphic: (points at: n + 1)) width: 2 color: Color black]]! !
+		1 to: points size - 1 do: [:n | | p |
+			aCanvas 	"continue the graph"
+				line: (self toMorphic: (p _ points at: n)) 	"from point"
+				to: (self toMorphic: (points at: n + 1)) 	"to point"
+				width: 2 color: Color black.
+			(self tics includes: n) ifTrue: [
+				aCanvas 	"plot the tic"
+					line: (self toMorphic: (p x) @ 0) 
+					to: (self toMorphic: (p x) @ (self class ticLength)) 
+					width: 2 color: Color lightGray]]]! !
 
-!GraphMorph methodsFor: 'initialization' stamp: 'dhn 5/23/2015 16:02'!
+!InfectionGraph methodsFor: 'initialization' stamp: 'dhn 5/12/2016 09:50'!
 initialize
 
-	super initialize
-! !
+	super initialize! !
 
-!GraphMorph methodsFor: 'drawing' stamp: 'dhn 5/23/2015 11:50'!
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/23/2015 11:50'!
 normalize: aCollection
 	"Answer aCollection divided by its maximum"
 	| max |
@@ -580,7 +621,7 @@ normalize: aCollection
 	^ OrderedCollection new
 		addAll: aCollection / (max * 1.0)! !
 
-!GraphMorph methodsFor: 'drawing' stamp: 'dhn 5/26/2015 20:09'!
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/26/2015 20:09'!
 normalize: aCollection with: aFactor
 	"Answer aCollection divided by its maximum and scaled by maximum/aFactor"
 	| max |
@@ -590,15 +631,81 @@ normalize: aCollection with: aFactor
 	^ OrderedCollection new
 		addAll: (aCollection / (max * 1.0)) * (max / aFactor)! !
 
-!GraphMorph methodsFor: 'drawing' stamp: 'dhn 5/26/2015 12:18'!
-update: aSymbol
-	"Re-normalize data if parameter = #redraw"
-	super update: aSymbol.
-	(aSymbol == #redraw and: (data size > 1)) ifTrue: [points _ self asNormalizedPoints: data]
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 6/19/2016 20:46'!
+plotData
+	"Re-normalize data"
+
+	data size > 1 ifTrue: [
+		points _ self asNormalizedPoints: data.
+		self redrawNeeded]! !
+
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/11/2016 02:06'!
+points
+	"Answer the value of points"
+
+	^ points! !
+
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/11/2016 02:06'!
+points: anObject
+	"Set the value of points"
+
+	points _ anObject! !
+
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 6/11/2016 12:13'!
+resumed: anObject
+	"Set the value of resumed"
+
+	resumed _ anObject! !
+
+!InfectionGraph methodsFor: 'initialization' stamp: 'dhn 5/11/2016 21:17'!
+setXYFactors
+	"Set the values of xFactor and yFactor"
+
+	xFactor _ 10 raisedTo: xMax log asInteger.
+	yFactor _ 10 raisedTo: yMax log asInteger
 ! !
 
-!GraphMorph methodsFor: 'accessing' stamp: 'dhn 5/26/2015 12:25'!
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/12/2016 10:39'!
+startTime
+	"Answer the value of startTime"
+	
+	startTime ifNil: [startTime _ Time localMillisecondClock].
+	^ startTime! !
+
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/11/2016 02:06'!
+startTime: anObject
+	"Set the value of startTime"
+
+	startTime _ anObject! !
+
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/12/2016 10:49'!
+ticN
+	"Answer the value of ticN"
+	
+	ticN ifNil: [ticN _ 1000].
+	^ ticN! !
+
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/12/2016 10:15'!
+ticN: anObject
+	"Set the value of ticN"
+
+	ticN _ anObject! !
+
+!InfectionGraph methodsFor: 'drawing' stamp: 'dhn 5/12/2016 10:19'!
+tics
+	"Answer the value of tics"
+	
+	tics ifNil: [tics _ OrderedCollection new].
+	^ tics! !
+
+!InfectionGraph methodsFor: 'accessing' stamp: 'dhn 5/26/2015 12:25'!
 yScaleFactor: aNumber
 
 	yScaleFactor _ aNumber
 ! !
+
+!InfectionGraph class methodsFor: 'display' stamp: 'dhn 5/11/2016 16:01'!
+ticLength
+	"Answer the length of tic marks"
+	
+	^ 0.2! !

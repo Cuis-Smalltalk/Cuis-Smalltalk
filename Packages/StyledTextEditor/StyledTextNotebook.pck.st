@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2710] on 1 April 2016 at 2:13:44.743542 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2781] on 31 May 2016 at 12:07:04.27849 pm'!
 'Description Please enter a description for this package.'!
-!provides: 'StyledTextNotebook' 1 2!
+!provides: 'StyledTextNotebook' 1 3!
 !requires: 'StyledText' 1 nil nil!
 !classDefinition: #BpStyledTextNotebook category: #StyledTextNotebook!
 Object subclass: #BpStyledTextNotebook
@@ -93,11 +93,11 @@ ZpyzuH3Hhdm799l178ITdg916R5Kf2H9yeJCoRAWFxcr/rtUChlk/QGoFPNClwN64wAAAABJ
 RU5ErkJggg==' base64Decoded asByteArray readStream ].
 	^SaveIcon! !
 
-!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 4/1/2016 13:57'!
+!BpStyledTextNotebook class methodsFor: 'StyledText Notebook' stamp: 'jmv 5/31/2016 11:15'!
 startUp
 
 	[
-		MyModel _ Filename asFileEntry readStream: [ :strm |
+		MyModel _ Filename asFileEntry readStreamDo: [ :strm |
 			(SmartRefStream on: strm) next ].
 		AppMorph submorphs first
 			 model: MyModel;

@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2713] on 2 April 2016 at 10:51:13.699672 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2820] on 16 June 2016 at 1:19:29.860322 pm'!
 'Description Browse class comments for classes with names such as "Pluggable," "Morphic," "Text," or "Morph" which appear in a hierarchical list.'!
-!provides: 'ClassCommentBrowser' 1 28!
+!provides: 'ClassCommentBrowser' 1 34!
 !classDefinition: #CommentGuide category: #ClassCommentBrowser!
 AbstractHierarchicalList subclass: #CommentGuide
 	instanceVariableNames: 'window rootNames root browser subList index key'
@@ -66,8 +66,10 @@ Provide the wrapper for a list item in CommentGuideWindow.
 
 Removes the undesired cruft after the item name.!
 
-!CommentGuideListMorph commentStamp: 'dhn 11/5/2015 12:19' prior: 0!
-A list of terms and acronyms which occur in class names. Selection can be made by typed key, arrows, or clicks.!
+!CommentGuideListMorph commentStamp: 'dhn 6/15/2016 17:30' prior: 0!
+A list of terms and acronyms which occur in class names. Selection can be made by typed key, arrows, or clicks.
+
+This class enables access to the scroller, which is needed for selection by typed key.!
 
 !CommentGuideWindow commentStamp: 'dhn 1/28/2016 16:23' prior: 0!
 Show a window for browsing class comments based on class names which contain certain strings, such as:
@@ -283,18 +285,14 @@ asString
 	"Answer the string for the hierarchical list category"
 	^ itemName! !
 
-!CommentGuideListMorph methodsFor: 'events-processing' stamp: 'dhn 11/5/2015 14:52'!
-update: aSymbol
-	"React to list selection via typed key"
+!CommentGuideListMorph methodsFor: 'events-processing' stamp: 'dhn 6/15/2016 16:56'!
+keySelection
+	"Scroll the hiearchical list based on a keystroke"
 	| i |
 	
-	super update: aSymbol.
-	aSymbol == #keySelection
-		ifTrue: [
-			model getCurrentSelection ifNil: [^self selectionIndex: 0].
-			i _ scroller submorphs findFirst: [:m | m contents == model getCurrentSelection itemName].
-			^ self selectionIndex: i]
-! !
+	model getCurrentSelection ifNil: [^self selectionIndex: 0].
+	i _ scroller submorphs findFirst: [:m | m contents == model getCurrentSelection itemName].
+	^ self selectionIndex: i! !
 
 !CommentGuideWindow methodsFor: 'browsing' stamp: 'dhn 11/5/2015 14:53'!
 browseClass
@@ -335,7 +333,7 @@ browseVersions
 			VersionsBrowserWindow 
 				browseCommentOf: (Smalltalk at: model getCurrentSelection item asSymbol)]! !
 
-!CommentGuideWindow methodsFor: 'instance creation' stamp: 'jmv 3/28/2016 09:44'!
+!CommentGuideWindow methodsFor: 'instance creation' stamp: 'dhn 6/16/2016 13:08'!
 buildMorphicWindow
 	"Answer a window for the class comment browser"
 	| row |
@@ -348,6 +346,7 @@ buildMorphicWindow
 		menuGetter: #commentGuideMenu
 		keystrokeAction: #respondToKey:.
 	listMorph name: #Hierarchy.
+	self when: #getList send: #update: to: listMorph withArguments: #(#getList).
 	textMorph _ TextModelMorph textProvider: model.
 	textMorph 
 		name: 'Class Comment';
@@ -404,13 +403,13 @@ listMorph
 
 	^ listMorph! !
 
-!CommentGuideWindow methodsFor: 'instance creation' stamp: 'dhn 9/24/2015 09:35'!
+!CommentGuideWindow methodsFor: 'instance creation' stamp: 'dhn 6/16/2016 13:17'!
 refreshList
 	"Re-build the hierarchical list"
 	model 
 		noteNewSelection: nil;
 		rootNames: model setList.
-	listMorph update: #getList! !
+	self triggerEvent: #getList 	"needed when a class is added or deleted"! !
 
 !CommentGuideWindow methodsFor: 'instance creation' stamp: 'dhn 9/24/2015 08:45'!
 refreshListAfterDelay
@@ -418,31 +417,54 @@ refreshListAfterDelay
 
 	self addAlarm: #refreshList after: 20 "milliseconds" ! !
 
-!CommentGuideWindow methodsFor: 'events' stamp: 'dhn 11/5/2015 11:33'!
+!CommentGuideWindow methodsFor: 'events' stamp: 'dhn 6/15/2016 16:56'!
 respondToKey: aChar
 	"Take action when a key is struck. The key value is aChar"
 
 	model indexOf: aChar.
-	listMorph update: #keySelection! !
+	listMorph keySelection! !
 
-!CommentGuideWindow methodsFor: 'searching' stamp: 'dhn 9/21/2015 19:31'!
+!CommentGuideWindow methodsFor: 'browsing' stamp: 'dhn 5/19/2016 11:19'!
+scrollToClass: aString
+	"Scroll to an entry for the class named aString"
+	| cat m1 m2 str |
+	
+	"ensure that the first category which contains aString is expanded"
+	cat _ (model parseName: aString) first.
+	m1 _ listMorph findDeepSubmorphThat: [:ea | 
+		(ea respondsTo: #contents) and: [ea contents includesSubString: cat]] ifAbsent: [nil].
+	m1 ifNotNil: [m1 isExpanded ifFalse: [listMorph toggleExpandedState: m1]].
+	
+	"select the class entry and scroll it into view"
+	str _  aString asString printString.
+	m2 _ listMorph findDeepSubmorphThat: [:ea | 
+		(ea respondsTo: #contents) and: [ea contents includesSubString: str]] ifAbsent: [nil].
+	m2 ifNotNil: [
+		listMorph 
+			setSelectedMorph: m2;
+			scrollSelectionIntoView]! !
+
+!CommentGuideWindow methodsFor: 'searching' stamp: 'dhn 5/19/2016 11:26'!
 searchAllComments
 	"Search for a string in class comments of all classes"
-	| arg hits menu |
+	| arg hits caption items n |
+	
 	arg _ ''.
-		arg _ FillInTheBlankMorph request: 'Search All Class Comments for:'.
-		(menu _ MenuMorph entitled: 'Comments of All Classes with "', arg, '"')
-			defaultTarget: self;
-			addStayUpIcons.
+	arg _ FillInTheBlankMorph request: 'Search All Class Comments for:'.
+	caption _ 'Classes with Comments containing "', arg, '"'.
 			
-		hits _ self searchIn: Smalltalk classNames for: arg.
-		hits 
-			ifEmpty: [listMorph flash]
-			ifNotEmpty: [
-				hits do: [:h | menu add: h selector: #showFind: argument: h].
-				menu 
-					openInWorld;
-					morphPosition: self morphPosition + (-70@50)].
+	hits _ self searchIn: Smalltalk classNames for: arg.
+	hits 
+		ifEmpty: [listMorph flash]
+		ifNotEmpty: [
+			items _ String streamContents: [:s | hits do: [:i | s nextPutAll: i asString; newLine]].
+			n _ (PopUpMenu labels: items lines: nil)
+				startUpWithCaption: caption.
+			n > 0 ifTrue:[
+				self 
+					scrollToClass: (hits at: n);
+					showFind: (hits at: n) "show the comment of the selected class" ]].
+					
 	^ nil! !
 
 !CommentGuideWindow methodsFor: 'searching' stamp: 'dhn 9/21/2015 16:50'!
@@ -508,12 +530,14 @@ searchIn: aCollection for: aString
 			ifTrue: [hits addLast: ea]].
 	^ hits! !
 
-!CommentGuideWindow methodsFor: 'browsing' stamp: 'dhn 9/10/2015 21:11'!
+!CommentGuideWindow methodsFor: 'browsing' stamp: 'dhn 5/19/2016 11:37'!
 showFind: aName
-	"Cause the class comment for aName to display"
-	| str |
-	str _ model commentOf: aName.
-	textMorph model actualContents: str! !
+	"Cause the class comment for aName to display; answer the comment"
+	| cmt |
+
+	cmt _ model commentOf: aName.
+	textMorph model actualContents: cmt.
+	^ cmt! !
 
 !CommentGuideWindow methodsFor: 'accessing' stamp: 'dhn 8/19/2015 19:47'!
 textMorph

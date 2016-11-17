@@ -1,37 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2679] on 30 January 2016 at 7:39:08.476986 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2933] on 6 September 2016 at 10:17:09 am'!
 'Description Please enter a description for this package '!
-!provides: 'YAXO' 1 9!
-!requires: 'Network-Kernel' 1 nil nil!
-!classDefinition: #DTDEntityDeclaration category: #YAXO!
-Object subclass: #DTDEntityDeclaration
-	instanceVariableNames: 'name value ndata'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'YAXO'!
-!classDefinition: 'DTDEntityDeclaration class' category: #YAXO!
-DTDEntityDeclaration class
-	instanceVariableNames: 'contextBehavior'!
-
-!classDefinition: #DTDExternalEntityDeclaration category: #YAXO!
-DTDEntityDeclaration subclass: #DTDExternalEntityDeclaration
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'YAXO'!
-!classDefinition: 'DTDExternalEntityDeclaration class' category: #YAXO!
-DTDExternalEntityDeclaration class
-	instanceVariableNames: ''!
-
-!classDefinition: #DTDParameterEntityDeclaration category: #YAXO!
-DTDEntityDeclaration subclass: #DTDParameterEntityDeclaration
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'YAXO'!
-!classDefinition: 'DTDParameterEntityDeclaration class' category: #YAXO!
-DTDParameterEntityDeclaration class
-	instanceVariableNames: ''!
-
+!provides: 'YAXO' 1 13!
 !classDefinition: #SAXException category: #YAXO!
 Error subclass: #SAXException
 	instanceVariableNames: ''
@@ -110,6 +79,36 @@ Warning subclass: #SAXWarning
 	category: 'YAXO'!
 !classDefinition: 'SAXWarning class' category: #YAXO!
 SAXWarning class
+	instanceVariableNames: ''!
+
+!classDefinition: #DTDEntityDeclaration category: #YAXO!
+Object subclass: #DTDEntityDeclaration
+	instanceVariableNames: 'name value ndata'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'YAXO'!
+!classDefinition: 'DTDEntityDeclaration class' category: #YAXO!
+DTDEntityDeclaration class
+	instanceVariableNames: 'contextBehavior'!
+
+!classDefinition: #DTDExternalEntityDeclaration category: #YAXO!
+DTDEntityDeclaration subclass: #DTDExternalEntityDeclaration
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'YAXO'!
+!classDefinition: 'DTDExternalEntityDeclaration class' category: #YAXO!
+DTDExternalEntityDeclaration class
+	instanceVariableNames: ''!
+
+!classDefinition: #DTDParameterEntityDeclaration category: #YAXO!
+DTDEntityDeclaration subclass: #DTDParameterEntityDeclaration
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'YAXO'!
+!classDefinition: 'DTDParameterEntityDeclaration class' category: #YAXO!
+DTDParameterEntityDeclaration class
 	instanceVariableNames: ''!
 
 !classDefinition: #SAXHandler category: #YAXO!
@@ -250,23 +249,6 @@ bolot@cc.gatech.edu
 
 breaks the stream of characters into a stream of XMLnodes (aka token stream)
 token stream is used by XMLparser to generate XMLdocument tree!
-
-!SocketStream methodsFor: '*YAXO' stamp: 'jmv 7/30/2012 17:18'!
-pushBack: aString
-	"jmv-Nasty. Horrible. Needed by XMLTokenizer"
-
-	| goBack |
-	goBack _ aString size.
-	lastRead < goBack ifTrue: [
-		self error: 'can not #pushBack: that much'.
-		^self ].
-	lastRead _ lastRead - goBack! !
-
-!PositionableStream methodsFor: '*YAXO' stamp: 'jmv 7/30/2012 17:18'!
-pushBack: aString
-	"jmv-Nasty. Horrible. Needed by XMLTokenizer"
-
-	self skip: aString size negated! !
 
 !DTDEntityDeclaration methodsFor: 'behaviors' stamp: 'mir 1/15/2002 11:29'!
 bypass
@@ -563,10 +545,10 @@ parseDocumentFrom: aStream
 parseDocumentFromFileNamed: fileName
 	^self parseDocumentFromFileNamed: fileName readIntoMemory: false! !
 
-!SAXHandler class methodsFor: 'instance creation' stamp: 'jmv 10/3/2015 12:30'!
+!SAXHandler class methodsFor: 'instance creation' stamp: 'pb 5/25/2016 01:33'!
 parseDocumentFromFileNamed: fileName readIntoMemory: readIntoMemory
 
-	^fileName asFileEntry readStream: [ :stream |
+	^fileName asFileEntry readStreamDo: [ :stream |
 		self parseDocumentFrom: 
 			(readIntoMemory
 				ifTrue: [ stream contentsOfEntireFile readStream ]
@@ -576,10 +558,10 @@ parseDocumentFromFileNamed: fileName readIntoMemory: readIntoMemory
 parserOnFileNamed: fileName
 	^self parserOnFileNamed: fileName readIntoMemory: false! !
 
-!SAXHandler class methodsFor: 'instance creation' stamp: 'jmv 10/27/2015 18:06'!
+!SAXHandler class methodsFor: 'instance creation' stamp: 'pb 5/25/2016 01:51'!
 parserOnFileNamed: fileName readIntoMemory: readIntoMemory
 	| stream  |
-	stream _ (FmDirectoryEntry currentDirectory // fileName) privateReadStream.
+	stream _ (DirectoryEntry currentDirectory // fileName) readStream.
 	readIntoMemory
 		ifTrue: [stream _ stream contentsOfEntireFile readStream].
 	^self on: stream! !
@@ -1617,7 +1599,7 @@ nextCDataOrConditional
 	self errorExpected: 'CData or declaration'
 ! !
 
-!XMLTokenizer methodsFor: 'tokenizing' stamp: 'jmv 12/1/2009 14:47'!
+!XMLTokenizer methodsFor: 'tokenizing' stamp: 'jmv 9/5/2016 21:06:18'!
 nextCharReference
 	| base asciiCodeOrCodePoint |
 	self next == $#
@@ -1632,7 +1614,7 @@ nextCharReference
 	(self next) == $;
 		ifFalse: [self errorExpected: '";"'].
 
-	^Character safeValue: asciiCodeOrCodePoint! !
+	^Character safeCodePoint: asciiCodeOrCodePoint! !
 
 !XMLTokenizer methodsFor: 'tokenizing' stamp: 'mir 11/28/2000 17:54'!
 nextComment
@@ -2060,15 +2042,6 @@ popNestingLevel
 			self nestedStreams size > 0
 				ifFalse: [nestedStreams _ nil]]! !
 
-!XMLTokenizer methodsFor: 'streaming' stamp: 'mir 1/16/2002 10:50'!
-pushBack: aString
-	| pushBackString |
-	pushBackString _ peekChar
-		ifNil: [aString]
-		ifNotNil: [peekChar asString , aString].
-	peekChar _ nil.
-	self pushStream: (ReadStream on: pushBackString)! !
-
 !XMLTokenizer methodsFor: 'streaming' stamp: 'mir 1/16/2002 10:54'!
 pushStream: newStream
 	"Continue parsing from the new nested stream."
@@ -2147,11 +2120,11 @@ topStream
 		ifTrue: [self nestedStreams first]
 		ifFalse: [self stream]! !
 
-!XMLTokenizer methodsFor: 'streaming' stamp: 'mir 5/14/2003 18:45'!
+!XMLTokenizer methodsFor: 'streaming' stamp: 'jmv 6/15/2016 14:35'!
 unpeek
 	peekChar
 		ifNotNil: [
-			self stream pushBack: (String with: peekChar).
+			self stream skip: -1.
 			peekChar _ nil]! !
 
 !XMLTokenizer methodsFor: 'testing' stamp: 'mir 6/5/2003 16:33'!

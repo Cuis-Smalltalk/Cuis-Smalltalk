@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #1865] on 12 November 2013 at 8:54:49.789064 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2965] on 3 November 2016 at 11:55:11 am'!
 'Description Please enter a description for this package.'!
-!provides: 'RTFImporting' 1 2!
+!provides: 'RTFImporting' 1 4!
 !requires: 'Graphics-Files-Additional' 1 nil nil!
 !requires: 'ExtendedClipboard' 1 nil nil!
 !classDefinition: #RTFException category: #RTFimporting!
@@ -186,7 +186,7 @@ RTFToken class
 !classDefinition: #RTFTokenizer category: #RTFimporting!
 Object subclass: #RTFTokenizer
 	instanceVariableNames: 'stream buffer chunkBuffer last next afterNext afterAfter'
-	classVariableNames: 'ControlSymbolSet EndOfArgumentSet EndOfKeywordSet'
+	classVariableNames: 'ControlSymbolSet EndOfKeywordSet'
 	poolDictionaries: ''
 	category: 'RTFimporting'!
 !classDefinition: 'RTFTokenizer class' category: #RTFimporting!
@@ -349,7 +349,7 @@ scan: chunkString into: aBuffer startingAt: index
 	buffer := aBuffer.
 	self scanStartingAt: index! !
 
-!RTFChunkScanner methodsFor: 'private' stamp: 'mir 8/12/2006 15:59'!
+!RTFChunkScanner methodsFor: 'private' stamp: 'jmv 9/5/2016 20:31:48'!
 scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta
 	"Primitive. This is the inner loop of text display--but see 
 	scanCharactersFrom: to:rightX: which would get the string, 
@@ -368,7 +368,7 @@ scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX sto
 	[lastIndex <= stopIndex]
 		whileTrue: 
 			[char _ (sourceString at: lastIndex).
-			ascii _ char asciiValue + 1.
+			ascii _ char numericValue + 1.
 			(stops at: ascii) == nil ifFalse: [^stops at: ascii].
 			lastIndex _ lastIndex + 1].
 	lastIndex _ stopIndex.
@@ -401,7 +401,7 @@ scanStartingAt: index
 		ifTrue: [lastIndex := lastIndex + 1].
 	self addScannedString! !
 
-!RTFChunkScanner class methodsFor: 'class initialization' stamp: 'mir 8/12/2006 15:51'!
+!RTFChunkScanner class methodsFor: 'class initialization' stamp: 'jmv 9/5/2016 20:31:57'!
 initialize
 	"RTFChunkScanner initialize"
 
@@ -413,10 +413,10 @@ initialize
 	ScannerTable at: CharacterScanner endOfRunCode put: #scanFinished.
 	ScannerTable at: CharacterScanner crossedXCode put: #scanFinished.
 
-	ScannerTable at: ${ asciiValue + 1 put: #blockOpenAt:.
-	ScannerTable at: $} asciiValue + 1 put: #blockCloseAt:.
-	ScannerTable at: Character lfCharacter asciiValue + 1 put: #lfAt:.
-	ScannerTable at: Character crCharacter asciiValue + 1 put: #crAt:.
+	ScannerTable at: ${ numericValue + 1 put: #blockOpenAt:.
+	ScannerTable at: $} numericValue + 1 put: #blockCloseAt:.
+	ScannerTable at: Character lfCharacter numericValue + 1 put: #lfAt:.
+	ScannerTable at: Character crCharacter numericValue + 1 put: #crAt:.
 ! !
 
 !RTFChunkScanner class methodsFor: 'instance creation' stamp: 'mir 8/12/2006 16:04'!
@@ -504,17 +504,17 @@ createHandleMessage: token
 	"builds a handle message from a keyword token"
 	^HandleMessages at: token word ifAbsent: [('handle' , token word , ':') asSymbol]! !
 
-!RTFParser methodsFor: 'utilities' stamp: 'jmv 4/4/2011 16:28'!
+!RTFParser methodsFor: 'utilities' stamp: 'jmv 9/5/2016 20:32:13'!
 digitValue: char
 
 	| value |
-	value _ char asciiValue.
-	value <= $9 asciiValue 
-		ifTrue: [^value - $0 asciiValue].
-	value >= $a asciiValue 
-		ifTrue: [value <= $z asciiValue ifTrue: [^value - $a asciiValue + 10]].
-	value >= $A asciiValue 
-		ifTrue: [value <= $Z asciiValue ifTrue: [^value - $A asciiValue + 10]].
+	value _ char numericValue.
+	value <= $9 numericValue 
+		ifTrue: [^value - $0 numericValue].
+	value >= $a numericValue 
+		ifTrue: [value <= $z numericValue ifTrue: [^value - $a numericValue + 10]].
+	value >= $A numericValue 
+		ifTrue: [value <= $Z numericValue ifTrue: [^value - $A numericValue + 10]].
 ! !
 
 !RTFParser methodsFor: 'utilities' stamp: 'tat 5/3/2006 02:18'!
@@ -560,10 +560,10 @@ handleLeftCurlyBracket: token
 handleRightCurlyBracket: token
 	builder addUnicodeContents: '}'! !
 
-!RTFParser methodsFor: 'handlers-characters' stamp: 'tat 11/1/2006 15:06'!
+!RTFParser methodsFor: 'handlers-characters' stamp: 'jmv 9/5/2016 21:03:40'!
 handleSomeCodePageHexValue: token
 	"send text to destination if not nil"
-	state destination value: (String value: token arg)
+	state destination value: (String with: (Character codePoint: token arg))
 ! !
 
 !RTFParser methodsFor: 'handlers-general' stamp: 'tat 5/5/2006 14:36'!
@@ -1137,12 +1137,12 @@ handletab: token
 
 	builder buildAddTab! !
 
-!RTFParser methodsFor: 'handlers-general' stamp: 'jmv 11/22/2011 15:23'!
+!RTFParser methodsFor: 'handlers-general' stamp: 'jmv 9/5/2016 20:30:28'!
 handleu: token
 	| string char |
 	char _ token arg < 0
-		ifTrue: [ RTFUnicode value: (65536 + token arg) or: nil ]
-		ifFalse: [ RTFUnicode value: token arg or: nil ].
+		ifTrue: [ RTFUnicode codePoint: (65536 + token arg) or: nil ]
+		ifFalse: [ RTFUnicode codePoint: token arg or: nil ].
 
 	"Do not output Unicode characters to a different destination, just suppress output"
 	state destination type = #default ifFalse: [^self].
@@ -1615,9 +1615,9 @@ addUnicodeContents: string
 attachCharacterStyleToParagraph
 	"Ver si hace falta algo como lo que hace Sophie..."! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:31'!
 buildAddBullet
-	self addUnicodeContents: (RTFUnicode value: 16r2022 or: $°) asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2022 or: $°) asString! !
 
 !RTFTextBuilder methodsFor: 'building-header' stamp: 'jmv 3/29/2011 22:26'!
 buildAddColorDef: coldef
@@ -1634,29 +1634,29 @@ buildAddContents: string
 
 	self addToText: possibleString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:34'!
 buildAddDoubleLeftQuote
-	self addUnicodeContents: (RTFUnicode value: 16r201C or: $") asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r201C or: $") asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:35'!
 buildAddDoubleRightQuote
-	self addUnicodeContents: (RTFUnicode value: 16r201D or: $") asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r201D or: $") asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:37'!
 buildAddEmDash
-	self addUnicodeContents: (RTFUnicode value: 16r2014 or: '--') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2014 or: '--') asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:39'!
 buildAddEmSpace
-	self addUnicodeContents: (RTFUnicode value: 16r2003 or: '  ') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2003 or: '  ') asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:41'!
 buildAddEnDash
-	self addUnicodeContents: (RTFUnicode value: 16r2013 or: $-) asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2013 or: $-) asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:44'!
 buildAddEnSpace
-	self addUnicodeContents: (RTFUnicode value: 16r2002 or: ' ') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2002 or: ' ') asString! !
 
 !RTFTextBuilder methodsFor: 'building-header' stamp: 'jmv 3/30/2011 16:38'!
 buildAddFontInfo: fontInfo
@@ -1664,23 +1664,23 @@ buildAddFontInfo: fontInfo
 	"fontTable atProperty: (fontInfo num) put: fontInfo"
 	fontTable at: (fontInfo num) put: fontInfo! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:46'!
 buildAddLeftQuote
-	self addUnicodeContents: (RTFUnicode value: 16r2018 or: $') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2018 or: $') asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:49'!
 buildAddNonBreakingHyphen
-	self addUnicodeContents: (RTFUnicode value: 16r2011 or: '-') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2011 or: '-') asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:34:02'!
 buildAddNonBreakingSpace
 	"This character is supported by ISO-8859-15"
-	self addUnicodeContents: (RTFUnicode value: 16r00A0) asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r00A0) asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:34:09'!
 buildAddOptionalHyphen
 	"This character is supported by ISO-8859-15"
-	self addUnicodeContents: (RTFUnicode value: 16r00AD) asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r00AD) asString! !
 
 !RTFTextBuilder methodsFor: 'building-pictures' stamp: 'jmv 3/30/2011 17:18'!
 buildAddPicture: picInfo from: aStream
@@ -1689,21 +1689,21 @@ buildAddPicture: picInfo from: aStream
 		ifNotNil: [ :form |
 			self addToText: '*' specialAttributes: {TextAnchor new anchoredFormOrMorph: form} ]! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:51'!
 buildAddQmSpace
-	self addUnicodeContents: (RTFUnicode value: 16r2005 or: ' ') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2005 or: ' ') asString! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:30:54'!
 buildAddRightQuote
-	self addUnicodeContents: (RTFUnicode value: 16r2019 or: $') asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r2019 or: $') asString! !
 
 !RTFTextBuilder methodsFor: 'building-header' stamp: 'jmv 3/30/2011 16:38'!
 buildAddStylesheet: pp! !
 
-!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 4/6/2011 10:39'!
+!RTFTextBuilder methodsFor: 'building-characters' stamp: 'jmv 9/5/2016 20:34:17'!
 buildAddTab
 	"This character is supported by ISO-8859-15"
-	self addUnicodeContents: (RTFUnicode value: 16r0009) asString! !
+	self addUnicodeContents: (RTFUnicode codePoint: 16r0009) asString! !
 
 !RTFTextBuilder methodsFor: 'building' stamp: 'jmv 3/30/2011 15:55'!
 buildAddURI: uriString alternate: string
@@ -2062,17 +2062,17 @@ default
 	"add if neeced"
 	^ "UTF8TextConverter new." nil! !
 
-!RTFTextConverter class methodsFor: 'services' stamp: 'jmv 4/4/2011 16:28'!
+!RTFTextConverter class methodsFor: 'services' stamp: 'jmv 9/5/2016 20:32:27'!
 digitValue: char
 
 	| value |
-	value _ char asciiValue.
-	value <= $9 asciiValue 
-		ifTrue: [^value - $0 asciiValue].
-	value >= $A asciiValue 
-		ifTrue: [value <= $Z asciiValue ifTrue: [^value - $A asciiValue + 10]].
-	value >= $a asciiValue 
-		ifTrue: [value <= $z asciiValue ifTrue: [^value - $a asciiValue + 10]].
+	value _ char numericValue.
+	value <= $9 numericValue 
+		ifTrue: [^value - $0 numericValue].
+	value >= $A numericValue 
+		ifTrue: [value <= $Z numericValue ifTrue: [^value - $A numericValue + 10]].
+	value >= $a numericValue 
+		ifTrue: [value <= $z numericValue ifTrue: [^value - $a numericValue + 10]].
 ! !
 
 !RTFLatin1TextConverter methodsFor: 'conversion' stamp: 'mir 8/13/2006 17:36'!
@@ -2083,14 +2083,14 @@ toSqueak: aChar
 toSqueak: char
 	^self subclassResponsibility! !
 
-!RTFMappingUnicodeTextConverter methodsFor: 'conversion' stamp: 'jmv 4/6/2011 10:40'!
+!RTFMappingUnicodeTextConverter methodsFor: 'conversion' stamp: 'jmv 9/5/2016 20:31:31'!
 toSqueak: char withTable: table
 
 	| value |
-	value _ char asciiValue.
+	value _ char numericValue.
 	value < 128 ifTrue: [^ char].
 	value > 255 ifTrue: [^ char].
-	^ RTFUnicode value: (table at: (value - 128 + 1)).
+	^ RTFUnicode codePoint: (table at: (value - 128 + 1)).
 ! !
 
 !RTFCP1250UnicodeTextConverter methodsFor: 'conversion' stamp: 'tat 8/2/2006 22:49'!
@@ -2293,10 +2293,6 @@ chunkBuffer
 controlSymbolSet
 	^ControlSymbolSet! !
 
-!RTFTokenizer methodsFor: 'private' stamp: 'mir 8/11/2006 20:53'!
-endOfArgumentSet
-	^EndOfArgumentSet! !
-
 !RTFTokenizer methodsFor: 'private' stamp: 'mir 8/11/2006 21:01'!
 endOfKeywordSet
 	^EndOfKeywordSet! !
@@ -2345,7 +2341,7 @@ on: aStream
 	
 ! !
 
-!RTFTokenizer methodsFor: 'private' stamp: 'mir 8/31/2006 12:27'!
+!RTFTokenizer methodsFor: 'private' stamp: 'jmv 11/3/2016 10:13:12'!
 parseChunk
 
 	"reads a string between two backslashes into buffer"
@@ -2380,7 +2376,7 @@ parseChunk
 						or: [(token at: index) = $-])
 						ifTrue: [
 							token := token copyFrom: index to: token size.
-							index := token indexOfAnyOf: self endOfArgumentSet.
+							index _ token findFirst: [ :c | c isDigit not and: [ c ~= $- ]].
 							(index = 0)
 								"if no separator or brace found, then whole chunk is a number"
 								ifTrue: [arg := token asNumber.
@@ -2459,7 +2455,7 @@ readNext
 	buffer ifEmpty: [afterAfter := nil] ifNotEmpty: [afterAfter := buffer removeFirst]
 ! !
 
-!RTFTokenizer methodsFor: 'private' stamp: 'jmv 3/30/2011 14:39'!
+!RTFTokenizer methodsFor: 'private' stamp: 'jmv 9/5/2016 20:33:12'!
 readStreamUpToNoEscapeInto: tokenStream
 	"reads from the stream until the \ at the end is not an escape character (i.e. not \\,\{ or \}"
 	"assume that stream is not at end"
@@ -2471,13 +2467,13 @@ readStreamUpToNoEscapeInto: tokenStream
 	"convert newline (#10#13, #13#10) to \par
 	 convert \'HH to \specialDDD"
 	token ifNotEmpty: [
-		peekValue := (token at: 1) asciiValue.
+		peekValue := (token at: 1) numericValue.
 		peekValue = 10
 			ifTrue: [
 				index := index + 1.
 				token size > 1
 					ifTrue: [
-						peekValue := (token at: 2) asciiValue.
+						peekValue := (token at: 2) numericValue.
 						peekValue = 13
 							ifTrue: [index := index + 1]].
 				tokenStream
@@ -2489,14 +2485,14 @@ readStreamUpToNoEscapeInto: tokenStream
 						index := index + 1.
 						token size > 1
 							ifTrue: [
-								peekValue := (token at: 2) asciiValue.
+								peekValue := (token at: 2) numericValue.
 								peekValue = 10
 									ifTrue: [index := index + 1]].
 						tokenStream
 							nextPutAll: 'par ';
 							nextPutAll: (token copyFrom: index to: token size)]
 		 			ifFalse: ["a non-ascii characters"
-						peekValue = 39 "$' asciiValue"
+						peekValue = 39 "$' numericValue"
 							ifTrue: [
 								tokenStream
 									nextPutAll: 'SomeCodePageHexValue';
@@ -2522,24 +2518,20 @@ tokenClass
 	"the token class used by this tokenizer"
 	^RTFToken! !
 
-!RTFTokenizer class methodsFor: 'class initialization' stamp: 'tat 4/11/2007 15:10'!
+!RTFTokenizer class methodsFor: 'class initialization' stamp: 'jmv 11/3/2016 10:13:35'!
 initialize
 	"RTFTokenizer initialize"
 
 	EndOfKeywordSet := CharacterSet new.
-	(0 to: ($A asInteger - 1)) do:
-		[:v | EndOfKeywordSet add: (Character value: v)].
-	(($Z asInteger + 1) to: ($a asInteger - 1)) do:
-		[:v | EndOfKeywordSet add: (Character value: v)]. 
-	(($z asInteger + 1) to: 255) do:
-		[:v | EndOfKeywordSet add: (Character value: v)].
+	(0 to: ($A numericValue - 1)) do:
+		[:v | EndOfKeywordSet add: (Character numericValue: v)].
+	(($Z numericValue + 1) to: ($a numericValue - 1)) do:
+		[:v | EndOfKeywordSet add: (Character numericValue: v)]. 
+	(($z numericValue + 1) to: 255) do:
+		[:v | EndOfKeywordSet add: (Character numericValue: v)].
 
 	" \'hh is handled separately. it is converted to \sophieUtfHexDDD"
-	ControlSymbolSet _ CharacterSet newFrom: '|~-_:*{}'.
-
-	EndOfArgumentSet := CharacterSet newFrom: (Character allCharacters reject: [ :c | c isDigit or: [ #($- $.) includes: c ]]).
-	EndOfArgumentSet add: $.
-! !
+	ControlSymbolSet _ CharacterSet newFrom: '|~-_:*{}'! !
 
 !RTFTokenizer class methodsFor: 'instance creation' stamp: 'mir 8/11/2006 20:57'!
 newFromString: aString
@@ -2549,14 +2541,14 @@ newFromString: aString
 on: aStream
 	^self new on: aStream! !
 
-!RTFUnicode class methodsFor: 'compatibility' stamp: 'jmv 3/30/2011 14:55'!
-value: unicodeCodePoint
-	^self value: unicodeCodePoint or: $?! !
+!RTFUnicode class methodsFor: 'compatibility' stamp: 'jmv 9/5/2016 20:30:17'!
+codePoint: unicodeCodePoint
+	^self codePoint: unicodeCodePoint or: $?! !
 
-!RTFUnicode class methodsFor: 'compatibility' stamp: 'jmv 3/30/2011 15:27'!
-value: unicodeCodePoint or: aCharacter
-	"In Cuis, #unicodeCodePoint: handles those Unicode characters that are present in the ISO8859-15 char set"
-	^(Character unicodeCodePoint: unicodeCodePoint) ifNil: [ aCharacter ]! !
+!RTFUnicode class methodsFor: 'compatibility' stamp: 'jmv 9/5/2016 20:30:11'!
+codePoint: unicodeCodePoint or: aCharacter
+	"In Cuis, #codePoint: handles those Unicode characters that are present in the ISO8859-15 char set"
+	^(Character codePoint: unicodeCodePoint) ifNil: [ aCharacter ]! !
 RTFChunkScanner initialize!
 RTFParser initialize!
 RTFTextBuilder initialize!

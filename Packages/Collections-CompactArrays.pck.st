@@ -1,6 +1,6 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2692] on 29 February 2016 at 11:26:17.006144 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2855] on 28 July 2016 at 3:26:08 pm'!
 'Description Please enter a description for this package'!
-!provides: 'Collections-CompactArrays' 1 4!
+!provides: 'Collections-CompactArrays' 1 6!
 !classDefinition: #PointArray category: #'Collections-CompactArrays'!
 IntegerArray variableWordSubclass: #PointArray
 	instanceVariableNames: ''
@@ -66,7 +66,7 @@ Array size must be even, as two vales are stored in each word.!
 This class stores points that are in short integer range (e.g., -32767 <= value <= 32768). It is used to pass data efficiently to the primitive level during high-bandwidth 2D graphics operations.!
 
 !ShortWordArray commentStamp: '<historical>' prior: 0!
-WordArrays store 16-bit unsigned Integer values, between 0 and 16rFFFF.!
+ShortWordArrays store 16-bit unsigned Integer values, between 0 and 16rFFFF.!
 
 !ShortRunArray commentStamp: '<historical>' prior: 0!
 This class is run-length encoded representation of short integer (e.g., 16bit signed integer values)!
@@ -76,10 +76,6 @@ asPointArray
 	"Answer a PointArray whose elements are the elements of the receiver"
 
 	^self as: PointArray! !
-
-!PointArray methodsFor: 'converting' stamp: 'NS 5/30/2001 20:54'!
-asPointArray
-	^ self! !
 
 !PointArray methodsFor: 'accessing' stamp: 'ar 11/2/1998 12:21'!
 at: index

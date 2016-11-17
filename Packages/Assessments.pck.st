@@ -1,4 +1,4 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2658] on 6 April 2016 at 8:05:10.958758 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2782] on 31 May 2016 at 12:46:25.955606 pm'!
 'Description Assessments is a replacement / reimplementation of the SUnit evaluation machinery, published under the MIT license (see below), with the following characteristics.
 
 * It provides all the functionality and features of SUnit and SUnit VM (including SUnit Based Validation and SUnit Benchmarks) natively.
@@ -143,7 +143,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '!
-!provides: 'Assessments' 2 28!
+!provides: 'Assessments' 2 30!
 !classDefinition: #AbstractCustomChecklist category: #'Assessments-Framework-CustomChecklists'!
 Object subclass: #AbstractCustomChecklist
 	instanceVariableNames: ''
@@ -5139,15 +5139,10 @@ printStringFor: aDateAndTime
 	answer isEmpty ifTrue: [self unknownDialect].
 	^answer! !
 
-!AssessmentsFileDirectory methodsFor: 'file system' stamp: 'sqr 1/18/2016 23:25'!
+!AssessmentsFileDirectory methodsFor: 'file system' stamp: 'jmv 5/31/2016 11:09'!
 appendFileStreamFor: aFilenameString
 
-	self isCuis ifTrue:
-		[
-			| fmFileEntry |
-			fmFileEntry := self cuisCurrentDirectory // aFilenameString.
-			^fmFileEntry privateAppendStream  "unfortunate"
-		].
+	self isCuis ifTrue: [^(self cuisCurrentDirectory // aFilenameString) appendStream].
 	self isVisualWorks ifTrue: [^aFilenameString asFilename appendStream].
 	self isVSE ifTrue:
 		[
@@ -5157,36 +5152,36 @@ appendFileStreamFor: aFilenameString
 		].
 	self unknownDialect! !
 
-!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'SqR 11/18/2015 15:58'!
+!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'pb 5/25/2016 01:07'!
 cuisCurrentDirectory
 
-	| fmDirectoryEntry |
-	fmDirectoryEntry := self resolveCuisClassNamed: #FmDirectoryEntry.
-	^fmDirectoryEntry currentDirectory! !
+	| directoryEntry |
+	directoryEntry := self resolveCuisClassNamed: #DirectoryEntry.
+	^directoryEntry currentDirectory! !
 
-!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'SqR 11/18/2015 16:01'!
+!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'pb 5/25/2016 01:17'!
 cuisDeleteFileNamed: aString
 
-	| fmFileEntry |
-	fmFileEntry := self cuisCurrentDirectory // aString.
-	fmFileEntry delete! !
+	| fileEntry |
+	fileEntry := self cuisCurrentDirectory // aString.
+	fileEntry delete! !
 
 !AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'SqR 11/18/2015 15:18'!
 cuisFileNameExists: aString
 
 	^self cuisCurrentDirectory includesKey: aString! !
 
-!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'SqR 11/18/2015 16:01'!
+!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'pb 5/25/2016 01:18'!
 cuisSizeForFileName: aString
 
-	| fmFileEntry |
-	fmFileEntry := self cuisCurrentDirectory // aString.
-	^fmFileEntry fileSize! !
+	| fileEntry |
+	fileEntry := self cuisCurrentDirectory // aString.
+	^fileEntry fileSize! !
 
-!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'sqr 1/14/2016 22:16'!
+!AssessmentsFileDirectory methodsFor: 'private - file system' stamp: 'pb 5/25/2016 01:07'!
 currentDirectoryReceiver
 
-	self isCuis ifTrue: [^self resolveCuisClassNamed: #FmDirectoryEntry].
+	self isCuis ifTrue: [^self resolveCuisClassNamed: #DirectoryEntry].
 	self isVisualWorks ifTrue: [^self resolveVisualWorksClassNamed: 'FileDirectory'].
 	self isVSE ifTrue: [^self resolveVSEClassNamed: #Directory].
 	self unknownDialect! !
@@ -5277,15 +5272,10 @@ vseSizeForFileName: aString
 	^self vseCurrentDirectory fileSizeForFileNamed: aString
 ! !
 
-!AssessmentsFileDirectory methodsFor: 'file system' stamp: 'sqr 1/14/2016 22:13'!
+!AssessmentsFileDirectory methodsFor: 'file system' stamp: 'jmv 5/31/2016 11:02'!
 writeFileStreamFor: aFilenameString
 
-	self isCuis ifTrue:
-		[
-			| fmFileEntry |
-			fmFileEntry := self cuisCurrentDirectory // aFilenameString.
-			^fmFileEntry privateWriteStream  "unfortunate"
-		].
+	self isCuis ifTrue: [^(self cuisCurrentDirectory // aFilenameString) writeStream].
 	self isVisualWorks ifTrue: [^aFilenameString asFilename writeStream].
 	self isVSE ifTrue: [^aFilenameString asFileSystemPath asFile writeStream].	
 	self unknownDialect! !
@@ -7157,13 +7147,11 @@ prettyPrintForScenario: anObject
 
 	prettyPrintForScenario := anObject! !
 
-!Benchmark methodsFor: 'private - stop watch' stamp: 'sqr 4/6/2016 20:04'!
+!Benchmark methodsFor: 'private - stop watch' stamp: 'sqr 5/25/2016 14:21'!
 privateStopWatch: aBlock
-	"Answer amount of iterations per second.
-	Flush compiled code cache by performing a garbage collect,
-	run the block one time to get the native code generated,
-	flush the new space if possible, and then and only then
-	start measuring"
+	"Answer iterations per second.  Flush compiled code cache by performing a garbage collect,
+	run the block one time to get the native code generated, flush the new space if possible,
+	and then and only then start measuring"
 
 	| theseRepetitions nextRepetitions netMicroseconds |
 	self flushNativeCodeCache.
@@ -10275,28 +10263,27 @@ buildMorphicStatusBar
 	answer disableEdition.
 	^answer! !
 
-!AssessmentsWindow methodsFor: 'GUI building' stamp: 'SqR 9/7/2015 17:00'!
+!AssessmentsWindow methodsFor: 'GUI building' stamp: 'sqr 5/25/2016 14:19'!
 buildMorphicWindow
 
 	| layout |
 	layout := self buildLayoutMorph.
-	self layoutMorph addMorph: layout.
-	self morphExtent: self defaultMorphExtent! !
+	self layoutMorph addMorph: layout! !
 
 !AssessmentsWindow methodsFor: 'actions' stamp: 'SqR 9/7/2015 16:59'!
 cursorWaitWhile: aBlock
 
 	Cursor wait showWhile: [aBlock value]! !
 
-!AssessmentsWindow methodsFor: 'GUI building' stamp: 'SqR 9/7/2015 16:56'!
-defaultMorphExtent
-
-	^500 @ 800! !
-
 !AssessmentsWindow methodsFor: 'GUI building' stamp: 'SqR 9/7/2015 16:57'!
 defaultStripeHeight
 
 	^40! !
+
+!AssessmentsWindow methodsFor: 'GUI building' stamp: 'sqr 5/25/2016 14:12'!
+minimumExtent
+
+	^400 @ 400! !
 
 !AssessmentsWindow methodsFor: 'actions' stamp: 'SqR 9/7/2015 16:59'!
 refresh
@@ -10365,11 +10352,11 @@ browseHierarchy
 				[:class :selector | HierarchyBrowserWindow onClass: class selector: selector].
 		]! !
 
-!AssessmentsChecklistEvaluatorWindow methodsFor: 'GUI building' stamp: 'sqr 1/13/2016 22:02'!
+!AssessmentsChecklistEvaluatorWindow methodsFor: 'GUI building' stamp: 'sqr 5/25/2016 14:08'!
 buildLayoutMorph
 
 	^super buildLayoutMorph
-		addMorph: self buildMorphicChecklistTree;
+		addMorph: self buildMorphicChecklistTree proportionalWidth: 1.0;
 		addMorph: self buildMorphicSeparator fixedHeight: self separatorHeight;
 		addMorph: self buildMorphicStatusBar fixedHeight: self defaultStripeHeight;
 		addMorph: self buildMorphicSeparator fixedHeight: self separatorHeight;
@@ -10482,14 +10469,14 @@ browse
 				[:class :selector | BrowserWindow fullOnClass: class selector: selector]
 		]! !
 
-!AssessmentsResultsEvaluatorWindow methodsFor: 'GUI building' stamp: 'sqr 1/13/2016 21:59'!
+!AssessmentsResultsEvaluatorWindow methodsFor: 'GUI building' stamp: 'sqr 5/25/2016 14:09'!
 buildLayoutMorph
 
 	| newResultTree |
 	newResultTree := self buildMorphicResultTree.
 	self resultTree: newResultTree.
 	^super buildLayoutMorph
-		addMorph: newResultTree;
+		addMorph: newResultTree proportionalWidth: 1.0;
 		addMorph: self buildMorphicSeparator fixedHeight: self separatorHeight;
 		addMorph: self buildMorphicStatusBar fixedHeight: self defaultStripeHeight;
 		addMorph: self buildMorphicSeparator fixedHeight: self separatorHeight;

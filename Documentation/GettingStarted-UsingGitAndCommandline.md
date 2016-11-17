@@ -1,6 +1,8 @@
 ## Setting up and starting Cuis using Git and the command line
 
-Instructions for setting up Cuis, for Linux Bash, MacOSX command line, or Git Bash on Windows. This method has the advantage to set you up to easily contribute code back to Cuis packages, using Git pull requests.
+Instructions for setting up Cuis, for Linux Bash, MacOSX command line, or Git Bash on Windows. This method has the advantage to set you up to easily contribute code back to Cuis packages, using Git pull requests. If you are on Windows or Mac, and prefer not using the command line, you might follow [Getting started using Mac Finder or Windows Explorer](GettingStarted-UsingGUI.md).
+
+If you want to contribute back to the community, you might subscribe to the Cuis mail list at http://http://cuis-smalltalk.org/mailman/listinfo/cuis-dev_cuis-smalltalk.org , and email your code there.
 
 The Cuis image specified is the most current one. The VM specified is the latest one too.
 
@@ -8,23 +10,25 @@ The Cuis image specified is the most current one. The VM specified is the latest
 ```
 mkdir MyProject
 cd MyProject
-git clone https://github.com/Cuis-Smalltalk/Cuis-Smalltalk.git
+git clone https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev.git
 ```
 ### Get an appropriate VM ###
 For Windows Git Bash:
 ```
-$ curl -o cogwin.zip http://www.mirandabanda.org/files/Cog/VM/latest/cogwin-16.18.3692.zip
-$ unzip cogwin.zip
+$ curl -o cogspur.zip https://bintray.com/opensmalltalk/vm/download_file?file_path=cog_win32x86_squeak.cog.spur_201611161032.zip
+$ unzip cogspur.zip
 ```
 For MacOSX:
 ```
-$ curl -o http://www.mirandabanda.org/files/Cog/VM/latest/Cog.app-16.18.3692.tgz
-$ tar -zxvf Cog.app.tgz
+$ curl -o CogSpur.tgz https://bintray.com/opensmalltalk/vm/download_file?file_path=cog_macos32x86_squeak.cog.spur_201611161032.tar.gz
+$ tar -zxvf CogSpur.tgz
 ```
 For Linux (except ArchLinux, Chromebooks see below):
 ```
-$ wget -O coglinuxht.tgz http://www.mirandabanda.org/files/Cog/VM/latest/coglinuxht-16.18.3692.tgz
-$ tar -zxvf coglinuxht.tgz
+~/MyProject# wget -O cogspur.tgz https://bintray.com/opensmalltalk/vm/download_file?file_path=cog_linux32x86_squeak.cog.spur_201611161032.tar.gz
+~/MyProject# tar -zxvf cogspur.tgz
+~/MyProject# mv ./products/sqcogspurlinuxht ./cogspur
+~/MyProject# rmdir ./products
 ```
 On Linux, if this is the first time you run Cuis Smalltalk on this system, add 32 bit libraries.
 (This was tested on Debian 8)
@@ -33,7 +37,7 @@ sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install libc6-i386
 # This (libc6-i386) was needed to make ldd work on 32 bit programs and dynamic libraries
-# So, we can do stuff like       $ ldd coglinuxht/lib/squeak/4.5-3370/squeak       to find about missing libraries
+# So, we can do stuff like       $ ldd cogspur/lib/squeak/4.5-3370/squeak       to find about missing libraries
 sudo apt-get install libuuid1:i386
 sudo apt-get install libX11-6:i386
 sudo apt-get install libXext6:i386
@@ -41,23 +45,24 @@ sudo apt-get install libsm6:i386
 # Next 3 are only needed for experimenting with OpenCL
 sudo apt-get install mesa-common-dev:i386
 sudo apt-get install libgl1-mesa-dev:i386
-cp /usr/lib/i386-linux-gnu/libOpenCL.so.1 libOpenCL.so
+~/MyProject# cp /usr/lib/i386-linux-gnu/libOpenCL.so.1 libOpenCL.so
 ```
 For ArchLinux: Get a VM from:
 https://www.archlinux.org/packages/?q=squeak-vm
+These VMs are not compatible with Spur images. Use the supplied non-Spur image.
 
 ### Starting Cuis Smalltalk ###
 Windows Git Bash:
 ```
-$  cogwin/squeak.exe Cuis-Smalltalk/Cuis4.2-2763.image
+$  cogspur/squeak.exe Cuis-Smalltalk-Dev/Cuis5.0-2974-spur.image
 ```
 MacOSX:
 ```
-$ Cog.app/Contents/MacOS/Squeak Cuis-Smalltalk/Cuis4.2-2763.image
+$ CogSpur/Contents/MacOS/Squeak Cuis-Smalltalk-Dev/Cuis5.0-2974-spur.image
 ```
 Linux:
 ```
-$  coglinuxht/squeak Cuis-Smalltalk/Cuis4.2-2763.image
+$  cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-2974-spur.image
 ```
 
 If when starting the image you get error messages like "This interpreter (vers. 6505) cannot read image file (vers. 1007290890).", it means your git installation is breaking the files. It is usually best to configure git not to do any conversion on files.
@@ -73,7 +78,7 @@ Then follow the Linux directions above -- except for choosing the VM to use.
 
 The reason for this is that JIT (Just In Time) compiling is disabled by ChromeOS.  This means that Cog VMs will not work.
 
-Note that there is no Cuise image in Spur format yet, so avoid Spur VMs for now.
+Remember to use the Spur Cuis image when using Spur VMs and the non-Spur image when using non-Spur VMs.
 
 For Intel CPUs:
 ```
@@ -92,3 +97,7 @@ $ tar -zxvf stklinuxARM.tgz
 $ wget -O linuxVM_ARM.sh http://squeakvm.org/unix/release/Squeak-4.10.2.2765-linux_armv6l.sh
 $ ./linuxVM_ARM.sh
 ```
+
+### Notes ###
+* If you can't find Cuis5.0-2974-spur.image, then this document is outdated. Use the Cuis spur image with the latest update number available.
+* If you can't find the Squeak Cog Spur VM specified, then this document is outdated. Use the the Squeak Cog Spur VM for your platform with the latest Date and Time available.

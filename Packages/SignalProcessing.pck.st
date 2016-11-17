@@ -1,21 +1,13 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2758] on 4 May 2016 at 11:25:12.772663 am'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2963] on 1 November 2016 at 4:13:17 pm'!
 'Description Image Processing and Signal Processing algorithms. FloatImage, Interpolation, Histograms, etc.'!
-!provides: 'SignalProcessing' 1 52!
+!provides: 'SignalProcessing' 1 68!
 !requires: 'Sound' 1 nil nil!
 !requires: 'LinearAlgebra' 1 nil nil!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
 !requires: 'Collections-CompactArrays' 1 2 nil!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
 !requires: 'Goodies' 1 0 nil!
-!classDefinition: #AccumulatedImageHistogram category: #'SignalProcessing-Images'!
-Object subclass: #AccumulatedImageHistogram
-	instanceVariableNames: 'tallies'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'SignalProcessing-Images'!
-!classDefinition: 'AccumulatedImageHistogram class' category: #'SignalProcessing-Images'!
-AccumulatedImageHistogram class
-	instanceVariableNames: ''!
-
+!requires: 'ProbabilityDistributions' 1 nil nil!
+!requires: 'Statistics' 1 nil nil!
 !classDefinition: #FloatImage category: #'SignalProcessing-Images'!
 FloatMatrix subclass: #FloatImage
 	instanceVariableNames: ''
@@ -36,34 +28,44 @@ FloatImage subclass: #IrregularSampledImage
 IrregularSampledImage class
 	instanceVariableNames: ''!
 
-!classDefinition: #FFT category: #SignalProcessing!
-Object subclass: #FFT
-	instanceVariableNames: 'nu n sinTable permTable realData imagData window'
+!classDefinition: #PerspectiveTransformation category: #'SignalProcessing-Images'!
+GeometryTransformation variableWordSubclass: #PerspectiveTransformation
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'SignalProcessing'!
-!classDefinition: 'FFT class' category: #SignalProcessing!
-FFT class
+	category: 'SignalProcessing-Images'!
+!classDefinition: 'PerspectiveTransformation class' category: #'SignalProcessing-Images'!
+PerspectiveTransformation class
 	instanceVariableNames: ''!
 
-!classDefinition: #FFT2D category: #SignalProcessing!
-Object subclass: #FFT2D
-	instanceVariableNames: 'realMatrix imagMatrix'
+!classDefinition: #FloatImageTest category: #'SignalProcessing-Images'!
+TestCase subclass: #FloatImageTest
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'SignalProcessing'!
-!classDefinition: 'FFT2D class' category: #SignalProcessing!
-FFT2D class
+	category: 'SignalProcessing-Images'!
+!classDefinition: 'FloatImageTest class' category: #'SignalProcessing-Images'!
+FloatImageTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #FWT category: #SignalProcessing!
-Object subclass: #FWT
-	instanceVariableNames: 'alpha beta coeffs h g hTilde gTilde samples nSamples nLevels transform'
+!classDefinition: #WaveletCodec category: #'SignalProcessing-SoundSynthesis'!
+SoundCodec subclass: #WaveletCodec
+	instanceVariableNames: 'fwt samplesPerFrame nLevels alpha beta'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'SignalProcessing'!
-!classDefinition: 'FWT class' category: #SignalProcessing!
-FWT class
+	category: 'SignalProcessing-SoundSynthesis'!
+!classDefinition: 'WaveletCodec class' category: #'SignalProcessing-SoundSynthesis'!
+WaveletCodec class
+	instanceVariableNames: ''!
+
+!classDefinition: #AccumulatedImageHistogram category: #'SignalProcessing-Images'!
+Object subclass: #AccumulatedImageHistogram
+	instanceVariableNames: 'tallies'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'SignalProcessing-Images'!
+!classDefinition: 'AccumulatedImageHistogram class' category: #'SignalProcessing-Images'!
+AccumulatedImageHistogram class
 	instanceVariableNames: ''!
 
 !classDefinition: #GeneralizedInterpolatingImage category: #'SignalProcessing-Images'!
@@ -94,16 +96,6 @@ GeneralizedInterpolatingImage subclass: #ShiftedLinearInterpolatingImage
 	category: 'SignalProcessing-Images'!
 !classDefinition: 'ShiftedLinearInterpolatingImage class' category: #'SignalProcessing-Images'!
 ShiftedLinearInterpolatingImage class
-	instanceVariableNames: ''!
-
-!classDefinition: #PerspectiveTransformation category: #'SignalProcessing-Images'!
-GeometryTransformation variableWordSubclass: #PerspectiveTransformation
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'SignalProcessing-Images'!
-!classDefinition: 'PerspectiveTransformation class' category: #'SignalProcessing-Images'!
-PerspectiveTransformation class
 	instanceVariableNames: ''!
 
 !classDefinition: #ImageHistogram category: #'SignalProcessing-Images'!
@@ -146,34 +138,36 @@ Object subclass: #MultiBandImage
 MultiBandImage class
 	instanceVariableNames: ''!
 
-!classDefinition: #WaveletCodec category: #'SignalProcessing-SoundSynthesis'!
-SoundCodec subclass: #WaveletCodec
-	instanceVariableNames: 'fwt samplesPerFrame nLevels alpha beta'
+!classDefinition: #FFT category: #SignalProcessing!
+Object subclass: #FFT
+	instanceVariableNames: 'nu n sinTable permTable realData imagData window'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'SignalProcessing-SoundSynthesis'!
-!classDefinition: 'WaveletCodec class' category: #'SignalProcessing-SoundSynthesis'!
-WaveletCodec class
+	category: 'SignalProcessing'!
+!classDefinition: 'FFT class' category: #SignalProcessing!
+FFT class
 	instanceVariableNames: ''!
 
-!classDefinition: #FloatImageTest category: #'SignalProcessing-Images'!
-TestCase subclass: #FloatImageTest
-	instanceVariableNames: ''
+!classDefinition: #FFT2D category: #SignalProcessing!
+Object subclass: #FFT2D
+	instanceVariableNames: 'realMatrix imagMatrix'
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'SignalProcessing-Images'!
-!classDefinition: 'FloatImageTest class' category: #'SignalProcessing-Images'!
-FloatImageTest class
+	category: 'SignalProcessing'!
+!classDefinition: 'FFT2D class' category: #SignalProcessing!
+FFT2D class
 	instanceVariableNames: ''!
 
+!classDefinition: #FWT category: #SignalProcessing!
+Object subclass: #FWT
+	instanceVariableNames: 'alpha beta coeffs h g hTilde gTilde samples nSamples nLevels transform'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'SignalProcessing'!
+!classDefinition: 'FWT class' category: #SignalProcessing!
+FWT class
+	instanceVariableNames: ''!
 
-!AccumulatedImageHistogram commentStamp: 'jmv 6/4/2015 10:17' prior: 0!
-Used by Histogram Equalization.
-
-======================================================
-ImageHistogram, ImageHistogram2, ImageHistogram3, AccumulatedImageHistogram
-are now obsolete. They have been superseded by Histogram and UnitaryMonotonicMap
-======================================================!
 
 !FloatImage commentStamp: '<historical>' prior: 0!
 My instances are 1-band images suitable for Image Processing algorithms. Pixel values are 32-bit Float.
@@ -196,29 +190,46 @@ Some real, known, pixels are added one by one (pixel position is usually random)
 Allows for progressive reconstruction, with higher quality, as new data is available.
 Can compute Digital Voronoi diagrams and Digital Delaunay Triangulation.!
 
-!FFT commentStamp: '<historical>' prior: 0!
-This class implements the Fast Fourier Transform roughly as described on page 367
-of "Theory and Application of Digital Signal Processing" by Rabiner and Gold.
-Each instance caches tables used for transforming a given size (n = 2^nu samples) of data.
+!PerspectiveTransformation commentStamp: '<historical>' prior: 0!
+A perspective transformation for resampling images (for example). Can apply or correct for the perspective resulting from taking a photograph to a 2D object that is not perpendicular to the camera axis (for example, taking an image of the ground ahead of the camera).
 
-It would have been cleaner using complex numbers, but often the data is all real.!
+http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#warpperspective
 
-!FFT2D commentStamp: '<historical>' prior: 0!
-My instances provide for 2D FFT on FloatMatrix'es and FloatImages. I rely on FFT for succesive transform by rows and by columns.!
+!
 
-!FWT commentStamp: '<historical>' prior: 0!
-This class implements the Fast Wavelet Transform.  It follows Mac Cody's article in Dr. Dobb's Journal, April 1992.  See also... 
-	http://www.dfw.net/~mcody/fwt/fwt.html
+!WaveletCodec commentStamp: '<historical>' prior: 0!
+The Wavelet codec performs a wavelet transform on the original data.  It then achieves its compression by thresholding the transformed data, converting all values below a given magnitude to zero, and then run-coding the resulting data.  The run-coding provides automatic variable compression depending on the parameters chosen.
 
-Notable features of his implementation include...
-1.  The ability to generate a large family of wavelets (including the Haar (alpha=beta) and Daubechies) from two parameters, alpha and beta, which range between -pi and pi.
-2.  All data arrays have 5 elements added on to allow for convolution overrun with filters up to 6 in length (the max for this implementation).
-3.  After a forward transform, the detail coefficients of the deomposition are found in transform at: 2*i, for i = 1, 2, ... nLevels;  and the approximation coefficients are in transform at: (2*nLevels-1).  these together comprise the complete wavelet transform.
+As is, this codec achieves reasonable reproduction at 10:1 compression, although the quality from the GSMCodec is definitely better.  I feel that the quality would be comparable if uLaw scaling were introduced prior to thresholding.
 
-The following changes from cody's listings should also be noted...
-1.  The three DotProduct routines have been merged into one.
-2.  The four routines WaveletDecomposition, DecomposeBranches, WaveletReconstruction, ReconstructBranches have all been merged into transformForward:.
-3.  All indexing follows the Smalltalk 1-to-N convention, naturally.!
+The nice thing about using wavelets is there are numerous factors to play with for better performance:
+	nLevels - the "order" of the transform performed
+	alpha and beta - these specify the wavelet shape (some are better for speech)
+	the actual threshold used
+By simply changing these parameters, one can easily vary the compression achieved from 5:1 to 50:1, and listen to the quality at each step.
+
+The specific format for an encoded buffer is as follows:
+	4 bytes: frameCount.
+	4 bytes: samplesPerFrame.
+	4 bytes: nLevels.
+	4 bytes: alpha asIEEE32BitWord.
+	4 bytes: beta asIEEE32BitWord.
+	frameCount occurrences of...
+		2 bytes: frameSize in bytes, not including these 2
+			may be = 0 for complete silence, meaning no scale even.
+		4 bytes: scale asIEEE32BitWord.
+		A series of 1- or 2-byte values encoded as follows:
+			0-111: 	a run of N+1 consecutive 0's;
+			112-127:	a run of (N-112)*256 + nextByte + 1 consecutive 0's;
+			128-255:	a 15-bit signed value = (N*256 + nextByte) - 32768 - 16384.!
+
+!AccumulatedImageHistogram commentStamp: 'jmv 6/4/2015 10:17' prior: 0!
+Used by Histogram Equalization.
+
+======================================================
+ImageHistogram, ImageHistogram2, ImageHistogram3, AccumulatedImageHistogram
+are now obsolete. They have been superseded by Histogram and UnitaryMonotonicMap
+======================================================!
 
 !GeneralizedInterpolatingImage commentStamp: '<historical>' prior: 0!
 A kind of FloatImage that can interpolate values at any Float position (inside its bounds). Allows for "Generalized Interpolation" as described in:
@@ -260,13 +271,6 @@ Warning - Notes
 2) Generally, results are very good. The paper says SNR is good up to 3/4 Nyquist frequency. But in practice, images look very sharp, especially very fine textures. It appears that the lost high frequency content is replaced by good looking aliasing.
 
 3) Successive interpolations are not really stable. The image value at the neighbourhood of some points seems to diverge to positive infinity, and for others, to negative infinity. This effect is even visible at the great Java demo at http://bigwww.epfl.ch/demo/jshiftlinear/start.php , if one choses 7 iterations. See FloatImage>>#testRotations .!
-
-!PerspectiveTransformation commentStamp: '<historical>' prior: 0!
-A perspective transformation for resampling images (for example). Can apply or correct for the perspective resulting from taking a photograph to a 2D object that is not perpendicular to the camera axis (for example, taking an image of the ground ahead of the camera).
-
-http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#warpperspective
-
-!
 
 !ImageHistogram commentStamp: 'jmv 6/4/2015 10:16' prior: 0!
 An ImageHistogram records the number of pixels in an image for each pixel value (actually for a number of pixel value intervals).
@@ -343,133 +347,29 @@ Each band can be used for a different spectral band (as in RGB color images, and
 
 Each band can have a name (a Symbol) used to access it. It can also include a description, and maybe some arbitrary object for app-defined data.!
 
-!WaveletCodec commentStamp: '<historical>' prior: 0!
-The Wavelet codec performs a wavelet transform on the original data.  It then achieves its compression by thresholding the transformed data, converting all values below a given magnitude to zero, and then run-coding the resulting data.  The run-coding provides automatic variable compression depending on the parameters chosen.
+!FFT commentStamp: '<historical>' prior: 0!
+This class implements the Fast Fourier Transform roughly as described on page 367
+of "Theory and Application of Digital Signal Processing" by Rabiner and Gold.
+Each instance caches tables used for transforming a given size (n = 2^nu samples) of data.
 
-As is, this codec achieves reasonable reproduction at 10:1 compression, although the quality from the GSMCodec is definitely better.  I feel that the quality would be comparable if uLaw scaling were introduced prior to thresholding.
+It would have been cleaner using complex numbers, but often the data is all real.!
 
-The nice thing about using wavelets is there are numerous factors to play with for better performance:
-	nLevels - the "order" of the transform performed
-	alpha and beta - these specify the wavelet shape (some are better for speech)
-	the actual threshold used
-By simply changing these parameters, one can easily vary the compression achieved from 5:1 to 50:1, and listen to the quality at each step.
+!FFT2D commentStamp: '<historical>' prior: 0!
+My instances provide for 2D FFT on FloatMatrix'es and FloatImages. I rely on FFT for succesive transform by rows and by columns.!
 
-The specific format for an encoded buffer is as follows:
-	4 bytes: frameCount.
-	4 bytes: samplesPerFrame.
-	4 bytes: nLevels.
-	4 bytes: alpha asIEEE32BitWord.
-	4 bytes: beta asIEEE32BitWord.
-	frameCount occurrences of...
-		2 bytes: frameSize in bytes, not including these 2
-			may be = 0 for complete silence, meaning no scale even.
-		4 bytes: scale asIEEE32BitWord.
-		A series of 1- or 2-byte values encoded as follows:
-			0-111: 	a run of N+1 consecutive 0's;
-			112-127:	a run of (N-112)*256 + nextByte + 1 consecutive 0's;
-			128-255:	a 15-bit signed value = (N*256 + nextByte) - 32768 - 16384.!
+!FWT commentStamp: '<historical>' prior: 0!
+This class implements the Fast Wavelet Transform.  It follows Mac Cody's article in Dr. Dobb's Journal, April 1992.  See also... 
+	http://www.dfw.net/~mcody/fwt/fwt.html
 
-!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 08:19'!
-copyDownSampledLowPassFiltering: doFiltering
-	"Answer a copy of the receiver at half its sampling rate. The result consumes half the memory space, but has only half the frequency range of the original. If doFiltering is true, the original sound buffers are low-pass filtered before down-sampling. This is slower, but prevents aliasing of any high-frequency components of the original signal. (While it may be possible to avoid low-pass filtering when down-sampling from 44.1 kHz to 22.05 kHz, it is probably essential when going to lower sampling rates.)"
+Notable features of his implementation include...
+1.  The ability to generate a large family of wavelets (including the Haar (alpha=beta) and Daubechies) from two parameters, alpha and beta, which range between -pi and pi.
+2.  All data arrays have 5 elements added on to allow for convolution overrun with filters up to 6 in length (the max for this implementation).
+3.  After a forward transform, the detail coefficients of the deomposition are found in transform at: 2*i, for i = 1, 2, ... nLevels;  and the approximation coefficients are in transform at: (2*nLevels-1).  these together comprise the complete wavelet transform.
 
-	^ self copy downSampleLowPassFiltering: doFiltering
-! !
-
-!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 08:11'!
-downSampleLowPassFiltering: doFiltering
-	"Cut my sampling rate in half. Use low-pass filtering (slower) if doFiltering is true."
-	"Note: This operation loses information, and modifies the receiver in place."
-
-	| stereo newLoopLength |
-	stereo _ self isStereo.
-	leftSamples _ leftSamples downSampledLowPassFiltering: doFiltering.
-	stereo
-		ifTrue: [rightSamples _ rightSamples downSampledLowPassFiltering: doFiltering]
-		ifFalse: [rightSamples _ leftSamples].
-	originalSamplingRate _ originalSamplingRate / 2.0.
-	loopEnd odd
-		ifTrue: [newLoopLength _ (self loopLength / 2.0) + 0.5]
-		ifFalse: [newLoopLength _ self loopLength / 2.0].
-	firstSample _ (firstSample + 1) // 2.
-	lastSample _ (lastSample + 1) // 2.
-	loopEnd _ (loopEnd + 1) // 2.
-	scaledLoopLength _ (newLoopLength * LoopIndexScaleFactor) asInteger.
-	scaledIndexIncr _ scaledIndexIncr // 2.
-! !
-
-!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 07:49'!
-fftAt: startIndex
-	"Answer the Fast Fourier Transform (FFT) of my samples (only the left channel, if stereo) starting at the given index."
-
-	| availableSamples fftWinSize |
-	availableSamples _ (leftSamples size - startIndex) + 1.
-	fftWinSize _ 2 raisedTo: (((availableSamples - 1) log: 2) truncated + 1).
-	fftWinSize _ fftWinSize min: 4096.
-	fftWinSize > availableSamples ifTrue: [fftWinSize _ fftWinSize / 2].
-	^ self fftWindowSize: fftWinSize startingAt: startIndex
-! !
-
-!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 07:48'!
-fftWindowSize: windowSize startingAt: startIndex
-	"Answer a Fast Fourier Transform (FFT) of the given number of samples starting at the given index (the left channel only, if stereo). The window size will be rounded up to the nearest power of two greater than the requested size. There must be enough samples past the given starting index to accomodate this window size."
-
-	| nu n fft |
-	nu _ ((windowSize - 1) log: 2) truncated + 1.
-	n _ 2 raisedTo: nu.
-	fft _ FFT new nu: nu.
-	fft realData: ((startIndex to: startIndex + n - 1) collect: [:i | leftSamples at: i]).
-	^ fft transformForward: true.
-! !
-
-!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 09:26'!
-highestSignificantFrequencyAt: startIndex
-	"Answer the highest significant frequency in the sample window starting at the given index. The a frequency is considered significant if it's power is at least 1/50th that of the maximum frequency component in the frequency spectrum."
-
-	| fft powerArray threshold indices |
-	fft _ self fftAt: startIndex.
-	powerArray _ self normalizedResultsFromFFT: fft.
-	threshold _ powerArray max / 50.0.
-	indices _ (1 to: powerArray size) select: [:i | (powerArray at: i) > threshold].
-	^ originalSamplingRate / (fft samplesPerCycleForIndex: indices last)
-! !
-
-!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/16/1998 17:48'!
-normalizedResultsFromFFT: fft
-	"Answer an array whose size is half of the FFT window size containing power in each frequency band, normalized to the average power over the entire FFT. A value of 10.0 in this array thus means that the power at the corresponding frequences is ten times the average power across the entire FFT."
-
-	| r avg |
-	r _ (1 to: fft realData size // 2) collect:
-		[:i | ((fft realData at: i) squared + (fft imagData at: i) squared) sqrt].
-	avg _ r sum / r size.
-	^ r collect: [:v | v / avg].
-! !
-
-!SampledSound methodsFor: '*SignalProcessing' stamp: 'di 9/6/2000 20:48'!
-sonogramMorph: height from: start to: stop nPoints: nPoints
-	"FYI:  It is very cool that we can do this, but for sound tracks on a movie,
-	simple volume is easier to read, easier to scale, and way faster to compute.
-	Code preserved here just in case it makes a useful example."
-	"In an inspector of a samplesSound...
-		self currentWorld addMorph: (self sonogramMorph: 32 from: 1 to: 50000 nPoints: 256)
-	"
-	| fft sonogramMorph data width |
-	fft _ FFT new: nPoints.
-	width _ stop-start//nPoints.
-	sonogramMorph _ Sonogram new
-			extent: width@height
-			minVal: 0.0
-			maxVal: 1.0
-			scrollDelta: width.
-	start to: stop-nPoints by: nPoints do:
-		[:i |
-		data _ fft transformDataFrom: samples startingAt: i.
-		data _ data collect: [:v | v sqrt].  "square root compresses dynamic range"
-		data /= 200.0.
-		sonogramMorph plotColumn: data].
-	^ sonogramMorph
-	
-! !
+The following changes from cody's listings should also be noted...
+1.  The three DotProduct routines have been merged into one.
+2.  The four routines WaveletDecomposition, DecomposeBranches, WaveletReconstruction, ReconstructBranches have all been merged into transformForward:.
+3.  All indexing follows the Smalltalk 1-to-N convention, naturally.!
 
 !Matrix methodsFor: '*SignalProcessing-resampling' stamp: 'jmv 5/4/2016 10:13'!
 bilinearInterpolatedValueAtX: x y: y
@@ -755,13 +655,13 @@ subsampled: n
 			answer i: i j: j put: (self i: i*n j: j*n) ]].
 	^ answer! !
 
-!Form class methodsFor: '*SignalProcessing-examples' stamp: 'jmv 5/4/2016 10:14'!
+!Form class methodsFor: '*SignalProcessing-examples' stamp: 'jmv 6/2/2016 20:13'!
 lena
 	"
 	(Base64MimeConverter mimeEncode: ((FileStream readOnlyFileNamed: 'Lena.png') binary)) upToEnd
 	Form lena display
 	"
-	^Form fromBinaryStream:
+	^(Form fromBinaryStream:
 		'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAIAAADTED8xAAAACXBIWXMAAAsTAAALEwEAmpwY
 AABAAElEQVR4AWTdx4+mV7HHcdtzyTmDPcbdM2NyDiLINmMJgcjBBMGGPQskdkjwF/BPsPAO
 iQULEEJGAnYkAzbBYWYaT88MmUvO4X7O8+0uXs0t6datU/WrX9Wpc57nfbtnxlx75513/utf
@@ -2091,7 +1991,263 @@ gSmGPiSwZWiq0gtJPGwFQ6+npxE5pSCLNl/RkunxNwUGLFTDelFVfUMwMdBoAPpomYx5HqsG
 cgCtWTw0SOopGW6ytTUbhuerjQKceXp9nKxMFXnhMR9aGkgxUBKA4yfTiFDB3R3qTAC2oHkE
 k6Cexi1bKTgaoSLQEEo/F3y5GcnWFIN15AUzmDpTYig8SDvYlE1sqlD19AxF2O7nAlspcMTE
 Krf7W2XyH8kZofGsb0wZAAAAAElFTkSuQmCC'
-				base64Decoded asByteArray readStream! !
+				base64Decoded asByteArray readStream) asGrayForm! !
+
+!Form class methodsFor: '*SignalProcessing-examples' stamp: 'jmv 6/2/2016 19:56'!
+lenaColor64
+	"
+	('LenaColor64.png' asFileEntry readStreamDo: [ :strm | strm binary. Base64MimeConverter mimeEncode: strm ]) upToEnd
+	Form lenaColor64 display
+	"
+	^Form fromBinaryStream:
+		'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'
+			base64Decoded asByteArray readStream! !
+
+!JPEGReadWriter2 class methodsFor: '*SignalProcessing-examples' stamp: 'jmv 6/3/2016 17:38'!
+printCompressionVersusQuality
+	"
+	JPEGReadWriter2 printCompressionVersusQuality
+	"
+	| bytes lena n rebuilt |
+	lena _ GrayForm lena.
+	n _ lena boundingBox width * lena boundingBox height.
+	-1 to: 100 do: [ :i |
+		bytes _ JPEGReadWriter2 new compress: lena quality: i progressiveJPEG: false.
+		rebuilt _ JPEGReadWriter2 new uncompress: bytes into: nil.
+		{i. bytes size. (lena pixelCompare: rebuilt boundingBox with: rebuilt at: 0@0) / n asFloat} print ].! !
 
 !AffineTransformation class methodsFor: '*SignalProcessing-Images' stamp: 'jmv 1/27/2015 13:48'!
 forImageRotation: radians zoom: scale originalExtent: originalExtent
@@ -2141,60 +2297,107 @@ forImageZoom: scale
 	dummyExtent _ 100@100.
 	^self transformFrom: (0.5@0.5 extent: dummyExtent) to: (0.5@0.5 extent: scale*dummyExtent)! !
 
-!AccumulatedImageHistogram methodsFor: 'accessing' stamp: 'jmv 4/24/2013 15:22'!
-countAt: value
-	"Even if we are not strictly 'counting'..."
+!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 08:19'!
+copyDownSampledLowPassFiltering: doFiltering
+	"Answer a copy of the receiver at half its sampling rate. The result consumes half the memory space, but has only half the frequency range of the original. If doFiltering is true, the original sound buffers are low-pass filtered before down-sampling. This is slower, but prevents aliasing of any high-frequency components of the original signal. (While it may be possible to avoid low-pass filtering when down-sampling from 44.1 kHz to 22.05 kHz, it is probably essential when going to lower sampling rates.)"
 
-	| n floatIndex i1 i2 |
-	n _ tallies size.
-	floatIndex _ (value * (n-1)) + 1.0.
-	i1 _ floatIndex floor.
-	i2 _ i1 + 1.
-	i2 > n ifTrue: [
-		^ tallies at: i1 ].
-	^((tallies at: i1) * ( i2 - floatIndex)) + 
-		((tallies at: i2) * (floatIndex - i1))! !
+	^ self copy downSampleLowPassFiltering: doFiltering
+! !
 
-!AccumulatedImageHistogram methodsFor: 'initialization' stamp: 'jmv 4/24/2013 14:20'!
-fillFrom: anImageHistogram
+!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 08:11'!
+downSampleLowPassFiltering: doFiltering
+	"Cut my sampling rate in half. Use low-pass filtering (slower) if doFiltering is true."
+	"Note: This operation loses information, and modifies the receiver in place."
 
-	| s histogramTallies |
-	histogramTallies _ anImageHistogram tallies.
-	s _ histogramTallies size + 1.
-	tallies _ FloatArray new: s.
-	tallies at: 1 put: 0.0.
-	tallies at: 2 put: (histogramTallies at: 1).
-	3 to: s do: [ :i |
-		tallies at: i put: (histogramTallies at: i-1) + (tallies at: i-1) ]! !
+	| stereo newLoopLength |
+	stereo _ self isStereo.
+	leftSamples _ leftSamples downSampledLowPassFiltering: doFiltering.
+	stereo
+		ifTrue: [rightSamples _ rightSamples downSampledLowPassFiltering: doFiltering]
+		ifFalse: [rightSamples _ leftSamples].
+	originalSamplingRate _ originalSamplingRate / 2.0.
+	loopEnd odd
+		ifTrue: [newLoopLength _ (self loopLength / 2.0) + 0.5]
+		ifFalse: [newLoopLength _ self loopLength / 2.0].
+	firstSample _ (firstSample + 1) // 2.
+	lastSample _ (lastSample + 1) // 2.
+	loopEnd _ (loopEnd + 1) // 2.
+	scaledLoopLength _ (newLoopLength * LoopIndexScaleFactor) asInteger.
+	scaledIndexIncr _ scaledIndexIncr // 2.
+! !
 
-!AccumulatedImageHistogram methodsFor: 'aux' stamp: 'jmv 4/24/2013 13:55'!
-plot
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
+!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 07:49'!
+fftAt: startIndex
+	"Answer the Fast Fourier Transform (FFT) of my samples (only the left channel, if stereo) starting at the given index."
 
-!AccumulatedImageHistogram methodsFor: 'aux' stamp: 'jmv 4/24/2013 15:19'!
-plot2
-	"Just in case there is some difference with #plot"
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new
-		plot: ((0.0 to: 1.0 count: rect width) collect: [ :v | self countAt: v ])
-		in: rect
-		color: Color red
-		min: 0.0
-		max: tallies max! !
+	| availableSamples fftWinSize |
+	availableSamples _ (leftSamples size - startIndex) + 1.
+	fftWinSize _ 2 raisedTo: (((availableSamples - 1) log: 2) truncated + 1).
+	fftWinSize _ fftWinSize min: 4096.
+	fftWinSize > availableSamples ifTrue: [fftWinSize _ fftWinSize / 2].
+	^ self fftWindowSize: fftWinSize startingAt: startIndex
+! !
 
-!AccumulatedImageHistogram methodsFor: 'aux' stamp: 'jmv 4/24/2013 13:55'!
-plotIn: rect color: aColor min: min max: max
-	FFT new plot: tallies in: rect color: aColor min: min max: max! !
+!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 07:48'!
+fftWindowSize: windowSize startingAt: startIndex
+	"Answer a Fast Fourier Transform (FFT) of the given number of samples starting at the given index (the left channel only, if stereo). The window size will be rounded up to the nearest power of two greater than the requested size. There must be enough samples past the given starting index to accomodate this window size."
 
-!AccumulatedImageHistogram class methodsFor: 'instance creation' stamp: 'jmv 4/24/2013 14:20'!
-from: anImageHistogram
+	| nu n fft |
+	nu _ ((windowSize - 1) log: 2) truncated + 1.
+	n _ 2 raisedTo: nu.
+	fft _ FFT new nu: nu.
+	fft realData: ((startIndex to: startIndex + n - 1) collect: [:i | leftSamples at: i]).
+	^ fft transformForward: true.
+! !
 
-	^self new fillFrom: anImageHistogram! !
+!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/18/1998 09:26'!
+highestSignificantFrequencyAt: startIndex
+	"Answer the highest significant frequency in the sample window starting at the given index. The a frequency is considered significant if it's power is at least 1/50th that of the maximum frequency component in the frequency spectrum."
+
+	| fft powerArray threshold indices |
+	fft _ self fftAt: startIndex.
+	powerArray _ self normalizedResultsFromFFT: fft.
+	threshold _ powerArray max / 50.0.
+	indices _ (1 to: powerArray size) select: [:i | (powerArray at: i) > threshold].
+	^ originalSamplingRate / (fft samplesPerCycleForIndex: indices last)
+! !
+
+!LoopedSampledSound methodsFor: '*SignalProcessing' stamp: 'jm 8/16/1998 17:48'!
+normalizedResultsFromFFT: fft
+	"Answer an array whose size is half of the FFT window size containing power in each frequency band, normalized to the average power over the entire FFT. A value of 10.0 in this array thus means that the power at the corresponding frequences is ten times the average power across the entire FFT."
+
+	| r avg |
+	r _ (1 to: fft realData size // 2) collect:
+		[:i | ((fft realData at: i) squared + (fft imagData at: i) squared) sqrt].
+	avg _ r sum / r size.
+	^ r collect: [:v | v / avg].
+! !
+
+!SampledSound methodsFor: '*SignalProcessing' stamp: 'di 9/6/2000 20:48'!
+sonogramMorph: height from: start to: stop nPoints: nPoints
+	"FYI:  It is very cool that we can do this, but for sound tracks on a movie,
+	simple volume is easier to read, easier to scale, and way faster to compute.
+	Code preserved here just in case it makes a useful example."
+	"In an inspector of a samplesSound...
+		self currentWorld addMorph: (self sonogramMorph: 32 from: 1 to: 50000 nPoints: 256)
+	"
+	| fft sonogramMorph data width |
+	fft _ FFT new: nPoints.
+	width _ stop-start//nPoints.
+	sonogramMorph _ Sonogram new
+			extent: width@height
+			minVal: 0.0
+			maxVal: 1.0
+			scrollDelta: width.
+	start to: stop-nPoints by: nPoints do:
+		[:i |
+		data _ fft transformDataFrom: samples startingAt: i.
+		data _ data collect: [:v | v sqrt].  "square root compresses dynamic range"
+		data /= 200.0.
+		sonogramMorph plotColumn: data].
+	^ sonogramMorph
+	
+! !
 
 !FloatImage methodsFor: 'arithmetic-answer new' stamp: 'jmv 7/27/2012 18:16'!
 * aFloatImageOrNumber
@@ -2287,23 +2490,11 @@ acutanceAt: delta aux: auxImage
 				ifFalse: [0]].
 	^auxImage mean! !
 
-!FloatImage methodsFor: 'conversion' stamp: 'jmv 4/14/2015 11:08'!
-addFrom8BitColorForm: aForm
-	"Assume that aForm has a colormap with at most 256 gray levels, going from black to white.
-	This is what we get, for instance, when reading a gray 8 bit bmp file"
-
-	self with8BitColorForm: aForm do: [ :i2 :v |
-		elements at: i2 put: v + (elements at: i2) ]! !
-
-!FloatImage methodsFor: 'conversion' stamp: 'jmv 4/14/2015 11:08'!
-addToStDevFrom8BitColorForm: aForm meanImage: meanImage
-	"Assume that aForm has a colormap with at most 256 gray levels, going from black to white.
-	This is what we get, for instance, when reading a gray 8 bit bmp file"
-
-	|  meanValues |
-	meanValues _ meanImage elements.
-	self with8BitColorForm: aForm do: [ :i2 :v |
-		elements at: i2 put: (v - (meanValues at: i2)) squared + (elements at: i2) ]! !
+!FloatImage methodsFor: 'noise generation' stamp: 'jmv 7/19/2016 12:08:32'!
+addNormalNoise: standardDeviation
+	| random |
+	random _ NormalProbabilityDistribution mean: 0.0 standardDeviation: standardDeviation.
+	self replaceValues: [ :i :j :v | random nextRandomNumber + v ]! !
 
 !FloatImage methodsFor: 'dynamic range operations' stamp: 'jmv 6/3/2015 21:49'!
 applyMap: map
@@ -2395,20 +2586,23 @@ areaTransformedBy: anAffineTransformation resultExtent: resultExtentOrNil
 		]].
 	^scaled! !
 
-!FloatImage methodsFor: 'conversion' stamp: 'jmv 4/28/2015 11:57'!
+!FloatImage methodsFor: 'conversion' stamp: 'jmv 7/18/2016 11:46:01'!
 asForm
-	"Answer a 32bit Form with gray values.
-	Assume the receiver is normalized in [0.0 .. 0.996].
-	Values are simply multiplied by 256.0 and truncated, to produce 8bit pixel values.
+	"Assume the receiver is normalized in [0.0 .. 255/256.0]. Clip values out of range.
+	For this reason, don't move this implementation to FloatMatrix, they will most likely use
+	other value ranges. See #fullRangeDisplayAt: and #linearDisplayAt:
+	
+	Consider calling the much faster #asFormQuick
+	
 	Assume receiver is in gamma space (as a Form, and as jpg or png files)
 	(See #linearSpaceToGammaEncoded and #linearSpaceToGammaEncoded)"
-	"Warning: No clamping of values out of range. 
-	If needed, callers might do something like
-		image replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ]"
 
 	| answer |
-	answer _ Form extent: width@height depth: 32.
-	self fill32BitForm: answer.
+	answer _ self as8bitFormEvaluating: [ :index | | value |
+		value _ elements at: index.
+		"Assume the receiver is normalized in [0.0 .. 255/256.0]
+		Multiply by 256, to get values in [0.0 .. 255.0] and then round."
+		(value * 256 + 0.5) truncated min: 255 max: 0 ].
 	^answer! !
 
 !FloatImage methodsFor: 'conversion' stamp: 'jmv 4/28/2015 11:58'!
@@ -2427,6 +2621,21 @@ asFormG: greenImage b: blueImage
 	self fill32BitForm: answer withG: greenImage b: blueImage.
 	^answer! !
 
+!FloatImage methodsFor: 'conversion' stamp: 'jmv 7/18/2016 11:44:11'!
+asFormQuick
+	"Answer a 32bit Form with gray values.
+	Assume the receiver is normalized in [0.0 .. 0.996].
+	Values are simply multiplied by 256.0 and truncated, to produce 8bit pixel values.
+	Assume receiver is in gamma space (as a Form, and as jpg or png files)
+	(See #linearSpaceToGammaEncoded and #linearSpaceToGammaEncoded)"
+	"Warning: No clamping of values out of range. 
+	If needed, callers might call #asForm"
+
+	| answer |
+	answer _ GrayForm extent: width@height.
+	self fillGrayForm: answer.
+	^answer! !
+
 !FloatImage methodsFor: 'conversion' stamp: 'jmv 5/4/2016 11:05'!
 asGammaFormUnitRange
 	"See comment at #fullRangeDisplayAt:"
@@ -2434,21 +2643,6 @@ asGammaFormUnitRange
 	^ self as8bitFormEvaluating: [ :index | | value |
 		value _ Color linearTosRGBGamma: ((elements at: index) min: 1.0 max: 0.0).
 		(value * 255 + 0.5) truncated ]! !
-
-!FloatImage methodsFor: 'conversion' stamp: 'jmv 5/4/2016 10:59'!
-asGray8Form
-	"Assume the receiver is normalized in [0.0 .. 1.0]. Clip values out of range.
-	For this reason, don't move this implementation to FloatMatrix, they will most likely use
-	other value ranges. See #fullRangeDisplayAt: and #linearDisplayAt:
-	
-	Assume receiver is in gamma space (as a Form, and as jpg or png files)
-	(See #linearSpaceToGammaEncoded and #linearSpaceToGammaEncoded)"
-
-	| answer |
-	answer _ self as8bitFormEvaluating: [ :index | | value |
-		value _ elements at: index.
-		(value * 255 + 0.5) truncated min: 255 max: 0 ].
-	^answer! !
 
 !FloatImage methodsFor: 'resampling' stamp: 'jmv 5/22/2015 12:25'!
 bSplineTransformedBy: anAffineTransformation resultExtent: resultExtentOrNil
@@ -2477,6 +2671,65 @@ bSplineTransformedBy: anAffineTransformation resultExtent: resultExtentOrNil
 			scaled x: x y: y put: v ]].
 	^scaled! !
 
+!FloatImage methodsFor: 'repair' stamp: 'jmv 8/3/2016 14:31:33'!
+badPixelCorrectionMapFor: badPixels
+	"Answer a ShortWordMatrix with a correction map for badPixels"
+
+	| correctionMap badPixelsSet x x0 x1 y y0 y1 |
+	badPixelsSet _ badPixels asSet.
+	correctionMap _ ShortWordMatrix extent: 6@badPixels size.
+	badPixels withIndexDo: [ :each :i |
+		x _ each x.
+		y _ each y.
+		x0 _ (x-1 to: 1 by: -1) detect: [ :xx | (badPixelsSet includes: xx@y) not] ifNone: [].
+		x1 _ (x+1 to: width) detect: [ :xx | (badPixelsSet includes: xx@y) not] ifNone: [].
+		x0 ifNil: [ x0 _ x1 ].
+		x1 ifNil: [ x1 _ x0 ].
+		y0 _ (y-1 to: 1 by: -1) detect: [ :yy | (badPixelsSet includes: x@yy) not] ifNone: [].
+		y1 _ (y+1 to: height) detect: [ :yy | (badPixelsSet includes: x@yy) not] ifNone: [].
+		y0 ifNil: [ y0 _ y1 ].
+		y1 ifNil: [ y1 _ y0 ].
+		correctionMap at: 1@i put: x.
+		correctionMap at: 2@i put: y.
+		correctionMap at: 3@i put: x0.
+		correctionMap at: 4@i put: x1.
+		correctionMap at: 5@i put: y0.
+		correctionMap at: 6@i put: y1.
+	].
+	^correctionMap
+"
+image _ FloatImage lena.
+
+badPixelMask _ FloatImage fromArrayOfArrays: {
+	#( 0 0 0 1 0 0 0).
+	#( 0 0 1 1 1 0 0).
+	#( 0 0 1 1 1 0 0).
+	#( 0 1 1 1 1 1 0).
+	#( 0 1 1 1 1 1 0).
+	#( 1 1 1 1 1 1 0).
+	#( 0 1 1 1 1 0 0).
+	#( 0 0 1 1 0 0 0) }.
+
+broken _ image copy.	
+badPixels _ OrderedCollection new.
+{100@93. 90@73. 20@20. 150@40. 30@110. 200@192. 220@120. 220@100. 220@80. 220@60. 220@40. 220@20. 60@160. 120@120. 132@123} do: [ :badPixelsOrigin |
+	badPixelMask withIndexesDo: [ :i :j :v |
+		v = 1 ifTrue: [
+			badPixelPos _ badPixelsOrigin + (j@i) - 1.
+			badPixels add: badPixelPos.
+			broken at: badPixelPos put: 1.
+			]]].
+
+image display.
+broken display.
+
+correctionMap _ image badPixelCorrectionMapFor: badPixels.
+repaired _ broken copy.
+repaired repair: correctionMap.
+
+repaired display
+"! !
+
 !FloatImage methodsFor: 'arithmetic-modify self' stamp: 'jmv 8/23/2014 23:40'!
 beMagnitudeOfComplexesWith: imaginary
 	"Warning. Modifies self to store result. In the process, modifies the argument."
@@ -2487,6 +2740,27 @@ beMagnitudeOfComplexesWith: imaginary
 	iv *= iv.
 	elements += iv.
 	self replaceValues: [ :i :j :v | v sqrt ]! !
+
+!FloatImage methodsFor: 'centroids' stamp: 'jmv 7/5/2016 14:53'!
+bicubicCentroidAround: centroidHint
+	| d delta dir dx dy f max xFilter |
+	xFilter _ FloatArray new: 4.
+	d _ 0.1.	"Distance from hint where we look for max. Should work even if real centroid is much closer to hint."
+	"find angle of max growth of interpolator"
+	max _ 0.
+	0.0 to: Float pi * 2 count: 1000 do: [ :theta |
+		dx _ theta cos * d. dy _ theta sin * d.
+		f _ self bicubicInterpolatedValueAtX: centroidHint x+dx y: centroidHint y+dy xFilterStore: xFilter.
+		f > max ifTrue: [
+			max _ f. dir _ dx@dy ]].
+	"look for max value of interpolator"
+	max _ 0.
+	0.0 to: 1.0/d count: 1000 do: [ :step |
+		dx _ dir x * step. dy _ dir y * step.
+		f _ self bicubicInterpolatedValueAtX: centroidHint x+dx y: centroidHint y+dy xFilterStore: xFilter.
+		f > max ifTrue: [
+			max _ f. delta _ dx@dy ]].
+	^centroidHint + delta! !
 
 !FloatImage methodsFor: 'interpolation' stamp: 'jmv 5/4/2015 13:44'!
 bicubicInterpolatedValueAtX: x y: y xFilterStore: xFilter
@@ -2642,9 +2916,73 @@ FloatImage blurEstimationExperiment
 		delta _ delta + direction. ].
 	^stepCount! !
 
-!FloatImage methodsFor: 'image registration' stamp: 'jmv 12/3/2012 17:12'!
+!FloatImage methodsFor: 'centroids' stamp: 'jmv 7/5/2016 14:44'!
+boxAbove: threshold atX: x y: y
+	"Find the smallest box (a rectangular area) that includes x@y and is above threshold.
+	More precisely, start with x@y and add additional rows and columns around it as long as they include some value above threshold.
+	The result has a one-sample border without values above threshold, and all inner rows and columns have at least one sample above it.
+	The idea is to build the smallest possible box that includes a 'black' border.
+	Note: in any case, stop at image edges."
+	| continue x0 x1 y0 y1 |
+	x0 _ x. x1 _ x.
+	y0 _ y. y1 _ y.
+	continue _ true.
+	[ continue ] whileTrue: [
+		continue _ false.
+		[y0 > 1 and: [(x0 to: x1) anySatisfy: [ :xx | (self x: xx y: y0) > threshold ]]] whileTrue: [
+			y0 _ y0-1.
+			continue _ true ].
+		[y1 < self height and: [(x0 to: x1) anySatisfy: [ :xx | (self x: xx y: y1) > threshold ]]] whileTrue: [
+			y1 _ y1+1.
+			continue _ true ].
+		[x0 > 1 and: [(y0 to: y1) anySatisfy: [ :yy | (self x: x0 y: yy) > threshold ]]] whileTrue: [
+			x0 _ x0-1.
+			continue _ true ].
+		[x1 < self width and: [(y0 to: y1) anySatisfy: [ :yy | (self x: x1 y: yy) > threshold ]]] whileTrue: [
+			x1 _ x1+1.
+			continue _ true ].
+	].
+	^x0@y0 corner: x1@y1+1! !
+
+!FloatImage methodsFor: 'centroids' stamp: 'jmv 7/5/2016 14:53'!
+bsplineCentroidAround: centroidHint
+	| d delta dir dx dy f max interpolator |
+	interpolator _ BSplineInterpolatingImage from: self.
+	d _ 0.1.	"Distance from hint where we look for max. Should work even if real centroid is much closer to hint."
+	"find angle of max growth of interpolator"
+	max _ 0.
+	0.0 to: Float pi * 2 count: 1000 do: [ :theta |
+		dx _ theta cos * d. dy _ theta sin * d.
+		f _ interpolator interpolatedValueAtX: centroidHint x+dx y: centroidHint y+dy.
+		f > max ifTrue: [
+			max _ f. dir _ dx@dy ]].
+	"look for max value of interpolator"
+	max _ 0.
+	0.0 to: 1.0/d count: 1000 do: [ :step |
+		dx _ dir x * step. dy _ dir y * step.
+		f _ interpolator interpolatedValueAtX: centroidHint x+dx y: centroidHint y+dy.
+		f > max ifTrue: [
+			max _ f. delta _ dx@dy ]].
+	^centroidHint + delta.! !
+
+!FloatImage methodsFor: 'centroids' stamp: 'jmv 7/5/2016 14:45'!
+centerOfMass
+	""
+	| star2 starCenterOfMassX starCenterOfMassY |
+	star2 _ self copy normalizeSum.
+	star2 replaceValues:  [ :i :j :v | v * i ].
+	starCenterOfMassY _ star2 sum.
+	star2 _ self copy normalizeSum.
+	star2 replaceValues:  [ :i :j :v | v * j ].
+	starCenterOfMassX _ star2 sum.
+	^starCenterOfMassX@starCenterOfMassY.! !
+
+!FloatImage methodsFor: 'centroids' stamp: 'jmv 7/5/2016 14:44'!
 centroidAround4: aPoint
 	"Find the centroid of the spot that covers aPoint. aPoint must contain the local maximum.
+	Use given point, and 4 neighbors.
+	See #testCentroids
+
 	| i |
 	i _ FloatImage width: 5 height: 5.
 	i x: 3 y: 3 put: 1.
@@ -2695,9 +3033,10 @@ centroidAround4: aPoint
 
 	^centroidX @ centroidY! !
 
-!FloatImage methodsFor: 'image registration' stamp: 'jmv 12/11/2012 13:05'!
+!FloatImage methodsFor: 'centroids' stamp: 'jmv 7/5/2016 14:44'!
 centroidAround: aPoint
 	"Find the centroid of the spot that covers aPoint. aPoint must contain the local maximum.
+	See #testCentroids
 	| i |
 	i _ FloatImage width: 5 height: 5.
 	i x: 3 y: 3 put: 1.
@@ -2827,7 +3166,7 @@ convolutionLinearWithSmallKernel: kernel
 			answer x: x y: y put: v ]].
 	^answer! !
 
-!FloatImage methodsFor: 'image registration' stamp: 'jmv 12/10/2012 18:00'!
+!FloatImage methodsFor: 'image registration' stamp: 'jmv 10/17/2016 10:39:31'!
 crossCorrelationWith: aFloatImage phase: aBoolean
 	"Compute cross correlation with argument, usig 2D FFT. Store the result on self.
 	if aBoolean, compute phase correlation.
@@ -2840,7 +3179,7 @@ crossCorrelationWith: aFloatImage phase: aBoolean
 	Note: Input is assumed to be real, and answer is real too.
 	Note: modifies both self and aFloatImage. Call with copies if appropriate.
 	"
-	| imaginary argumentImaginary fft a b c d e f k |
+	| imaginary argumentImaginary fft a b c d e f magnitude |
 	imaginary _ FloatImage width: width height: height.
 	argumentImaginary _ FloatImage width: width height: height.
 
@@ -2856,7 +3195,6 @@ crossCorrelationWith: aFloatImage phase: aBoolean
 "imaginary *= -1."
 
 	"Multiply"
-	k _ 1.
 	1 to: height do: [ :y |
 		1 to: width do: [ :x |
 			a _ self x: x y: y.
@@ -2866,15 +3204,18 @@ crossCorrelationWith: aFloatImage phase: aBoolean
 			e _ a * c - (b * d).
 			f _ b * c + (a * d).
 			aBoolean ifTrue: [
-				k _ 1.0 / (e squared + f squared) sqrt ].
-			self x: x y: y put: e*k.
-			imaginary x: x y: y put: f*k ]].
+				magnitude _ (e squared + f squared) sqrt.
+				magnitude = 0.0 ifFalse: [
+					e _ e / magnitude.
+					f _ f / magnitude ]].
+			self x: x y: y put: e.
+			imaginary x: x y: y put: f ]].
 
 	"And transform back self"
 	fft transformForward: false! !
 
-!FloatImage methodsFor: 'image registration' stamp: 'jmv 12/11/2012 15:48'!
-deltaToAlign: aFloatImage imagesAreRaw: imagesAreRaw
+!FloatImage methodsFor: 'image registration' stamp: 'jmv 10/19/2016 11:19:17'!
+deltaToAlign: aFloatImage imagesAreRaw: imagesAreRaw rawDelta: rawDeltaPointOrNil
 	"Compute the image registration between self and anImage. Answer the delta aFloatImage should be moved to align perfectly with self.
 	Assume there is no scale change and no rotation.
 	It is required that both images are of the same size, and that width and height are an integer power of two (to ease FFT).
@@ -2889,34 +3230,31 @@ deltaToAlign: aFloatImage imagesAreRaw: imagesAreRaw
 	
 	Note: modifies both images. Call this method with copies, if needed."
 	
-	| x y dx dy c xy doPhaseCorrelation |
+	| x y dx dy c xy doPhaseCorrelation rawPatternPosition |
 	"Do Phase Correlation. This normalizes the cross correlation result, meaning it makes sense to ask the max value to be above some minimum to be meaningful."
 	doPhaseCorrelation _ true.
-
 	self crossCorrelationWith: aFloatImage phase: doPhaseCorrelation.
 
-	"If images are Raw there will be a spurious local maximum at 1@1"
-	imagesAreRaw ifTrue: [ self x: 1 y: 1 put: 0 ].
+	"If images are Raw there will be a spurious local maximum at 1@1, or at whatever distance the two images where taken from the original raws.
+	This is due to usual sensor pixel gain non uniformity, hot & dead pixels, etc."
+	imagesAreRaw ifTrue: [
+		rawPatternPosition _ (rawDeltaPointOrNil ifNotNil: [rawDeltaPointOrNil rounded] ifNil: [0@0])+1.
+		self wrapI: rawPatternPosition y j: rawPatternPosition x put: 0.
+		self wrapI: rawPatternPosition y+1 j: rawPatternPosition x put: 0.
+		self wrapI: rawPatternPosition y-1 j: rawPatternPosition x put: 0.
+		self wrapI: rawPatternPosition y j: rawPatternPosition x+1 put: 0.
+		self wrapI: rawPatternPosition y j: rawPatternPosition x-1 put: 0 ].
+
 	
 	"Find max"
 	xy _ self xyForMax.
 	x _ xy x.
 	y _ xy y.
 
-	"If only maximum was at 1@1, it means that preconditions were not met.
-	As we have already set the value at 1@1 as zero, this would be the case if the max value is in one of 4 neighbors of 1@1"
-	imagesAreRaw ifTrue: [
-		((x= width and: [ y = 1 ]) or: [
-		(x= 2 and: [ y = 1 ]) or: [
-		(x= 1 and: [ y = height ]) or: [
-		(x= 1 and: [ y = 2 ]) ]]]) ifTrue: [
-			self error: 'Raw images with no content displacement are not supported.' ]].
-
-
 	"Solo considerar valido el maximo si es mayor que 0.03. Suponemos phase = true. ver 
 	An FFT-Based Technique for Translation, Rotation, and Scale-Invariant Image Registration"
-"	(doPhaseCorrelation and: [ (self x: x y: y) < 0.03 ]) ifTrue: [
-		self error: 'The displacement between images could not be found' ]."
+	(doPhaseCorrelation and: [ (self x: x y: y) < 0.02 ]) ifTrue: [
+		self error: 'The displacement between images could not be found' ].
 
 	"Find centroid around x@y"
 	c _ self centroidAround: x@y.
@@ -2924,9 +3262,10 @@ deltaToAlign: aFloatImage imagesAreRaw: imagesAreRaw
 	dy _ c y-1.
 	dx > (width//2) ifTrue: [ dx _ dx - width ].
 	dy > (height//2) ifTrue: [ dy _ dy - height ].
+
 	^dx @dy! !
 
-!FloatImage methodsFor: 'displaying' stamp: 'jmv 5/4/2016 11:17'!
+!FloatImage methodsFor: 'displaying' stamp: 'jmv 7/18/2016 10:16:43'!
 displayAt: aPoint
 	"Assume the receiver is normalized in [0.0 .. 1.0]. Clip values out of range.
 	For this reason, don't move this implementation to FloatMatrix, they will most likely use
@@ -2935,7 +3274,7 @@ displayAt: aPoint
 	Assume receiver is in gamma space (as a Form, and as jpg or png files) and there's no need to apply gamma.
 	(See #linearSpaceToGammaEncoded and #linearSpaceToGammaEncoded)"
 
-	self asGray8Form displayAt: aPoint! !
+	self asForm displayAt: aPoint! !
 
 !FloatImage methodsFor: 'displaying' stamp: 'jmv 5/4/2016 11:11'!
 displayWithGammaAt: aPoint
@@ -3021,6 +3360,25 @@ fillElementsWith: aFloatArray displacedBy: anInteger
 			elements replaceFrom: 1+anInteger to: elements size with: aFloatArray startingAt: 1.
 			elements replaceFrom: 1 to: 1 + anInteger - 1 with: aFloatArray startingAt: elements size - anInteger+1 ]! !
 
+!FloatImage methodsFor: 'conversion' stamp: 'jmv 7/18/2016 11:41:39'!
+fillGrayForm: aGrayForm
+"Se podria pensar en meter min y max, y clamping, multiplicando por una cte, y usando un Bitmap de 2^24 entradas (16Mb!!) como colorMap, para mappear todas las combinaciones posibles que overfloween, a 255 en el form destino.
+Esto serviria para, por ejemplo, ajustes de brillo, etc en una gui"
+
+	| bb magic |
+	aGrayForm bits atAllPut: 0.
+	magic _ 128.0.
+	bb _ BitBlt toForm: aGrayForm.
+	bb combinationRule: 7. "or"
+	bb sourceX: 0; sourceY: 0.
+	bb destX: 0 destY: 0 width: width height: height.
+
+	self += magic.
+	bb sourceForm: (Form new hackBitsForFloatMatrix: self).
+	bb colorMap: (ColorMap masks: { 0. 16rFF00. 16rFF00. 16rFF00 } shifts: { 0. 8. 0. -8 }).
+	bb copyBits.
+	self -= magic! !
+
 !FloatImage methodsFor: 'operations' stamp: 'jmv 9/1/2014 14:27'!
 fillRect: aRectangle with: aFloat
 	aRectangle top to: aRectangle bottom-1 do: [ :y |
@@ -3055,6 +3413,45 @@ fillWithDeconvolutionOf: blurredImages deconvolve: kernels
 
 	"And transform back self"
 	fft transformForward: false! !
+
+!FloatImage methodsFor: 'repair' stamp: 'jmv 8/3/2016 14:05:28'!
+findUnusuallyDarkPixels
+	"Answer a list of dead pixels, or pixels that are significantly darker than most in the same row."
+	"These thresholds were found experimenting with sample images (So far, with just one image!!)
+	They are meant to be refined as we download more real satellite images, especially if we get enough to take medians."
+
+	| row median v dark dark2 darkAsSet |
+	dark _ Array streamContents: [ :stream |
+		1 to: height do: [ :i |
+			row _ self i: i.
+			median _ row median.
+			1 to: width do: [ :j |
+				v _ self i: i j: j.
+				"See method comment"
+				(median - v > (10/256.0) and: [v / median < 0.85]) ifTrue: [
+					"debug aid"
+					"{j@i-1. v. median rounded asFloat. (v / median) asFloat printStringFractionDigits: 2. (v - median) printStringFractionDigits: 2} print."
+					stream nextPut: j@i ]]]].
+
+	darkAsSet _ dark asSet.
+
+	dark2 _ Set new.
+	dark do: [ :each |	| i j |
+		{-1@0. 1@0. 0@ -1. 0@ 1} do: [ :d |
+			j _ each x + d x.
+			i _ each y + d y.
+			(darkAsSet includes: j@i) ifFalse: [
+				(j@i between: 1@1 and: width@height) ifTrue: [
+					row _ self i: i.
+					median _ row median.
+					v _ self i: i j: j.
+					"See method comment"
+					(median - v > (20/256.0) and: [v / median < 0.9]) ifTrue: [
+					"debug aid"
+						"{j@i-1. v. median rounded asFloat. (v / median) asFloat printStringFractionDigits: 2. (median - v) printStringFractionDigits: 2} print."
+						dark2 add: j@i ]]]]].
+
+	^(dark, dark2 asArray sort: [ :p1 :p2 | p1 y < p2 y or: [p1 y = p2 y and: [p1 x < p2 x]]]) print! !
 
 !FloatImage methodsFor: 'filtering' stamp: 'jmv 6/17/2015 17:59'!
 fourierDeconvolutionOf: blurredImages deconvolve: kernels maxNoiseAmplification: maxNoiseFactor
@@ -3310,15 +3707,43 @@ guardZoneX: x y: y guardZone: guardZone innerRect: innerRect nullValue: nullValu
 					^self x: x y: y put: (self bilinearInterpolatedValueAtX: xb y: yb) * f + (1-f * nullValue)]]].
 	self x: x y: y put: nullValue! !
 
+!FloatImage methodsFor: 'repair' stamp: 'jmv 8/3/2016 14:09:01'!
+highlight: correctionMap
+	"Diagnostic, debugging, etc."
+
+	| x x0 x1 y y0 y1 |
+	1 to: correctionMap height do: [ :i |
+		x _ correctionMap at: 1@i.
+		y _ correctionMap at: 2@i.
+		x0 _ correctionMap at: 3@i.
+		x1 _ correctionMap at: 4@i.
+		y0 _ correctionMap at: 5@i.
+		y1 _ correctionMap at: 6@i.
+		
+		"Debug aid"
+		self x: x y: y put: 0.
+		self x: x0 y: y put: 130/256.0.
+		self x: x1 y: y put: 130/256.0.
+		self x: x y: y0 put: 130/256.0.
+		self x: x y: y1 put: 130/256.0.
+	].! !
+
 !FloatImage methodsFor: 'statistics' stamp: 'jmv 8/9/2012 15:42'!
 histogram
 	^self histogram: 256! !
 
-!FloatImage methodsFor: 'statistics' stamp: 'jmv 4/13/2015 12:33'!
+!FloatImage methodsFor: 'statistics' stamp: 'jmv 7/18/2016 23:13:49'!
 histogram: slotCount
-	| answer |
+	| answer lowValue highValue halfSlot |
 "	answer _ ImageHistogram3 new: slotCount."
-	answer _ Histogram binCount: slotCount minValue: 0.0 maxValue: 1.0.
+	
+	"Follow convention when converting Forms to FloatImage: we don't reach 1.0
+	Alternatively, these could be min and max values in receiver..."
+	lowValue _ 0.0.
+	highValue _ 255/256.0.
+	
+	halfSlot _ highValue-lowValue / (slotCount-1) / 2.
+	answer _ Histogram binCount: slotCount minValue: lowValue-halfSlot maxValue: highValue+halfSlot.
 	elements do: [ :pixelValue |
 		answer addValue: pixelValue ].
 	^answer! !
@@ -3549,6 +3974,20 @@ mean: aRect
 			mean _ mean + (self x: x y: y) ]].
 	^mean / count! !
 
+!FloatImage methodsFor: 'statistics' stamp: 'jmv 7/19/2016 12:04:46'!
+median
+	"Very expensive on large collections. Consider using a Histogram:
+		aMatrix histogram median
+	"
+	^elements median! !
+
+!FloatImage methodsFor: 'statistics' stamp: 'jmv 7/19/2016 12:21:17'!
+mode
+	"Very expensive on large collections. Consider using a Histogram:
+		aMatrix histogram mode
+	"
+	^elements mode! !
+
 !FloatImage methodsFor: 'resampling' stamp: 'jmv 5/22/2015 12:27'!
 nearestNeighborTransformedBy: anAffineTransformation resultExtent: resultExtentOrNil
 	"Answer a new image.
@@ -3716,6 +4155,13 @@ openCLNormalizedCoordinatesForOneBased: oneBasedCoordinates
 	See NormalizedCoordinatesExperiment in the OpenCL package"
 
 	^ ((oneBasedCoordinates x-0.5)/width) @ ((oneBasedCoordinates y-0.5)/height)! !
+
+!FloatImage methodsFor: 'statistics' stamp: 'jmv 7/19/2016 12:04:51'!
+percentile: percentile
+	"Very expensive on large collections. Consider using a Histogram:
+		aMatrix histogram percentile: percentile
+	"
+	^elements percentile: percentile! !
 
 !FloatImage methodsFor: 'resampling' stamp: 'jmv 6/15/2015 16:30'!
 perspectiveTransformTopLeft: topLeft topRight: topRight bottomLeft: bottomLeft bottomRight: bottomRight
@@ -3898,6 +4344,46 @@ quantizeTo: bits
 	q _ 1.0/ n.
 	self replaceValues: [ :i :j :v | (v truncateTo: q) min: k max: 0.0 ]! !
 
+!FloatImage methodsFor: 'repair' stamp: 'jmv 8/3/2016 14:12:02'!
+repair: correctionMap
+
+	| x x0 x1 y y0 y1 v1 v2 |
+	1 to: correctionMap height do: [ :i |
+		x _ correctionMap at: 1@i.
+		y _ correctionMap at: 2@i.
+		x0 _ correctionMap at: 3@i.
+		x1 _ correctionMap at: 4@i.
+		y0 _ correctionMap at: 5@i.
+		y1 _ correctionMap at: 6@i.
+
+		v1 _ x1 = x0
+			ifTrue: [self at: x0@y]
+			ifFalse: [(self at: x0@y) interpolateTo: (self at: x1@y) at: (x-x0/(x1-x0))].
+		v2 _ y1 = y0
+			ifTrue: [self at: x@y0]
+			ifFalse: [(self at: x@y0) interpolateTo: (self at: x@y1) at: (y-y0/(y1-y0))].
+		self x: x y: y put: v1+v2*0.5
+		].
+
+"
+roi _ 'C:\Users\Juan-Tuerca\BajadasFrescoYBatata\FM1-Fresco\image.160315010222._2240_0___640_5120_.png' asFileEntry formContents.
+roi _ FloatImage fromGrayForm: roi.
+
+w _ roi width.
+h _ roi height.
+
+darkPixels _ roi findUnusuallyDarkPixels.
+map _ roi badPixelCorrectionMapFor: darkPixels.
+
+showDarkPixels _ roi copy.
+showDarkPixels highlight: map.
+showDarkPixels writePNGfileNamed: 'showDarkPixels.png'.nil.
+
+fixed _ roi copy.
+fixed repair: map.
+fixed writePNGfileNamed: 'fixed.png'.nil.
+"! !
+
 !FloatImage methodsFor: 'resampling-aux' stamp: 'jmv 1/27/2015 14:26'!
 resultExtentFor: anAffineTransformation
 	"Compute an appropriate extent for the result of applying anAffineTransformation to self.
@@ -4040,6 +4526,17 @@ squared
 
 	^self * self! !
 
+!FloatImage methodsFor: 'statistics' stamp: 'jmv 7/19/2016 12:04:54'!
+standardDeviation
+	"
+	See
+		http://en.wikipedia.org/wiki/Variance
+		http://www.mathsisfun.com/data/standard-deviation.html
+	{600. 470. 170. 430. 300} standardDeviation
+	"
+
+	^elements standardDeviation! !
+
 !FloatImage methodsFor: 'private' stamp: 'jmv 8/13/2012 16:52'!
 validateSameSize: aFloatImage
 	"For arithmetic between the receiver and the argument."
@@ -4098,10 +4595,10 @@ writeBMPfileNamed: fName
 	self replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
 	self asForm writeBMPfileNamed: fName! !
 
-!FloatImage methodsFor: 'file operations' stamp: 'jmv 10/3/2015 19:07'!
+!FloatImage methodsFor: 'file operations' stamp: 'jmv 5/31/2016 11:24'!
 writeFileNamed: filename
 
-	filename asFileEntry forceWriteStream: [ :stream |
+	filename asFileEntry forceWriteStreamDo: [ :stream |
 		(ReferenceStream on: stream)
 			nextPut: self ]! !
 
@@ -4264,10 +4761,10 @@ example4
 	bigger display.
 	original display! !
 
-!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 4/22/2016 10:44'!
+!FloatImage class methodsFor: 'instance creation' stamp: 'pb 5/25/2016 01:33'!
 fromFileEntry: aFileEntry
 
-	^aFileEntry readStream: [ :stream |
+	^aFileEntry readStreamDo: [ :stream |
 		(ReferenceStream on: stream)
 			next ]! !
 
@@ -4276,13 +4773,16 @@ fromFileNamed: filename
 
 	^ self fromFileEntry: filename asFileEntry! !
 
-!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 9/7/2015 13:03'!
+!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 6/2/2016 20:33'!
 fromForm: aForm
 	aForm depth = 32 ifTrue: [
 		^self from32BitColorForm: aForm component: #green ].
 
+	(aForm is: #GrayForm) ifTrue: [
+		^self fromGrayForm: aForm ].
+
 	(aForm is: #ColorForm) ifTrue: [
-		^self from8BitColorForm: aForm ].
+		^self fromGrayForm: aForm ].
 
 	self error: 'unsupported depth'! !
 
@@ -4310,7 +4810,7 @@ grid: cellExtent extent: totalExtent
 		  	< 0.05 ifTrue: [0.1] ifFalse: [0.9]].
 	^answer! !
 
-!FloatImage class methodsFor: 'experiments' stamp: 'jmv 1/27/2015 13:59'!
+!FloatImage class methodsFor: 'experiments' stamp: 'jmv 6/2/2016 20:33'!
 interpolationExperiment1
 	"
 	self interpolationExperiment1
@@ -4319,7 +4819,7 @@ interpolationExperiment1
 	"
 
 	| original t e p |
-	original _ FloatImage from8BitColorForm: Cursor read as8BitColorForm.
+	original _ FloatImage fromGrayForm: Cursor read asGrayForm.
 	t _ AffineTransformation forImageRotation: -0.2 zoom: 10.23 originalExtent: original extent.
 	e _ original resultExtentFor: t.
 	p _ 0@0.
@@ -4430,12 +4930,12 @@ lanczosFilter2: x
 	stretchedSinc _ xStretched sin / xStretched.
 	^scaledSinc * stretchedSinc! !
 
-!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 10/16/2015 17:13'!
-meanAndStDevOfFolder: folder baseName: base n: n extentOrNil: extentOrNil
+!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 7/19/2016 15:06:20'!
+meanAndStDevOfFolder: folderName baseName: base n: n extentOrNil: extentOrNil
 	"
 	| pair |
 [
-	pair _ FloatImage meanAndStDevOfFolder: 'DarkFrames' baseName: 'darkframe-scm-0-344-350-' n: 19 extentOrNil: nil.
+	pair _ FloatImage meanAndStDevOfFolder: 'C:\Users\Juan-Tuerca\ImagenesDeCalibracion\OriginalsRenamed\FM0001Micro' baseName: 'Gray' n: 19 extentOrNil: nil.
 	pair first writePNGfileNamed: 'darkframe-scm-0-344-350-mean.png'.
 	pair first writeFileNamed: 'darkframe-scm-0-344-350-mean.floatImage'.
 	pair second writePNGfileNamed: 'darkframe-scm-0-344-350-stdev.png'.
@@ -4444,34 +4944,54 @@ meanAndStDevOfFolder: folder baseName: base n: n extentOrNil: extentOrNil
 
 	FloatImage fromFileNamed: 'darkframe-scm-0-344-350-mean.floatImage'
 	"
-	| fn form stdev mean |
-	mean _ FloatImage meanOfFolder: folder baseName: base n: n extentOrNil: extentOrNil.
+	| folder form stdev mean each fileEntry count |
+	mean _ FloatImage meanOfFolder: folderName baseName: base n: n extentOrNil: extentOrNil.
+	folder _ folderName asDirectoryEntry.
 	stdev _ FloatImage width: mean width height: mean height.
-	0 to: n-1 do: [ :i |
-		fn _ folder, '/', base, (i printStringBase: 10 length: 5 padded: true), '.bmp'.
-		form _ Form fromFileNamed: fn.
-		fn print.
-		stdev addToStDevFrom8BitColorForm: form meanImage: mean ].
-	stdev replaceValues: [ :i :j :v | (v / (n-1)) sqrt ].
+	each _ FloatImage width: mean width height: mean height.
+	count _ 0.
+	1 to: n do: [ :i |
+		fileEntry _ folder // (base, (i printStringBase: 10 length: 2 padded: true), '.png').
+		fileEntry exists ifTrue: [
+			fileEntry print.
+			form _ fileEntry formContents asGrayForm.
+			each fillFromGrayForm: form.
+			each -= mean.
+			each *= each.
+			stdev += each.
+			count _ count + 1 ]].
+	stdev replaceValues: [ :i :j :v | (v / count) sqrt ].
 	^{ mean . stdev }! !
 
-!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 10/16/2015 17:13'!
-meanOfFolder: folder baseName: base n: n extentOrNil: extentOrNil
+!FloatImage class methodsFor: 'instance creation' stamp: 'jmv 7/19/2016 15:07:50'!
+meanOfFolder: folderName baseName: base n: n extentOrNil: extentOrNil
 	"
 	extentOrNil can be a Point to take the topLeft part of the images, or nil, to take the whole images.
 	FloatImage meanOfFolder: 'DarkFrames' baseName: 'darkframe-scm-0-1-344-' n: 19
 	FloatImage meanOfFolder: 'DarkFrames' baseName: 'darkframe-scm-0-1-344-' n: 3 extentOrNil:512@512
 	"
-	| fn form mean |
+	| folder form mean each count fileEntry |
+	folder _ folderName asDirectoryEntry.
+	"Build them now only if we know the extent"
 	mean _ extentOrNil ifNotNil: [ FloatImage width: extentOrNil x height: extentOrNil y ].
-	0 to: n-1 do: [ :i |
-		fn _ folder, '/', base, (i printStringBase: 10 length: 5 padded: true), '.bmp'.
-		form _ Form fromFileNamed: fn.
-		fn print.
-		mean
-			ifNil: [ mean _ FloatImage from8BitColorForm: form ]
-			ifNotNil: [ mean addFrom8BitColorForm: form ]].
-	mean *= (1.0/n).
+	each _ extentOrNil ifNotNil: [ FloatImage width: extentOrNil x height: extentOrNil y ].
+	count _ 0.
+	1 to: n do: [ :i |
+		fileEntry _ folder // (base, (i printStringBase: 10 length: 2 padded: true), '.png').
+		fileEntry exists ifTrue: [
+			fileEntry print.
+			form _ fileEntry formContents asGrayForm.
+			mean
+				ifNil: [
+					"First iteration, and they were not build before starting. Build them. Load first form into mean."
+					mean _ FloatImage fromGrayForm: form.
+					each _ FloatImage width: mean width height: mean height ]
+				ifNotNil: [
+					"Already built. Just add."
+					each fillFromGrayForm: form.
+					mean += each ].
+			count _ count + 1 ]].
+	mean *= (1.0/count).
 	^mean! !
 
 !FloatImage class methodsFor: 'testing' stamp: 'jmv 8/31/2015 11:52'!
@@ -5226,20 +5746,19 @@ x: x y: y put: aNumber
 	"Update Voronoi diagram."
 	self addVoronoiCellX: x y: y! !
 
-!IrregularSampledImage class methodsFor: 'testing' stamp: 'jmv 3/28/2016 09:49'!
+!IrregularSampledImage class methodsFor: 'testing' stamp: 'jmv 6/10/2016 12:52'!
 test1
 	"
 	[ IrregularSampledImage test1 ] forkAt: 30
 	"
 	| h original r rebuilt w x y |
-	original _ Form fromFileNamed: '2013-06-15 19.44.04gray.jpg'.
-	original _ FloatImage from32BitColorForm: original component: #green.
+	original _ FloatImage lena.
 	original _ original scaledBy: 0.5.
 	w _ original width.
 	h _ original height.
 	rebuilt _ IrregularSampledImage width: w height: h.
 	r _ Random new.
-	r seed: 0.5.
+	r seed: 1.
 	0 to: w*h// 4 do: [ :i |
 		x _ r nextInteger: w.
 		y _ r nextInteger: h.
@@ -5253,20 +5772,19 @@ test1
 				clean; interpolateBarycentricInLinearGammaSpace; displayAt: w*3 @ 0.
 			Processor yield ]]! !
 
-!IrregularSampledImage class methodsFor: 'testing' stamp: 'jmv 3/28/2016 09:49'!
+!IrregularSampledImage class methodsFor: 'testing' stamp: 'jmv 6/10/2016 12:52'!
 test2
 	"
 	[ IrregularSampledImage test2 ] forkAt: 30
 	"
 	| h original r rebuilt w x y |
-	original _ Form fromFileNamed: '2013-06-15 19.44.04gray.jpg'.
-	original _ FloatImage from32BitColorForm: original component: #green.
+	original _ FloatImage lena.
 	original _ original scaledBy: 0.5.
 	w _ original width.
 	h _ original height.
 	rebuilt _ IrregularSampledImage width: w height: h.
 	r _ Random new.
-	r seed: 0.5.
+	r seed: 1.
 	0 to: 100 do: [ :i |
 		x _ r nextInteger: w-24.
 		y _ r nextInteger: h-16.
@@ -5281,15 +5799,14 @@ test2
 				clean; interpolateBarycentric; displayAt: w*2 @ 0;
 				clean; interpolateBarycentricInLinearGammaSpace; displayAt: w*3 @ 0 ]]! !
 
-!IrregularSampledImage class methodsFor: 'testing' stamp: 'jmv 2/25/2014 12:53'!
+!IrregularSampledImage class methodsFor: 'testing' stamp: 'jmv 6/10/2016 12:53'!
 test3
 	"
 	[ IrregularSampledImage test3 ] forkAt: 30
 	"
 	| h original rebuilt w ss |
 	ss _ 2.
-	original _ Form fromFileNamed: '2013-06-15 19.44.04gray.jpg'.
-	original _ FloatImage from32BitColorForm: original component: #green.
+	original _ FloatImage lena.
 	original _ original scaledBy: 0.5.
 	w _ original width.
 	h _ original height.
@@ -5303,6 +5820,1150 @@ test3
 			clean; interpolateBarycentric; displayAt: w*2 @ h;
 			clean; interpolateBarycentricInLinearGammaSpace; displayAt: w*3 @ h.
 		Processor yield ]! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+a0
+	^self at: 1! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+a1
+	^self at: 2! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:07'!
+a2
+	^self at: 3! !
+
+!PerspectiveTransformation methodsFor: 'private access' stamp: 'jmv 1/13/2015 17:09'!
+at: index
+	<primitive: 'primitiveAt' module: 'FloatArrayPlugin'>
+	^Float fromIEEE32Bit: (self basicAt: index)! !
+
+!PerspectiveTransformation methodsFor: 'private access' stamp: 'jmv 1/13/2015 17:09'!
+at: index put: value
+	<primitive: 'primitiveAtPut' module: 'FloatArrayPlugin'>
+	value isFloat 
+		ifTrue:[self basicAt: index put: value asIEEE32BitWord]
+		ifFalse:[self at: index put: value asFloat].
+	^value! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+b0
+	^self at: 4! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+b1
+	^self at: 5! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+b2
+	^self at: 6! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+c0
+	^self at: 7! !
+
+!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
+c1
+	^self at: 8! !
+
+!PerspectiveTransformation methodsFor: 'converting coordinates' stamp: 'jmv 1/13/2015 17:08'!
+map: aPoint
+	| xx yy zz |
+	xx _ (self a0 * aPoint x) + (self a1 * aPoint y) + self a2.
+	yy _ (self b0 * aPoint x) + (self b1 * aPoint y) + self b2.
+	zz _ (self c0 * aPoint x) + (self c1 * aPoint y) + 1.
+	^(xx / zz) @ (yy / zz)! !
+
+!PerspectiveTransformation class methodsFor: 'instance creation' stamp: 'jmv 1/13/2015 17:38'!
+map: sourcePoints to: targetPoints
+	"Both arguments must be of size 4.
+	This method builds an instance, using an implementation of:
+		http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#Mat getPerspectiveTransform(InputArray src, InputArray dst)
+	according to:
+		http://math.stackexchange.com/questions/441597/how-to-calculate-what-matrix-will-transform-specified-points-to-other-specified
+	
+	(PerspectiveTransformation
+		map: {3@5. 5@5. 2@2. 6@1}
+		to: {0@3. 3@3. 0@0. 3@0})
+		map: 3@5
+	"
+	
+	| m x y u v elements result |
+	m _ FloatMatrix m: 8 n: 9.
+	1 to: 4 do: [ :i |
+		x _ (sourcePoints at: i) x.
+		y _ (sourcePoints at: i) y.
+		u _ (targetPoints at: i) x.
+		v _ (targetPoints at: i) y.
+		m i: i j: 1 put: x.
+		m i: i j: 2 put: y.
+		m i: i j: 3 put: 1.
+		m i: i j: 7 put: x negated * u.
+		m i: i j: 8 put: y negated * u.
+		m i: i j: 9 put: u.
+		m i: i+4 j: 4 put: x.
+		m i: i+4 j: 5 put: y.
+		m i: i+4 j: 6 put: 1.
+		m i: i+4 j: 7 put: x negated * v.
+		m i: i+4 j: 8 put: y negated * v.
+		m i: i+4 j: 9 put: v ].
+	elements _ m solveLinearSystem.
+	result _ self new.
+	1 to: 8 do: [ :i | result at: i put: (elements at: i) ].
+	^result! !
+
+!PerspectiveTransformation class methodsFor: 'instance creation' stamp: 'jmv 1/13/2015 17:04'!
+new
+	^(self basicNew: 8) initialize! !
+
+!PerspectiveTransformation class methodsFor: 'instance creation' stamp: 'jmv 1/13/2015 17:04'!
+new: s
+	self error: 'Please call PerspectiveTransformation>>#new (without arguments).'.
+	^self new! !
+
+!FloatImageTest methodsFor: 'testing' stamp: 'jmv 12/10/2012 17:09'!
+testCentroids
+	"Some test on the centroid functionality
+	FloatImageTest new testCentroids
+	This is the performance of the various centroid algorithms I tried
+	centroidAround: 		0.03
+	centroidAround4 	0.063
+	centroidAround5 	0.25
+	centroidAround1 	1.06
+	centroidAround3 	2.06
+	centroidAround2 	2.76
+	"
+
+	| testImage v c max |
+	max _ 0.
+	testImage _ FloatImage width: 5 height: 5.
+	-0.5 to: 0.5 count: 21 do: [ :dx |
+		-0.5 to: 0.5 count: 18 do: [ :dy |
+			1.0 to: 5 count: 20 do: [ :scale |
+				1 to: 5 do: [ :y |
+					1 to: 5 do: [ :x |
+						v _ (x@y - (dx@dy) - 3) r * Float pi / 2 /  scale.
+						testImage x: x y: y put: v cos ]].
+				"
+				data _ testImage asFloatMatrix i: 3.
+				FFT new plot: data elements in: (10@10 extent: 200@100).
+				"
+				c _ testImage centroidAround: 3@3.
+				"We find centroid with error less than 3.5% of a pixel!!"
+				self assert: (dx@dy + 3 - c) r < 0.0323.
+				max _ max max: (dx@dy + 3 - c) r.
+			]]].
+	max print! !
+
+!FloatImageTest methodsFor: 'testing' stamp: 'jmv 4/10/2015 16:23'!
+testHistogram
+	"
+	FloatImageTest new testHistogram
+	"
+	| image histogram |
+	image _ FloatImage fromArrayOfArrays: #(
+		#(0.1   0.3   0.5   0.7   0.9 )
+	).
+	histogram _ image histogram: 5.
+	self assert: (histogram countAt: 0.0) = 1.
+	self assert: (histogram countAt: 1.0) = 1.
+	self assert: (histogram accumulated countAt: 0.0) = 1.
+	self assert: (histogram accumulated countAt: 1.0) = 5! !
+
+!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'di 2/8/1999 14:22'!
+bytesPerEncodedFrame
+	"Answer the number of bytes required to hold one frame of compressed sound data. Answer zero if this codec produces encoded frames of variable size."
+
+	^ 0
+! !
+
+!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'jmv 2/26/2016 17:02'!
+decodeFrames: frameCount from: srcByteArray at: srcIndex into: dstSoundBuffer at: dstIndex
+	"Decode the given number of monophonic frames starting at the given index in the given ByteArray of compressed sound data and storing the decoded samples into the given SoundBuffer starting at the given destination index. Answer a pair containing the number of bytes of compressed data consumed and the number of decompressed samples produced."
+	"Note: Assume that the sender has ensured that the given number of frames will not exhaust either the source or destination buffers."
+
+	| frameBase coeffArray scale i c nullCount samples sourceFrameEnd frameSize inStream val |
+	inStream _ ReadStream on: srcByteArray from: srcIndex to: srcByteArray size.
+	"frameCount _ " inStream nextUnsignedInt32BigEndian: true.
+	samplesPerFrame _ inStream nextUnsignedInt32BigEndian: true.
+	nLevels _ inStream nextUnsignedInt32BigEndian: true.
+	alpha _ inStream nextFloat32BigEndian: true.
+	beta _ inStream nextFloat32BigEndian: true.
+	fwt ifNil:
+		["NOTE: This should read parameters from the encoded data"
+		fwt _ FWT new.
+		fwt nSamples: samplesPerFrame nLevels: nLevels.
+		fwt setAlpha: alpha beta: beta].
+	frameBase _ dstIndex.
+	coeffArray _ fwt coeffs.  "A copy that we can modify"
+
+	1 to: frameCount do:
+		[:frame | 
+
+		"Decode the scale for this frame"
+		frameSize _ inStream nextUnsignedInt16BigEndian: true.
+		sourceFrameEnd _ frameSize + inStream position.
+		scale _ inStream nextFloat32BigEndian: true.
+
+		"Expand run-coded samples to scaled float values."
+		i _ 5.
+		[i <= coeffArray size]
+			whileTrue:
+			[c _ inStream next.
+			c < 128
+				ifTrue: [nullCount _ c < 112
+							ifTrue: [c + 1]
+							ifFalse: [(c-112)*256 + inStream next + 1].
+						i to: i + nullCount - 1 do: [:j | coeffArray at: j put: 0.0].
+						i _ i + nullCount]
+				ifFalse: [val _ (c*256 + inStream next) - 32768 - 16384.
+						coeffArray at: i put: val * scale.
+						i _ i + 1]].
+
+		"Copy float values into the wavelet sample array"		
+			fwt coeffs: coeffArray.
+
+		"Compute the transform"
+		fwt transformForward: false.
+
+		"Determine the scale for this frame"
+		samples _ fwt samples.
+		samples size = samplesPerFrame ifFalse: [self error: 'frame size error'].
+		1 to: samples size do:
+			[:j | dstSoundBuffer at: frameBase + j - 1 put: (samples at: j) asInteger].
+
+		inStream position = sourceFrameEnd ifFalse: [self error: 'frame size error'].
+		frameBase _ frameBase + samplesPerFrame].
+
+	^ Array with: inStream position + 1 - srcIndex
+			with: frameBase - dstIndex! !
+
+!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'jmv 2/26/2016 17:13'!
+encodeFrames: frameCount from: srcSoundBuffer at: srcIndex into: dstByteArray at: dstIndex
+	"Encode the given number of frames starting at the given index in the given monophonic SoundBuffer and storing the encoded sound data into the given ByteArray starting at the given destination index. Encode only as many complete frames as will fit into the destination. Answer a pair containing the number of samples consumed and the number of bytes of compressed data produced."
+	"Note: Assume that the sender has ensured that the given number of frames will not exhaust either the source or destination buffers."
+
+	| frameBase coeffs maxVal minVal c scale nullCount frameI outFrameSize threshold outStream cMin val |
+	threshold _ 2000.
+	fwt ifNil:
+		[samplesPerFrame _ self samplesPerFrame.
+		nLevels _ 8.
+		"Here are some sample mother wavelets, with the compression achieved on a
+		sample of my voice at a threshold of 2000:
+									compression achieved "
+		alpha _ 0.0.  beta _ 0.0.		"12.1"
+		alpha _ 1.72.  beta _ 1.51.	"14.0"
+		alpha _ -1.86.  beta _ -1.53.	"14.4"
+		alpha _ 1.28.  beta _ -0.86.	"15.9"
+		alpha _ -1.15.  beta _ 0.69.	"16.0"
+		fwt _ FWT new.
+		fwt nSamples: samplesPerFrame nLevels: nLevels.
+		fwt setAlpha: alpha beta: beta].
+
+	(outStream _ WriteStream on: dstByteArray from: dstIndex to: dstByteArray size)
+		nextUnsignedInt32Put: frameCount bigEndian: true;
+		nextUnsignedInt32Put: samplesPerFrame bigEndian: true;
+		nextUnsignedInt32Put: nLevels bigEndian: true;
+		nextFloat32Put: alpha bigEndian: true;
+		nextFloat32Put: beta bigEndian: true.
+	frameBase _ srcIndex.
+	1 to: frameCount do:
+		[:frame | 
+
+		"Copy float values into the wavelet sample array"		
+		fwt samples: ((frameBase to: frameBase + samplesPerFrame-1) 
+				collect: [:i | (srcSoundBuffer at: i) asFloat]).
+
+		"Compute the transform"
+		fwt transformForward: true.
+
+		frameI _ outStream position+1.  "Reserve space for frame size"
+		outStream nextUnsignedInt16Put: 0 bigEndian: true.
+
+		"Determine and output the scale for this frame"
+		coeffs _ fwt coeffs.
+		maxVal _ 0.0.  minVal _ 0.0.
+		5 to: coeffs size do:
+			[:i | c _ coeffs at: i.
+			c > maxVal ifTrue: [maxVal _ c].
+			c < minVal ifTrue: [minVal _ c]].
+		scale _ (maxVal max: minVal negated) / 16000.0.  "Will scale all to -16k..16k: 15 bits"
+		outStream nextFloat32Put: scale bigEndian: true.
+
+		"Copy scaled values, with run-coded sequences of 0's, to destByteArray"
+		nullCount _ 0.
+		cMin _ threshold / scale.
+		5 to: coeffs size do:
+			[:i | c _ (coeffs at: i) / scale.
+			c abs < cMin
+			ifTrue: ["Below threshold -- count nulls."
+					nullCount _ nullCount + 1]
+			ifFalse: ["Above threshold -- emit prior null count and this sample."
+					nullCount > 0 ifTrue:
+						[nullCount <= 112
+						ifTrue: [outStream nextPut: nullCount-1]
+						ifFalse: [outStream nextUnsignedInt16Put: (112*256) + nullCount-1 bigEndian: true ].
+						nullCount _ 0].
+						val _ c asInteger + 16384 + 32768.  "Map -16k..16k into 32k..64k"
+						outStream nextUnsignedInt16Put: val bigEndian: true ]].
+
+					nullCount > 0 ifTrue:
+						[nullCount <= 112
+						ifTrue: [outStream nextPut: nullCount-1]
+						ifFalse: [outStream nextUnsignedInt16Put: (112*256) + nullCount-1 bigEndian: true ]].
+		outFrameSize _ outStream position+1 - frameI - 2.  "Write frame size back at the beginning"
+		(WriteStream on: dstByteArray from: frameI to: dstByteArray size)
+			nextUnsignedInt16Put: outFrameSize bigEndian: true .
+		frameBase _ frameBase + samplesPerFrame].
+
+"This displays a temporary indication of compression achieved"
+(((frameBase - srcIndex) *2.0 / (outStream position+1 - dstIndex) truncateTo: 0.1) printString , ' : 1') displayAt: Sensor mousePoint + (-20@30).
+
+	outStream position > dstByteArray size ifTrue:
+		["The calling routine only provides buffer space for compression of 2:1 or better.  If you are just testing things, you can increase it to, eg, codeFrameSize _ frameSize*3, which would be sufficient for a threshold of 0 (lossless conversion)."
+		self error: 'Buffer overrun'].
+
+	^ Array with: frameBase - srcIndex
+			with: outStream position+1 - dstIndex! !
+
+!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'jmv 2/26/2016 17:02'!
+frameCount: aByteArray
+	"Compute the frame count for this byteArray.  This default computation will have to be overridden by codecs with variable frame sizes."
+
+	^ (ReadStream on: aByteArray) nextUnsignedInt32BigEndian: true! !
+
+!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'di 2/8/1999 14:17'!
+samplesPerFrame
+	"Answer the number of sound samples per compression frame."
+
+	^ 4096
+! !
+
+!AccumulatedImageHistogram methodsFor: 'accessing' stamp: 'jmv 4/24/2013 15:22'!
+countAt: value
+	"Even if we are not strictly 'counting'..."
+
+	| n floatIndex i1 i2 |
+	n _ tallies size.
+	floatIndex _ (value * (n-1)) + 1.0.
+	i1 _ floatIndex floor.
+	i2 _ i1 + 1.
+	i2 > n ifTrue: [
+		^ tallies at: i1 ].
+	^((tallies at: i1) * ( i2 - floatIndex)) + 
+		((tallies at: i2) * (floatIndex - i1))! !
+
+!AccumulatedImageHistogram methodsFor: 'initialization' stamp: 'jmv 4/24/2013 14:20'!
+fillFrom: anImageHistogram
+
+	| s histogramTallies |
+	histogramTallies _ anImageHistogram tallies.
+	s _ histogramTallies size + 1.
+	tallies _ FloatArray new: s.
+	tallies at: 1 put: 0.0.
+	tallies at: 2 put: (histogramTallies at: 1).
+	3 to: s do: [ :i |
+		tallies at: i put: (histogramTallies at: i-1) + (tallies at: i-1) ]! !
+
+!AccumulatedImageHistogram methodsFor: 'aux' stamp: 'jmv 4/24/2013 13:55'!
+plot
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
+
+!AccumulatedImageHistogram methodsFor: 'aux' stamp: 'jmv 4/24/2013 15:19'!
+plot2
+	"Just in case there is some difference with #plot"
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new
+		plot: ((0.0 to: 1.0 count: rect width) collect: [ :v | self countAt: v ])
+		in: rect
+		color: Color red
+		min: 0.0
+		max: tallies max! !
+
+!AccumulatedImageHistogram methodsFor: 'aux' stamp: 'jmv 4/24/2013 13:55'!
+plotIn: rect color: aColor min: min max: max
+	FFT new plot: tallies in: rect color: aColor min: min max: max! !
+
+!AccumulatedImageHistogram class methodsFor: 'instance creation' stamp: 'jmv 4/24/2013 14:20'!
+from: anImageHistogram
+
+	^self new fillFrom: anImageHistogram! !
+
+!BSplineInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/13/2012 17:00'!
+coefficientAtX: x y: y
+
+	^coefficients at: y+1 * (width+4) + x+2! !
+
+!BSplineInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/13/2012 16:32'!
+coefficientAtX: x y: y put: aNumber
+
+	^coefficients at: y+1 * (width+4) + x+2 put: aNumber! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:47'!
+convertColumn: j
+	"j belongs in (-1 to: width+2)"
+	| lambda pole |
+	
+	"compute the overall gain"
+	pole _ 3.0 sqrt - 2.0.
+	lambda _ (1.0 - pole) * (1.0 - (1.0 / pole)).
+	
+	"apply the gain"
+	-1 to: height+2 do: [ :i |
+		self coefficientAtX: j y: i put: lambda * (self coefficientAtX: j y: i)].
+
+	"causal initialization"
+	self coefficientAtX: j y: -1 put: (self initialCausalCoefficientColumn: j pole: pole).
+	"causal recursion"
+	0 to: height+2 do: [ :i |
+		self coefficientAtX: j y: i put: pole * (self coefficientAtX: j y: i-1) + (self coefficientAtX: j y: i)].
+
+	"anticausal initialization"
+	self coefficientAtX: j y: height+2 put: (self initialAntiCausalCoefficientColumn: j pole: pole).
+	"anticausal recursion"
+	height+1 to: -1 by: -1 do: [ :i |
+		self coefficientAtX: j y: i put: pole * ((self coefficientAtX: j y: i+1) - (self coefficientAtX: j y: i)) ]! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:49'!
+convertRow: i
+	"i belongs in (-1 to: height+2)"
+	| lambda pole |
+	
+	"compute the overall gain"
+	pole _ 3.0 sqrt - 2.0.
+	lambda _ (1.0 - pole) * (1.0 - (1.0 / pole)).
+	
+	"apply the gain"
+	-1 to: width+2 do: [ :j |
+		self coefficientAtX: j y: i put: lambda * (self coefficientAtX: j y: i)].
+	
+	"causal initialization"
+	self coefficientAtX: -1 y: i put: (self initialCausalCoefficientRow: i pole: pole).
+	"causal recursion"
+	0 to: width+2 do: [ :j |
+		self coefficientAtX: j y: i put: pole * (self coefficientAtX: j-1 y: i) + (self coefficientAtX: j y: i)].
+	
+	"anticausal initialization"
+	self coefficientAtX: width+2 y: i put: (self initialAntiCausalCoefficientRow: i pole: pole).
+	"anticausal recursion"
+	width+1 to: -1 by: -1 do: [ :j |
+		self coefficientAtX: j y: i put: pole * ((self coefficientAtX: j+1 y: i) - (self coefficientAtX: j y: i)) ]! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:50'!
+initialAntiCausalCoefficientColumn: j pole: z
+	"this initialization corresponds to mirror boundaries "
+	^ z / (z * z - 1.0) * (z
+		* (self coefficientAtX: j y: height + 1)
+		+ (self coefficientAtX: j y: height + 2))! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:50'!
+initialAntiCausalCoefficientRow: i pole: z 
+	"this initialization corresponds to mirror boundaries"
+	^ z / (z * z - 1.0) * (z
+		* (self coefficientAtX: width + 1 y: i)
+		+ (self coefficientAtX: width + 2 y: i))! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:52'!
+initialCausalCoefficientColumn: j pole: z
+	| zn sum iz z2n |
+
+	"this initialization corresponds to mirror boundaries"
+	zn _ z.
+	iz _ 1.0 / z.
+	z2n _ z raisedTo: height+1.
+	sum _ (self coefficientAtX: j y: -1) + (z2n * (self coefficientAtX: j y: height+2)).
+	z2n _ z2n * iz *z2n.
+	0 to: height+1 do: [ :n |
+		sum _ zn + z2n * (self coefficientAtX: j y: n) + sum.
+		zn _ z * zn.
+		z2n _ z2n * iz].
+	^sum / (1.0 - (zn * zn))! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:53'!
+initialCausalCoefficientRow: i pole: z
+	| zn sum iz z2n |
+
+	"this initialization corresponds to mirror boundaries"
+	zn _ z.
+	iz _ 1.0 / z.
+	z2n _ z raisedTo: width+1.
+	sum _ (self coefficientAtX: -1 y: i) + (z2n * (self coefficientAtX: width+2 y: i)).
+	z2n _ z2n * iz *z2n.
+	0 to: width+1 do: [ :n |
+		sum _ zn + z2n * (self coefficientAtX: n y: i) + sum.
+		zn _ z * zn.
+		z2n _ z2n * iz].
+	^sum / (1.0 - (zn * zn))! !
+
+!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 16:33'!
+initializeFrom: aFloatImage
+
+	| v |
+	height _ aFloatImage height.
+	width _ aFloatImage width.
+	"We have two extra coefficients at each end. X indexes for them are -1, 0, width+1, with+2. Same for y."
+	coefficients _ FloatArray new: (width+4) * (height+4).
+	"Copy values. Add 2 extra rows and 2 extra columns at each edge, repeating boundary values."
+	1 to: height do: [ :y |
+		1 to: width do: [ :x |
+			self coefficientAtX: x y: y put: (aFloatImage x: x y: y) ].
+		v _ self coefficientAtX:1 y: y.
+		self coefficientAtX: -1 y: y put: v.
+		self coefficientAtX: 0 y: y put: v.
+		v _ self coefficientAtX: width y: y.
+		self coefficientAtX: width+1 y: y put: v.
+		self coefficientAtX: width+2 y: y put: v ].
+	-1 to: width+2 do: [ :x |
+		v _ self coefficientAtX: x y: 1.
+		self coefficientAtX: x y: -1 put: v.
+		self coefficientAtX: x y: 0 put: v.
+		v _ self coefficientAtX: x y: height.
+		self coefficientAtX: x y: height + 1 put: v.
+		self coefficientAtX: x y: height + 2 put: v ].
+
+	-1 to: height+2 do: [ :i |
+		self convertRow: i ].
+
+	-1 to: width+2 do: [ :j |
+		self convertColumn: j ]! !
+
+!BSplineInterpolatingImage methodsFor: 'interpolating' stamp: 'jmv 5/4/2015 13:29'!
+interpolatedValueAtX: x y: y
+	"Evaluate the interpolated function. See class comment"
+
+	| w interpolated xWeight4 xWeight1 xWeight3 xWeight2 yWeight4 yWeight1 yWeight3 yWeight2 xIndex2 xIndex1 xIndex3 xIndex4 yIndex2 yIndex1 yIndex3 yIndex4 oneSixth |
+	"
+	Podria ser que esto ocurra si los argumentos estan mal... habria que validar, pero no en cada evaluacion!!
+	"
+	self revisar.
+"
+(self xDomain rangeIncludes: x) ifFalse: [^0.0].
+(self yDomain rangeIncludes: y) ifFalse: [ ^0.0].
+"
+	xIndex2 _ x floor.
+	xIndex3 _ xIndex2+1.
+	xIndex1 _ xIndex2-1.
+	xIndex4 _ xIndex2+2.
+
+	yIndex2 _ y floor.
+	yIndex3 _ yIndex2+1.
+	yIndex1 _ yIndex2-1.
+	yIndex4 _ yIndex2+2.
+
+	"Validate inside some reasonable bounds. We allow extending up to 0.8 in any direction"
+	"x < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
+	xIndex1 < -1 ifTrue: [ ^0.0 ].
+	(xIndex1 = -1 and: [x < 0.2]) ifTrue: [ ^0.0 ].
+	"x > (width + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
+	xIndex1 > width ifTrue: [ ^0.0 ].
+	(xIndex1 = width and: [x > (width + 0.8)]) ifTrue: [ ^0.0 ].
+	"y < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
+	yIndex1 < -1 ifTrue: [ ^0.0 ].
+	(yIndex1 = -1 and: [y < 0.2]) ifTrue: [ ^0.0 ].
+	"y > (height + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
+	yIndex1 > height ifTrue: [ ^0.0 ].
+	(yIndex1 = height and: [y > (height + 0.8)]) ifTrue: [ ^0.0 ].
+
+	oneSixth _ 1.0 / 6.0.
+
+	w _ x - xIndex2.
+	xWeight4 _ oneSixth * w * w * w.
+	xWeight1 _ oneSixth + ((w * w - w) * 0.5) - xWeight4.
+	xWeight3 _ w + xWeight1 - (2.0 * xWeight4).
+	xWeight2 _ 1.0 - (xWeight1 + xWeight3 + xWeight4).
+
+	w _ y - yIndex2.
+	yWeight4 _ oneSixth * w * w * w .
+	yWeight1 _ oneSixth + ((w * w - w) * 0.5) - yWeight4.
+	yWeight3 _ w + yWeight1 - (2.0 * yWeight4).
+	yWeight2 _ 1.0 - (yWeight1 + yWeight3 + yWeight4).
+
+	"/* perform interpolation */"
+	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex1) +
+		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex1)) +
+		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex1)) +
+		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex1)).
+	interpolated _ yWeight1 * w.
+
+	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex2) +
+		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex2)) +
+		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex2)) +
+		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex2)).
+	interpolated _ yWeight2 * w + interpolated.
+
+	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex3) +
+		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex3)) +
+		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex3)) +
+		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex3)).
+	interpolated _ yWeight3 * w + interpolated.
+
+	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex4) +
+		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex4)) +
+		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex4)) +
+		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex4)).
+	interpolated _ yWeight4 * w + interpolated.
+
+	^interpolated! !
+
+!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 9/2/2014 10:25'!
+example1
+	"Blue line shows samples joined by straight segments.
+	Red line shows interpolation. It also shows how the function domain is enlarged by half a sample at each end. This is to ease zoomin into images, adding extra samples at the end in the same way that extra samples are added inside the image. This allows keeping visual aspect at the edges."
+	| image interpolated interpolatedValues interpolatingXDomain max min n originalXDomain rect samples smallerRect |
+	rect _ 100@20 extent: 600@210.
+	samples _ { 1 . 2 . 3 . 1 }.
+	samples _ { 1 . 2 . 3 . 2. 3. 5. 3. 7. 3. 3. 3. 4 . 1 . 1 .1 .1 .1 .1 .2 .5 .2 .5 .2 .5 .3 .3. 4}.
+	n _ samples size.
+	originalXDomain _ 1 to: n.
+	"The interpolated function can be evaluated at the original points, and any point in between, and half a sample outside the original domain."
+	interpolatingXDomain _ originalXDomain first - 0.5 to: originalXDomain last + 0.5 count: rect width.
+	smallerRect _ rect left + (rect width / interpolatingXDomain extent * (originalXDomain first - interpolatingXDomain first) ) @ rect top
+		extent: rect width / interpolatingXDomain extent * originalXDomain extent @ rect height.
+	min _ samples min - 1.5.
+	max _ samples max + 0.1.
+	image _ FloatImage fromArrayOfArrays: { samples . samples . samples . samples . samples . samples}.
+	interpolated _ BSplineInterpolatingImage from: image.
+
+	interpolatedValues _ interpolatingXDomain collect: [ :x | interpolated interpolatedValueAtX: x y: 3 ].
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new plot: interpolatedValues in: rect color: Color red min: min max: max.
+	FFT new plot: samples in: smallerRect color: Color blue min: min max: max.! !
+
+!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 6/2/2016 20:31'!
+example2
+	"Zooming into a 1-bit black & white image is not the best, but it shows how this work.
+	Note: resampling category in FloatImage has methods for whole image resampling."
+	| bigger h interpolated origH origW original w |
+	w _ 500.
+	h _ 500.
+	original _ FloatImage fromGrayForm: Cursor read asGrayForm.
+	origW _ original width.
+	origH _ original height.
+	original display.
+	interpolated _ BSplineInterpolatingImage from: original.
+	bigger _ FloatImage width: w height: h.
+	1 to: h do: [ :y |
+		1 to: w do: [ :x |
+			bigger x: x y: y put: (interpolated interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5) ]].
+	bigger display.
+	original display! !
+
+!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 11:59'!
+example3
+	"Use a portion of display to show behavior on colored input.
+	Try it with a real photo, results are much better
+	BSplineInterpolatingImage example3
+	"
+	| original originalB originalG originalR bigger biggerB biggerG biggerR scale t |
+	original _ Display copy: (0@0 extent: 100@100).
+	scale _ 10.
+"	original _ (Form fromFileNamed: 'IMG_2365.JPG') copy: (1100@1800 extent: 500@500)."
+	originalR _ FloatImage from32BitColorForm: original component: #red.
+	originalG _ FloatImage from32BitColorForm: original component: #green.
+	originalB _ FloatImage from32BitColorForm: original component: #blue.
+	original display.
+	t _ AffineTransformation forImageZoom: scale.
+	biggerR _ originalR bSplineTransformedBy: t resultExtent: nil.
+	biggerG _ originalG bSplineTransformedBy: t resultExtent: nil.
+	biggerB _ originalB bSplineTransformedBy: t resultExtent: nil.
+	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	bigger _ biggerR asFormG: biggerG b: biggerB.
+	bigger display.
+	original display! !
+
+!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 12:00'!
+example4
+	"FOR SUBPIXEL RENDERED STUFF
+	Use a portion of display to show behavior on colored input.
+	Simulate the effect of subpixel AA in the source image, and also do subpixel AA in the result"
+	| bigger h origH origW original w biggerB biggerG biggerR interpolatedB interpolatedG interpolatedR originalB originalG originalR d |
+	w _ 1000.
+	h _ 1000.
+	d _ 0.25.		"SubPixel separator"
+	original _ Display copy: (0@0 extent: 100@100).
+	originalR _ FloatImage from32BitColorForm: original component: #red.
+	originalG _ FloatImage from32BitColorForm: original component: #green.
+	originalB _ FloatImage from32BitColorForm: original component: #blue.
+	origW _ original width.
+	origH _ original height.
+	original display.
+	interpolatedR _ BSplineInterpolatingImage from: originalR.
+	interpolatedG _ BSplineInterpolatingImage from: originalG.
+	interpolatedB _ BSplineInterpolatingImage from: originalB.
+	biggerR _ FloatImage width: w height: h.
+	biggerG _ FloatImage width: w height: h.
+	biggerB _ FloatImage width: w height: h.
+	1 to: h do: [ :y |
+		1 to: w do: [ :x |
+			biggerR x: x y: y put: (interpolatedR interpolatedValueAtX: x-0.5-d/w*origW+0.5+d y: y-0.5/h*origH+0.5).
+			biggerG x: x y: y put: (interpolatedG interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5).
+			biggerB x: x y: y put: (interpolatedB interpolatedValueAtX: x-0.5+d/w*origW+0.5-d y: y-0.5/h*origH+0.5) ]].
+	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	bigger _ biggerR asFormG: biggerG b: biggerB.
+	bigger display.
+	original display! !
+
+!BSplineInterpolatingImage class methodsFor: 'instance creation' stamp: 'jmv 8/13/2012 15:17'!
+from: aFloatImage
+
+	^self new initializeFrom: aFloatImage! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 3/22/2013 13:23'!
+basisShift
+	^0.5 - (1.0 / 12.0) sqrt.! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 3/22/2013 15:24'!
+coefficientAtX: x y: y
+
+	^coefficients at: y-1 * width + x! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 3/22/2013 15:24'!
+coefficientAtX: x y: y put: aNumber
+
+	^coefficients at: y-1 * width + x put: aNumber! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/28/2015 16:08'!
+convertColumn: j
+	"j belongs in (1 to: width)"
+	| factor pole |
+	factor _ self factor.
+	pole _ self pole.
+
+	2 to: height do: [ :i |
+		self coefficientAtX: j y: i put:
+			(factor * (self coefficientAtX: j y: i)) + (pole * (self coefficientAtX: j y: i-1)) ]! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/28/2015 16:08'!
+convertRow: i
+	"i belongs in (1 to: height)"
+	| factor pole |
+	factor _ self factor.
+	pole _ self pole.
+
+	2 to: width do: [ :j |
+		self coefficientAtX: j y: i put:
+			(factor * (self coefficientAtX: j y: i)) + (pole * (self coefficientAtX: j-1 y: i)) ]! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/28/2015 16:08'!
+factor
+	"
+	ShiftedLinearInterpolatingImage factor
+	"
+	^1.0 / (1.0 - self basisShift)! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/23/2014 23:44'!
+initializeFrom: aFloatImage
+
+	height _ aFloatImage height.
+	width _ aFloatImage width.
+	coefficients _ aFloatImage elements copy.
+
+	1 to: height do: [ :i |
+		self convertRow: i ].
+
+	1 to: width do: [ :j |
+		self convertColumn: j ]! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'interpolating' stamp: 'jmv 8/31/2015 11:40'!
+interpolatedValueAtX: xx y: yy
+	"Evaluate the interpolated function. See class comment"
+
+	| w interpolated xWeight1 xWeight0 yWeight1 yWeight0 xIndex0 xIndex1 yIndex0 yIndex1 basisShift x y xIndexCheck yIndexCheck |
+
+"
+(self xDomain rangeIncludes: x) ifFalse: [^0.0].
+(self yDomain rangeIncludes: y) ifFalse: [ ^0.0].
+"
+	basisShift _ self basisShift.
+	x _ xx - basisShift.
+	y _ yy - basisShift.
+
+	xIndex0 _ x floor.
+	xIndex1 _ xIndex0+1.
+	yIndex0 _ y floor.
+	yIndex1 _ yIndex0+1.
+
+	"Validate inside some reasonable bounds. We allow extending up to 0.8 in any direction"
+	"x < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
+	xIndex0 < 0 ifTrue: [ ^0.0 ].
+	(xIndex0 = 0 and: [x < 0.2]) ifTrue: [ ^0.0 ].
+	"x > (width + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
+	xIndexCheck _ xIndex0 - 1.
+	xIndexCheck > width ifTrue: [ ^0.0 ].
+	(xIndexCheck = width and: [x > (width + 0.8)]) ifTrue: [ ^0.0 ].
+	"y < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
+	yIndex0 < 0 ifTrue: [ ^0.0 ].
+	(yIndex0 = 0 and: [y < 0.2]) ifTrue: [ ^0.0 ].
+	"y > (height + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
+	yIndexCheck _ yIndex0 - 1.
+	yIndexCheck > height ifTrue: [ ^0.0 ].
+	(yIndexCheck = height and: [y > (height + 0.8)]) ifTrue: [ ^0.0 ].
+
+	xWeight1 _ x - xIndex0.
+	xWeight0 _ 1.0 - xWeight1.
+	yWeight1 _ y - yIndex0.
+	yWeight0 _ 1.0 - yWeight1.
+
+	xIndex0 _ xIndex0 min: width max: 1.
+	xIndex1 _ xIndex1 min: width.
+	yIndex0 _ yIndex0 min: height max: 1.
+	yIndex1 _ yIndex1 min: height.
+
+	"/* perform interpolation */"
+	w _ (xWeight0 * (self coefficientAtX: xIndex0 y: yIndex0)) +
+		(xWeight1 * (self coefficientAtX: xIndex1 y: yIndex0)).
+	interpolated _ yWeight0 * w.
+
+	w _ (xWeight0 * (self coefficientAtX: xIndex0 y: yIndex1)) +
+		(xWeight1 * (self coefficientAtX: xIndex1 y: yIndex1)).
+	interpolated _ yWeight1 * w + interpolated.
+
+	^interpolated! !
+
+!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/28/2015 16:08'!
+pole
+	"
+	ShiftedLinearInterpolatingImage pole
+	"
+	^self basisShift / (self basisShift - 1.0)! !
+
+!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 9/2/2014 10:24'!
+example1
+	"Blue line shows samples joined by straight segments.
+	Red line shows interpolation. It also shows how the function domain is enlarged by half a sample at each end. This is to ease zoomin into images, adding extra samples at the end in the same way that extra samples are added inside the image. This allows keeping visual aspect at the edges."
+	| image interpolated interpolatedValues interpolatingXDomain max min n originalXDomain rect samples smallerRect |
+	rect _ 100@20 extent: 600@210.
+	samples _ { 1 . 2 . 3 . 1 }.
+	samples _ { 1 . 2 . 3 . 2. 3. 5. 3. 7. 3. 3. 3. 4 . 1 . 1 .1 .1 .1 .1 .2 .5 .2 .5 .2 .5 .3 .3. 4}.
+	n _ samples size.
+	originalXDomain _ 1 to: n.
+	"The interpolated function can be evaluated at the original points, and any point in between, and half a sample outside the original domain."
+	interpolatingXDomain _ originalXDomain first - 0.5 to: originalXDomain last + 0.5 count: rect width.
+	smallerRect _ rect left + (rect width / interpolatingXDomain extent * (originalXDomain first - interpolatingXDomain first) ) @ rect top
+		extent: rect width / interpolatingXDomain extent * originalXDomain extent @ rect height.
+	min _ samples min - 1.5.
+	max _ samples max + 0.1.
+	image _ FloatImage fromArrayOfArrays: { samples . samples . samples . samples . samples . samples}.
+	interpolated _ ShiftedLinearInterpolatingImage from: image.
+
+	interpolatedValues _ interpolatingXDomain collect: [ :x | interpolated interpolatedValueAtX: x y: 3 ].
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new plot: interpolatedValues in: rect color: Color red min: min max: max.
+	FFT new plot: samples in: smallerRect color: Color blue min: min max: max.! !
+
+!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 6/2/2016 20:35'!
+example2
+	"Zooming into a 1-bit black & white image is not the best, but it shows how this work.
+	Note: resampling category in FloatImage has methods for whole image resampling."
+	| bigger h interpolated origH origW original w |
+	w _ 500.
+	h _ 500.
+	original _ FloatImage fromGrayForm: Cursor read asGrayForm.
+	origW _ original width.
+	origH _ original height.
+	original display.
+	interpolated _ ShiftedLinearInterpolatingImage from: original.
+	bigger _ FloatImage width: w height: h.
+	1 to: h do: [ :y |
+		1 to: w do: [ :x |
+			bigger x: x y: y put: (interpolated interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5) ]].
+	bigger display.
+	original display! !
+
+!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 12:02'!
+example3
+	"Use a portion of display to show behavior on colored input.
+	Try it with a real photo, results are much better
+	ShiftedLinearInterpolatingImage example3
+	"
+	| original originalB originalG originalR bigger biggerB biggerG biggerR scale t |
+	original _ Display copy: (0@0 extent: 100@100).
+	scale _ 10.
+"	original _ (Form fromFileNamed: 'IMG_2365.JPG') copy: (1100@1800 extent: 500@500)."
+	originalR _ FloatImage from32BitColorForm: original component: #red.
+	originalG _ FloatImage from32BitColorForm: original component: #green.
+	originalB _ FloatImage from32BitColorForm: original component: #blue.
+	original display.
+	t _ AffineTransformation forImageZoom: scale.
+	biggerR _ originalR shiftedLinearTransformedBy: t resultExtent: nil.
+	biggerG _ originalG shiftedLinearTransformedBy: t resultExtent: nil.
+	biggerB _ originalB shiftedLinearTransformedBy: t resultExtent: nil.
+	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	bigger _ biggerR asFormG: biggerG b: biggerB.
+	bigger display.
+	original display! !
+
+!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 12:03'!
+example4
+	"FOR SUBPIXEL RENDERED STUFF
+	Use a portion of display to show behavior on colored input.
+	ShiftedLinearInterpolatingImage example4
+	Simulate the effect of subpixel AA in the source image, and also do subpixel AA in the result"
+	| bigger h origH origW original w biggerB biggerG biggerR interpolatedB interpolatedG interpolatedR originalB originalG originalR d |
+	w _ 1000.
+	h _ 1000.
+	d _ 0.25.		"SubPixel separator"
+	original _ Display copy: (0@0 extent: 100@100).
+	originalR _ FloatImage from32BitColorForm: original component: #red.
+	originalG _ FloatImage from32BitColorForm: original component: #green.
+	originalB _ FloatImage from32BitColorForm: original component: #blue.
+	origW _ original width.
+	origH _ original height.
+	original display.
+	interpolatedR _ ShiftedLinearInterpolatingImage from: originalR.
+	interpolatedG _ ShiftedLinearInterpolatingImage from: originalG.
+	interpolatedB _ ShiftedLinearInterpolatingImage from: originalB.
+	biggerR _ FloatImage width: w height: h.
+	biggerG _ FloatImage width: w height: h.
+	biggerB _ FloatImage width: w height: h.
+	1 to: h do: [ :y |
+		1 to: w do: [ :x |
+			biggerR x: x y: y put: (interpolatedR interpolatedValueAtX: x-0.5-d/w*origW+0.5+d y: y-0.5/h*origH+0.5).
+			biggerG x: x y: y put: (interpolatedG interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5).
+			biggerB x: x y: y put: (interpolatedB interpolatedValueAtX: x-0.5+d/w*origW+0.5-d y: y-0.5/h*origH+0.5) ]].
+	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
+	bigger _ biggerR asFormG: biggerG b: biggerB.
+	bigger display.
+	original display! !
+
+!ShiftedLinearInterpolatingImage class methodsFor: 'instance creation' stamp: 'jmv 8/13/2012 15:17'!
+from: aFloatImage
+
+	^self new initializeFrom: aFloatImage! !
+
+!ImageHistogram methodsFor: 'operations' stamp: 'jmv 7/24/2012 18:15'!
+accumulate
+
+	2 to: tallies size do: [ :i |
+		tallies at: i put: (tallies at: i) + (tallies at: i-1) ]! !
+
+!ImageHistogram methodsFor: 'operations' stamp: 'jmv 4/24/2013 15:24'!
+accumulated
+
+	^self copyTwoLevel accumulate! !
+
+!ImageHistogram methodsFor: 'building' stamp: 'jmv 7/24/2012 17:56'!
+addValue: aNumber
+
+	| i |
+	i _ self indexFor: aNumber.
+	tallies at: i put: (tallies at: i) + 1! !
+
+!ImageHistogram methodsFor: 'accessing' stamp: 'jmv 7/24/2012 18:21'!
+countAt: value
+	^tallies at: (self indexFor: value)! !
+
+!ImageHistogram methodsFor: 'private' stamp: 'jmv 7/24/2012 18:12'!
+indexFor: aValue
+	| slotIndex |
+	slotIndex _ (aValue * (tallies size-1)) rounded + 1.
+	^slotIndex min: tallies size max: 1.! !
+
+!ImageHistogram methodsFor: 'initialization' stamp: 'jmv 7/24/2012 16:38'!
+initialize: anInteger
+
+	tallies _ WordArray new: anInteger! !
+
+!ImageHistogram methodsFor: 'aux' stamp: 'jmv 4/6/2015 11:39'!
+plot
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
+
+!ImageHistogram methodsFor: 'aux' stamp: 'jmv 7/26/2012 15:49'!
+plotIn: rect color: aColor min: min max: max
+FFT new plot: tallies in: rect color: aColor min: min max: max! !
+
+!ImageHistogram class methodsFor: 'instance creation' stamp: 'jmv 7/24/2012 16:35'!
+new: anInteger
+
+	^self new initialize: anInteger! !
+
+!ImageHistogram2 methodsFor: 'operations' stamp: 'jmv 11/5/2012 14:19'!
+accumulate
+
+	2 to: tallies size do: [ :i |
+		tallies at: i put: (tallies at: i) + (tallies at: i-1) ]! !
+
+!ImageHistogram2 methodsFor: 'operations' stamp: 'jmv 4/24/2013 15:24'!
+accumulated
+
+	^self copyTwoLevel accumulate! !
+
+!ImageHistogram2 methodsFor: 'building' stamp: 'jmv 11/5/2012 14:43'!
+addValue: aValue
+
+	| n floatIndex i1 i2 |
+	n _ tallies size.
+
+	floatIndex _ (aValue * (n-1)) + 1.0.
+	floatIndex <= 1.0 ifTrue: [
+		tallies at: 1 put: (tallies at: 1) + 1.0.
+		^self ].
+
+	floatIndex >= n ifTrue: [
+		tallies at: n put: (tallies at: n) + 1.0.
+		^self ].
+
+	i1 _ floatIndex floor.
+	i2 _ i1 + 1.
+	tallies at: i1 put: (tallies at: i1) +( i2 - floatIndex).
+	tallies at: i2 put: (tallies at: i2) + (floatIndex - i1)! !
+
+!ImageHistogram2 methodsFor: 'accessing' stamp: 'jmv 11/5/2012 14:54'!
+countAt: value
+	"Even if we are not strictly 'counting'..."
+
+	| n floatIndex i1 i2 |
+	n _ tallies size.
+
+	floatIndex _ (value * (n-1)) + 1.0.
+	floatIndex <= 1.0 ifTrue: [
+		^tallies at: 1 ].
+
+	floatIndex >= n ifTrue: [
+		^tallies at: n ].
+
+	i1 _ floatIndex floor.
+	i2 _ i1 + 1.
+	^((tallies at: i1) * ( i2 - floatIndex)) + 
+		((tallies at: i2) * (floatIndex - i1))! !
+
+!ImageHistogram2 methodsFor: 'initialization' stamp: 'jmv 11/5/2012 14:30'!
+initialize: anInteger
+
+	tallies _ FloatArray new: anInteger! !
+
+!ImageHistogram2 methodsFor: 'aux' stamp: 'jmv 4/24/2013 11:20'!
+plot
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
+
+!ImageHistogram2 methodsFor: 'aux' stamp: 'jmv 4/24/2013 11:36'!
+plot2
+	"Just in case there is some difference with #plot"
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new
+		plot: ((0.0 to: 1.0 count: rect width) collect: [ :v | self countAt: v ])
+		in: rect
+		color: Color red
+		min: 0.0
+		max: tallies max! !
+
+!ImageHistogram2 methodsFor: 'aux' stamp: 'jmv 11/5/2012 14:30'!
+plotIn: rect color: aColor min: min max: max
+	FFT new plot: tallies in: rect color: aColor min: min max: max! !
+
+!ImageHistogram2 class methodsFor: 'instance creation' stamp: 'jmv 11/5/2012 14:19'!
+new: anInteger
+
+	^self new initialize: anInteger! !
+
+!ImageHistogram3 methodsFor: 'operations' stamp: 'jmv 4/24/2013 14:23'!
+accumulated
+
+	^AccumulatedImageHistogram from: self! !
+
+!ImageHistogram3 methodsFor: 'building' stamp: 'jmv 4/24/2013 13:44'!
+addValue: aValue
+
+	| n floatIndex i1 i2 |
+	n _ tallies size.
+
+	floatIndex _ (aValue * n) + 0.5.
+	i1 _ floatIndex floor.
+	i2 _ i1 + 1.
+
+	i1 < 1 ifTrue: [
+		tallies at: 1 put: (tallies at: 1) + 1.
+		^self ].
+
+	i2 > n ifTrue: [
+		tallies at: n put: (tallies at: n) + 1.
+		^self ].
+
+	tallies at: i1 put: (tallies at: i1) +( i2 - floatIndex).
+	tallies at: i2 put: (tallies at: i2) + (floatIndex - i1)! !
+
+!ImageHistogram3 methodsFor: 'accessing' stamp: 'jmv 4/24/2013 15:12'!
+countAt: value
+	"Even if we are not strictly 'counting'..."
+
+	| n floatIndex i1 i2 |
+	n _ tallies size.
+
+	floatIndex _ (value * n) + 0.5.
+	i1 _ floatIndex floor.
+	i2 _ i1 + 1.
+
+	i1 < 1 ifTrue: [
+		^ tallies at: i2 ].
+
+	i2 > n ifTrue: [
+		^ tallies at: i1 ].
+
+	^((tallies at: i1) * ( i2 - floatIndex)) + 
+		((tallies at: i2) * (floatIndex - i1))! !
+
+!ImageHistogram3 methodsFor: 'initialization' stamp: 'jmv 4/24/2013 12:11'!
+initialize: anInteger
+
+	tallies _ FloatArray new: anInteger! !
+
+!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 4/24/2013 12:11'!
+plot
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
+
+!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 4/24/2013 12:11'!
+plot2
+	"Just in case there is some difference with #plot"
+	| rect |
+	rect _ 10@10 extent: 768@400.
+	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
+	FFT new
+		plot: ((0.0 to: 1.0 count: rect width) collect: [ :v | self countAt: v ])
+		in: rect
+		color: Color red
+		min: 0.0
+		max: tallies max! !
+
+!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 4/24/2013 12:11'!
+plotIn: rect color: aColor min: min max: max
+	FFT new plot: tallies in: rect color: aColor min: min max: max! !
+
+!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 8/27/2014 15:02'!
+plotLogIn: rect color: aColor min: min max: max
+	FFT new plot: tallies log in: rect color: aColor min: min max: max! !
+
+!ImageHistogram3 methodsFor: 'private' stamp: 'jmv 4/24/2013 14:20'!
+tallies
+	^tallies! !
+
+!ImageHistogram3 class methodsFor: 'instance creation' stamp: 'jmv 4/24/2013 12:11'!
+new: anInteger
+
+	^self new initialize: anInteger! !
 
 !FFT methodsFor: 'initialization' stamp: 'jmv 8/10/2010 10:51'!
 basicRealData: real
@@ -5953,1092 +7614,3 @@ viewPhiAndPsi  "(FWT new nSamples: 256 nLevels: 6) viewPhiAndPsi"
 		self transformForward: false.
 		FFT new plot: (samples copyFrom: 1 to: nSamples) in: (20@170 extent: nSamples@100)].
 	Sensor waitNoButton! !
-
-!BSplineInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/13/2012 17:00'!
-coefficientAtX: x y: y
-
-	^coefficients at: y+1 * (width+4) + x+2! !
-
-!BSplineInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/13/2012 16:32'!
-coefficientAtX: x y: y put: aNumber
-
-	^coefficients at: y+1 * (width+4) + x+2 put: aNumber! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:47'!
-convertColumn: j
-	"j belongs in (-1 to: width+2)"
-	| lambda pole |
-	
-	"compute the overall gain"
-	pole _ 3.0 sqrt - 2.0.
-	lambda _ (1.0 - pole) * (1.0 - (1.0 / pole)).
-	
-	"apply the gain"
-	-1 to: height+2 do: [ :i |
-		self coefficientAtX: j y: i put: lambda * (self coefficientAtX: j y: i)].
-
-	"causal initialization"
-	self coefficientAtX: j y: -1 put: (self initialCausalCoefficientColumn: j pole: pole).
-	"causal recursion"
-	0 to: height+2 do: [ :i |
-		self coefficientAtX: j y: i put: pole * (self coefficientAtX: j y: i-1) + (self coefficientAtX: j y: i)].
-
-	"anticausal initialization"
-	self coefficientAtX: j y: height+2 put: (self initialAntiCausalCoefficientColumn: j pole: pole).
-	"anticausal recursion"
-	height+1 to: -1 by: -1 do: [ :i |
-		self coefficientAtX: j y: i put: pole * ((self coefficientAtX: j y: i+1) - (self coefficientAtX: j y: i)) ]! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:49'!
-convertRow: i
-	"i belongs in (-1 to: height+2)"
-	| lambda pole |
-	
-	"compute the overall gain"
-	pole _ 3.0 sqrt - 2.0.
-	lambda _ (1.0 - pole) * (1.0 - (1.0 / pole)).
-	
-	"apply the gain"
-	-1 to: width+2 do: [ :j |
-		self coefficientAtX: j y: i put: lambda * (self coefficientAtX: j y: i)].
-	
-	"causal initialization"
-	self coefficientAtX: -1 y: i put: (self initialCausalCoefficientRow: i pole: pole).
-	"causal recursion"
-	0 to: width+2 do: [ :j |
-		self coefficientAtX: j y: i put: pole * (self coefficientAtX: j-1 y: i) + (self coefficientAtX: j y: i)].
-	
-	"anticausal initialization"
-	self coefficientAtX: width+2 y: i put: (self initialAntiCausalCoefficientRow: i pole: pole).
-	"anticausal recursion"
-	width+1 to: -1 by: -1 do: [ :j |
-		self coefficientAtX: j y: i put: pole * ((self coefficientAtX: j+1 y: i) - (self coefficientAtX: j y: i)) ]! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:50'!
-initialAntiCausalCoefficientColumn: j pole: z
-	"this initialization corresponds to mirror boundaries "
-	^ z / (z * z - 1.0) * (z
-		* (self coefficientAtX: j y: height + 1)
-		+ (self coefficientAtX: j y: height + 2))! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:50'!
-initialAntiCausalCoefficientRow: i pole: z 
-	"this initialization corresponds to mirror boundaries"
-	^ z / (z * z - 1.0) * (z
-		* (self coefficientAtX: width + 1 y: i)
-		+ (self coefficientAtX: width + 2 y: i))! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:52'!
-initialCausalCoefficientColumn: j pole: z
-	| zn sum iz z2n |
-
-	"this initialization corresponds to mirror boundaries"
-	zn _ z.
-	iz _ 1.0 / z.
-	z2n _ z raisedTo: height+1.
-	sum _ (self coefficientAtX: j y: -1) + (z2n * (self coefficientAtX: j y: height+2)).
-	z2n _ z2n * iz *z2n.
-	0 to: height+1 do: [ :n |
-		sum _ zn + z2n * (self coefficientAtX: j y: n) + sum.
-		zn _ z * zn.
-		z2n _ z2n * iz].
-	^sum / (1.0 - (zn * zn))! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 15:53'!
-initialCausalCoefficientRow: i pole: z
-	| zn sum iz z2n |
-
-	"this initialization corresponds to mirror boundaries"
-	zn _ z.
-	iz _ 1.0 / z.
-	z2n _ z raisedTo: width+1.
-	sum _ (self coefficientAtX: -1 y: i) + (z2n * (self coefficientAtX: width+2 y: i)).
-	z2n _ z2n * iz *z2n.
-	0 to: width+1 do: [ :n |
-		sum _ zn + z2n * (self coefficientAtX: n y: i) + sum.
-		zn _ z * zn.
-		z2n _ z2n * iz].
-	^sum / (1.0 - (zn * zn))! !
-
-!BSplineInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/13/2012 16:33'!
-initializeFrom: aFloatImage
-
-	| v |
-	height _ aFloatImage height.
-	width _ aFloatImage width.
-	"We have two extra coefficients at each end. X indexes for them are -1, 0, width+1, with+2. Same for y."
-	coefficients _ FloatArray new: (width+4) * (height+4).
-	"Copy values. Add 2 extra rows and 2 extra columns at each edge, repeating boundary values."
-	1 to: height do: [ :y |
-		1 to: width do: [ :x |
-			self coefficientAtX: x y: y put: (aFloatImage x: x y: y) ].
-		v _ self coefficientAtX:1 y: y.
-		self coefficientAtX: -1 y: y put: v.
-		self coefficientAtX: 0 y: y put: v.
-		v _ self coefficientAtX: width y: y.
-		self coefficientAtX: width+1 y: y put: v.
-		self coefficientAtX: width+2 y: y put: v ].
-	-1 to: width+2 do: [ :x |
-		v _ self coefficientAtX: x y: 1.
-		self coefficientAtX: x y: -1 put: v.
-		self coefficientAtX: x y: 0 put: v.
-		v _ self coefficientAtX: x y: height.
-		self coefficientAtX: x y: height + 1 put: v.
-		self coefficientAtX: x y: height + 2 put: v ].
-
-	-1 to: height+2 do: [ :i |
-		self convertRow: i ].
-
-	-1 to: width+2 do: [ :j |
-		self convertColumn: j ]! !
-
-!BSplineInterpolatingImage methodsFor: 'interpolating' stamp: 'jmv 5/4/2015 13:29'!
-interpolatedValueAtX: x y: y
-	"Evaluate the interpolated function. See class comment"
-
-	| w interpolated xWeight4 xWeight1 xWeight3 xWeight2 yWeight4 yWeight1 yWeight3 yWeight2 xIndex2 xIndex1 xIndex3 xIndex4 yIndex2 yIndex1 yIndex3 yIndex4 oneSixth |
-	"
-	Podria ser que esto ocurra si los argumentos estan mal... habria que validar, pero no en cada evaluacion!!
-	"
-	self revisar.
-"
-(self xDomain rangeIncludes: x) ifFalse: [^0.0].
-(self yDomain rangeIncludes: y) ifFalse: [ ^0.0].
-"
-	xIndex2 _ x floor.
-	xIndex3 _ xIndex2+1.
-	xIndex1 _ xIndex2-1.
-	xIndex4 _ xIndex2+2.
-
-	yIndex2 _ y floor.
-	yIndex3 _ yIndex2+1.
-	yIndex1 _ yIndex2-1.
-	yIndex4 _ yIndex2+2.
-
-	"Validate inside some reasonable bounds. We allow extending up to 0.8 in any direction"
-	"x < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
-	xIndex1 < -1 ifTrue: [ ^0.0 ].
-	(xIndex1 = -1 and: [x < 0.2]) ifTrue: [ ^0.0 ].
-	"x > (width + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
-	xIndex1 > width ifTrue: [ ^0.0 ].
-	(xIndex1 = width and: [x > (width + 0.8)]) ifTrue: [ ^0.0 ].
-	"y < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
-	yIndex1 < -1 ifTrue: [ ^0.0 ].
-	(yIndex1 = -1 and: [y < 0.2]) ifTrue: [ ^0.0 ].
-	"y > (height + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
-	yIndex1 > height ifTrue: [ ^0.0 ].
-	(yIndex1 = height and: [y > (height + 0.8)]) ifTrue: [ ^0.0 ].
-
-	oneSixth _ 1.0 / 6.0.
-
-	w _ x - xIndex2.
-	xWeight4 _ oneSixth * w * w * w.
-	xWeight1 _ oneSixth + ((w * w - w) * 0.5) - xWeight4.
-	xWeight3 _ w + xWeight1 - (2.0 * xWeight4).
-	xWeight2 _ 1.0 - (xWeight1 + xWeight3 + xWeight4).
-
-	w _ y - yIndex2.
-	yWeight4 _ oneSixth * w * w * w .
-	yWeight1 _ oneSixth + ((w * w - w) * 0.5) - yWeight4.
-	yWeight3 _ w + yWeight1 - (2.0 * yWeight4).
-	yWeight2 _ 1.0 - (yWeight1 + yWeight3 + yWeight4).
-
-	"/* perform interpolation */"
-	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex1) +
-		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex1)) +
-		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex1)) +
-		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex1)).
-	interpolated _ yWeight1 * w.
-
-	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex2) +
-		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex2)) +
-		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex2)) +
-		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex2)).
-	interpolated _ yWeight2 * w + interpolated.
-
-	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex3) +
-		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex3)) +
-		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex3)) +
-		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex3)).
-	interpolated _ yWeight3 * w + interpolated.
-
-	w _ xWeight1 * (self coefficientAtX: xIndex1 y: yIndex4) +
-		(xWeight2 * (self coefficientAtX: xIndex2 y: yIndex4)) +
-		(xWeight3 * (self coefficientAtX: xIndex3 y: yIndex4)) +
-		(xWeight4 * (self coefficientAtX: xIndex4 y: yIndex4)).
-	interpolated _ yWeight4 * w + interpolated.
-
-	^interpolated! !
-
-!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 9/2/2014 10:25'!
-example1
-	"Blue line shows samples joined by straight segments.
-	Red line shows interpolation. It also shows how the function domain is enlarged by half a sample at each end. This is to ease zoomin into images, adding extra samples at the end in the same way that extra samples are added inside the image. This allows keeping visual aspect at the edges."
-	| image interpolated interpolatedValues interpolatingXDomain max min n originalXDomain rect samples smallerRect |
-	rect _ 100@20 extent: 600@210.
-	samples _ { 1 . 2 . 3 . 1 }.
-	samples _ { 1 . 2 . 3 . 2. 3. 5. 3. 7. 3. 3. 3. 4 . 1 . 1 .1 .1 .1 .1 .2 .5 .2 .5 .2 .5 .3 .3. 4}.
-	n _ samples size.
-	originalXDomain _ 1 to: n.
-	"The interpolated function can be evaluated at the original points, and any point in between, and half a sample outside the original domain."
-	interpolatingXDomain _ originalXDomain first - 0.5 to: originalXDomain last + 0.5 count: rect width.
-	smallerRect _ rect left + (rect width / interpolatingXDomain extent * (originalXDomain first - interpolatingXDomain first) ) @ rect top
-		extent: rect width / interpolatingXDomain extent * originalXDomain extent @ rect height.
-	min _ samples min - 1.5.
-	max _ samples max + 0.1.
-	image _ FloatImage fromArrayOfArrays: { samples . samples . samples . samples . samples . samples}.
-	interpolated _ BSplineInterpolatingImage from: image.
-
-	interpolatedValues _ interpolatingXDomain collect: [ :x | interpolated interpolatedValueAtX: x y: 3 ].
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new plot: interpolatedValues in: rect color: Color red min: min max: max.
-	FFT new plot: samples in: smallerRect color: Color blue min: min max: max.! !
-
-!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 8/24/2012 19:04'!
-example2
-	"Zooming into a 1-bit black & white image is not the best, but it shows how this work.
-	Note: resampling category in FloatImage has methods for whole image resampling."
-	| bigger h interpolated origH origW original w |
-	w _ 500.
-	h _ 500.
-	original _ FloatImage from8BitColorForm: Cursor read as8BitColorForm.
-	origW _ original width.
-	origH _ original height.
-	original display.
-	interpolated _ BSplineInterpolatingImage from: original.
-	bigger _ FloatImage width: w height: h.
-	1 to: h do: [ :y |
-		1 to: w do: [ :x |
-			bigger x: x y: y put: (interpolated interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5) ]].
-	bigger display.
-	original display! !
-
-!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 11:59'!
-example3
-	"Use a portion of display to show behavior on colored input.
-	Try it with a real photo, results are much better
-	BSplineInterpolatingImage example3
-	"
-	| original originalB originalG originalR bigger biggerB biggerG biggerR scale t |
-	original _ Display copy: (0@0 extent: 100@100).
-	scale _ 10.
-"	original _ (Form fromFileNamed: 'IMG_2365.JPG') copy: (1100@1800 extent: 500@500)."
-	originalR _ FloatImage from32BitColorForm: original component: #red.
-	originalG _ FloatImage from32BitColorForm: original component: #green.
-	originalB _ FloatImage from32BitColorForm: original component: #blue.
-	original display.
-	t _ AffineTransformation forImageZoom: scale.
-	biggerR _ originalR bSplineTransformedBy: t resultExtent: nil.
-	biggerG _ originalG bSplineTransformedBy: t resultExtent: nil.
-	biggerB _ originalB bSplineTransformedBy: t resultExtent: nil.
-	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	bigger _ biggerR asFormG: biggerG b: biggerB.
-	bigger display.
-	original display! !
-
-!BSplineInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 12:00'!
-example4
-	"FOR SUBPIXEL RENDERED STUFF
-	Use a portion of display to show behavior on colored input.
-	Simulate the effect of subpixel AA in the source image, and also do subpixel AA in the result"
-	| bigger h origH origW original w biggerB biggerG biggerR interpolatedB interpolatedG interpolatedR originalB originalG originalR d |
-	w _ 1000.
-	h _ 1000.
-	d _ 0.25.		"SubPixel separator"
-	original _ Display copy: (0@0 extent: 100@100).
-	originalR _ FloatImage from32BitColorForm: original component: #red.
-	originalG _ FloatImage from32BitColorForm: original component: #green.
-	originalB _ FloatImage from32BitColorForm: original component: #blue.
-	origW _ original width.
-	origH _ original height.
-	original display.
-	interpolatedR _ BSplineInterpolatingImage from: originalR.
-	interpolatedG _ BSplineInterpolatingImage from: originalG.
-	interpolatedB _ BSplineInterpolatingImage from: originalB.
-	biggerR _ FloatImage width: w height: h.
-	biggerG _ FloatImage width: w height: h.
-	biggerB _ FloatImage width: w height: h.
-	1 to: h do: [ :y |
-		1 to: w do: [ :x |
-			biggerR x: x y: y put: (interpolatedR interpolatedValueAtX: x-0.5-d/w*origW+0.5+d y: y-0.5/h*origH+0.5).
-			biggerG x: x y: y put: (interpolatedG interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5).
-			biggerB x: x y: y put: (interpolatedB interpolatedValueAtX: x-0.5+d/w*origW+0.5-d y: y-0.5/h*origH+0.5) ]].
-	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	bigger _ biggerR asFormG: biggerG b: biggerB.
-	bigger display.
-	original display! !
-
-!BSplineInterpolatingImage class methodsFor: 'instance creation' stamp: 'jmv 8/13/2012 15:17'!
-from: aFloatImage
-
-	^self new initializeFrom: aFloatImage! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 3/22/2013 13:23'!
-basisShift
-	^0.5 - (1.0 / 12.0) sqrt.! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 3/22/2013 15:24'!
-coefficientAtX: x y: y
-
-	^coefficients at: y-1 * width + x! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 3/22/2013 15:24'!
-coefficientAtX: x y: y put: aNumber
-
-	^coefficients at: y-1 * width + x put: aNumber! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/28/2015 16:08'!
-convertColumn: j
-	"j belongs in (1 to: width)"
-	| factor pole |
-	factor _ self factor.
-	pole _ self pole.
-
-	2 to: height do: [ :i |
-		self coefficientAtX: j y: i put:
-			(factor * (self coefficientAtX: j y: i)) + (pole * (self coefficientAtX: j y: i-1)) ]! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/28/2015 16:08'!
-convertRow: i
-	"i belongs in (1 to: height)"
-	| factor pole |
-	factor _ self factor.
-	pole _ self pole.
-
-	2 to: width do: [ :j |
-		self coefficientAtX: j y: i put:
-			(factor * (self coefficientAtX: j y: i)) + (pole * (self coefficientAtX: j-1 y: i)) ]! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/28/2015 16:08'!
-factor
-	"
-	ShiftedLinearInterpolatingImage factor
-	"
-	^1.0 / (1.0 - self basisShift)! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'pre-processing' stamp: 'jmv 8/23/2014 23:44'!
-initializeFrom: aFloatImage
-
-	height _ aFloatImage height.
-	width _ aFloatImage width.
-	coefficients _ aFloatImage elements copy.
-
-	1 to: height do: [ :i |
-		self convertRow: i ].
-
-	1 to: width do: [ :j |
-		self convertColumn: j ]! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'interpolating' stamp: 'jmv 8/31/2015 11:40'!
-interpolatedValueAtX: xx y: yy
-	"Evaluate the interpolated function. See class comment"
-
-	| w interpolated xWeight1 xWeight0 yWeight1 yWeight0 xIndex0 xIndex1 yIndex0 yIndex1 basisShift x y xIndexCheck yIndexCheck |
-
-"
-(self xDomain rangeIncludes: x) ifFalse: [^0.0].
-(self yDomain rangeIncludes: y) ifFalse: [ ^0.0].
-"
-	basisShift _ self basisShift.
-	x _ xx - basisShift.
-	y _ yy - basisShift.
-
-	xIndex0 _ x floor.
-	xIndex1 _ xIndex0+1.
-	yIndex0 _ y floor.
-	yIndex1 _ yIndex0+1.
-
-	"Validate inside some reasonable bounds. We allow extending up to 0.8 in any direction"
-	"x < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
-	xIndex0 < 0 ifTrue: [ ^0.0 ].
-	(xIndex0 = 0 and: [x < 0.2]) ifTrue: [ ^0.0 ].
-	"x > (width + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
-	xIndexCheck _ xIndex0 - 1.
-	xIndexCheck > width ifTrue: [ ^0.0 ].
-	(xIndexCheck = width and: [x > (width + 0.8)]) ifTrue: [ ^0.0 ].
-	"y < 0.2 ifTrue: [ ^0.0 ]."			"Do it with integer arithmetic if at all possible"
-	yIndex0 < 0 ifTrue: [ ^0.0 ].
-	(yIndex0 = 0 and: [y < 0.2]) ifTrue: [ ^0.0 ].
-	"y > (height + 0.8) ifTrue: [ ^0.0 ]."	"Do it with integer arithmetic if at all possible"
-	yIndexCheck _ yIndex0 - 1.
-	yIndexCheck > height ifTrue: [ ^0.0 ].
-	(yIndexCheck = height and: [y > (height + 0.8)]) ifTrue: [ ^0.0 ].
-
-	xWeight1 _ x - xIndex0.
-	xWeight0 _ 1.0 - xWeight1.
-	yWeight1 _ y - yIndex0.
-	yWeight0 _ 1.0 - yWeight1.
-
-	xIndex0 _ xIndex0 min: width max: 1.
-	xIndex1 _ xIndex1 min: width.
-	yIndex0 _ yIndex0 min: height max: 1.
-	yIndex1 _ yIndex1 min: height.
-
-	"/* perform interpolation */"
-	w _ (xWeight0 * (self coefficientAtX: xIndex0 y: yIndex0)) +
-		(xWeight1 * (self coefficientAtX: xIndex1 y: yIndex0)).
-	interpolated _ yWeight0 * w.
-
-	w _ (xWeight0 * (self coefficientAtX: xIndex0 y: yIndex1)) +
-		(xWeight1 * (self coefficientAtX: xIndex1 y: yIndex1)).
-	interpolated _ yWeight1 * w + interpolated.
-
-	^interpolated! !
-
-!ShiftedLinearInterpolatingImage methodsFor: 'private' stamp: 'jmv 8/28/2015 16:08'!
-pole
-	"
-	ShiftedLinearInterpolatingImage pole
-	"
-	^self basisShift / (self basisShift - 1.0)! !
-
-!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 9/2/2014 10:24'!
-example1
-	"Blue line shows samples joined by straight segments.
-	Red line shows interpolation. It also shows how the function domain is enlarged by half a sample at each end. This is to ease zoomin into images, adding extra samples at the end in the same way that extra samples are added inside the image. This allows keeping visual aspect at the edges."
-	| image interpolated interpolatedValues interpolatingXDomain max min n originalXDomain rect samples smallerRect |
-	rect _ 100@20 extent: 600@210.
-	samples _ { 1 . 2 . 3 . 1 }.
-	samples _ { 1 . 2 . 3 . 2. 3. 5. 3. 7. 3. 3. 3. 4 . 1 . 1 .1 .1 .1 .1 .2 .5 .2 .5 .2 .5 .3 .3. 4}.
-	n _ samples size.
-	originalXDomain _ 1 to: n.
-	"The interpolated function can be evaluated at the original points, and any point in between, and half a sample outside the original domain."
-	interpolatingXDomain _ originalXDomain first - 0.5 to: originalXDomain last + 0.5 count: rect width.
-	smallerRect _ rect left + (rect width / interpolatingXDomain extent * (originalXDomain first - interpolatingXDomain first) ) @ rect top
-		extent: rect width / interpolatingXDomain extent * originalXDomain extent @ rect height.
-	min _ samples min - 1.5.
-	max _ samples max + 0.1.
-	image _ FloatImage fromArrayOfArrays: { samples . samples . samples . samples . samples . samples}.
-	interpolated _ ShiftedLinearInterpolatingImage from: image.
-
-	interpolatedValues _ interpolatingXDomain collect: [ :x | interpolated interpolatedValueAtX: x y: 3 ].
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new plot: interpolatedValues in: rect color: Color red min: min max: max.
-	FFT new plot: samples in: smallerRect color: Color blue min: min max: max.! !
-
-!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 8/24/2012 19:04'!
-example2
-	"Zooming into a 1-bit black & white image is not the best, but it shows how this work.
-	Note: resampling category in FloatImage has methods for whole image resampling."
-	| bigger h interpolated origH origW original w |
-	w _ 500.
-	h _ 500.
-	original _ FloatImage from8BitColorForm: Cursor read as8BitColorForm.
-	origW _ original width.
-	origH _ original height.
-	original display.
-	interpolated _ ShiftedLinearInterpolatingImage from: original.
-	bigger _ FloatImage width: w height: h.
-	1 to: h do: [ :y |
-		1 to: w do: [ :x |
-			bigger x: x y: y put: (interpolated interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5) ]].
-	bigger display.
-	original display! !
-
-!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 12:02'!
-example3
-	"Use a portion of display to show behavior on colored input.
-	Try it with a real photo, results are much better
-	ShiftedLinearInterpolatingImage example3
-	"
-	| original originalB originalG originalR bigger biggerB biggerG biggerR scale t |
-	original _ Display copy: (0@0 extent: 100@100).
-	scale _ 10.
-"	original _ (Form fromFileNamed: 'IMG_2365.JPG') copy: (1100@1800 extent: 500@500)."
-	originalR _ FloatImage from32BitColorForm: original component: #red.
-	originalG _ FloatImage from32BitColorForm: original component: #green.
-	originalB _ FloatImage from32BitColorForm: original component: #blue.
-	original display.
-	t _ AffineTransformation forImageZoom: scale.
-	biggerR _ originalR shiftedLinearTransformedBy: t resultExtent: nil.
-	biggerG _ originalG shiftedLinearTransformedBy: t resultExtent: nil.
-	biggerB _ originalB shiftedLinearTransformedBy: t resultExtent: nil.
-	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	bigger _ biggerR asFormG: biggerG b: biggerB.
-	bigger display.
-	original display! !
-
-!ShiftedLinearInterpolatingImage class methodsFor: 'examples' stamp: 'jmv 4/28/2015 12:03'!
-example4
-	"FOR SUBPIXEL RENDERED STUFF
-	Use a portion of display to show behavior on colored input.
-	ShiftedLinearInterpolatingImage example4
-	Simulate the effect of subpixel AA in the source image, and also do subpixel AA in the result"
-	| bigger h origH origW original w biggerB biggerG biggerR interpolatedB interpolatedG interpolatedR originalB originalG originalR d |
-	w _ 1000.
-	h _ 1000.
-	d _ 0.25.		"SubPixel separator"
-	original _ Display copy: (0@0 extent: 100@100).
-	originalR _ FloatImage from32BitColorForm: original component: #red.
-	originalG _ FloatImage from32BitColorForm: original component: #green.
-	originalB _ FloatImage from32BitColorForm: original component: #blue.
-	origW _ original width.
-	origH _ original height.
-	original display.
-	interpolatedR _ ShiftedLinearInterpolatingImage from: originalR.
-	interpolatedG _ ShiftedLinearInterpolatingImage from: originalG.
-	interpolatedB _ ShiftedLinearInterpolatingImage from: originalB.
-	biggerR _ FloatImage width: w height: h.
-	biggerG _ FloatImage width: w height: h.
-	biggerB _ FloatImage width: w height: h.
-	1 to: h do: [ :y |
-		1 to: w do: [ :x |
-			biggerR x: x y: y put: (interpolatedR interpolatedValueAtX: x-0.5-d/w*origW+0.5+d y: y-0.5/h*origH+0.5).
-			biggerG x: x y: y put: (interpolatedG interpolatedValueAtX: x-0.5/w*origW+0.5 y: y-0.5/h*origH+0.5).
-			biggerB x: x y: y put: (interpolatedB interpolatedValueAtX: x-0.5+d/w*origW+0.5-d y: y-0.5/h*origH+0.5) ]].
-	biggerR replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerG replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	biggerB replaceValues:  [ :i :j :v | v min: 255.0/256.0 max: 0.0 ].
-	bigger _ biggerR asFormG: biggerG b: biggerB.
-	bigger display.
-	original display! !
-
-!ShiftedLinearInterpolatingImage class methodsFor: 'instance creation' stamp: 'jmv 8/13/2012 15:17'!
-from: aFloatImage
-
-	^self new initializeFrom: aFloatImage! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-a0
-	^self at: 1! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-a1
-	^self at: 2! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:07'!
-a2
-	^self at: 3! !
-
-!PerspectiveTransformation methodsFor: 'private access' stamp: 'jmv 1/13/2015 17:09'!
-at: index
-	<primitive: 'primitiveAt' module: 'FloatArrayPlugin'>
-	^Float fromIEEE32Bit: (self basicAt: index)! !
-
-!PerspectiveTransformation methodsFor: 'private access' stamp: 'jmv 1/13/2015 17:09'!
-at: index put: value
-	<primitive: 'primitiveAtPut' module: 'FloatArrayPlugin'>
-	value isFloat 
-		ifTrue:[self basicAt: index put: value asIEEE32BitWord]
-		ifFalse:[self at: index put: value asFloat].
-	^value! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-b0
-	^self at: 4! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-b1
-	^self at: 5! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-b2
-	^self at: 6! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-c0
-	^self at: 7! !
-
-!PerspectiveTransformation methodsFor: 'element access' stamp: 'jmv 1/13/2015 17:05'!
-c1
-	^self at: 8! !
-
-!PerspectiveTransformation methodsFor: 'converting coordinates' stamp: 'jmv 1/13/2015 17:08'!
-map: aPoint
-	| xx yy zz |
-	xx _ (self a0 * aPoint x) + (self a1 * aPoint y) + self a2.
-	yy _ (self b0 * aPoint x) + (self b1 * aPoint y) + self b2.
-	zz _ (self c0 * aPoint x) + (self c1 * aPoint y) + 1.
-	^(xx / zz) @ (yy / zz)! !
-
-!PerspectiveTransformation class methodsFor: 'instance creation' stamp: 'jmv 1/13/2015 17:38'!
-map: sourcePoints to: targetPoints
-	"Both arguments must be of size 4.
-	This method builds an instance, using an implementation of:
-		http://docs.opencv.org/modules/imgproc/doc/geometric_transformations.html#Mat getPerspectiveTransform(InputArray src, InputArray dst)
-	according to:
-		http://math.stackexchange.com/questions/441597/how-to-calculate-what-matrix-will-transform-specified-points-to-other-specified
-	
-	(PerspectiveTransformation
-		map: {3@5. 5@5. 2@2. 6@1}
-		to: {0@3. 3@3. 0@0. 3@0})
-		map: 3@5
-	"
-	
-	| m x y u v elements result |
-	m _ FloatMatrix m: 8 n: 9.
-	1 to: 4 do: [ :i |
-		x _ (sourcePoints at: i) x.
-		y _ (sourcePoints at: i) y.
-		u _ (targetPoints at: i) x.
-		v _ (targetPoints at: i) y.
-		m i: i j: 1 put: x.
-		m i: i j: 2 put: y.
-		m i: i j: 3 put: 1.
-		m i: i j: 7 put: x negated * u.
-		m i: i j: 8 put: y negated * u.
-		m i: i j: 9 put: u.
-		m i: i+4 j: 4 put: x.
-		m i: i+4 j: 5 put: y.
-		m i: i+4 j: 6 put: 1.
-		m i: i+4 j: 7 put: x negated * v.
-		m i: i+4 j: 8 put: y negated * v.
-		m i: i+4 j: 9 put: v ].
-	elements _ m solveLinearSystem.
-	result _ self new.
-	1 to: 8 do: [ :i | result at: i put: (elements at: i) ].
-	^result! !
-
-!PerspectiveTransformation class methodsFor: 'instance creation' stamp: 'jmv 1/13/2015 17:04'!
-new
-	^(self basicNew: 8) initialize! !
-
-!PerspectiveTransformation class methodsFor: 'instance creation' stamp: 'jmv 1/13/2015 17:04'!
-new: s
-	self error: 'Please call PerspectiveTransformation>>#new (without arguments).'.
-	^self new! !
-
-!ImageHistogram methodsFor: 'operations' stamp: 'jmv 7/24/2012 18:15'!
-accumulate
-
-	2 to: tallies size do: [ :i |
-		tallies at: i put: (tallies at: i) + (tallies at: i-1) ]! !
-
-!ImageHistogram methodsFor: 'operations' stamp: 'jmv 4/24/2013 15:24'!
-accumulated
-
-	^self copyTwoLevel accumulate! !
-
-!ImageHistogram methodsFor: 'building' stamp: 'jmv 7/24/2012 17:56'!
-addValue: aNumber
-
-	| i |
-	i _ self indexFor: aNumber.
-	tallies at: i put: (tallies at: i) + 1! !
-
-!ImageHistogram methodsFor: 'accessing' stamp: 'jmv 7/24/2012 18:21'!
-countAt: value
-	^tallies at: (self indexFor: value)! !
-
-!ImageHistogram methodsFor: 'private' stamp: 'jmv 7/24/2012 18:12'!
-indexFor: aValue
-	| slotIndex |
-	slotIndex _ (aValue * (tallies size-1)) rounded + 1.
-	^slotIndex min: tallies size max: 1.! !
-
-!ImageHistogram methodsFor: 'initialization' stamp: 'jmv 7/24/2012 16:38'!
-initialize: anInteger
-
-	tallies _ WordArray new: anInteger! !
-
-!ImageHistogram methodsFor: 'aux' stamp: 'jmv 4/6/2015 11:39'!
-plot
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
-
-!ImageHistogram methodsFor: 'aux' stamp: 'jmv 7/26/2012 15:49'!
-plotIn: rect color: aColor min: min max: max
-FFT new plot: tallies in: rect color: aColor min: min max: max! !
-
-!ImageHistogram class methodsFor: 'instance creation' stamp: 'jmv 7/24/2012 16:35'!
-new: anInteger
-
-	^self new initialize: anInteger! !
-
-!ImageHistogram2 methodsFor: 'operations' stamp: 'jmv 11/5/2012 14:19'!
-accumulate
-
-	2 to: tallies size do: [ :i |
-		tallies at: i put: (tallies at: i) + (tallies at: i-1) ]! !
-
-!ImageHistogram2 methodsFor: 'operations' stamp: 'jmv 4/24/2013 15:24'!
-accumulated
-
-	^self copyTwoLevel accumulate! !
-
-!ImageHistogram2 methodsFor: 'building' stamp: 'jmv 11/5/2012 14:43'!
-addValue: aValue
-
-	| n floatIndex i1 i2 |
-	n _ tallies size.
-
-	floatIndex _ (aValue * (n-1)) + 1.0.
-	floatIndex <= 1.0 ifTrue: [
-		tallies at: 1 put: (tallies at: 1) + 1.0.
-		^self ].
-
-	floatIndex >= n ifTrue: [
-		tallies at: n put: (tallies at: n) + 1.0.
-		^self ].
-
-	i1 _ floatIndex floor.
-	i2 _ i1 + 1.
-	tallies at: i1 put: (tallies at: i1) +( i2 - floatIndex).
-	tallies at: i2 put: (tallies at: i2) + (floatIndex - i1)! !
-
-!ImageHistogram2 methodsFor: 'accessing' stamp: 'jmv 11/5/2012 14:54'!
-countAt: value
-	"Even if we are not strictly 'counting'..."
-
-	| n floatIndex i1 i2 |
-	n _ tallies size.
-
-	floatIndex _ (value * (n-1)) + 1.0.
-	floatIndex <= 1.0 ifTrue: [
-		^tallies at: 1 ].
-
-	floatIndex >= n ifTrue: [
-		^tallies at: n ].
-
-	i1 _ floatIndex floor.
-	i2 _ i1 + 1.
-	^((tallies at: i1) * ( i2 - floatIndex)) + 
-		((tallies at: i2) * (floatIndex - i1))! !
-
-!ImageHistogram2 methodsFor: 'initialization' stamp: 'jmv 11/5/2012 14:30'!
-initialize: anInteger
-
-	tallies _ FloatArray new: anInteger! !
-
-!ImageHistogram2 methodsFor: 'aux' stamp: 'jmv 4/24/2013 11:20'!
-plot
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
-
-!ImageHistogram2 methodsFor: 'aux' stamp: 'jmv 4/24/2013 11:36'!
-plot2
-	"Just in case there is some difference with #plot"
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new
-		plot: ((0.0 to: 1.0 count: rect width) collect: [ :v | self countAt: v ])
-		in: rect
-		color: Color red
-		min: 0.0
-		max: tallies max! !
-
-!ImageHistogram2 methodsFor: 'aux' stamp: 'jmv 11/5/2012 14:30'!
-plotIn: rect color: aColor min: min max: max
-	FFT new plot: tallies in: rect color: aColor min: min max: max! !
-
-!ImageHistogram2 class methodsFor: 'instance creation' stamp: 'jmv 11/5/2012 14:19'!
-new: anInteger
-
-	^self new initialize: anInteger! !
-
-!ImageHistogram3 methodsFor: 'operations' stamp: 'jmv 4/24/2013 14:23'!
-accumulated
-
-	^AccumulatedImageHistogram from: self! !
-
-!ImageHistogram3 methodsFor: 'building' stamp: 'jmv 4/24/2013 13:44'!
-addValue: aValue
-
-	| n floatIndex i1 i2 |
-	n _ tallies size.
-
-	floatIndex _ (aValue * n) + 0.5.
-	i1 _ floatIndex floor.
-	i2 _ i1 + 1.
-
-	i1 < 1 ifTrue: [
-		tallies at: 1 put: (tallies at: 1) + 1.
-		^self ].
-
-	i2 > n ifTrue: [
-		tallies at: n put: (tallies at: n) + 1.
-		^self ].
-
-	tallies at: i1 put: (tallies at: i1) +( i2 - floatIndex).
-	tallies at: i2 put: (tallies at: i2) + (floatIndex - i1)! !
-
-!ImageHistogram3 methodsFor: 'accessing' stamp: 'jmv 4/24/2013 15:12'!
-countAt: value
-	"Even if we are not strictly 'counting'..."
-
-	| n floatIndex i1 i2 |
-	n _ tallies size.
-
-	floatIndex _ (value * n) + 0.5.
-	i1 _ floatIndex floor.
-	i2 _ i1 + 1.
-
-	i1 < 1 ifTrue: [
-		^ tallies at: i2 ].
-
-	i2 > n ifTrue: [
-		^ tallies at: i1 ].
-
-	^((tallies at: i1) * ( i2 - floatIndex)) + 
-		((tallies at: i2) * (floatIndex - i1))! !
-
-!ImageHistogram3 methodsFor: 'initialization' stamp: 'jmv 4/24/2013 12:11'!
-initialize: anInteger
-
-	tallies _ FloatArray new: anInteger! !
-
-!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 4/24/2013 12:11'!
-plot
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new plot: tallies in: rect color: Color black min: 0.0 max: tallies max! !
-
-!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 4/24/2013 12:11'!
-plot2
-	"Just in case there is some difference with #plot"
-	| rect |
-	rect _ 10@10 extent: 768@400.
-	Display fillWhite: rect; border: (rect expandBy: 2) width: 2.
-	FFT new
-		plot: ((0.0 to: 1.0 count: rect width) collect: [ :v | self countAt: v ])
-		in: rect
-		color: Color red
-		min: 0.0
-		max: tallies max! !
-
-!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 4/24/2013 12:11'!
-plotIn: rect color: aColor min: min max: max
-	FFT new plot: tallies in: rect color: aColor min: min max: max! !
-
-!ImageHistogram3 methodsFor: 'aux' stamp: 'jmv 8/27/2014 15:02'!
-plotLogIn: rect color: aColor min: min max: max
-	FFT new plot: tallies log in: rect color: aColor min: min max: max! !
-
-!ImageHistogram3 methodsFor: 'private' stamp: 'jmv 4/24/2013 14:20'!
-tallies
-	^tallies! !
-
-!ImageHistogram3 class methodsFor: 'instance creation' stamp: 'jmv 4/24/2013 12:11'!
-new: anInteger
-
-	^self new initialize: anInteger! !
-
-!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'di 2/8/1999 14:22'!
-bytesPerEncodedFrame
-	"Answer the number of bytes required to hold one frame of compressed sound data. Answer zero if this codec produces encoded frames of variable size."
-
-	^ 0
-! !
-
-!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'jmv 2/26/2016 17:02'!
-decodeFrames: frameCount from: srcByteArray at: srcIndex into: dstSoundBuffer at: dstIndex
-	"Decode the given number of monophonic frames starting at the given index in the given ByteArray of compressed sound data and storing the decoded samples into the given SoundBuffer starting at the given destination index. Answer a pair containing the number of bytes of compressed data consumed and the number of decompressed samples produced."
-	"Note: Assume that the sender has ensured that the given number of frames will not exhaust either the source or destination buffers."
-
-	| frameBase coeffArray scale i c nullCount samples sourceFrameEnd frameSize inStream val |
-	inStream _ ReadStream on: srcByteArray from: srcIndex to: srcByteArray size.
-	"frameCount _ " inStream nextUnsignedInt32BigEndian: true.
-	samplesPerFrame _ inStream nextUnsignedInt32BigEndian: true.
-	nLevels _ inStream nextUnsignedInt32BigEndian: true.
-	alpha _ inStream nextFloat32BigEndian: true.
-	beta _ inStream nextFloat32BigEndian: true.
-	fwt ifNil:
-		["NOTE: This should read parameters from the encoded data"
-		fwt _ FWT new.
-		fwt nSamples: samplesPerFrame nLevels: nLevels.
-		fwt setAlpha: alpha beta: beta].
-	frameBase _ dstIndex.
-	coeffArray _ fwt coeffs.  "A copy that we can modify"
-
-	1 to: frameCount do:
-		[:frame | 
-
-		"Decode the scale for this frame"
-		frameSize _ inStream nextUnsignedInt16BigEndian: true.
-		sourceFrameEnd _ frameSize + inStream position.
-		scale _ inStream nextFloat32BigEndian: true.
-
-		"Expand run-coded samples to scaled float values."
-		i _ 5.
-		[i <= coeffArray size]
-			whileTrue:
-			[c _ inStream next.
-			c < 128
-				ifTrue: [nullCount _ c < 112
-							ifTrue: [c + 1]
-							ifFalse: [(c-112)*256 + inStream next + 1].
-						i to: i + nullCount - 1 do: [:j | coeffArray at: j put: 0.0].
-						i _ i + nullCount]
-				ifFalse: [val _ (c*256 + inStream next) - 32768 - 16384.
-						coeffArray at: i put: val * scale.
-						i _ i + 1]].
-
-		"Copy float values into the wavelet sample array"		
-			fwt coeffs: coeffArray.
-
-		"Compute the transform"
-		fwt transformForward: false.
-
-		"Determine the scale for this frame"
-		samples _ fwt samples.
-		samples size = samplesPerFrame ifFalse: [self error: 'frame size error'].
-		1 to: samples size do:
-			[:j | dstSoundBuffer at: frameBase + j - 1 put: (samples at: j) asInteger].
-
-		inStream position = sourceFrameEnd ifFalse: [self error: 'frame size error'].
-		frameBase _ frameBase + samplesPerFrame].
-
-	^ Array with: inStream position + 1 - srcIndex
-			with: frameBase - dstIndex! !
-
-!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'jmv 2/26/2016 17:13'!
-encodeFrames: frameCount from: srcSoundBuffer at: srcIndex into: dstByteArray at: dstIndex
-	"Encode the given number of frames starting at the given index in the given monophonic SoundBuffer and storing the encoded sound data into the given ByteArray starting at the given destination index. Encode only as many complete frames as will fit into the destination. Answer a pair containing the number of samples consumed and the number of bytes of compressed data produced."
-	"Note: Assume that the sender has ensured that the given number of frames will not exhaust either the source or destination buffers."
-
-	| frameBase coeffs maxVal minVal c scale nullCount frameI outFrameSize threshold outStream cMin val |
-	threshold _ 2000.
-	fwt ifNil:
-		[samplesPerFrame _ self samplesPerFrame.
-		nLevels _ 8.
-		"Here are some sample mother wavelets, with the compression achieved on a
-		sample of my voice at a threshold of 2000:
-									compression achieved "
-		alpha _ 0.0.  beta _ 0.0.		"12.1"
-		alpha _ 1.72.  beta _ 1.51.	"14.0"
-		alpha _ -1.86.  beta _ -1.53.	"14.4"
-		alpha _ 1.28.  beta _ -0.86.	"15.9"
-		alpha _ -1.15.  beta _ 0.69.	"16.0"
-		fwt _ FWT new.
-		fwt nSamples: samplesPerFrame nLevels: nLevels.
-		fwt setAlpha: alpha beta: beta].
-
-	(outStream _ WriteStream on: dstByteArray from: dstIndex to: dstByteArray size)
-		nextUnsignedInt32Put: frameCount bigEndian: true;
-		nextUnsignedInt32Put: samplesPerFrame bigEndian: true;
-		nextUnsignedInt32Put: nLevels bigEndian: true;
-		nextFloat32Put: alpha bigEndian: true;
-		nextFloat32Put: beta bigEndian: true.
-	frameBase _ srcIndex.
-	1 to: frameCount do:
-		[:frame | 
-
-		"Copy float values into the wavelet sample array"		
-		fwt samples: ((frameBase to: frameBase + samplesPerFrame-1) 
-				collect: [:i | (srcSoundBuffer at: i) asFloat]).
-
-		"Compute the transform"
-		fwt transformForward: true.
-
-		frameI _ outStream position+1.  "Reserve space for frame size"
-		outStream nextUnsignedInt16Put: 0 bigEndian: true.
-
-		"Determine and output the scale for this frame"
-		coeffs _ fwt coeffs.
-		maxVal _ 0.0.  minVal _ 0.0.
-		5 to: coeffs size do:
-			[:i | c _ coeffs at: i.
-			c > maxVal ifTrue: [maxVal _ c].
-			c < minVal ifTrue: [minVal _ c]].
-		scale _ (maxVal max: minVal negated) / 16000.0.  "Will scale all to -16k..16k: 15 bits"
-		outStream nextFloat32Put: scale bigEndian: true.
-
-		"Copy scaled values, with run-coded sequences of 0's, to destByteArray"
-		nullCount _ 0.
-		cMin _ threshold / scale.
-		5 to: coeffs size do:
-			[:i | c _ (coeffs at: i) / scale.
-			c abs < cMin
-			ifTrue: ["Below threshold -- count nulls."
-					nullCount _ nullCount + 1]
-			ifFalse: ["Above threshold -- emit prior null count and this sample."
-					nullCount > 0 ifTrue:
-						[nullCount <= 112
-						ifTrue: [outStream nextPut: nullCount-1]
-						ifFalse: [outStream nextUnsignedInt16Put: (112*256) + nullCount-1 bigEndian: true ].
-						nullCount _ 0].
-						val _ c asInteger + 16384 + 32768.  "Map -16k..16k into 32k..64k"
-						outStream nextUnsignedInt16Put: val bigEndian: true ]].
-
-					nullCount > 0 ifTrue:
-						[nullCount <= 112
-						ifTrue: [outStream nextPut: nullCount-1]
-						ifFalse: [outStream nextUnsignedInt16Put: (112*256) + nullCount-1 bigEndian: true ]].
-		outFrameSize _ outStream position+1 - frameI - 2.  "Write frame size back at the beginning"
-		(WriteStream on: dstByteArray from: frameI to: dstByteArray size)
-			nextUnsignedInt16Put: outFrameSize bigEndian: true .
-		frameBase _ frameBase + samplesPerFrame].
-
-"This displays a temporary indication of compression achieved"
-(((frameBase - srcIndex) *2.0 / (outStream position+1 - dstIndex) truncateTo: 0.1) printString , ' : 1') displayAt: Sensor mousePoint + (-20@30).
-
-	outStream position > dstByteArray size ifTrue:
-		["The calling routine only provides buffer space for compression of 2:1 or better.  If you are just testing things, you can increase it to, eg, codeFrameSize _ frameSize*3, which would be sufficient for a threshold of 0 (lossless conversion)."
-		self error: 'Buffer overrun'].
-
-	^ Array with: frameBase - srcIndex
-			with: outStream position+1 - dstIndex! !
-
-!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'jmv 2/26/2016 17:02'!
-frameCount: aByteArray
-	"Compute the frame count for this byteArray.  This default computation will have to be overridden by codecs with variable frame sizes."
-
-	^ (ReadStream on: aByteArray) nextUnsignedInt32BigEndian: true! !
-
-!WaveletCodec methodsFor: 'subclass responsibilities' stamp: 'di 2/8/1999 14:17'!
-samplesPerFrame
-	"Answer the number of sound samples per compression frame."
-
-	^ 4096
-! !
-
-!FloatImageTest methodsFor: 'testing' stamp: 'jmv 12/10/2012 17:09'!
-testCentroids
-	"Some test on the centroid functionality
-	FloatImageTest new testCentroids
-	This is the performance of the various centroid algorithms I tried
-	centroidAround: 		0.03
-	centroidAround4 	0.063
-	centroidAround5 	0.25
-	centroidAround1 	1.06
-	centroidAround3 	2.06
-	centroidAround2 	2.76
-	"
-
-	| testImage v c max |
-	max _ 0.
-	testImage _ FloatImage width: 5 height: 5.
-	-0.5 to: 0.5 count: 21 do: [ :dx |
-		-0.5 to: 0.5 count: 18 do: [ :dy |
-			1.0 to: 5 count: 20 do: [ :scale |
-				1 to: 5 do: [ :y |
-					1 to: 5 do: [ :x |
-						v _ (x@y - (dx@dy) - 3) r * Float pi / 2 /  scale.
-						testImage x: x y: y put: v cos ]].
-				"
-				data _ testImage asFloatMatrix i: 3.
-				FFT new plot: data elements in: (10@10 extent: 200@100).
-				"
-				c _ testImage centroidAround: 3@3.
-				"We find centroid with error less than 3.5% of a pixel!!"
-				self assert: (dx@dy + 3 - c) r < 0.0323.
-				max _ max max: (dx@dy + 3 - c) r.
-			]]].
-	max print! !
-
-!FloatImageTest methodsFor: 'testing' stamp: 'jmv 4/10/2015 16:23'!
-testHistogram
-	"
-	FloatImageTest new testHistogram
-	"
-	| image histogram |
-	image _ FloatImage fromArrayOfArrays: #(
-		#(0.1   0.3   0.5   0.7   0.9 )
-	).
-	histogram _ image histogram: 5.
-	self assert: (histogram countAt: 0.0) = 1.
-	self assert: (histogram countAt: 1.0) = 1.
-	self assert: (histogram accumulated countAt: 0.0) = 1.
-	self assert: (histogram accumulated countAt: 1.0) = 5! !

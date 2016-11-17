@@ -1,11 +1,12 @@
-'From Cuis 4.2 of 25 July 2013 [latest update: #2746] on 29 April 2016 at 3:59:00.251522 pm'!
+'From Cuis 4.2 of 25 July 2013 [latest update: #2965] on 3 November 2016 at 11:55:42 am'!
 'Description Please enter a description for this package '!
-!provides: 'Tests' 1 49!
-!requires: 'Graphics-Files-Additional' 1 nil nil!
-!requires: 'Collections-CompactArrays' 1 nil nil!
+!provides: 'Tests' 1 66!
 !requires: 'Compression' 1 nil nil!
-!requires: 'Morphic-Widgets-Extras' 1 nil nil!
 !requires: 'Taskbar' 1 nil nil!
+!requires: 'Collections-CompactArrays' 1 nil nil!
+!requires: 'Graphics-Files-Additional' 1 nil nil!
+!requires: 'SignalProcessing' 1 nil nil!
+!requires: 'Morphic-Widgets-Extras' 1 nil nil!
 !classDefinition: #MyResumableTestError category: #'Tests-Exceptions'!
 Error subclass: #MyResumableTestError
 	instanceVariableNames: ''
@@ -36,176 +37,6 @@ Notification subclass: #MyTestNotification
 MyTestNotification class
 	instanceVariableNames: ''!
 
-!classDefinition: #ExceptionTester category: #'Tests-Exceptions'!
-Object subclass: #ExceptionTester
-	instanceVariableNames: 'log suiteLog iterationsBeforeTimeout'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Exceptions'!
-!classDefinition: 'ExceptionTester class' category: #'Tests-Exceptions'!
-ExceptionTester class
-	instanceVariableNames: ''!
-
-!classDefinition: #AffineTransformationTest category: #'Tests-Morphic-Kernel'!
-TestCase subclass: #AffineTransformationTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Morphic-Kernel'!
-!classDefinition: 'AffineTransformationTest class' category: #'Tests-Morphic-Kernel'!
-AffineTransformationTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #ArrayLiteralTest category: #'Tests-Compiler'!
-TestCase subclass: #ArrayLiteralTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'ArrayLiteralTest class' category: #'Tests-Compiler'!
-ArrayLiteralTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #BitBltTest category: #'Tests-Graphics Primitives'!
-TestCase subclass: #BitBltTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Graphics Primitives'!
-!classDefinition: 'BitBltTest class' category: #'Tests-Graphics Primitives'!
-BitBltTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #CharacterTest category: #'Tests-Kernel'!
-TestCase subclass: #CharacterTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel'!
-!classDefinition: 'CharacterTest class' category: #'Tests-Kernel'!
-CharacterTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #ClosureCompilerTest category: #'Tests-Compiler'!
-TestCase subclass: #ClosureCompilerTest
-	instanceVariableNames: ''
-	classVariableNames: 'CmpRR CogRTLOpcodes Jump MoveCqR Nop'
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'ClosureCompilerTest class' category: #'Tests-Compiler'!
-ClosureCompilerTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #ClosureTests category: #'Tests-Compiler'!
-TestCase subclass: #ClosureTests
-	instanceVariableNames: 'collection ivar'
-	classVariableNames: 'ClassVar'
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'ClosureTests class' category: #'Tests-Compiler'!
-ClosureTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #CollectTest category: #'Tests-Kernel-Collections'!
-TestCase subclass: #CollectTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Collections'!
-!classDefinition: 'CollectTest class' category: #'Tests-Kernel-Collections'!
-CollectTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #CompilerExceptionsTest category: #'Tests-Compiler'!
-TestCase subclass: #CompilerExceptionsTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'CompilerExceptionsTest class' category: #'Tests-Compiler'!
-CompilerExceptionsTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #CompilerTest category: #'Tests-Compiler'!
-TestCase subclass: #CompilerTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'CompilerTest class' category: #'Tests-Compiler'!
-CompilerTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #ContextCompilationTest category: #'Tests-Compiler'!
-TestCase subclass: #ContextCompilationTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'ContextCompilationTest class' category: #'Tests-Compiler'!
-ContextCompilationTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #CuisSourceFileArrayTest category: #'Tests-Files'!
-TestCase subclass: #CuisSourceFileArrayTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Files'!
-!classDefinition: 'CuisSourceFileArrayTest class' category: #'Tests-Files'!
-CuisSourceFileArrayTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #DateAndTimeTest category: #'Tests-Kernel-Chronology'!
-TestCase subclass: #DateAndTimeTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Chronology'!
-!classDefinition: 'DateAndTimeTest class' category: #'Tests-Kernel-Chronology'!
-DateAndTimeTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #DecompilerTests category: #'Tests-Compiler'!
-TestCase subclass: #DecompilerTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'DecompilerTests class' category: #'Tests-Compiler'!
-DecompilerTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #DecompilerTestFailuresCollector category: #'Tests-Compiler'!
-DecompilerTests subclass: #DecompilerTestFailuresCollector
-	instanceVariableNames: 'failures'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'DecompilerTestFailuresCollector class' category: #'Tests-Compiler'!
-DecompilerTestFailuresCollector class
-	instanceVariableNames: ''!
-
-!classDefinition: #DelayTest category: #'Tests-Kernel-Processes'!
-TestCase subclass: #DelayTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Processes'!
-!classDefinition: 'DelayTest class' category: #'Tests-Kernel-Processes'!
-DelayTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #DifferenceFinderTest category: #'Tests-Code Differ'!
-TestCase subclass: #DifferenceFinderTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Code Differ'!
-!classDefinition: 'DifferenceFinderTest class' category: #'Tests-Code Differ'!
-DifferenceFinderTest class
-	instanceVariableNames: ''!
-
 !classDefinition: #ExceptionTests category: #'Tests-Exceptions'!
 TestCase subclass: #ExceptionTests
 	instanceVariableNames: ''
@@ -214,186 +45,6 @@ TestCase subclass: #ExceptionTests
 	category: 'Tests-Exceptions'!
 !classDefinition: 'ExceptionTests class' category: #'Tests-Exceptions'!
 ExceptionTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #FloatTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #FloatTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'FloatTest class' category: #'Tests-Kernel-Numbers'!
-FloatTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #FmFileIOAccessorTest category: #'Tests-FileMan'!
-TestCase subclass: #FmFileIOAccessorTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-FileMan'!
-!classDefinition: 'FmFileIOAccessorTest class' category: #'Tests-FileMan'!
-FmFileIOAccessorTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #FmFileManTest category: #'Tests-FileMan'!
-TestCase subclass: #FmFileManTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-FileMan'!
-!classDefinition: 'FmFileManTest class' category: #'Tests-FileMan'!
-FmFileManTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #FractionTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #FractionTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'FractionTest class' category: #'Tests-Kernel-Numbers'!
-FractionTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #IfNotNilTests category: #'Tests-Kernel'!
-TestCase subclass: #IfNotNilTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel'!
-!classDefinition: 'IfNotNilTests class' category: #'Tests-Kernel'!
-IfNotNilTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #IntegerDigitLogicTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #IntegerDigitLogicTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'IntegerDigitLogicTest class' category: #'Tests-Kernel-Numbers'!
-IntegerDigitLogicTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #IntegerTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #IntegerTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'IntegerTest class' category: #'Tests-Kernel-Numbers'!
-IntegerTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #IntervalTest category: #'Tests-Collections'!
-TestCase subclass: #IntervalTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Collections'!
-!classDefinition: 'IntervalTest class' category: #'Tests-Collections'!
-IntervalTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #LargeNegativeIntegerTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #LargeNegativeIntegerTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'LargeNegativeIntegerTest class' category: #'Tests-Kernel-Numbers'!
-LargeNegativeIntegerTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #LargePositiveIntegerTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #LargePositiveIntegerTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'LargePositiveIntegerTest class' category: #'Tests-Kernel-Numbers'!
-LargePositiveIntegerTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #LayoutMorphTest category: #'Tests-Morphic-Kernel'!
-TestCase subclass: #LayoutMorphTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Morphic-Kernel'!
-!classDefinition: 'LayoutMorphTest class' category: #'Tests-Morphic-Kernel'!
-LayoutMorphTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #MirrorPrimitiveTests category: #'Tests-Compiler'!
-TestCase subclass: #MirrorPrimitiveTests
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'MirrorPrimitiveTests class' category: #'Tests-Compiler'!
-MirrorPrimitiveTests class
-	instanceVariableNames: ''!
-
-!classDefinition: #MonitorTest category: #'Tests-Kernel-Processes'!
-TestCase subclass: #MonitorTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Processes'!
-!classDefinition: 'MonitorTest class' category: #'Tests-Kernel-Processes'!
-MonitorTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #MorphicLocationTest category: #'Tests-Morphic-Kernel'!
-TestCase subclass: #MorphicLocationTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Morphic-Kernel'!
-!classDefinition: 'MorphicLocationTest class' category: #'Tests-Morphic-Kernel'!
-MorphicLocationTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #MorphicTranslationTest category: #'Tests-Morphic-Kernel'!
-TestCase subclass: #MorphicTranslationTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Morphic-Kernel'!
-!classDefinition: 'MorphicTranslationTest class' category: #'Tests-Morphic-Kernel'!
-MorphicTranslationTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #NumberTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #NumberTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'NumberTest class' category: #'Tests-Kernel-Numbers'!
-NumberTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #OrderedCollectionTest category: #'Tests-Kernel-Collections'!
-TestCase subclass: #OrderedCollectionTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Collections'!
-!classDefinition: 'OrderedCollectionTest class' category: #'Tests-Kernel-Collections'!
-OrderedCollectionTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #PrettyPrintingTest category: #'Tests-Compiler'!
-TestCase subclass: #PrettyPrintingTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Compiler'!
-!classDefinition: 'PrettyPrintingTest class' category: #'Tests-Compiler'!
-PrettyPrintingTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #ProcessTerminateBug category: #'Tests-Exceptions'!
@@ -406,24 +57,94 @@ TestCase subclass: #ProcessTerminateBug
 ProcessTerminateBug class
 	instanceVariableNames: ''!
 
-!classDefinition: #ProcessTest category: #'Tests-Kernel-Processes'!
-TestCase subclass: #ProcessTest
+!classDefinition: #AbstractNumberTest category: #'Tests-Kernel-Numbers'!
+TestCase subclass: #AbstractNumberTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel-Processes'!
-!classDefinition: 'ProcessTest class' category: #'Tests-Kernel-Processes'!
-ProcessTest class
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'AbstractNumberTest class' category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #ProcessorTest category: #'Tests-Kernel'!
-TestCase subclass: #ProcessorTest
+!classDefinition: #FloatTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #FloatTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel'!
-!classDefinition: 'ProcessorTest class' category: #'Tests-Kernel'!
-ProcessorTest class
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'FloatTest class' category: #'Tests-Kernel-Numbers'!
+FloatTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #FractionTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #FractionTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'FractionTest class' category: #'Tests-Kernel-Numbers'!
+FractionTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #IntegerDigitLogicTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #IntegerDigitLogicTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'IntegerDigitLogicTest class' category: #'Tests-Kernel-Numbers'!
+IntegerDigitLogicTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #IntegerTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #IntegerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'IntegerTest class' category: #'Tests-Kernel-Numbers'!
+IntegerTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #LargeNegativeIntegerTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #LargeNegativeIntegerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'LargeNegativeIntegerTest class' category: #'Tests-Kernel-Numbers'!
+LargeNegativeIntegerTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #LargePositiveIntegerTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #LargePositiveIntegerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'LargePositiveIntegerTest class' category: #'Tests-Kernel-Numbers'!
+LargePositiveIntegerTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #NumberTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #NumberTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'NumberTest class' category: #'Tests-Kernel-Numbers'!
+NumberTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #SmallIntegerTest category: #'Tests-Kernel-Numbers'!
+AbstractNumberTest subclass: #SmallIntegerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Numbers'!
+!classDefinition: 'SmallIntegerTest class' category: #'Tests-Kernel-Numbers'!
+SmallIntegerTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #RandomTest category: #'Tests-Kernel-Numbers'!
@@ -466,14 +187,154 @@ RandomTest subclass: #ParkMiller93RandomTest
 ParkMiller93RandomTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #ReferenceStreamTest category: #'Tests-System-Object Storage'!
-TestCase subclass: #ReferenceStreamTest
+!classDefinition: #AffineTransformationTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #AffineTransformationTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-System-Object Storage'!
-!classDefinition: 'ReferenceStreamTest class' category: #'Tests-System-Object Storage'!
-ReferenceStreamTest class
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'AffineTransformationTest class' category: #'Tests-Morphic-Kernel'!
+AffineTransformationTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #LayoutMorphTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #LayoutMorphTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'LayoutMorphTest class' category: #'Tests-Morphic-Kernel'!
+LayoutMorphTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #MorphicLocationTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #MorphicLocationTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'MorphicLocationTest class' category: #'Tests-Morphic-Kernel'!
+MorphicLocationTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #MorphicTranslationTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #MorphicTranslationTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'MorphicTranslationTest class' category: #'Tests-Morphic-Kernel'!
+MorphicTranslationTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #WorldTest category: #'Tests-Morphic-Kernel'!
+TestCase subclass: #WorldTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Morphic-Kernel'!
+!classDefinition: 'WorldTest class' category: #'Tests-Morphic-Kernel'!
+WorldTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ArrayLiteralTest category: #'Tests-Compiler'!
+TestCase subclass: #ArrayLiteralTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'ArrayLiteralTest class' category: #'Tests-Compiler'!
+ArrayLiteralTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ClosureCompilerTest category: #'Tests-Compiler'!
+TestCase subclass: #ClosureCompilerTest
+	instanceVariableNames: ''
+	classVariableNames: 'CmpRR CogRTLOpcodes Jump MoveCqR Nop'
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'ClosureCompilerTest class' category: #'Tests-Compiler'!
+ClosureCompilerTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ClosureTests category: #'Tests-Compiler'!
+TestCase subclass: #ClosureTests
+	instanceVariableNames: 'collection ivar'
+	classVariableNames: 'ClassVar'
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'ClosureTests class' category: #'Tests-Compiler'!
+ClosureTests class
+	instanceVariableNames: ''!
+
+!classDefinition: #CompilerExceptionsTest category: #'Tests-Compiler'!
+TestCase subclass: #CompilerExceptionsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'CompilerExceptionsTest class' category: #'Tests-Compiler'!
+CompilerExceptionsTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #CompilerTest category: #'Tests-Compiler'!
+TestCase subclass: #CompilerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'CompilerTest class' category: #'Tests-Compiler'!
+CompilerTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ContextCompilationTest category: #'Tests-Compiler'!
+TestCase subclass: #ContextCompilationTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'ContextCompilationTest class' category: #'Tests-Compiler'!
+ContextCompilationTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #DecompilerTests category: #'Tests-Compiler'!
+TestCase subclass: #DecompilerTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'DecompilerTests class' category: #'Tests-Compiler'!
+DecompilerTests class
+	instanceVariableNames: ''!
+
+!classDefinition: #DecompilerTestFailuresCollector category: #'Tests-Compiler'!
+DecompilerTests subclass: #DecompilerTestFailuresCollector
+	instanceVariableNames: 'failures'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'DecompilerTestFailuresCollector class' category: #'Tests-Compiler'!
+DecompilerTestFailuresCollector class
+	instanceVariableNames: ''!
+
+!classDefinition: #MirrorPrimitiveTests category: #'Tests-Compiler'!
+TestCase subclass: #MirrorPrimitiveTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'MirrorPrimitiveTests class' category: #'Tests-Compiler'!
+MirrorPrimitiveTests class
+	instanceVariableNames: ''!
+
+!classDefinition: #PrettyPrintingTest category: #'Tests-Compiler'!
+TestCase subclass: #PrettyPrintingTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Compiler'!
+!classDefinition: 'PrettyPrintingTest class' category: #'Tests-Compiler'!
+PrettyPrintingTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #ScannerTest category: #'Tests-Compiler'!
@@ -486,14 +347,34 @@ TestCase subclass: #ScannerTest
 ScannerTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SemaphoreTest category: #'Tests-Kernel-Processes'!
-TestCase subclass: #SemaphoreTest
+!classDefinition: #BinarySearchTest category: #'Tests-Kernel-Collections'!
+TestCase subclass: #BinarySearchTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel-Processes'!
-!classDefinition: 'SemaphoreTest class' category: #'Tests-Kernel-Processes'!
-SemaphoreTest class
+	category: 'Tests-Kernel-Collections'!
+!classDefinition: 'BinarySearchTest class' category: #'Tests-Kernel-Collections'!
+BinarySearchTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #CollectTest category: #'Tests-Kernel-Collections'!
+TestCase subclass: #CollectTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Collections'!
+!classDefinition: 'CollectTest class' category: #'Tests-Kernel-Collections'!
+CollectTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #OrderedCollectionTest category: #'Tests-Kernel-Collections'!
+TestCase subclass: #OrderedCollectionTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Collections'!
+!classDefinition: 'OrderedCollectionTest class' category: #'Tests-Kernel-Collections'!
+OrderedCollectionTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #ShortIntegerArrayTest category: #'Tests-Kernel-Collections'!
@@ -516,34 +397,44 @@ TestCase subclass: #ShortWordArrayTest
 ShortWordArrayTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SmallIntegerTest category: #'Tests-Kernel-Numbers'!
-TestCase subclass: #SmallIntegerTest
+!classDefinition: #BitBltTest category: #'Tests-Graphics Primitives'!
+TestCase subclass: #BitBltTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-Kernel-Numbers'!
-!classDefinition: 'SmallIntegerTest class' category: #'Tests-Kernel-Numbers'!
-SmallIntegerTest class
+	category: 'Tests-Graphics Primitives'!
+!classDefinition: 'BitBltTest class' category: #'Tests-Graphics Primitives'!
+BitBltTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SmalltalkCompleterTest category: #'Tests-UCompletion'!
-TestCase subclass: #SmalltalkCompleterTest
+!classDefinition: #CharacterTest category: #'Tests-Kernel'!
+TestCase subclass: #CharacterTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-UCompletion'!
-!classDefinition: 'SmalltalkCompleterTest class' category: #'Tests-UCompletion'!
-SmalltalkCompleterTest class
+	category: 'Tests-Kernel'!
+!classDefinition: 'CharacterTest class' category: #'Tests-Kernel'!
+CharacterTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #SmartRefStreamTest category: #'Tests-System-Object Storage'!
-TestCase subclass: #SmartRefStreamTest
+!classDefinition: #IfNotNilTests category: #'Tests-Kernel'!
+TestCase subclass: #IfNotNilTests
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
-	category: 'Tests-System-Object Storage'!
-!classDefinition: 'SmartRefStreamTest class' category: #'Tests-System-Object Storage'!
-SmartRefStreamTest class
+	category: 'Tests-Kernel'!
+!classDefinition: 'IfNotNilTests class' category: #'Tests-Kernel'!
+IfNotNilTests class
+	instanceVariableNames: ''!
+
+!classDefinition: #ProcessorTest category: #'Tests-Kernel'!
+TestCase subclass: #ProcessorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel'!
+!classDefinition: 'ProcessorTest class' category: #'Tests-Kernel'!
+ProcessorTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #StrikeFontTest category: #'Tests-Kernel'!
@@ -566,6 +457,166 @@ TestCase subclass: #StringTest
 StringTest class
 	instanceVariableNames: ''!
 
+!classDefinition: #CuisSourceFileArrayTest category: #'Tests-Files'!
+TestCase subclass: #CuisSourceFileArrayTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Files'!
+!classDefinition: 'CuisSourceFileArrayTest class' category: #'Tests-Files'!
+CuisSourceFileArrayTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #DateAndTimeTest category: #'Tests-Kernel-Chronology'!
+TestCase subclass: #DateAndTimeTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Chronology'!
+!classDefinition: 'DateAndTimeTest class' category: #'Tests-Kernel-Chronology'!
+DateAndTimeTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #TimeTest category: #'Tests-Kernel-Chronology'!
+TestCase subclass: #TimeTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Chronology'!
+!classDefinition: 'TimeTest class' category: #'Tests-Kernel-Chronology'!
+TimeTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #DelayTest category: #'Tests-Kernel-Processes'!
+TestCase subclass: #DelayTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'DelayTest class' category: #'Tests-Kernel-Processes'!
+DelayTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #MonitorTest category: #'Tests-Kernel-Processes'!
+TestCase subclass: #MonitorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'MonitorTest class' category: #'Tests-Kernel-Processes'!
+MonitorTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ProcessTest category: #'Tests-Kernel-Processes'!
+TestCase subclass: #ProcessTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'ProcessTest class' category: #'Tests-Kernel-Processes'!
+ProcessTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #SemaphoreTest category: #'Tests-Kernel-Processes'!
+TestCase subclass: #SemaphoreTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Kernel-Processes'!
+!classDefinition: 'SemaphoreTest class' category: #'Tests-Kernel-Processes'!
+SemaphoreTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #DifferenceFinderTest category: #'Tests-Code Differ'!
+TestCase subclass: #DifferenceFinderTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Code Differ'!
+!classDefinition: 'DifferenceFinderTest class' category: #'Tests-Code Differ'!
+DifferenceFinderTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #FileIOAccessorTest category: #'Tests-FileMan'!
+TestCase subclass: #FileIOAccessorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-FileMan'!
+!classDefinition: 'FileIOAccessorTest class' category: #'Tests-FileMan'!
+FileIOAccessorTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #FileManTest category: #'Tests-FileMan'!
+TestCase subclass: #FileManTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-FileMan'!
+!classDefinition: 'FileManTest class' category: #'Tests-FileMan'!
+FileManTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #IntervalTest category: #'Tests-Collections'!
+TestCase subclass: #IntervalTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Collections'!
+!classDefinition: 'IntervalTest class' category: #'Tests-Collections'!
+IntervalTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #WeakIdentitySetTest category: #'Tests-Collections'!
+TestCase subclass: #WeakIdentitySetTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Collections'!
+!classDefinition: 'WeakIdentitySetTest class' category: #'Tests-Collections'!
+WeakIdentitySetTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #JpegTest category: #'Tests-Graphics'!
+TestCase subclass: #JpegTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Graphics'!
+!classDefinition: 'JpegTest class' category: #'Tests-Graphics'!
+JpegTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ReferenceStreamTest category: #'Tests-System-Object Storage'!
+TestCase subclass: #ReferenceStreamTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-System-Object Storage'!
+!classDefinition: 'ReferenceStreamTest class' category: #'Tests-System-Object Storage'!
+ReferenceStreamTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #SmartRefStreamTest category: #'Tests-System-Object Storage'!
+TestCase subclass: #SmartRefStreamTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-System-Object Storage'!
+!classDefinition: 'SmartRefStreamTest class' category: #'Tests-System-Object Storage'!
+SmartRefStreamTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #SmalltalkCompleterTest category: #'Tests-UCompletion'!
+TestCase subclass: #SmalltalkCompleterTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-UCompletion'!
+!classDefinition: 'SmalltalkCompleterTest class' category: #'Tests-UCompletion'!
+SmalltalkCompleterTest class
+	instanceVariableNames: ''!
+
 !classDefinition: #SystemConsistencyTest category: #'Tests-System'!
 TestCase subclass: #SystemConsistencyTest
 	instanceVariableNames: ''
@@ -584,6 +635,26 @@ TestCase subclass: #SystemDictionaryTest
 	category: 'Tests-System'!
 !classDefinition: 'SystemDictionaryTest class' category: #'Tests-System'!
 SystemDictionaryTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #TextEditorTest category: #'Tests-System'!
+TestCase subclass: #TextEditorTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-System'!
+!classDefinition: 'TextEditorTest class' category: #'Tests-System'!
+TextEditorTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #TrieTest category: #'Tests-System'!
+TestCase subclass: #TrieTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-System'!
+!classDefinition: 'TrieTest class' category: #'Tests-System'!
+TrieTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #TaskbarTaskTest category: #'Tests-Taskbar'!
@@ -616,16 +687,6 @@ TestCase subclass: #TestValueWithinFix
 TestValueWithinFix class
 	instanceVariableNames: ''!
 
-!classDefinition: #TextEditorTest category: #'Tests-System'!
-TestCase subclass: #TextEditorTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-System'!
-!classDefinition: 'TextEditorTest class' category: #'Tests-System'!
-TextEditorTest class
-	instanceVariableNames: ''!
-
 !classDefinition: #ThemesTest category: #'Tests-Theme'!
 TestCase subclass: #ThemesTest
 	instanceVariableNames: 'theme'
@@ -634,26 +695,6 @@ TestCase subclass: #ThemesTest
 	category: 'Tests-Theme'!
 !classDefinition: 'ThemesTest class' category: #'Tests-Theme'!
 ThemesTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #TimeTest category: #'Tests-Kernel-Chronology'!
-TestCase subclass: #TimeTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Kernel-Chronology'!
-!classDefinition: 'TimeTest class' category: #'Tests-Kernel-Chronology'!
-TimeTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #TrieTest category: #'Tests-System'!
-TestCase subclass: #TrieTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-System'!
-!classDefinition: 'TrieTest class' category: #'Tests-System'!
-TrieTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #UnicodeTest category: #'Tests-Unicode'!
@@ -666,26 +707,6 @@ TestCase subclass: #UnicodeTest
 UnicodeTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #WeakIdentitySetTest category: #'Tests-Collections'!
-TestCase subclass: #WeakIdentitySetTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Collections'!
-!classDefinition: 'WeakIdentitySetTest class' category: #'Tests-Collections'!
-WeakIdentitySetTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #WorldTest category: #'Tests-Morphic-Kernel'!
-TestCase subclass: #WorldTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Tests-Morphic-Kernel'!
-!classDefinition: 'WorldTest class' category: #'Tests-Morphic-Kernel'!
-WorldTest class
-	instanceVariableNames: ''!
-
 !classDefinition: #ZipCrcTests category: #'Tests-Compression'!
 TestCase subclass: #ZipCrcTests
 	instanceVariableNames: ''
@@ -696,18 +717,44 @@ TestCase subclass: #ZipCrcTests
 ZipCrcTests class
 	instanceVariableNames: ''!
 
+!classDefinition: #StatisticsTest category: #'Tests-Statistics'!
+TestCase subclass: #StatisticsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Statistics'!
+!classDefinition: 'StatisticsTest class' category: #'Tests-Statistics'!
+StatisticsTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #ExceptionTester category: #'Tests-Exceptions'!
+Object subclass: #ExceptionTester
+	instanceVariableNames: 'log suiteLog iterationsBeforeTimeout'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Tests-Exceptions'!
+!classDefinition: 'ExceptionTester class' category: #'Tests-Exceptions'!
+ExceptionTester class
+	instanceVariableNames: ''!
+
+
+!FloatTest commentStamp: 'fbs 3/8/2004 22:13' prior: 0!
+I provide a test suite for Float values. Examine my tests to see how Floats should behave, and see how to use them.!
+
+!SmallIntegerTest commentStamp: 'fbs 3/8/2004 22:13' prior: 0!
+I provide a test suite for SmallInteger values. Examine my tests to see how SmallIntegers should behave, and see how to use them.!
 
 !AffineTransformationTest commentStamp: '<historical>' prior: 0!
 Tests for MatrixTransform2x3!
 
+!MorphicLocationTest commentStamp: 'jmv 1/14/2015 14:32' prior: 0!
+Tests for composition of AffineTransformation and MorphicTranslation!
+
+!MorphicTranslationTest commentStamp: '<historical>' prior: 0!
+Tests for MorphicTranslation!
+
 !CompilerTest commentStamp: 'nice 12/3/2007 22:15' prior: 0!
 CompilerTest is a holder for SUnit test of Compiler!
-
-!CuisSourceFileArrayTest commentStamp: 'pb 1/24/2016 20:00' prior: 0!
-This test documents the source pointer address conversion methods for CuisSourceFileArray.
-
-See class comment there. 
-!
 
 !DecompilerTests commentStamp: 'sd 9/26/2004 13:24' prior: 0!
 Apparently the decompiler does not really work totally.
@@ -876,17 +923,11 @@ WeakSet. #scanFor:.
 WeakSet. #scanForLoadedSymbol:.
 }!
 
-!FloatTest commentStamp: 'fbs 3/8/2004 22:13' prior: 0!
-I provide a test suite for Float values. Examine my tests to see how Floats should behave, and see how to use them.!
+!CuisSourceFileArrayTest commentStamp: 'pb 1/24/2016 20:00' prior: 0!
+This test documents the source pointer address conversion methods for CuisSourceFileArray.
 
-!FmFileManTest commentStamp: 'mu 5/16/2007 21:01' prior: 0!
-FmFileManTest suite run!
-
-!MorphicLocationTest commentStamp: 'jmv 1/14/2015 14:32' prior: 0!
-Tests for composition of AffineTransformation and MorphicTranslation!
-
-!MorphicTranslationTest commentStamp: '<historical>' prior: 0!
-Tests for MorphicTranslation!
+See class comment there. 
+!
 
 !ProcessTest commentStamp: 'ul 8/16/2011 11:35' prior: 0!
 I hold test cases for generic Process-related behaviour.!
@@ -897,8 +938,8 @@ A SemaphoreTest is sunit test for simple and multiEx semaphores
 Instance Variables none; does not have common test fixture accross all tests (because its testing differenct sorts of semaphores (could refactor into muliple testcases if there were more test conditions.
 !
 
-!SmallIntegerTest commentStamp: 'fbs 3/8/2004 22:13' prior: 0!
-I provide a test suite for SmallInteger values. Examine my tests to see how SmallIntegers should behave, and see how to use them.!
+!FileManTest commentStamp: 'jmv 5/31/2016 10:49' prior: 0!
+FileManTest suite run!
 
 !SystemConsistencyTest commentStamp: '<historical>' prior: 0!
 General system - wide image health tests.!
@@ -909,2837 +950,13 @@ Tests for the Taskbar.!
 !ThemesTest commentStamp: '<historical>' prior: 0!
 If you break #shout and switch themes, you may not be able to edit text or use the debugger. This seemed worthy of a test case.!
 
+!StatisticsTest commentStamp: '<historical>' prior: 0!
+Test statistics in Collection, Matrix and Histogram hierarchies. (This includes FloatMatrix, FloatImage, FloatArray, etc).!
+
 !MyResumableTestError methodsFor: 'exceptionDescription' stamp: 'tfei 6/13/1999 00:46'!
 isResumable
 
 	^true! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'dtl 6/1/2004 21:53'!
-basicANSISignaledExceptionTestSelectors
-
-	^#( simpleIsNestedTest simpleOuterTest doubleOuterTest doubleOuterPassTest doublePassOuterTest simplePassTest simpleResignalAsTest simpleResumeTest simpleRetryTest simpleRetryUsingTest simpleReturnTest)! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'brp 10/21/2004 17:54'!
-basicTestSelectors
-	^ #(#simpleEnsureTest #simpleEnsureTestWithNotification #simpleEnsureTestWithUparrow #simpleEnsureTestWithError #signalFromHandlerActionTest #resumableFallOffTheEndHandler #nonResumableFallOffTheEndHandler #doubleResumeTest #simpleTimeoutWithZeroDurationTest #simpleTimeoutTest simpleNoTimeoutTest)! !
-
-!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/8/1999 09:17'!
-clearLog
-
-	log := nil! !
-
-!ExceptionTester methodsFor: 'logging' stamp: 'jmv 3/13/2012 12:33'!
-contents
-
-	^( self log
-		inject: (WriteStream on: (String new: 80))
-		into: [ :result :item |
-			result 
-				newLine; 
-				nextPutAll: item;
-				yourself] ) contents! !
-
-!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:13'!
-doSomething
-
-	self log: self doSomethingString! !
-
-!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:14'!
-doSomethingElse
-
-	self log: self doSomethingElseString! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:14'!
-doSomethingElseString
-
-	^'Do something else.'! !
-
-!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:14'!
-doSomethingExceptional
-
-	self log: self doSomethingExceptionalString! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:14'!
-doSomethingExceptionalString
-
-	^'Do something exceptional.'! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:13'!
-doSomethingString
-
-	^'Do something.'! !
-
-!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:15'!
-doYetAnotherThing
-
-	self log: self doYetAnotherThingString! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:15'!
-doYetAnotherThingString
-
-	^'Do yet another thing.'! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'dtl 6/1/2004 21:51'!
-doubleOuterPassTest
-	"uses #resume"
-
-	[[[self doSomething.
-	MyTestNotification signal.
-	self doSomethingExceptional]
-		on: MyTestNotification
-		do: [:ex | ex outer.
-			self doSomethingElse]]
-			on: MyTestNotification
-			do: [:ex | ex pass.
-				self doSomethingExceptional]]
-				on: MyTestNotification
-				do: [:ex | self doYetAnotherThing. ex resume]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'dtl 6/1/2004 21:56'!
-doubleOuterPassTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		add: self doSomethingElseString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'dtl 6/1/2004 21:49'!
-doubleOuterTest
-	"uses #resume"
-
-	[[[self doSomething.
-	MyTestNotification signal.
-	self doSomethingExceptional]
-		on: MyTestNotification
-		do: [:ex | ex outer.
-			self doSomethingExceptional]]
-			on: MyTestNotification
-			do: [:ex | ex outer.
-				self doSomethingElse]]
-				on: MyTestNotification
-				do: [:ex | self doYetAnotherThing. ex resume]! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'dtl 6/1/2004 21:52'!
-doublePassOuterTest
-	"uses #resume"
-
-	[[[self doSomething.
-	MyTestNotification signal.
-	self doSomethingExceptional]
-		on: MyTestNotification
-		do: [:ex | ex pass.
-			self doSomethingExceptional]]
-			on: MyTestNotification
-			do: [:ex | ex outer.
-				self doSomethingElse]]
-				on: MyTestNotification
-				do: [:ex | self doYetAnotherThing. ex resume]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'dtl 6/1/2004 21:56'!
-doublePassOuterTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		add: self doSomethingElseString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 11/14/1999 17:26'!
-doubleResumeTest
-
-       [self doSomething.
-       MyResumableTestError signal.
-       self doSomethingElse.
-       MyResumableTestError signal.
-       self doYetAnotherThing]
-               on: MyResumableTestError
-               do: [:ex | ex resume].! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 11/14/1999 17:29'!
-doubleResumeTestResults
-
-       ^OrderedCollection new
-               add: self doSomethingString;
-               add: self doSomethingElseString;
-               add: self doYetAnotherThingString;
-               yourself! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'brp 10/21/2004 17:15'!
-iterationsBeforeTimeout
-
-	^ iterationsBeforeTimeout! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'brp 10/21/2004 17:16'!
-iterationsBeforeTimeout: anInteger
-
-	iterationsBeforeTimeout := anInteger! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/7/1999 15:03'!
-log
-
-	log == nil
-		ifTrue: [log := OrderedCollection new].
-	^log! !
-
-!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/7/1999 15:03'!
-log: aString
-
-	self log add: aString! !
-
-!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/12/1999 23:07'!
-logTest: aSelector
-
-	self suiteLog add: aSelector! !
-
-!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/8/1999 09:38'!
-logTestResult: aString
-
-	| index |
-	index := self suiteLog size.
-	self suiteLog 
-		at: index
-		put: ((self suiteLog at: index), ' ', aString)! !
-
-!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:16'!
-methodWithError
-
-	MyTestError signal: self testString! !
-
-!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:16'!
-methodWithNotification
-
-	MyTestNotification signal: self testString! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/7/1999 13:43'!
-nonResumableFallOffTheEndHandler
-	
-	[self doSomething.
-	MyTestError signal.
-	self doSomethingElse]
-		on: MyTestError
-		do: [:ex | self doSomethingExceptional].
-	self doYetAnotherThing! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 09:21'!
-nonResumableFallOffTheEndHandlerResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doSomethingExceptionalString;
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/9/1999 16:07'!
-resumableFallOffTheEndHandler
-
-	[self doSomething.
-	MyTestNotification signal.
-	self doSomethingElse]
-		on: MyTestNotification
-		do: [:ex | self doSomethingExceptional].
-	self doYetAnotherThing! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 8/19/1999 02:39'!
-resumableFallOffTheEndHandlerResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doSomethingExceptionalString;
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'suites' stamp: 'tfei 6/13/1999 01:25'!
-runAllTests
-	"ExceptionTester new runAllTests"
-
-	self
-		runBasicTests;
-		runBasicANSISignaledExceptionTests! !
-
-!ExceptionTester methodsFor: 'suites' stamp: 'tfei 6/12/1999 23:54'!
-runBasicANSISignaledExceptionTests
-
-	self basicANSISignaledExceptionTestSelectors
-		do:
-			[:eachTestSelector |
-			self runTest: eachTestSelector]! !
-
-!ExceptionTester methodsFor: 'suites' stamp: 'tfei 6/9/1999 16:06'!
-runBasicTests
-
-	self basicTestSelectors
-		do:
-			[:eachTestSelector |
-			self runTest: eachTestSelector]! !
-
-!ExceptionTester methodsFor: 'testing' stamp: 'brp 10/21/2004 17:40'!
-runTest: aSelector
-
-	| actualResult expectedResult |
-	[ self 
-		logTest: aSelector;
-		clearLog;
-		perform: aSelector ]
-			on: MyTestError do: 
-				[ :ex | self log: 'Unhandled Exception'.
-					ex return: nil ].
-
-	actualResult	:= self log.
-	expectedResult := self perform: (aSelector, #Results) asSymbol.
-
-	actualResult = expectedResult
-		ifTrue: [self logTestResult: 'succeeded']
-		ifFalse: [self logTestResult: 'failed' ].
-! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 8/19/1999 01:39'!
-signalFromHandlerActionTest
-
-	[self doSomething.
-	MyTestError signal.
-	self doSomethingElse]
-		on: MyTestError
-		do:
-			[self doYetAnotherThing.
-			MyTestError signal]! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 8/19/1999 01:51'!
-signalFromHandlerActionTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		add: 'Unhandled Exception';
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/8/1999 09:44'!
-simpleEnsureTest
-
-	[self doSomething.
-	self doSomethingElse]
-		ensure:
-			[self doYetAnotherThing].
-	! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 09:47'!
-simpleEnsureTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doSomethingElseString;
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/8/1999 12:50'!
-simpleEnsureTestWithError
-
-	[self doSomething.
-	MyTestError signal.
-	self doSomethingElse]
-		ensure:
-			[self doYetAnotherThing].
-	! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/9/1999 17:44'!
-simpleEnsureTestWithErrorResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: 'Unhandled Exception';
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/8/1999 10:15'!
-simpleEnsureTestWithNotification
-
-	[self doSomething.
-	self methodWithNotification.
-	self doSomethingElse]
-		ensure:
-			[self doYetAnotherThing].
-	! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 10:13'!
-simpleEnsureTestWithNotificationResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doSomethingElseString;
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/9/1999 16:04'!
-simpleEnsureTestWithUparrow
-
-	[self doSomething.
-	true ifTrue: [^nil].
-	self doSomethingElse]
-		ensure:
-			[self doYetAnotherThing].
-	! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 18:55'!
-simpleEnsureTestWithUparrowResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-"		add: self doSomethingElseString;"
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 01:27'!
-simpleIsNestedTest
-	"uses resignalAs:"
-
-	[self doSomething.
-	MyTestError signal.
-	self doSomethingElse]
-		on: MyTestError
-		do:
-			[:ex |
-			ex isNested "expecting to detect handler in #runTest:"
-				ifTrue:
-					[self doYetAnotherThing.
-					ex resignalAs: MyTestNotification new]]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:09'!
-simpleIsNestedTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		add: self doSomethingElseString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'jmv 5/7/2012 21:38'!
-simpleNoTimeoutTest
-
-	[ self doSomething ]
-		valueWithin: 1 days onTimeout:
-			[ self doSomethingElse ]! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'brp 10/21/2004 16:54'!
-simpleNoTimeoutTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tpr 5/27/2004 21:50'!
-simpleOuterTest
-	"uses #resume"
-
-	[[self doSomething.
-	MyTestNotification signal.
-	"self doSomethingElse"
-	self doSomethingExceptional]
-		on: MyTestNotification
-		do: [:ex | ex outer. self doSomethingElse]]
-				on: MyTestNotification
-				do: [:ex | self doYetAnotherThing. ex resume]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:10'!
-simpleOuterTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		add: self doSomethingElseString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 00:37'!
-simplePassTest
-
-	[self doSomething.
-	MyTestError signal.
-	self doSomethingElse]
-		on: MyTestError
-		do:
-			[:ex |
-			self doYetAnotherThing.
-			ex pass "expecting handler in #runTest:"]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:10'!
-simplePassTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		add: 'Unhandled Exception';
-		yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 02:12'!
-simpleResignalAsTest
-	"ExceptionTester new simpleResignalAsTest"
-
-	[self doSomething.
-	MyTestNotification signal.
-	self doSomethingElse]
-		on: MyTestNotification
-		do:
-			[:ex | ex resignalAs: MyTestError new]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:11'!
-simpleResignalAsTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: 'Unhandled Exception';
-		yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'nice 12/27/2009 21:06'!
-simpleResumeTest
-	"see if we can resume twice"
-	
-	[ | it |
-	self doSomething.
-	it := MyResumableTestError signal.
-	it = 3 ifTrue: [self doSomethingElse].
-	it := MyResumableTestError signal.
-	it = 3 ifTrue: [self doSomethingElse].
-	]
-		on: MyResumableTestError
-		do:
-			[:ex |
-			self doYetAnotherThing.
-			ex resume: 3]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'RAA 12/8/2000 12:59'!
-simpleResumeTestResults
-
-	"see if we can resume twice"
-
-	^OrderedCollection new
-			add: self doSomethingString;
-			add: self doYetAnotherThingString;
-			add: self doSomethingElseString;
-			add: self doYetAnotherThingString;
-			add: self doSomethingElseString;
-			yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 01:02'!
-simpleRetryTest
-
-	| theMeaningOfLife |
-	theMeaningOfLife := nil.
-	[self doSomething.
-	theMeaningOfLife == nil
-		ifTrue: [MyTestError signal]
-		ifFalse: [self doSomethingElse]]
-			on: MyTestError
-			do:
-				[:ex |
-				theMeaningOfLife := 42.
-				self doYetAnotherThing.
-				ex retry]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:23'!
-simpleRetryTestResults
-
-	^OrderedCollection new
-			add: self doSomethingString;
-			add: self doYetAnotherThingString;
-			add: self doSomethingString;
-			add: self doSomethingElseString;
-			yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 01:03'!
-simpleRetryUsingTest
-
-	[self doSomething.
-	MyTestError signal.
-	self doSomethingElse]
-		on: MyTestError
-		do:
-			[:ex | ex retryUsing: [self doYetAnotherThing]]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:23'!
-simpleRetryUsingTestResults
-
-	^OrderedCollection new
-			add: self doSomethingString;
-			add: self doYetAnotherThingString;
-			yourself! !
-
-!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 00:59'!
-simpleReturnTest
-
-	| it |
-	it :=
-		[self doSomething.
-		MyTestError signal.
-		self doSomethingElse]
-			on: MyTestError
-			do: [:ex | ex return: 3].
-	it = 3 ifTrue: [self doYetAnotherThing]! !
-
-!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 02:22'!
-simpleReturnTestResults
-
-	^OrderedCollection new
-		add: self doSomethingString;
-		add: self doYetAnotherThingString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'brp 10/22/2004 12:00'!
-simpleTimeoutTest
-
-	| n |
-	[1 to: 1000000 do: [ :i | n := i. self doSomething ] ]
-		valueWithin: 50 milliSeconds onTimeout:
-			[ self iterationsBeforeTimeout: n.
-			self doSomethingElse ]! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'brp 10/21/2004 17:44'!
-simpleTimeoutTestResults
-
-	| things |
-	things := OrderedCollection new: self iterationsBeforeTimeout.
-
-	self iterationsBeforeTimeout timesRepeat: [ things add: self  doSomethingString ].
-	things add: self doSomethingElseString.
-
-	^ things! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'brp 10/22/2004 12:00'!
-simpleTimeoutWithZeroDurationTest
-
-	[ self doSomething ]
-		valueWithin: 0 seconds onTimeout:
-			[ self doSomethingElse ].
-	! !
-
-!ExceptionTester methodsFor: 'results' stamp: 'brp 10/21/2004 16:52'!
-simpleTimeoutWithZeroDurationTestResults
-
-	^OrderedCollection new
-		add: self doSomethingElseString;
-		yourself! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:30'!
-suiteLog
-
-	suiteLog == nil
-		ifTrue: [suiteLog := OrderedCollection new].
-	^suiteLog! !
-
-!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:15'!
-testString
-
-	^'This is only a test.'! !
-
-!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/7/1999 14:28'!
-warningTest
-
-	self log: 'About to signal warning.'.
-	Warning signal: 'Ouch'.
-	self log: 'Warning signal handled and resumed.'! !
-
-!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:11'!
-testComposition
-	"
-	AffineTransformationTest new testComposition
-	"
-	| composition inner outer |
-
-	outer _ AffineTransformation withTranslation: 3@5.
-	inner _ AffineTransformation withRadians: 0.3.
-	composition _ outer composedWith: inner.
-	self assert: composition translation = outer translation.
-	self assert: (outer externalizePosition: (inner externalizePosition: 3@4)) = (composition externalizePosition: 3@4).
-	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
-	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
-	self assert: (inner internalizePosition: (outer internalizePosition: 3@4)) = (composition internalizePosition: 3@4).
-	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
-	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).
-
-
-	outer _ AffineTransformation withRadians: 0.3.
-	inner _ AffineTransformation withTranslation: 3@5.
-	composition _ outer composedWith: inner.
-	self assert: composition radians = outer radians.
-	self assert: ((outer externalizePosition: (inner externalizePosition: 3@4)) - (composition externalizePosition: 3@4)) r < 0.0001.
-	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
-	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
-	self assert: ((inner internalizePosition: (outer internalizePosition: 3@4)) - (composition internalizePosition: 3@4)) r < 0.0001.
-	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
-	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).! !
-
-!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:11'!
-testDisplayBounds
-	"
-	AffineTransformationTest new testDisplayBounds
-	"
-	self assert:
-		((AffineTransformation withRadians: 0.3) displayBoundsOfTransformOf: (10@10 extent: 20@30))
-			= (-2@13 corner: 26@47).
-
-	self assert: (AffineTransformation new displayBoundsOfTransformOf: (-2@ 2 extent: 10@10)) = (-2@2 corner: 8@12).
-	self assert: (AffineTransformation new displayBoundsOfTransformOf: (-12@ 12 extent: 10@10)) = (-12@12 corner: -2@22).
-	self assert: ((AffineTransformation withTranslation: 2)  displayBoundsOfTransformOf: (-4@ 2  extent: 10@10)) = (-2@4 corner: 8@14).
-	self assert: ((AffineTransformation withTranslation: -4)  displayBoundsOfTransformOf: (2@ 2  extent: 10@10)) = (-2@-2 corner: 8@8).
-	self assert: ((AffineTransformation withTranslation: 2)  displayBoundsOfTransformOf: (-14@ 2  extent: 10@10)) = (-12@4 corner: -2@14).
-	self assert: ((AffineTransformation withTranslation: 4)  displayBoundsOfTransformOf: (-12@ 2  extent: 10@10)) = (-8@6 corner: 2@16).
-	self assert: ((AffineTransformation withTranslation: -4)  displayBoundsOfTransformOf: (12@ 2  extent: 10@10)) = (8@-2 corner: 18@8).
-	self assert: ((AffineTransformation withTranslation: -2)  displayBoundsOfTransformOf: (4@ 2  extent: 10@10)) = (2@0 corner: 12@10).
-	self assert: ((AffineTransformation withTranslation: 4)  displayBoundsOfTransformOf: (-2@ 2  extent: 10@10)) = (2@6 corner: 12@16).! !
-
-!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:05'!
-testFloatInverseTransform
-	"
-	AffineTransformationTest new testFloatInverseTransform
-	"
-	self assert: (AffineTransformation new inverseTransform: (-2@ 2)) = (-2@2).
-	self assert: ((AffineTransformation withTranslation: 2) inverseTransform: (-4@ 2)) = (-6@0).
-	self assert: ((AffineTransformation withTranslation: 4) inverseTransform: (-2@ 2)) = (-6@-2).
-	self assert: ((AffineTransformation withTranslation: -2) inverseTransform: (4@ 2)) = (6@4).
-	self assert: ((AffineTransformation withTranslation: -4) inverseTransform: (2@ 2)) = (6@6)! !
-
-!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:06'!
-testFloatTransform
-	"
-	AffineTransformationTest new testFloatTransform
-	"
-	self assert: (AffineTransformation new transform: (-2@ 2)) = (-2@2).
-	self assert: ((AffineTransformation withTranslation: 2) transform: (-4@ 2)) = (-2@4).
-	self assert: ((AffineTransformation withTranslation: 4) transform: (-2@ 2)) = (2@6).
-	self assert: ((AffineTransformation withTranslation: -2) transform: (4@ 2)) = (2@0).
-	self assert: ((AffineTransformation withTranslation: -4) transform: (2@ 2)) = (-2@-2)! !
-
-!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:12'!
-testInverseTransformation
-	"
-	AffineTransformationTest new testInverseTransformation
-	"
-	| forward inverse |
-
-	forward _ AffineTransformation withTranslation: 3@5.
-	inverse _ forward inverseTransformation.
-	
-	self assert: inverse translation = forward translation negated.
-	self assert: (inverse externalizePosition: 3@4) = (forward internalizePosition: 3@4).
-	self assert: (inverse externalizeDelta: 3@4) = (forward internalizeDelta: 3@4).
-	self assert: (inverse externalizeScalar: 7) = (forward internalizeScalar: 7).
-	self assert: (inverse internalizePosition: 3@4) = (forward externalizePosition: 3@4).
-	self assert: (inverse internalizeDelta: 3@4) = (forward externalizeDelta: 3@4).
-	self assert: (inverse internalizeScalar: 7) = (forward externalizeScalar: 7).
-
-
-	forward _ AffineTransformation withRadians: 0.25.
-	inverse _ forward inverseTransformation.
-
-	self assert: inverse radians = forward radians negated.
-	self assert: ((inverse externalizePosition: 3@4) - (forward internalizePosition: 3@4)) r < 0.0001.
-	self assert: ((inverse externalizeDelta: 3@4) - (forward internalizeDelta: 3@4)) r < 0.0001.
-	self assert: ((inverse externalizeScalar: 7) - (forward internalizeScalar: 7)) abs < 0.0001.
-	self assert: ((inverse internalizePosition: 3@4) - (forward externalizePosition: 3@4)) r < 0.0001.
-	self assert: ((inverse internalizeDelta: 3@4) - (forward externalizeDelta: 3@4)) r < 0.0001.
-	self assert: ((inverse internalizeScalar: 7) - (forward externalizeScalar: 7)) abs < 0.0001.! !
-
-!ArrayLiteralTest methodsFor: 'running' stamp: 'avi 2/16/2004 21:09'!
-tearDown
-	self class removeSelector: #array! !
-
-!ArrayLiteralTest methodsFor: 'tests' stamp: 'avi 2/16/2004 21:08'!
-testReservedIdentifiers
-	self class compile: 'array ^ #(nil true false)'.
-	self assert: self array = {nil. true. false}.! !
-
-!ArrayLiteralTest methodsFor: 'tests' stamp: 'avi 2/16/2004 21:09'!
-testSymbols
-	self class compile: 'array ^ #(#nil #true #false #''nil'' #''true'' #''false'')'.
-	self assert: self array = {#nil. #true. #false. #nil. #true. #false}.! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:40'!
-testAllAlphasRgbAdd
-	"self run: #testAllAlphasRgbAdd"
-	| sourceForm destForm blt correctAlphas |
-     correctAlphas _ 0.
-     0  to: 255 do: [:sourceAlpha |
-         sourceForm _ Form extent: 1 @ 1 depth: 32.
-         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
-         0 to: 255 do: [:destAlpha |
-             destForm _ Form extent: 1 @ 1 depth: 32.
-             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
-              blt _ BitBlt new.
-              blt sourceForm: sourceForm.
-              blt sourceOrigin: 0 @ 0.
-              blt setDestForm: destForm.
-              blt destOrigin: 0 @ 0.
-              blt combinationRule: 20.	"rgbAdd"
-              blt copyBits.
-              correctAlphas _ correctAlphas
-                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha + sourceAlpha min: 255)
-                         ifTrue: [1]
-                         ifFalse: [0])
-      ]].
-     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbAdd'! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:40'!
-testAllAlphasRgbMax
-	"self run: #testAllAlphasRgbMax"
-	| sourceForm destForm blt correctAlphas |
-     correctAlphas _ 0.
-     0  to: 255 do: [:sourceAlpha |
-         sourceForm _ Form extent: 1 @ 1 depth: 32.
-         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
-         0 to: 255 do: [:destAlpha |
-             destForm _ Form extent: 1 @ 1 depth: 32.
-             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
-              blt _ BitBlt new.
-              blt sourceForm: sourceForm.
-              blt sourceOrigin: 0 @ 0.
-              blt setDestForm: destForm.
-              blt destOrigin: 0 @ 0.
-              blt combinationRule: 27.	"rgbMax"
-              blt copyBits.
-              correctAlphas _ correctAlphas
-                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha max: sourceAlpha)
-                         ifTrue: [1]
-                         ifFalse: [0])
-      ]].
-     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMax'! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:40'!
-testAllAlphasRgbMin
-	"self run: #testAllAlphasRgbMin"
-	| sourceForm destForm blt correctAlphas |
-     correctAlphas _ 0.
-     0  to: 255 do: [:sourceAlpha |
-         sourceForm _ Form extent: 1 @ 1 depth: 32.
-         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
-         0 to: 255 do: [:destAlpha |
-             destForm _ Form extent: 1 @ 1 depth: 32.
-             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
-              blt _ BitBlt new.
-              blt sourceForm: sourceForm.
-              blt sourceOrigin: 0 @ 0.
-              blt setDestForm: destForm.
-              blt destOrigin: 0 @ 0.
-              blt combinationRule: 28.	"rgbMin"
-              blt copyBits.
-              correctAlphas _ correctAlphas
-                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha min: sourceAlpha)
-                         ifTrue: [1]
-                         ifFalse: [0])
-      ]].
-     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMin'! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:39'!
-testAllAlphasRgbMinInvert
-	"self run: #testAllAlphasRgbMinInvert"
-	| sourceForm destForm blt correctAlphas |
-     correctAlphas _ 0.
-     0  to: 255 do: [:sourceAlpha |
-         sourceForm _ Form extent: 1 @ 1 depth: 32.
-         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
-         0 to: 255 do: [:destAlpha |
-             destForm _ Form extent: 1 @ 1 depth: 32.
-             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
-              blt _ BitBlt new.
-              blt sourceForm: sourceForm.
-              blt sourceOrigin: 0 @ 0.
-              blt setDestForm: destForm.
-              blt destOrigin: 0 @ 0.
-              blt combinationRule: 29.	"rgbMinInvert"
-              blt copyBits.
-              correctAlphas _ correctAlphas
-                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha min: 255-sourceAlpha)
-                         ifTrue: [1]
-                         ifFalse: [0])
-      ]].
-     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMinInvert'! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:39'!
-testAllAlphasRgbMul
-	"self run: #testAllAlphasRgbMul"
-	| sourceForm destForm blt correctAlphas |
-     correctAlphas _ 0.
-     0  to: 255 do: [:sourceAlpha |
-         sourceForm _ Form extent: 1 @ 1 depth: 32.
-         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
-         0 to: 255 do: [:destAlpha |
-             destForm _ Form extent: 1 @ 1 depth: 32.
-             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
-              blt _ BitBlt new.
-              blt sourceForm: sourceForm.
-              blt sourceOrigin: 0 @ 0.
-              blt setDestForm: destForm.
-              blt destOrigin: 0 @ 0.
-              blt combinationRule: 37.	"rgbMul"
-              blt copyBits.
-              correctAlphas _ correctAlphas
-                + (((blt destForm bits at: 1) digitAt: 4) = ((destAlpha+1) * (sourceAlpha+1)- 1 // 256)
-                         ifTrue: [1]
-                         ifFalse: [0])
-      ]].
-     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMul'! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:39'!
-testAllAlphasRgbSub
-	"self run: #testAllAlphasRgbSub"
-	| sourceForm destForm blt correctAlphas |
-     correctAlphas _ 0.
-     0  to: 255 do: [:sourceAlpha |
-         sourceForm _ Form extent: 1 @ 1 depth: 32.
-         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
-         0 to: 255 do: [:destAlpha |
-             destForm _ Form extent: 1 @ 1 depth: 32.
-             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
-              blt _ BitBlt new.
-              blt sourceForm: sourceForm.
-              blt sourceOrigin: 0 @ 0.
-              blt setDestForm: destForm.
-              blt destOrigin: 0 @ 0.
-              blt combinationRule: 21.	"rgbSub"
-              blt copyBits.
-              correctAlphas _ correctAlphas
-                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha - sourceAlpha) abs
-                         ifTrue: [1]
-                         ifFalse: [0])
-      ]].
-     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbSub'! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 7/12/2015 22:27'!
-testAlphaCompositing
-	"
-	BitBltTest new testAlphaCompositing
-	"
-
-	| bb f1 f2 mixColor result eps |
-	f1 := Form extent: 1@1 depth: 32.
-	f2 := Form extent: 1@1 depth: 32.
-	eps := 0.5 / 255.
-	0 to: 255 do:[:i|
-		f1 colorAt: 0@0 put: (Color r: 0 g: 0 b: 1).
-		mixColor := Color r: 1 g: 0 b: 0 alpha: i / 255.0.
-		f2 colorAt: 0@0 put: mixColor.
-		mixColor := f2 colorAt: 0@0.
-		bb := BitBlt toForm: f1.
-		bb sourceForm: f2.
-		bb combinationRule: Form blend.
-		bb copyBits.
-		result := f1 colorAt: 0@0.
-		self assert: (result red - mixColor alpha) abs < eps.
-		self assert: (result blue - (1.0 - mixColor alpha)) abs < eps.
-		self assert: result alpha = 1.0.
-	].! !
-
-!BitBltTest methodsFor: 'bugs' stamp: 'jmv 7/12/2015 22:27'!
-testAlphaCompositing2
-	"
-	BitBltTest new testAlphaCompositing2
-	"
-
-	| bb f1 f2 mixColor result eps |
-	f1 := Form extent: 1@1 depth: 32.
-	f2 := Form extent: 1@1 depth: 32.
-	eps := 0.5 / 255.
-	0 to: 255 do:[:i|
-		f1 colorAt: 0@0 put: Color transparent.
-		mixColor := Color r: 1 g: 0 b: 0 alpha: i / 255.0.
-		f2 colorAt: 0@0 put: mixColor.
-		mixColor := f2 colorAt: 0@0.
-		bb := BitBlt toForm: f1.
-		bb sourceForm: f2.
-		bb combinationRule: Form blend.
-		bb copyBits.
-		result := f1 colorAt: 0@0.
-		self assert: (result red - mixColor alpha) abs < eps.
-		self assert: result alpha = mixColor alpha.
-	].! !
-
-!CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:08'!
-testCaseConversion
-	"
-	self new testCaseConversion
-	"
-	self assert: ('año Comé tomá Camión' collect: [ :c | c asLowercase ]) = 'año comé tomá camión'.
-	self assert:('año Comé tomá Camión' collect: [ :c | c asUppercase ]) = 'AÑO COMÉ TOMÁ CAMIÓN'! !
-
-!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 2/20/2013 20:09'!
-testFromUtf8
-	"
-	CharacterTest new testFromUtf8
-	"
-	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: '24')) hex = '16r24'.
-	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: 'C2A2')) hex = '16rA2'.
-	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: 'E282AC')) hex = '16r20AC'.
-	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: 'F0A4ADA2')) hex = '16r24B62'! !
-
-!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 2/20/2013 20:07'!
-testSomeLatinCharsFromUtf8
-	"
-	CharacterTest new testSomeLatinCharsFromUtf8
-	"
-	| bytes string |
-	bytes _ (ByteArray readHexFrom: 'C3A1C3A5C3A6C3B1C386C2A5C3BC') readStream.
-	string _ String streamContents: [ :strm |
-		[bytes atEnd ] whileFalse: [
-			strm nextPut: (Character value: (Character nextUnicodeCodePointFromUtf8: bytes )) ]].
-	self assert: string = 'áåæñÆ¥ü'! !
-
-!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 3/5/2013 22:07'!
-testSomeLatinCharsToUtf8
-	"
-	CharacterTest new testSomeLatinCharsToUtf8
-	"
-	| characters bytes |
-	characters _ 'áåæñÆ¥ü' readStream.
-	bytes _ ByteArray streamContents: [ :strm |
-		[ characters atEnd ] whileFalse: [
-			Character
-				evaluate: [ :byte | strm nextPut: byte ]
-				withUtf8BytesOfUnicodeCodePoint: characters next unicodeCodePoint ]].
-	self assert: bytes hex = 'C3A1C3A5C3A6C3B1C386C2A5C3BC'! !
-
-!CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:05'!
-testSorting
-	"
-	self new testSorting
-	"
-	self assert: $a < $á.
-	self deny: $a < $Á.
-	self assert: $A < $á.
-	self assert: $A < $Á.
-	self assert: $á < $b.
-	self deny: $á < $B.
-	self assert: $Á < $b.
-	self assert: $Á < $B.! !
-
-!CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:10'!
-testTestingMethods
-	"
-	self new testTestingMethods
-	"
-	self assert:
-		('año Comé tomá Camión' allSatisfy: [ :c |
-			c = $  or: [ c isLetter ]]).
-	self assert:
-		('año comé tomá camión' allSatisfy: [ :c |
-			c = $  or: [ c isLowercase ]]).
-	self assert:
-		('AÑO COMÉ TOMÁ CAMIÓN' allSatisfy: [ :c |
-			c = $  or: [ c isUppercase ]]).
-	self assert:
-		('AaÀàÁáÂâÃãÄäÅåEeÈèÉéÊêËëIiÌìÍíÎîÏïOoÒòÓóÔôÕõÖöUuÙùÚúÛûÜü' allSatisfy: [ :c |
-			c isVowel ]).! !
-
-!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 2/20/2013 20:09'!
-testToUtf8
-	"
-	CharacterTest new testToUtf8
-	"
-	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r0024) hex =  '24'.
-	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r00A2) hex =  'C2A2'.
-	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r20AC) hex = 'E282AC'.
-	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r024B62) hex = 'F0A4ADA2'! !
-
-!ClosureCompilerTest methodsFor: 'source' stamp: 'jmv 3/13/2012 11:29'!
-closureCases
-	^#(
-'| n |
-n := 1.
-^n + n'
-
-'| i |
-i := 0.
-[i := i + 1.
- i <= 10] whileTrue.
-^i'
-
-'[:c :s| | mn |
-mn := Compiler new
-		compile: (c sourceCodeAt: s)
-		in: c
-		notifying: nil
-		ifFail: [self halt].
-mn generate: #(0 0 0 0).
-{mn blockExtentsToTempsMap.
-  mn encoder schematicTempNames}]
-			value: ArrayLiteralTest
-			value: #testSymbols'
-
-'inject: thisValue into: binaryBlock
-	| nextValue |
-	nextValue := thisValue.
-	self do: [:each | nextValue := binaryBlock value: nextValue value: each].
-	^nextValue'
-
-'runBinaryConditionalJumps: assertPrintBar
-	"CogIA32CompilerTests new runBinaryConditionalJumps: false"
-	| mask reg1 reg2 reg3 |
-	mask := 1 << self processor bitsInWord - 1.
-	self concreteCompilerClass dataRegistersWithAccessorsDo:
-		[:n :get :set|
-		n = 0 ifTrue: [reg1 := get].
-		n = 1 ifTrue: [reg2 := set].
-		n = 2 ifTrue: [reg3 := set]].
-	#(	(JumpAbove > unsigned)			(JumpBelowOrEqual <= unsigned)
-		(JumpBelow < unsigned)			(JumpAboveOrEqual >= unsigned)
-		(JumpGreater > signed)			(JumpLessOrEqual <= signed)
-		(JumpLess < signed)				(JumpGreaterOrEqual >= signed)
-		(JumpZero = signed)				(JumpNonZero ~= signed)) do:
-		[:triple|
-		[:opName :relation :signednessOrResult| | opcode jumpNotTaken jumpTaken nop memory bogus |
-		self resetGen.
-		opcode := CogRTLOpcodes classPool at: opName.
-		self gen: CmpRR operand: 2 operand: 1.
-		jumpTaken := self gen: opcode.
-		self gen: MoveCqR operand: 0 operand: 0.
-		jumpNotTaken := self gen: Jump.
-		jumpTaken jmpTarget: (self gen: MoveCqR operand: 1 operand: 0).
-		jumpNotTaken jmpTarget: (nop := self gen: Nop).
-		memory := self generateInstructions.
-		bogus := false.
-		self pairs: (-2 to: 2)  do:
-			[:a :b| | taken |
-			self processor
-				reset;
-				perform: reg2 with: a signedIntToLong;
-				perform: reg3 with: b signedIntToLong.
-			[self processor singleStepIn: memory.
-			 self processor pc ~= nop address] whileTrue.
-			taken := (self processor perform: reg1) = 1.
-			assertPrintBar
-				ifTrue:
-					[self assert: taken = (signednessOrResult == #unsigned
-											ifTrue: [(a bitAnd: mask) perform: relation with: (b bitAnd: mask)]
-											ifFalse: [a perform: relation with: b])]
-				ifFalse:
-					[Transcript
-						nextPutAll: reg2; nextPut: $(; print: a; nextPutAll: '') ''; nextPutAll: relation; space;
-						nextPutAll: reg3; nextPut: $(; print: b; nextPutAll: '') = '';
-						print: taken; cr; flush.
-					 taken = (signednessOrResult == #unsigned
-											ifTrue: [(a bitAnd: mask) perform: relation with: (b bitAnd: mask)]
-											ifFalse: [a perform: relation with: b]) ifFalse:
-						[bogus := true]]].
-			 bogus ifTrue:
-				[self processor printRegistersOn: Transcript.
-				 Transcript show: (self processor disassembleInstructionAt: jumpTaken address In: memory); cr]]
-					valueWithArguments: triple]'
-
-'mapFromBlockStartsIn: aMethod toTempVarsFrom: schematicTempNamesString constructor: aDecompilerConstructor
-	| map |
-	map := aMethod
-				mapFromBlockKeys: aMethod startpcsToBlockExtents keys asSortedCollection
-				toSchematicTemps: schematicTempNamesString.
-	map keysAndValuesDo:
-		[:startpc :tempNameTupleVector| | subMap tempVector numTemps |
-		subMap := Dictionary new.
-		"Find how many temp slots there are (direct & indirect temp vectors)
-		 and for each indirect temp vector find how big it is."
-		tempNameTupleVector do:
-			[:tuple|
-			tuple last isArray
-				ifTrue:
-					[subMap at: tuple last first put: tuple last last.
-					 numTemps := tuple last first]
-				ifFalse:
-					[numTemps := tuple last]].
-		"create the temp vector for this scope level."
-		tempVector := Array new: numTemps.
-		"fill it in with any indirect temp vectors"
-		subMap keysAndValuesDo:
-			[:index :size|
-			tempVector at: index put: (Array new: size)].
-		"fill it in with temp nodes."
-		tempNameTupleVector do:
-			[:tuple| | itv |
-			tuple last isArray
-				ifTrue:
-					[itv := tempVector at: tuple last first.
-					 itv at: tuple last last
-						put: (aDecompilerConstructor
-								codeTemp: tuple last last - 1
-								named: tuple first)]
-				ifFalse:
-					[tempVector
-						at: tuple last
-						put: (aDecompilerConstructor
-								codeTemp: tuple last - 1
-								named: tuple first)]].
-		"replace any indirect temp vectors with proper RemoteTempVectorNodes"
-		subMap keysAndValuesDo:
-			[:index :size|
-			tempVector
-				at: index
-				put: (aDecompilerConstructor
-						codeRemoteTemp: index
-						remoteTemps: (tempVector at: index))].
-		"and update the entry in the map"
-		map at: startpc put: tempVector].
-	^map'
-
- 'gnuifyFrom: inFileStream to: outFileStream
-
-"convert interp.c to use GNU features"
-
-	| inData beforeInterpret inInterpret inInterpretVars beforePrimitiveResponse inPrimitiveResponse |
-
-	inData := inFileStream upToEnd withSqueakLineEndings.
-	inFileStream close.
-
-	"print a header"
-	outFileStream
-		nextPutAll: ''/* This file has been post-processed for GNU C */'';
-		cr; cr; cr.
-
-	beforeInterpret := true.    "whether we are before the beginning of interpret()"
-	inInterpret := false.     "whether we are in the middle of interpret"
-	inInterpretVars := false.    "whether we are in the variables of interpret"
-	beforePrimitiveResponse := true.  "whether we are before the beginning of primitiveResponse()"
-	inPrimitiveResponse := false.   "whether we are inside of primitiveResponse"
-	''Gnuifying''
-		displayProgressAt: Sensor mousePoint
-		from: 1 to: (inData occurrencesOf: Character crCharacter)
-		during:
-			[:bar | | lineNumber |
-			lineNumber := 0.
-			inData linesDo:
-				[ :inLine | | outLine extraOutLine caseLabel |
-				bar value: (lineNumber := lineNumber + 1).
-				outLine := inLine. 	"print out one line for each input line; by default, print out the line that was input, but some rules modify it"
-				extraOutLine := nil.   "occasionally print a second output line..."
-				beforeInterpret ifTrue: [
-					inLine = ''#include "sq.h"'' ifTrue: [
-						outLine := ''#include "sqGnu.h"'' ].
-					inLine = ''interpret(void) {'' ifTrue: [
-						"reached the beginning of interpret"
-						beforeInterpret := false.
-						inInterpret := true.
-						inInterpretVars := true ] ]
-				ifFalse: [
-				inInterpretVars ifTrue: [
-					(inLine findString: ''register struct foo * foo = &fum;'') > 0 ifTrue: [
-						outLine := ''register struct foo * foo FOO_REG = &fum;'' ].
-					(inLine findString: '' localIP;'') > 0 ifTrue: [
-						outLine := ''    char* localIP IP_REG;'' ].
-					(inLine findString: '' localFP;'') > 0 ifTrue: [
-						outLine := ''    char* localFP FP_REG;'' ].
-					(inLine findString: '' localSP;'') > 0 ifTrue: [
-						outLine := ''    char* localSP SP_REG;'' ].
-					(inLine findString: '' currentBytecode;'') > 0 ifTrue: [
-						outLine := ''    sqInt currentBytecode CB_REG;'' ].
-					inLine isEmpty ifTrue: [
-						"reached end of variables"
-						inInterpretVars := false.
-						outLine := ''    JUMP_TABLE;''.
-						extraOutLine := inLine ] ]
-				ifFalse: [
-				inInterpret ifTrue: [
-					"working inside interpret(); translate the switch statement"
-					(inLine beginsWith: ''		case '') ifTrue: [
-						caseLabel := (inLine findTokens: ''	 :'') second.
-						outLine := ''		CASE('', caseLabel, '')'' ].
-					inLine = ''			break;'' ifTrue: [
-						outLine := ''			BREAK;'' ].
-					inLine = ''}'' ifTrue: [
-						"all finished with interpret()"
-						inInterpret := false ] ]
-				ifFalse: [
-				beforePrimitiveResponse ifTrue: [
-					(inLine beginsWith: ''primitiveResponse('') ifTrue: [
-						"into primitiveResponse we go"
-						beforePrimitiveResponse := false.
-						inPrimitiveResponse := true.
-						extraOutLine := ''    PRIM_TABLE;'' ] ]
-				ifFalse: [
-				inPrimitiveResponse ifTrue: [
-					inLine = ''	switch (primitiveIndex) {'' ifTrue: [
-						extraOutLine := outLine.
-						outLine := ''	PRIM_DISPATCH;'' ].
-					inLine = ''	switch (GIV(primitiveIndex)) {'' ifTrue: [
-						extraOutLine := outLine.
-						outLine := ''	PRIM_DISPATCH;'' ].
-					(inLine beginsWith: ''	case '') ifTrue: [
-						caseLabel := (inLine findTokens: ''	 :'') second.
-						outLine := ''	CASE('', caseLabel, '')'' ].
-					inLine = ''}'' ifTrue: [
-						inPrimitiveResponse := false ] ]
-				] ] ] ].
-
-				outFileStream nextPutAll: outLine; cr.
-				extraOutLine ifNotNil: [
-					outFileStream nextPutAll: extraOutLine; cr ]]].
-
-	outFileStream close' )! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/24/2008 12:28'!
-doTestDebuggerTempAccessWith: one with: two
-	"Test debugger access for temps"
-	| outerContext local1 remote1 |
-	outerContext := thisContext.
-	local1 := 3.
-	remote1 := 1/2.
-	self assert: (Compiler new evaluate: 'one' in: thisContext to: self) == one.
-	self assert: (Compiler new evaluate: 'two' in: thisContext to: self) == two.
-	self assert: (Compiler new evaluate: 'local1' in: thisContext to: self) == local1.
-	self assert: (Compiler new evaluate: 'remote1' in: thisContext to: self) == remote1.
-	Compiler new evaluate: 'local1 := -3.0' in: thisContext to: self.
-	self assert: local1 = -3.0.
-	(1 to: 2) do:
-		[:i| | local2 r1 r2 r3 r4 |
-		local2 := i * 3.
-		remote1 := local2 / 7.
-		self assert: thisContext ~~ outerContext.
-		self assert: (r1 := Compiler new evaluate: 'one' in: thisContext to: self) == one.
-		self assert: (r2 := Compiler new evaluate: 'two' in: thisContext to: self) == two.
-		self assert: (r3 := Compiler new evaluate: 'i' in: thisContext to: self) == i.
-		self assert: (r4 := Compiler new evaluate: 'local2' in: thisContext to: self) == local2.
-		self assert: (r4 := Compiler new evaluate: 'remote1' in: thisContext to: self) == remote1.
-		self assert: (r4 := Compiler new evaluate: 'remote1' in: outerContext to: self) == remote1.
-		Compiler new evaluate: 'local2 := 15' in: thisContext to: self.
-		self assert: local2 = 15.
-		Compiler new evaluate: 'local1 := 25' in: thisContext to: self.
-		self assert: local1 = 25.
-		{ r1. r2. r3. r4 } "placate the compiler"].
-	self assert: local1 = 25.
-	self assert: remote1 = (6/7)! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:03'!
-supportTestSourceRangeAccessForDecompiledInjectInto: method source: source
-	"Test debugger source range selection for inject:into:"
-	^self
-		supportTestSourceRangeAccessForInjectInto: method
-		source: source
-		selectionSequence: #(	'_ arg1'
-								'do: [:arg5 | temp3 _ arg2 value: temp3 value: arg5]'
-								'value: temp3 value: arg5'
-								'_ arg2 value: temp3 value: arg5'
-								'temp3 _ arg2 value: temp3 value: arg5'
-								'value: temp3 value: arg5'
-								'_ arg2 value: temp3 value: arg5'
-								'temp3 _ arg2 value: temp3 value: arg5'
-								'^temp3')! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 19:44'!
-supportTestSourceRangeAccessForDecompiledNoBytecodeInjectInto: method source: source
-	"Test debugger source range selection for inject:into:"
-	^self
-		supportTestSourceRangeAccessForInjectInto: method
-		source: source
-		selectionSequence: #(	'at: 1 put: t1'
-								'do: [:t4 | t3 at: 1 put: (t2 value: (t3 at: 1) value: t4)]'
-								'value: (t3 at: 1) value: t4'
-								'at: 1 put: (t2 value: (t3 at: 1) value: t4)'
-								']'
-								'value: (t3 at: 1) value: t4'
-								'at: 1 put: (t2 value: (t3 at: 1) value: t4)'
-								']'
-								'^t3 at: 1')! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 12/30/2009 14:17'!
-supportTestSourceRangeAccessForInjectInto: method source: source
-	"Test debugger source range selection for inject:into:"
-	^self
-		supportTestSourceRangeAccessForInjectInto: method
-		source: source
-		selectionSequence: #(	'_ thisValue'
-								'do: [:each | nextValue _ binaryBlock value: nextValue value: each]'
-								'value: nextValue value: each'
-								'_ binaryBlock value: nextValue value: each'
-								'nextValue _ binaryBlock value: nextValue value: each'
-								'value: nextValue value: each'
-								'_ binaryBlock value: nextValue value: each'
-								'nextValue _ binaryBlock value: nextValue value: each'
-								'^nextValue')! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 7/29/2008 17:16'!
-supportTestSourceRangeAccessForInjectInto: method source: source selectionSequence: selections
-	"Test debugger source range selection for inject:into:"
-	| evaluationCount sourceMap debugTokenSequence debugCount |
-	DebuggerMethodMap voidMapCache.
-	evaluationCount := 0.
-	sourceMap := method debuggerMap abstractSourceMap.
-	debugTokenSequence := selections collect: [:string| Scanner new scanTokens: string].
-	debugCount := 0.
-	thisContext
-		runSimulated: [(1 to: 2)
-						withArgs:
-							{	0.
-								[:sum :each|
-								 evaluationCount := evaluationCount + 1.
-								 sum + each]}
-						executeMethod: method]
-		contextAtEachStep:
-			[:ctxt| | range debugTokens |
-			(ctxt method == method
-			and: ["Exclude the send of #blockCopy: or #closureCopy:copiedValues: and braceWith:with:
-				    to create the block, and the #new: and #at:'s for the indirect temp vector.
-				   This for compilation without closure bytecodes. (Note that at:put:'s correspond to stores)"
-				(ctxt willSend
-					and: [(#(closureCopy:copiedValues: blockCopy: new: at: braceWith:with:) includes: ctxt selectorToSendOrSelf) not])
-				"Exclude the store of the argument into the home context (for BlueBook blocks)
-				 and the store of an indirection vector into an initial temp"
-				or: [(ctxt willStore
-					and: [(ctxt isBlock and: [ctxt pc = ctxt startpc]) not
-					and: [(ctxt isBlock not
-						and: [(method usesClosureBytecodes and: [ctxt abstractPC = 2])]) not]])
-				or: [ctxt willReturn]]]) ifTrue:
-				[debugTokens := debugTokenSequence at: (debugCount := debugCount + 1) ifAbsent: [#(bogusToken)].
-				 self assert: (sourceMap includesKey: ctxt abstractPC).
-				 range := sourceMap at: ctxt abstractPC ifAbsent: [(1 to: 0)].
-				 self assert: (Scanner new scanTokens: (source copyFrom: range first to: range last)) = debugTokens]].
-	self assert: evaluationCount = 2! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/26/2013 15:37'!
-testBlockDoitDecompilation
-	"Tests that decompile of a doit block with remote vars executes correcly"
-	"Tests that decompilation of a Block, when 'method' of block is equivalent to that compiled by a DoIt, preserves the temp names "
-	
-	| blockSourceStream methodNode compiledMethod block decompiledBlock method |
-	blockSourceStream := '|x y| [:a :b | x _ a. y _ b. x + y]' readStream.
-	methodNode := Compiler new 
-						from: blockSourceStream class: nil class context: nil notifying: nil;
-						translate: blockSourceStream noPattern: true ifFail: [nil].
-	method _ methodNode generate: #(0 0 0 0).
-	compiledMethod _ method copyWithTempsFromMethodNode: methodNode.
-	block := nil withArgs: #() executeMethod: compiledMethod.
-	
-	self shouldnt: [decompiledBlock := block decompile] raise: Error.
-	self assert: 
-'{[ :a :b |
-	x _ a.
-	y _ b.
-	x + y. ]}' equals: decompiledBlock printString
-! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 1/17/2011 00:13'!
-testBlockNumbering
-	"Test that the compiler and CompiledMethod agree on the block numbering of a substantial doit."
-	"self new testBlockNumbering"
-	| methodNode method tempRefs |
-	methodNode _
-		Parser new
-			encoderClass: EncoderForV3PlusClosures;
-			parse: 'foo
-					| numCopiedValuesCounts |
-					numCopiedValuesCounts := Dictionary new.
-					0 to: 32 do: [:i| numCopiedValuesCounts at: i put: 0].
-					Transcript clear.
-					Smalltalk allClassesDo:
-						[:c|
-						{c. c class} do:
-							[:b|
-							Transcript nextPut: b name first; endEntry.
-							b selectorsAndMethodsDo:
-								[:s :m| | pn |
-								m isQuick not ifTrue:
-									[pn := b parserClass new
-												encoderClass: EncoderForV3PlusClosures;
-												parse: (b sourceCodeAt: s)
-												class: b.
-									 pn generate: #(0 0 0 0).
-									 [pn accept: nil]
-										on: MessageNotUnderstood
-										do: [:ex| | msg numCopied |
-											msg := ex message.
-											(msg selector == #visitBlockNode:
-											 and: [(msg argument instVarNamed: ''optimized'') not]) ifTrue:
-												[numCopied := (msg argument computeCopiedValues: pn) size.
-												 numCopiedValuesCounts
-													at: numCopied
-													put: (numCopiedValuesCounts at: numCopied) + 1].
-											msg setSelector: #==.
-											ex resume: nil]]]]].
-					numCopiedValuesCounts'
-			class: Object.
-	method _ methodNode generate: #(0 0 0 0).
-	tempRefs _ methodNode encoder blockExtentsToTempsMap.
-	self assert: tempRefs keys asSet = method startpcsToBlockExtents values asSet! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 1/17/2011 00:13'!
-testBlockNumberingForInjectInto
-	"Test that the compiler and CompiledMethod agree on the block numbering of Collection>>inject:into:
-	 and that temp names for inject:into: are recorded."
-	"self new testBlockNumberingForInjectInto"
-	| methodNode method tempRefs |
-	methodNode := Parser new
-						encoderClass: EncoderForV3PlusClosures;
-						parse: (Collection sourceCodeAt: #inject:into:)
-						class: Collection.
-	method := methodNode generate: #(0 0 0 0).
-	tempRefs := methodNode encoder blockExtentsToTempsMap.
-	self assert: tempRefs keys asSet = method startpcsToBlockExtents values asSet.
-	self assert: ((tempRefs includesKey: (0 to: 6))
-				and: [(tempRefs at: (0 to: 6)) hasEqualElements: #(('thisValue' 1) ('binaryBlock' 2) ('nextValue' (3 1)))]).
-	self assert: ((tempRefs includesKey: (2 to: 4))
-				and: [(tempRefs at: (2 to: 4)) hasEqualElements: #(('each' 1) ('binaryBlock' 2) ('nextValue' (3 1)))])! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:00'!
-testDebuggerTempAccess
-
-	"This test also fails in Squeak. Check if it is ever fixed."
-	self flag: #expectedFailure.
-
-	self doTestDebuggerTempAccessWith: 1 with: 2! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 6/29/2014 19:57'!
-testDecompiledDoitMethodTempNames
-	"self new testDecompiledDoitMethodTempNames"
-	"Test that a decompiled doit that has been copied with temps decompiles to the input"
-	| removeComments |
-	removeComments := [:n| n comment: nil].
-	self closureCases do:
-		[:source| | mns m mps mnps |
-		"Need to compare an ungenerated tree with the generated method's methodNode
-		 because generating code alters the tree when it introduces remote temp vectors."
-		mns := #(first last) collect: [ :ignored |
-					source first isLetter
-						ifTrue: [
-							Compiler new
-								compile: source
-								in: self class
-								notifying: nil
-								ifFail: [self error: 'compilation error']]
-						ifFalse: [
-							Compiler new
-								compileNoPattern: source
-								in: self class
-								context: nil
-								notifying: nil
-								ifFail: [self error: 'compilation error']]].
-		m := (mns last generateWithTempNames).
-		removeComments value: mns first.
-		mns first nodesDo: removeComments.
-		self assert: (mnps := mns first printString) = (mps := m methodNode printString)]! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:52'!
-testInjectIntoDecompilationsEncoderForV3
-	"Test various compilations decompile to the same code for a method sufficiently
-	 simple that this is possible and sufficiently complex that the code generated
-	 varies between the compilations."
-	"self new testInjectIntoDecompilationsEncoderForV3"
-	| source |
-
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	{ EncoderForV3 } do:
-		[:encoderClass| | method |
-		method := (Parser new
-							encoderClass: encoderClass;
-							parse: source
-							class: Collection)
-						generate: #(0 0 0 0).
-		self assert: (Scanner new scanTokens: method decompileString)
-					= #(inject: arg1 into: arg2
-							| temp3 |
-							temp3 _ arg1 .
-							self do: [ ':temp4' | temp3 _ arg2 value: temp3 value: temp4 ] .
-							^ temp3 . )]! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:52'!
-testInjectIntoDecompilationsEncoderForV3PlusClosures
-	"Test various compilations decompile to the same code for a method sufficiently
-	 simple that this is possible and sufficiently complex that the code generated
-	 varies between the compilations."
-	"self new testInjectIntoDecompilationsEncoderForV3PlusClosures"
-	| source |
-
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	{ EncoderForV3PlusClosures } do:
-		[:encoderClass| | method |
-		method := (Parser new
-							encoderClass: encoderClass;
-							parse: source
-							class: Collection)
-						generate: #(0 0 0 0).
-		self assert: (Scanner new scanTokens: method decompileString)
-					= #(inject: arg1 into: arg2
-							| temp3 |
-							temp3 _ arg1 .
-							self do: [ ':arg5' | temp3 _ arg2 value: temp3 value: arg5 ] .
-							^ temp3 . )]! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:04'!
-testInjectIntoDecompiledDebugs
-	"Test various debugs of the decompiled form debug correctly."
-	"self new testInjectIntoDecompiledDebugs"
-	| source |
-
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	{ EncoderForV3PlusClosures } do:
-		[:encoderClass| | method |
-		method := (Parser new
-							encoderClass: encoderClass;
-							parse: source
-							class: Collection)
-						generate: #(0 0 0 0).
-		self supportTestSourceRangeAccessForDecompiledInjectInto: method source: method decompileString]! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 7/24/2009 11:51'!
-testInlineBlockCollectionEM1
-	| a1 b1 i1 a2 b2 i2 we wb |
-	b1 := OrderedCollection new.
-	i1 := 1.
-	[a1 := i1.
-	 i1 <= 3] whileTrue:
-		[b1 add: [a1].
-		i1 := i1 + 1].
-	b1 := b1 asArray collect: [:b | b value].
-	b2 := OrderedCollection new.
-	i2 := 1.
-	we := [a2 := i2. i2 <= 3].
-	wb := [b2 add: [a2]. i2 := i2 + 1].
-	we whileTrue: wb. "defeat optimization"
-	b2 := b2 asArray collect: [:b | b value].
-	self assert: b1 = b2! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 3/7/2009 11:25'!
-testInlineBlockCollectionLR1
-	"Test case from Lukas Renggli"
-	| col |
-	col := OrderedCollection new.
-	1 to: 11 do: [ :each | col add: [ each ] ].
-	self assert: (col collect: [ :each | each value ]) asArray = (1 to: 11) asArray! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 3/7/2009 11:39'!
-testInlineBlockCollectionLR2
-	"Test case from Lukas Renggli"
-	| col |
-	col := OrderedCollection new.
-	1 to: 11 do: [ :each | #(1) do: [:ignored| col add: [ each ]] ].
-	self assert: (col collect: [ :each | each value ]) asArray = (1 to: 11) asArray! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 3/9/2009 11:00'!
-testInlineBlockCollectionLR3
-	| col |
-	col := OrderedCollection new.
-	1 to: 11 do: [ :each | | i | i := each. col add: [ i ]. i := i + 1 ].
-	self assert: (col collect: [ :each | each value ]) asArray = (2 to: 12) asArray! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 7/22/2009 16:55'!
-testInlineBlockCollectionSD1
-	| a1 b1 a2 b2 |
-	b1 := OrderedCollection new.
-	1 to: 3 do:
-		[:i |
-		a1 := i.
-		b1 add: [a1]].
-	b1 := b1 asArray collect: [:b | b value].
-	b2 := OrderedCollection new.
-	1 to: 3 do:
-		[:i |
-		a2 := i.
-		b2 add: [a2]] yourself. "defeat optimization"
-	b2 := b2 asArray collect: [:b | b value].
-	self assert: b1 = b2! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 6/29/2014 19:58'!
-testMethodAndNodeTempNames
-	"self new testMethodAndNodeTempNames"
-	"Test that BytecodeAgnosticMethodNode>>blockExtentsToTempRefs answers the same
-	 structure as CompiledMethod>>blockExtentsToTempRefs when the method has been
-	 copied with the appropriate temps.  This tests whether doit methods are debuggable
-	 since they carry their own temps."
-	self closureCases do: [ :source | | mn om m mbe obe |
-		mn := source first isLetter
-					ifTrue: [
-						Compiler new
-							compile: source
-							in: self class
-							notifying: nil
-							ifFail: [self error: 'compilation error']]
-					ifFalse: [
-						Compiler new
-							compileNoPattern: source
-							in: self class
-							context: nil
-							notifying: nil
-							ifFail: [self error: 'compilation error']].
-		m := (om := mn generate: #(0 0 0 0)) copyWithTempsFromMethodNode: mn.
-		self assert: m holdsTempNames.
-		self assert: m endPC = om endPC.
-		mbe := m blockExtentsToTempsMap.
-		obe := mn blockExtentsToTempsMap.
-		self assert: mbe keys asSet = obe keys asSet.
-		(mbe keys intersection: obe keys) do:
-			[:interval|
-			self assert: (mbe at: interval) = (obe at: interval)]]! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 15:20'!
-testSourceRangeAccessForBlueBookInjectInto
-	"Test debugger source range selection for inject:into: for a version compiled with closures"
-	"self new testSourceRangeAccessForBlueBookInjectInto"
-	| source method |
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	method := (Parser new
-						encoderClass: EncoderForV3;
-						parse: source
-						class: Collection)
-					generate: (Collection compiledMethodAt: #inject:into:) trailer.
-	self supportTestSourceRangeAccessForInjectInto: method source: source! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 15:20'!
-testSourceRangeAccessForClosureBytecodeInjectInto
-	"Test debugger source range selection for inject:into: for a version compiled with closures"
-	"self new testSourceRangeAccessForClosureBytecodeInjectInto"
-	| source method |
-	source := (Collection sourceCodeAt: #inject:into:) asString.
-	method := (Parser new
-						encoderClass: EncoderForV3PlusClosures;
-						parse: source
-						class: Collection)
-					generate: (Collection compiledMethodAt: #inject:into:) trailer.
-	self supportTestSourceRangeAccessForInjectInto: method source: source! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 11:40'!
-testSourceRangeAccessForInjectInto
-	"Test debugger source range selection for inject:into: for the current version of the method"
-	"self new testSourceRangeAccessForInjectInto"
-	self supportTestSourceRangeAccessForInjectInto: (Collection compiledMethodAt: #inject:into:)
-		source: (Collection sourceCodeAt: #inject:into:) asString! !
-
-!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/15/2008 11:26'!
-testTempNameAccessForInjectInto
-	"self new testTempNameAccessForInjectInto"
-	| methodNode method evaluationCount block debuggerMap |
-	methodNode := Parser new
-						encoderClass: EncoderForV3PlusClosures;
-						parse: (Collection sourceCodeAt: #inject:into:)
-						class: Collection.
-	method := methodNode generate: #(0 0 0 0).
-	debuggerMap := DebuggerMethodMap forMethod: method methodNode: methodNode.
-	evaluationCount := 0.
-	block := [:prev :each| | theContext tempNames |
-			evaluationCount := evaluationCount + 1.
-			theContext := thisContext sender.
-			tempNames := debuggerMap tempNamesForContext: theContext.
-			self assert: (tempNames hasEqualElements: tempNames).
-			#('thisValue' 'each' 'binaryBlock' 'nextValue')
-				with: { 0. each. block. prev}
-				do: [:tempName :value|
-					self assert: (debuggerMap namedTempAt: (tempNames indexOf: tempName) in: theContext) == value.
-					tempName ~= 'each' ifTrue:
-						[self assert: (debuggerMap namedTempAt: (tempNames indexOf: tempName) in: theContext home) == value]]].
-	(1 to: 10) withArgs: { 0. block } executeMethod: method.
-	self assert: evaluationCount = 10! !
-
-!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/20/2008 09:40'!
-methodWithCopiedAndAssignedTemps
-	| blk "0w" a "0w" b "0w" c "0w" t "0w" r1 "0w" r2 "0w" |
-	a := 1. "1w"
-	b := 2. "1w"
-	c := 4. "1w"
-	t := 0. "1w"
-	blk "5w" := ["2" t  "3w" := t "3r" + a "3r" + b "3r" + c "3r" ] "4".
-	r1 "5w" := blk "5r" value.
-	b "5w" := -100.
-	r2 "5w" := blk "5r" value.
-	^r1 "5r" -> r2 "5r" -> t "5r"
-
-	"a: main(read(),write(0,1)), block(read(3),write()) => copy; no writes follow read
-	 b: main(read(),write(0,1,5)), block(read(3),write()) => remote; write follows contained read
-	 blk: main(read(5),write(0,5)), block(read(),write()) => no copy in blocks < 5
-	 c: main(read(),write(0,1)), block(read(3),write()) => copy; no writes follow read
-	 r1: main(read(5),write(0,5)), block(read(),write()) => no copy in blocks < 5
-	 r2: main(read(5),write(0,5)), block(read(),write()) => no copy in blocks < 5
-	 t: main(read(5),write(0,1)), block(read(3),write(3)) => remote; read follows contained write"
-
-
-	"(Parser new
-		encoderClass: EncoderForV3;
-		parse: (self class sourceCodeAt: #methodWithCopiedAndAssignedTemps)
-		class: self class) generateUsingClosures: #(0 0 0 0)"! !
-
-!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 20:45'!
-methodWithCopiedAndPostClosedOverAssignedTemps
-	| blk a b c r1 r2 |
-	a := 1.
-	b := 2.
-	c := 4.
-	blk := [a + b + c].
-	r1 := blk value.
-	b := nil.
-	r2 := blk value.
-	r1 -> r2
-
-	"(Parser new
-		encoderClass: EncoderForV3;
-		parse: (self class sourceCodeAt: #methodWithCopiedAndPostClosedOverAssignedTemps)
-		class: self class) generateUsingClosures: #(0 0 0 0)"! !
-
-!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 20:10'!
-methodWithCopiedTemps
-	| a b c r |
-	a := 1.
-	b := 2.
-	c := 4.
-	r := [a + b + c] value.
-	b := nil.
-	r
-
-	"Parser new
-		parse: (self class sourceCodeAt: #methodWithCopiedTemps)
-		class: self class"
-
-	"(Parser new
-		encoderClass: EncoderForV3;
-		parse: (self class sourceCodeAt: #methodWithCopiedTemps)
-		class: self class) generateUsingClosures: #(0 0 0 0)"! !
-
-!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 14:24'!
-methodWithOptimizedBlocks
-	| s c |
-	s := self isNil
-			ifTrue: [| a | a := 'isNil'. a]
-			ifFalse: [| b | b := 'notNil'. b].
-	c := String new: s size.
-	1 to: s size do:
-		[:i| c at: i put: (s at: i)].
-	^c
-
-	"Parser new
-		parse: (self class sourceCodeAt: #methodWithOptimizedBlocks)
-		class: self class"! !
-
-!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 14:24'!
-methodWithOptimizedBlocksA
-	| s c |
-	s := self isNil
-			ifTrue: [| a | a := 'isNil'. a]
-			ifFalse: [| a | a := 'notNil'. a].
-	c := String new: s size.
-	1 to: s size do:
-		[:i| c at: i put: (s at: i)].
-	^c
-
-	"Parser new
-		parse: (self class sourceCodeAt: #methodWithOptimizedBlocksA)
-		class: self class"! !
-
-!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 14:12'!
-methodWithVariousTemps
-	| classes total totalLength |
-	classes := self withAllSuperclasses.
-	total := totalLength := 0.
-	classes do: [:class| | className |
-		className := class name.
-		total := total + 1.
-		totalLength := totalLength + className size].
-	^total -> totalLength
-
-	"Parser new
-		parse: (self class sourceCodeAt: #methodWithVariousTemps)
-		class: self class"! !
-
-!ClosureTests methodsFor: 'utilities' stamp: 'lr 3/9/2009 16:48'!
-assertValues: anArray
-	| values |
-	values := collection collect: [ :each | each value ].
-	self 
-		assert: anArray asArray = values asArray
-		description: 'Expected: ' , anArray asArray printString , 
-			', but got ' , values asArray printString! !
-
-!ClosureTests methodsFor: 'utilities' stamp: 'cwp 11/16/2009 08:12'!
-evaluateCopyOf: aBlock
-	aBlock copy value! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:35'!
-methodArgument: anObject
-	^ [ anObject ]
-	! !
-
-!ClosureTests methodsFor: 'utilities' stamp: 'cwp 11/16/2009 08:12'!
-methodWithNonLocalReturn
-	self evaluateCopyOf: [^ self].
-	self signalFailure: 'Should never reach here'! !
-
-!ClosureTests methodsFor: 'running' stamp: 'lr 3/9/2009 16:48'!
-setUp
-	super setUp.
-	collection := OrderedCollection new! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:33'!
-testBlockArgument
-	| block block1 block2 |
-	block := [ :arg | | temp | temp := arg. [ temp ] ].
-	block1 := block value: 1.
-	block2 := block value: 2.
-	self assert: block1 value = 1.
-	self assert: block2 value = 2! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:33'!
-testBlockTemp
-	| block block1 block2 |
-	block := [ :arg | [ arg ] ].
-	block1 := block value: 1.
-	block2 := block value: 2.
-	self assert: block1 value = 1.
-	self assert: block2 value = 2! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'cwp 11/16/2009 08:11'!
-testCopyNonLocalReturn
-	self
-		shouldnt: [self methodWithNonLocalReturn]
-		raise: Error! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'jmv 5/26/2015 16:33'!
-testIsTrivialClosure
-	"
-	ClosureTests new testIsTrivialClosure
-	"
-	| tempVar |
-	tempVar _ 1.
-	self assert: [ 3 + 4 ] isTrivialClosure.
-	self assert: [ :a | a * 2 ] isTrivialClosure.
-	self assert: [ Smalltalk size ] isTrivialClosure.
-	self assert: [ ClosureTests selectors size ] isTrivialClosure.
-	self assert: [ :blockArg | blockArg printString ] isTrivialClosure.
-	self assert: [ | blockTemp | blockTemp printString ] isTrivialClosure.
-	self assert: [ | blockTemp | blockTemp _ 7 ] isTrivialClosure.
-	self assert: [ | c | c _ [ :a :b | a+b ]. c value: 3 value: 4 ] isTrivialClosure.
-
-	self assert: [ | outerBlockTemp | [ outerBlockTemp printString ] ] isTrivialClosure.
-	self assert: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] ] isTrivialClosure.
-	self assert: [ | outerBlockTemp | [[ outerBlockTemp printString ]] ] isTrivialClosure.
-	self assert: [ | outerBlockTemp | [[ outerBlockTemp _ 7 ]] ] isTrivialClosure.
-	self assert: [ [| outerBlockTemp | [ outerBlockTemp printString ]] ] isTrivialClosure.
-	self assert: [ [| outerBlockTemp | [ outerBlockTemp _ 7 ]] ] isTrivialClosure.
-
-	self deny: [ | outerBlockTemp | [ outerBlockTemp printString ] isTrivialClosure ] value.
-	self deny: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] isTrivialClosure ] value.
-	self deny: [ | outerBlockTemp | [[ outerBlockTemp printString ]] isTrivialClosure ] value.
-	self deny: [ | outerBlockTemp | [[ outerBlockTemp _ 7 ]] isTrivialClosure ] value.
-
-	self deny: [ tempVar + 1 ] isTrivialClosure.
-	self deny: [ tempVar _ 1 ] isTrivialClosure.
-	self deny: [ ivar + 1 ] isTrivialClosure.
-	self deny: [ ivar _ 1 ] isTrivialClosure.
-	self deny: [ ^ true ] isTrivialClosure.
-	self deny: [ self printString ] isTrivialClosure.
-	self deny: [ ^ self ] isTrivialClosure.
-	self deny: [ ClassVar + 1 ] isTrivialClosure.
-	self deny: [ ClassVar _ 1 ] isTrivialClosure! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:36'!
-testMethodArgument
-	| temp block |
-	temp := 0.
-	block := [ [ temp ] ].
-	temp := 1.
-	block := block value.
-	temp := 2.
-	self assert: block value = 2! !
-
-!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:36'!
-testMethodTemp
-	| block1 block2 |
-	block1 := self methodArgument: 1.
-	block2 := self methodArgument: 2.
-	self assert: block1 value = 1.
-	self assert: block2 value = 2! !
-
-!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
-testToDoArgument
-	1 to: 5 do: [ :index |
-		collection add: [ index ] ].
-	self assertValues: #(1 2 3 4 5)! !
-
-!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
-testToDoArgumentNotInlined
-	| block |
-	block := [ :index |
-		collection add: [ index ] ].
-	1 to: 5 do: block.
-	self assertValues: #(1 2 3 4 5)! !
-
-!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
-testToDoInsideTemp
-	1 to: 5 do: [ :index | 
-		| temp | 
-		temp := index. 
-		collection add: [ temp ] ].
-	self assertValues: #(1 2 3 4 5)! !
-
-!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
-testToDoInsideTempNotInlined
-	| block |
-	block := [ :index | 
-		| temp | 
-		temp := index. 
-		collection add: [ temp ] ].
-	1 to: 5 do: block.
-	self assertValues: #(1 2 3 4 5)! !
-
-!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
-testToDoOutsideTemp
-	| temp |
-	1 to: 5 do: [ :index | 
-		temp := index. 
-		collection add: [ temp ] ].
-	self assertValues: #(5 5 5 5 5)! !
-
-!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
-testToDoOutsideTempNotInlined
-	| block temp |
-	block := [ :index | 
-		temp := index. 
-		collection add: [ temp ] ].
-	1 to: 5 do: block.
-	self assertValues: #(5 5 5 5 5)! !
-
-!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
-testWhileModificationAfter
-	| index |
-	index := 0.
-	[ index < 5 ] whileTrue: [
-		collection add: [ index ].
-		index := index + 1 ].
-	self assertValues: #(5 5 5 5 5)! !
-
-!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
-testWhileModificationAfterNotInlined
-	| index block |
-	index := 0.
-	block := [ 
-		collection add: [ index ].
-		index := index + 1 ].
-	[ index < 5 ] whileTrue: block.
-	self assertValues: #(5 5 5 5 5)! !
-
-!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
-testWhileModificationBefore
-	| index |
-	index := 0.
-	[ index < 5 ] whileTrue: [ 
-		index := index + 1.
-		collection add: [ index ] ].
-	self assertValues: #(5 5 5 5 5)! !
-
-!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
-testWhileModificationBeforeNotInlined
-	| index block |
-	index := 0.
-	block := [ 
-		index := index + 1.
-		collection add: [ index ] ].
-	[ index < 5 ] whileTrue: block.
-	self assertValues: #(5 5 5 5 5)! !
-
-!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:52'!
-testWhileWithTemp
-	| index |
-	index := 0.
-	[ index < 5 ] whileTrue: [
-		| temp |
-		temp := index := index + 1.
-		collection add: [ temp ] ].
-	self assertValues: #(1 2 3 4 5)! !
-
-!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:53'!
-testWhileWithTempNotInlined
-	| index block |
-	index := 0.
-	block := [
-		| temp |
-		temp := index := index + 1.
-		collection add: [ temp ] ].
-	[ index < 5 ] whileTrue: block.
-	self assertValues: #(1 2 3 4 5)! !
-
-!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:34'!
-testIdentitySet
-	"
-	CollectTest  new testIdentitySet
-	"
-	| col result |
-	col _ #(1 2 3 1.0 2.0 3.0) asIdentitySet.
-	result _ col collect: [ :elem |  elem yourself ].
-	self assert: result class = IdentitySet.
-	self assert: result = #(1 2 3 1.0 2.0 3.0) asIdentitySet.
-	self assert: result = col! !
-
-!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 10:51'!
-testOrderedCollection
-	"
-	CollectTest  new testOrderedCollection
-	"
-	| col result |
-	col _ #(1 2 3 4 5) asOrderedCollection.
-	result _ col collect: [ :elem |  elem * 2 ].
-	self assert: result class = OrderedCollection.
-	self assert: result = #(2 4 6 8 10) asOrderedCollection! !
-
-!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:34'!
-testSet
-	"
-	CollectTest  new testSet
-	"
-	| col result |
-	col _ #(1 2 3 1.0 2.0 3.0) asSet.
-	result _ col collect: [ :elem |  elem yourself ].
-	self assert: result class = Set.
-	self assert: result = #(1 2 3) asSet.
-	self assert: result = col! !
-
-!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:01'!
-testSortedCollection
-	"
-	CollectTest  new testSortedCollection
-	"
-	| col result |
-	col _ #(1 2 3 4 5) asSortedCollection: [ :a :b | a > b ].
-	result _ col collect: [ :elem |  elem * 2 ].
-	self assert: result class = OrderedCollection.
-	self assert: result = #(10 8 6 4 2) asOrderedCollection! !
-
-!CompilerExceptionsTest methodsFor: 'as yet unclassified' stamp: 'cwp 8/25/2009 20:27'!
-griffle | goo |! !
-
-!CompilerExceptionsTest methodsFor: 'emulating' stamp: 'cwp 8/25/2009 20:23'!
-selectFrom: start to: end 
-	! !
-
-!CompilerExceptionsTest methodsFor: 'emulating' stamp: 'cwp 8/25/2009 20:22'!
-selectionInterval
-	^ 1 to: 0! !
-
-!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:22'!
-testUndeclaredVariable
-	self 
-		should: 
-			[self class 
-				compile: 'griffle ^ goo'
-				notifying: self]
-		raise: UndeclaredVariable! !
-
-!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:24'!
-testUndefinedVariable
-	self 
-		should: 
-			[self class 
-				compile: 'griffle | goo | ^ goo'
-				notifying: self]
-		raise: UndefinedVariable! !
-
-!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:25'!
-testUnknownSelector
-	self 
-		should: 
-			[self class 
-				compile: 'griffle self reallyHopeThisIsntImplementedAnywhere'
-				notifying: self]
-		raise: UnknownSelector! !
-
-!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:27'!
-testUnusedVariable
-	self 
-		should: 
-			[self class 
-				compile: self unusedVariableSource
-				notifying: self]
-		raise: UnusedVariable! !
-
-!CompilerExceptionsTest methodsFor: 'emulating' stamp: 'cwp 8/25/2009 20:26'!
-text
-	^ self unusedVariableSource! !
-
-!CompilerExceptionsTest methodsFor: 'private' stamp: 'cwp 8/25/2009 20:28'!
-unusedVariableSource
-	^ 'griffle 
-		| goo |
-		^ nil'! !
-
-!ContextCompilationTest methodsFor: 'tests' stamp: 'eem 6/19/2008 10:11'!
-testVariablesAndOffsetsDo
-
-	"ContextCompilationTest new testVariablesAndOffsetsDo"
-	| contextClasses |
-	contextClasses := ContextPart withAllSuperclasses, ContextPart allSubclasses asArray.
-	contextClasses do:
-		[:class|
-		class variablesAndOffsetsDo:
-			[:var :offset|
-			self assert: offset < 0.
-			self assert: (class instVarNameForIndex: offset negated) == var]].
-
-	InstructionStream withAllSuperclasses, InstructionStream allSubclasses asArray do:
-		[:class|
-		(contextClasses includes: class) ifFalse:
-			[class variablesAndOffsetsDo:
-				[:var :offset|
-				(InstructionStream instVarNames includes: var) ifFalse:
-					[self assert: offset > 0.
-					 self assert: (class instVarNameForIndex: offset) == var]]]]! !
-
-!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/22/2011 23:57'!
-testAddressRange
-	"Test source pointer to file position address translation across the full address range"
-	
-	| sf |
-	sf := CuisSourceFileArray new.
-	(16r1000000 to: 16r4FFFFFF by: 811) do: [:e | | i a p |
-		i := sf fileIndexFromSourcePointer: e.
-		p := sf filePositionFromSourcePointer: e.
-		a := sf sourcePointerFromFileIndex: i andPosition: p.
-		self assert: a = e]
-! !
-
-!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:08'!
-testChangesFileAddressRange
-	"Test file position to source pointer address translation for the changes file"
-	
-	| sf a e |
-	sf := CuisSourceFileArray new.
-	(0 to: 16r1FFFFFF by: 811) do: [:ee | | a2 i p |
-		e _ ee // 32 * 32.
-		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
-		i := sf fileIndexFromSourcePointer: a.
-		self assert: i = 2.
-		p := sf filePositionFromSourcePointer: a.
-		self assert: p = e.
-		a2 := sf sourcePointerFromFileIndex: 2 andPosition: p.
-		self assert: a2 = a].
-	(0 to: 16rFFFFFF by: 811) do: [:ee |
-		e _ ee // 32 * 32.
-		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
-		self assert: (a between: 16r3000000 and: 16r3FFFFFF)].
-	(16r1000000 to: 16r1FFFFFF by: 811) do: [:ee |
-		e _ ee // 32 * 32.
-		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
-		self assert: (a between: 16r3000000 and: 16r4FFFFFF)]
-
-
-! !
-
-!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:06'!
-testFileIndexFromSourcePointer
-	"Test derivation of file index for sources or changes file from source pointers"
-
-	| sf |
-	sf := CuisSourceFileArray new.
-	"sources file mapping"
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1000000).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1000013).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1FFFFFF).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r2000000).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r2000013).
-	self assert: 1 = (sf fileIndexFromSourcePointer: 16r2FFFFFF).
-	(16r1000000 to: 16r1FFFFFF by: 811) do: [:e | self assert: 1 = (sf fileIndexFromSourcePointer: e)].
-	(16r2000000 to: 16r2FFFFFF by: 811) do: [:e | self assert: 1 = (sf fileIndexFromSourcePointer: e)].
-	"changes file mapping"
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r3000000).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r3000013).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r3FFFFFF).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4000000).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4000013).
-	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4FFFFFF).
-	(16r3000000 to: 16r3FFFFFF by: 811) do: [:e | self assert: 2 = (sf fileIndexFromSourcePointer: e)].
-	(16r4000000 to: 16r4FFFFFF by: 811) do: [:e | self assert: 2 = (sf fileIndexFromSourcePointer: e)]
-
-
-! !
-
-!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:09'!
-testFilePositionFromSourcePointer
-	"Test derivation of file position for sources or changes file from source pointers"
-
-	| sf |
-	sf := CuisSourceFileArray new.
-	"sources file"
-	self assert: 0 = (sf filePositionFromSourcePointer: 16r1000000).
-	"changes file"
-	self assert: 0 = (sf filePositionFromSourcePointer: 16r3000000).! !
-
-!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:10'!
-testSourcePointerFromFileIndexAndPosition
-	"Test valid input ranges"
-
-	| sf |
-	sf := CuisSourceFileArray new.
-	self should: [sf sourcePointerFromFileIndex: 0 andPosition: 0] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 0] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 2 andPosition: 0] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 0 andPosition: 3] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 1 andPosition: -1] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 16r1FFFFFF] raise: Error.
-	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 16r2000000] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 3 andPosition: 0] raise: Error.
-	self should: [sf sourcePointerFromFileIndex: 4 andPosition: 0] raise: Error.
-	
-	self assert: 16r1000000 = (sf sourcePointerFromFileIndex: 1 andPosition: 0).
-	self assert: 16r3000000 = (sf sourcePointerFromFileIndex: 2 andPosition: 0).! !
-
-!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:11'!
-testSourcesFileAddressRange
-	"Test file position to source pointer address translation for the sources file"
-	
-	| sf a e |
-	sf := CuisSourceFileArray new.
-	(0 to: 16r1FFFFFF by: 811) do: [:ee | | a2 p i |
-		e _ ee // 32 * 32.
-		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
-		i := sf fileIndexFromSourcePointer: a.
-		self assert: i = 1.
-		p := sf filePositionFromSourcePointer: a.
-		self assert: p = e.
-		a2 := sf sourcePointerFromFileIndex: 1 andPosition: p.
-		self assert: a2 = a].
-	(0 to: 16rFFFFFF by: 811) do: [:ee |
-		e _ ee // 32 * 32.
-		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
-		self assert: (a between: 16r1000000 and: 16r1FFFFFF)].
-	(16r1000000 to: 16r1FFFFFF by: 811) do: [:ee |
-		e _ ee // 32 * 32.
-		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
-		self assert: (a between: 16r1000000 and: 16r2FFFFFF)]
-
-! !
-
-!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:29'!
-testCreation
-	"
-	self new testCreation
-	"
-	| d |
-	d _ (DateAndTime julianDayNumber: 2456814) date.
-	self assert: d yearNumber = 2014.
-	self assert: d monthIndex = 6.
-	self assert: d dayOfMonth = 5.
-	
-	d _ (DateAndTime fromSeconds: 3579379200) date.
-	self assert: d yearNumber = 2014.
-	self assert: d monthIndex = 6.
-	self assert: d dayOfMonth = 5.
-	
-	d _ DateAndTime fromSeconds: 3579431284.
-	self assert: d yearNumber = 2014.
-	self assert: d monthIndex = 6.
-	self assert: d dayOfMonth = 5.
-	self assert: d hour = 14.
-	self assert: d minute = 28.
-	self assert: d second = 4.
-	self assert: d nanoSecond = 0! !
-
-!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:22'!
-testOperations
-	"
-	self new testOperations
-	"
-	| d dt |
-	dt _ DateAndTime now.
-
-	d _ 1 hours.
-	self assert: dt < (dt + d).
-	self assert: dt - d < dt.
-	self assert: dt + d - d = dt.
-
-	d _ 1 minutes.
-	self assert: dt < (dt + d).
-	self assert: dt - d < dt.
-	self assert: dt + d - d = dt.
-
-	d _ 1 seconds.
-	self assert: dt < (dt + d).
-	self assert: dt - d < dt.
-	self assert: dt + d - d = dt.
-
-	d _ -1 hours.
-	self assert: dt < (dt - d).
-	self assert: dt + d < dt.
-	self assert: dt + d - d = dt.
-
-	d _ -1 minutes.
-	self assert: dt < (dt - d).
-	self assert: dt + d < dt.
-	self assert: dt + d - d = dt.
-
-	d _ -1 seconds.
-	self assert: dt < (dt - d).
-	self assert: dt + d < dt.
-	self assert: dt + d - d = dt.! !
-
-!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 4/27/2016 15:04'!
-testToByDo
-	"
-	DateAndTimeTest new testToByDo
-	"
-	| end last start step |
-	start _ DateAndTime midnight.
-	end _ DateAndTime midnight + 2 hours.
-	step _ 15 minutes.
-	start to: end by: step do: [ :time | last _ time ].
-	self assert: last = end! !
-
-!DecompilerTests methodsFor: 'utilities' stamp: 'sd 9/25/2004 15:30'!
-blockingClasses
-
-
-	^ #(CompiledMethod)! !
-
-!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 6/29/2014 19:59'!
-checkDecompileMethod: oldMethod
-	
-	| cls selector oldMethodNode methodNode newMethod oldCodeString newCodeString |
-	cls := oldMethod methodClass.
-	selector := oldMethod selector.
-	oldMethodNode := Decompiler new
-						decompile: selector
-						in: cls
-						method: oldMethod.
-	[oldMethodNode properties includesKey: #warning] whileTrue:
-		[oldMethodNode properties removeKey: #warning].
-	oldCodeString := oldMethodNode decompileString.
-	methodNode := [ Compiler new
-						compile: oldCodeString
-						in: cls
-						notifying: nil
-						ifFail: nil]
-						on: SyntaxErrorNotification
-						do: [:ex|
-							ex errorMessage = 'Cannot store into' ifTrue:
-								[ex return: #badStore].
-							ex pass].
-	"Ignore cannot store into block arg errors; they're not our issue."
-	methodNode ~~ #badStore ifTrue:
-		[newMethod := methodNode generate: #(0 0 0 0).
-		 newCodeString := (Decompiler new
-							decompile: selector
-							in: cls
-							method: newMethod) decompileString.
-		 "(StringHolder new textContents:
-			(TextDiffBuilder buildDisplayPatchFrom: oldCodeString to: newCodeString))
-				openLabel: 'Decompilation Differences for ', cls name,'>>',selector"
-		 "(StringHolder new textContents:
-			(TextDiffBuilder buildDisplayPatchFrom: oldMethod abstractSymbolic to: newMethod abstractSymbolic))
-				openLabel: 'Bytecode Differences for ', cls name,'>>',selector"
-		 self assert: oldCodeString = newCodeString
-			description: cls name asString, ' ', selector asString
-			resumable: true]! !
-
-!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 5/27/2015 13:58'!
-decompileClassesSelect: aBlock
-	| cls |
-	(Smalltalk classNames select: aBlock) do: [ :cn |
-		cls _ Smalltalk at: cn.
-		 cls selectorsAndMethodsDo: [ :selector :meth |
-				self checkDecompileMethod: meth ]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesAAtoAM
-	self decompileClassesSelect: [:cn| cn first = $A and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesANtoAZ
-	self decompileClassesSelect: [:cn| cn first = $A and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesBAtoBM
-	self decompileClassesSelect: [:cn| cn first = $B and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesBNtoBZ
-	self decompileClassesSelect: [:cn| cn first = $B and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesCAtoCM
-	self decompileClassesSelect: [:cn| cn first = $C and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesCNtoCZ
-	self decompileClassesSelect: [:cn| cn first = $C and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesDAtoDM
-	self decompileClassesSelect: [:cn| cn first = $D and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesDNtoDZ
-	self decompileClassesSelect: [:cn| cn first = $D and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesEAtoEM
-	self decompileClassesSelect: [:cn| cn first = $E and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesENtoEZ
-	self decompileClassesSelect: [:cn| cn first = $E and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesFAtoFM
-	self decompileClassesSelect: [:cn| cn first = $F and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesFNtoFZ
-	self decompileClassesSelect: [:cn| cn first = $F and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesGAtoGM
-	self decompileClassesSelect: [:cn| cn first = $G and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesGNtoGZ
-	self decompileClassesSelect: [:cn| cn first = $G and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesHAtoHM
-	self decompileClassesSelect: [:cn| cn first = $H and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesHNtoHZ
-	self decompileClassesSelect: [:cn| cn first = $H and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesIAtoIM
-	self decompileClassesSelect: [:cn| cn first = $I and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesINtoIZ
-	self decompileClassesSelect: [:cn| cn first = $I and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesJAtoJM
-	self decompileClassesSelect: [:cn| cn first = $J and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesJNtoJZ
-	self decompileClassesSelect: [:cn| cn first = $J and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesKAtoKM
-	self decompileClassesSelect: [:cn| cn first = $K and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesKNtoKZ
-	self decompileClassesSelect: [:cn| cn first = $K and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesLAtoLM
-	self decompileClassesSelect: [:cn| cn first = $L and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesLNtoLZ
-	self decompileClassesSelect: [:cn| cn first = $L and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesMAtoMM
-	self decompileClassesSelect: [:cn| cn first = $M and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesMNtoMZ
-	self decompileClassesSelect: [:cn| cn first = $M and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesNAtoNM
-	self decompileClassesSelect: [:cn| cn first = $N and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesNNtoNZ
-	self decompileClassesSelect: [:cn| cn first = $N and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesOAtoOM
-	self decompileClassesSelect: [:cn| cn first = $O and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesONtoOZ
-	self decompileClassesSelect: [:cn| cn first = $O and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesPAtoPM
-	self decompileClassesSelect: [:cn| cn first = $P and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesPNtoPZ
-	self decompileClassesSelect: [:cn| cn first = $P and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesQAtoQM
-	self decompileClassesSelect: [:cn| cn first = $Q and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesQNtoQZ
-	self decompileClassesSelect: [:cn| cn first = $Q and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesRAtoRM
-	self decompileClassesSelect: [:cn| cn first = $R and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesRNtoRZ
-	self decompileClassesSelect: [:cn| cn first = $R and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesSAtoSM
-	self decompileClassesSelect: [:cn| cn first = $S and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesSNtoSZ
-	self decompileClassesSelect: [:cn| cn first = $S and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesTAtoTM
-	self decompileClassesSelect: [:cn| cn first = $T and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesTNtoTZ
-	self decompileClassesSelect: [:cn| cn first = $T and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesUAtoUM
-	self decompileClassesSelect: [:cn| cn first = $U and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesUNtoUZ
-	self decompileClassesSelect: [:cn| cn first = $U and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesVAtoVM
-	self decompileClassesSelect: [:cn| cn first = $V and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesVNtoVZ
-	self decompileClassesSelect: [:cn| cn first = $V and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesWAtoWM
-	self decompileClassesSelect: [:cn| cn first = $W and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesWNtoWZ
-	self decompileClassesSelect: [:cn| cn first = $W and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesXAtoXM
-	self decompileClassesSelect: [:cn| cn first = $X and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesXNtoXZ
-	self decompileClassesSelect: [:cn| cn first = $X and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesYAtoYM
-	self decompileClassesSelect: [:cn| cn first = $Y and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesYNtoYZ
-	self decompileClassesSelect: [:cn| cn first = $Y and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesZAtoZM
-	self decompileClassesSelect: [:cn| cn first = $Z and: [cn second asUppercase <= $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
-testDecompilerInClassesZNtoZZ
-	self decompileClassesSelect: [:cn| cn first = $Z and: [cn second asUppercase > $M]]! !
-
-!DecompilerTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:04'!
-testRemoteTemp
-	| aBlock |
-	aBlock := Compiler evaluate: '| x y |  [:a :b | x := a. y := b. x+y]'.
-	self shouldnt: [aBlock decompile] raise: Error
-	! !
-
-!DecompilerTestFailuresCollector methodsFor: 'accessing' stamp: 'jmv 3/2/2010 15:57'!
-assert: aBoolean description: aString resumable: resumableBoolean 
-	aBoolean ifFalse: [
-		failures ifNil: [
-			failures := OrderedCollection new].
-		 failures addLast: (thisContext sender tempAt: 1) methodReference]! !
-
-!DecompilerTestFailuresCollector methodsFor: 'accessing' stamp: 'eem 11/10/2008 15:47'!
-failures
-	^failures! !
-
-!DelayTest methodsFor: 'testing-limits' stamp: 'laza 9/5/2009 08:49'!
-testBounds
-	"self run: #testBounds"
-	
-	self should: [Delay forMilliseconds: -1] raise: Error.
-	self shouldnt: [Delay forMilliseconds: SmallInteger maxVal + 1] raise: Error.
-	self shouldnt: [(Delay forMilliseconds: Float pi) wait] raise: Error. "Wait 3ms"
-! !
-
-!DelayTest methodsFor: 'testing-limits' stamp: 'jmv 10/8/2012 22:17'!
-testMultiProcessWaitOnSameDelay
-	"Ensure that waiting on the same delay from multiple processes raises an error"
-	"
-	self new testMultiProcessWaitOnSameDelay
-	"
-	| delay p1 p2 wasRun |
-	delay := Delay forSeconds: 1.
-	wasRun := false.
-	p1 := [delay wait] newProcess.
-	p1 priority: Processor activePriority+1.
-	p1 name: 'testMultiProcessWaitOnSameDelay-1'.
-	p1 resume.
-	p2 := [
-		self should:[delay wait] raise: Error.
-		wasRun := true.
-	] newProcess.
-	p2 priority:  Processor activePriority+1.
-	p2 name: 'testMultiProcessWaitOnSameDelay-2'.
-	p2 resume.
-	p1 terminate.
-	p2 terminate.
-	self assert: wasRun.
-
-! !
-
-!DelayTest methodsFor: 'testing-limits' stamp: 'ar 9/21/2009 22:12'!
-testMultiSchedule
-	"Ensure that scheduling the same delay twice raises an error"
-	| delay |
-	delay := Delay forSeconds: 1.
-	delay schedule.
-	self should:[delay schedule] raise: Error.
-! !
-
-!DifferenceFinderTest methodsFor: 'all' stamp: 'LC 1/24/2010 11:29'!
-testCharacters
-	| lcs |
-	lcs := DifferenceFinder charactersOf: 'GAC' and: 'AGCAT'.
-	lcs compute.
-	self
-		assert: (lcs lcsAt: 1 at: 1) anyOne size = 0;
-		assert: (lcs lcsAt: 1 at: 2) anyOne size = 1;
-		assert: (lcs lcsAt: 1 at: 3) anyOne size = 1;
-		assert: (lcs lcsAt: 1 at: 4) anyOne size = 1;
-		assert: (lcs lcsAt: 1 at: 5) anyOne size = 1;
-		assert: (lcs lcsAt: 2 at: 1) anyOne size = 1;
-		assert: (lcs lcsAt: 2 at: 2) anyOne size = 1;
-		assert: (lcs lcsAt: 2 at: 3) anyOne size = 1;
-		assert: (lcs lcsAt: 2 at: 4) anyOne size = 2;
-		assert: (lcs lcsAt: 2 at: 5) anyOne size = 2;
-		assert: (lcs lcsAt: 3 at: 1) anyOne size = 1;
-		assert: (lcs lcsAt: 3 at: 2) anyOne size = 1;
-		assert: (lcs lcsAt: 3 at: 3) anyOne size = 2;
-		assert: (lcs lcsAt: 3 at: 4) anyOne size = 2;
-		assert: (lcs lcsAt: 3 at: 5) anyOne size = 2
-! !
-
-!DifferenceFinderTest methodsFor: 'all'!
-testCharacters2
-	| finder x y |
-	finder := DifferenceFinder charactersOf: 'GAC' and: 'AGCAT'.
-	finder compute.
-	self assert: finder differences size = 3.
-	finder differences do: [:diff | 
-		x := String streamContents: [:strm | 
-			diff
-				do: [:char :condition | (#(#removed #unchanged) includes: condition)
-					ifTrue: [strm nextPut: char]]].
-		self assert: x = 'GAC'.
-		y := String streamContents: [:strm | 
-			diff
-				do: [:char :condition | (#(#inserted #unchanged) includes: condition)
-					ifTrue: [strm nextPut: char]]].
-		self assert: y = 'AGCAT']
-! !
-
-!DifferenceFinderTest methodsFor: 'all'!
-testCode
-	| old new finder |
-	old := 'differencesText
-	| change sourceString current diff rtf selectedString |
-	change := self selectedMethod ifNil: [self currentClass].
-	current := change currentVersion.
-	sourceString := current isNil
-		ifTrue: ['']
-		ifFalse: [current isCompiledMethod ifTrue: [(self
-			formatSource: current sourceString
-			inClass: current classField)
-			sourceCode] ifFalse: [current sourceString]].
-	selectedString := (current isNil or: [current isCompiledMethod not])
-		ifTrue: [change sourceString]
-		ifFalse: [((self
-			formatSource: change sourceString
-			inClass: current classField) ifNil: [change]) sourceCode].
-	diff := TextDiffBuilder from: sourceString to: selectedString.
-	rtf := RTFText new setFont: TextFont.
-	rtf setTabStops: self tabStops.
-	diff run; printPatchSequenceOn: rtf.
-	^rtf contents contents'.
-	new := 'differencesText
-	| change sourceString current finder rtf selectedString |
-	change := self selectedMethod ifNil: [self currentClass].
-	current := change currentVersion.
-	sourceString := current isNil ifTrue: [''] ifFalse: [
-		current isCompiledMethod
-			ifTrue: [(self
-				formatSource: current sourceString
-				inClass: current classField)
-				sourceCode]
-			ifFalse: [current sourceString]].
-	selectedString := (current isNil or: [current isCompiledMethod not])
-		ifTrue: [change sourceString]
-		ifFalse: [((self
-			formatSource: change sourceString
-			inClass: current classField)
-			ifNil: [change])
-			sourceCode].
-	finder := DifferenceFinder wordsOf: sourceString and: selectedString.
-	finder compute.
-	rtf := RTFText new setFont: TextFont.
-	rtf setTabStops: self tabStops.
-	finder differences first printTextOn: rtf.
-	^rtf contents contents'.
-	finder := DifferenceFinder wordsOf: old and: new.
-	finder compute
-! !
-
-!DifferenceFinderTest methodsFor: 'all'!
-testLines
-	| finder alan ian x y |
-	alan := 'The best way to
-	predict
-	the future is to
-	invent
-	it.
-	A. Kay'.
-	ian := 'The best way to
-	invent
-	the future is to
-	not predicting
-	it.
-	Ian Piumarta'.
-	finder := DifferenceFinder linesOf: alan and: ian.
-	finder compute.
-	finder differences do: [:diff | 
-		x := String streamContents: [:strm | 
-			diff
-				do: [:chunk :condition | (#(#removed #unchanged) includes: condition)
-					ifTrue: [strm nextPutAll: chunk]]].
-		self assert: x = alan.
-		y := String streamContents: [:strm | 
-			diff
-				do: [:chunk :condition | (#(#inserted #unchanged) includes: condition)
-					ifTrue: [strm nextPutAll: chunk]]].
-		self assert: y = ian]
-! !
-
-!DifferenceFinderTest methodsFor: 'all'!
-testWords
-	| finder alan ian x y |
-	alan := 'The best way to
-	predict
-	the future is to
-	invent
-	it.
-	A. Kay'.
-	ian := 'The best way to
-	invent 	the future is to
-	not predicting
-	it.
-	Ian Piumarta'.
-	finder := DifferenceFinder wordsOf: alan and: ian.
-	finder compute.
-	finder differences do: [:diff | 
-		x := String streamContents: [:strm | 
-			diff
-				do: [:chunk :condition | (#(#removed #unchanged) includes: condition)
-					ifTrue: [strm nextPutAll: chunk]]].
-		self assert: x = alan.
-		y := String streamContents: [:strm | 
-			diff
-				do: [:chunk :condition | (#(#inserted #unchanged) includes: condition)
-					ifTrue: [strm nextPutAll: chunk]]].
-		self assert: y = ian]
-! !
 
 !ExceptionTests methodsFor: 'private' stamp: 'md 3/25/2003 23:40'!
 assertSuccess: anExceptionTester
@@ -3899,6 +1116,107 @@ testSimpleReturn
 testTimeoutWithZeroDuration
 	self assertSuccess: (ExceptionTester new runTest: #simpleTimeoutWithZeroDurationTest ) ! !
 
+!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:15'!
+testSchedulerTermination
+	| process sema gotHere sema2 |
+	gotHere _ false.
+	sema _ Semaphore new.
+	sema2 _ Semaphore new.
+	process _ [
+		sema signal.
+		sema2 wait.
+		"will be suspended here"
+		gotHere _ true ] newProcess.
+	process priority: Processor activeProcess priority.
+	process name: 'testSchedulerTermination'.
+	process resume.
+	sema wait.
+	"until process gets scheduled"
+	process terminate.
+	sema2 signal.
+	Processor yield.
+	"will give process a chance to continue and horribly screw up"
+	self assert: gotHere not.! !
+
+!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 11/4/2011 22:00'!
+testTerminationDuringUnwind
+	"An illustration of the issue of process termination during unwind.
+	This uses a well-behaved unwind block that we should allow to complete
+	if at all possible."
+	"
+	self new testTerminationDuringUnwind
+	"
+	| unwindStarted unwindFinished p |
+	unwindStarted := unwindFinished := false.
+	p := [[] ensure:[
+			unwindStarted := true.
+			Processor yield.
+			unwindFinished := true.
+		]] newProcess.
+	p resume.
+	self deny: unwindStarted.
+	Processor yield.
+	self assert: unwindStarted.
+	self deny: unwindFinished.
+	p terminate.
+	self assert: unwindFinished.! !
+
+!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:15'!
+testUnwindFromActiveProcess
+	| sema process |
+	sema := Semaphore forMutualExclusion.
+	self assert:(sema isSignaled).
+	process := [
+		sema critical:[
+			self deny: sema isSignaled.
+			Processor activeProcess terminate.
+		]
+	] newProcess.
+	process priority: Processor userInterruptPriority.
+	process name: 'testUnwindFromActiveProcess'.
+	process resume.
+	self assert: sema isSignaled! !
+
+!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:14'!
+testUnwindFromForeignProcess
+	| sema process |
+	sema := Semaphore forMutualExclusion.
+	self assert: sema isSignaled.
+	process := [
+		sema critical:[
+			self deny: sema isSignaled.
+			sema wait. "deadlock"
+		]
+	] newProcess.
+	process priority: Processor userInterruptPriority.
+	process name: 'testUnwindFromForeignProcess'.
+	process resume.
+	self deny: sema isSignaled.
+	"This is for illustration only - the BlockCannotReturn cannot 
+	be handled here (it's truncated already)"
+	self shouldnt: [process terminate] raise: BlockCannotReturn.
+	self assert: sema isSignaled! !
+
+!AbstractNumberTest methodsFor: 'helpers' stamp: 'sqr 5/26/2016 18:00'!
+assert: aNumber isAbout: anotherNumber
+
+	self assert: (aNumber isWithin: 1 ulpsFrom: anotherNumber)! !
+
+!AbstractNumberTest methodsFor: 'helpers' stamp: 'sqr 5/26/2016 18:04'!
+assert: aNumber isAbout: anotherNumber description: aString
+
+	self assert: (aNumber isWithin: 1 ulpsFrom: anotherNumber) description: aString! !
+
+!AbstractNumberTest methodsFor: 'helpers' stamp: 'sqr 5/26/2016 18:01'!
+deny: aNumber isAbout: anotherNumber
+
+	self deny: (aNumber isWithin: 1 ulpsFrom: anotherNumber)! !
+
+!AbstractNumberTest methodsFor: 'helpers' stamp: 'sqr 5/26/2016 18:02'!
+deny: aNumber isAbout: anotherNumber description: aString
+
+	self deny: (aNumber isWithin: 1 ulpsFrom: anotherNumber) description: aString! !
+
 !FloatTest methodsFor: 'IEEE 754' stamp: 'jmv 1/2/2015 09:29'!
 test32bitConversion
 	"Except for NaN, we can convert a 32bits float to a 64bits float exactly.
@@ -4041,25 +1359,25 @@ test32bitRoundingMode
 	self assert: expected = conv.
 ! !
 
-!FloatTest methodsFor: 'testing' stamp: 'nice 10/30/2009 22:23'!
+!FloatTest methodsFor: 'testing' stamp: 'sqr 5/26/2016 18:06'!
 testArcTan
 
-	self assert: ((100 arcTan: 100) closeTo: Float pi / 4).
-	self assert: ((-100 arcTan: 100) closeTo: Float pi / -4).
-	self assert: ((100 arcTan: -100) closeTo: Float pi * 3 / 4).
-	self assert: ((-100 arcTan: -100) closeTo: Float pi * -3 / 4).
-	self assert: ((0 arcTan: 100) closeTo: 0).
-	self assert: ((0 arcTan: -100) closeTo: Float pi).
-	self assert: ((100 arcTan: 0) closeTo: Float pi / 2).
-	self assert: ((-100 arcTan: 0) closeTo: Float pi / -2).
+	self assert: (100 arcTan: 100) isAbout: Float pi / 4.
+	self assert: (-100 arcTan: 100) isAbout: Float pi / -4.
+	self assert: (100 arcTan: -100) isAbout: Float pi * 3 / 4.
+	self assert: (-100 arcTan: -100) isAbout: Float pi * -3 / 4.
+	self assert: (0 arcTan: 100) isAbout: 0.
+	self assert: (0 arcTan: -100) isAbout: Float pi.
+	self assert: (100 arcTan: 0) isAbout: Float pi / 2.
+	self assert: (-100 arcTan: 0) isAbout: Float pi / -2.
 	
-	self assert: ((Float negativeZero arcTan: 100) closeTo: 0).
-	self assert: ((Float negativeZero arcTan: -100) closeTo: Float pi * -1).
+	self assert: (Float negativeZero arcTan: 100) isAbout: 0.
+	self assert: (Float negativeZero arcTan: -100) isAbout: Float pi * -1.
 	
 	self assert: (0 arcTan: 0) = 0.
 	self assert: (Float negativeZero arcTan: 0) = 0.
-	self assert: ((0 arcTan: Float negativeZero) closeTo: Float pi).
-	self assert: ((Float negativeZero arcTan: Float negativeZero) closeTo: Float pi negated). ! !
+	self assert: (0 arcTan: Float negativeZero) isAbout: Float pi.
+	self assert: (Float negativeZero arcTan: Float negativeZero) isAbout: Float pi negated! !
 
 !FloatTest methodsFor: 'testing - conversion' stamp: 'jmv 9/7/2010 12:12'!
 testAsTrueFraction
@@ -4403,6 +1721,30 @@ testIntegerAsFloat
 	self assert: 16r1FFFFFFFFFFFF0800 asFloat = 16r1FFFFFFFFFFFF0000 asFloat. "nearest even is lower"
 ! !
 
+!FloatTest methodsFor: 'testing compare' stamp: 'sqr 5/26/2016 18:11'!
+testIsWithinUlpsFrom
+
+	self deny: (Float nan isWithin: Float fmax ulpsFrom: Float nan) description: 'NaN isn''t close to anything'.
+	self deny: (Float nan isWithin: Float fmax ulpsFrom: 1.0) description: 'NaN isn''t close to anything'.
+	self deny: (1.0 isWithin: Float fmax ulpsFrom: Float nan) description: 'NaN isn''t close to anything'.
+	
+	self deny: (-1.0 isWithin: 1000 ulpsFrom: 1.0).
+	self deny: (1.0 isWithin: Float fmax ulpsFrom: Float infinity).
+	self deny: (Float infinity isWithin: Float fmax ulpsFrom: Float infinity) description: 'infinites are not comparable like that'.
+	self deny: (Float infinity isWithin: Float infinity ulpsFrom: Float infinity) description: 'infinites are not comparable like that'.
+	
+	self assert: (1.0/3.0 isWithin: 1 ulpsFrom: 1/3).
+	self assert: (1.0e-8 isWithin: 1.0e-8 / 0.0 ulp ulpsFrom: 0).
+	self assert: (0.0 isWithin: 1.0e-8 ulp reciprocal ulpsFrom: 1.0e-8).
+	self assert: (1+1.0e-8 isWithin: 1.0e-8 ulp reciprocal ulpsFrom: 1.0).
+	
+	self assert: (1000000001.0 isWithin: (1 bitShift: 23) ulpsFrom: 1000000000.0).
+	self assert: ((1 bitShift: 52) asFloat + 1.0 isWithin: 1 ulpsFrom: (1 bitShift: 52) asFloat).
+
+	self assert: (1.0 isWithin: 1 ulpsFrom: 1.0).
+	self assert: (1.0 successor isWithin: 1 ulpsFrom: 1.0).
+	self deny: (1.0 successor successor isWithin: 1 ulpsFrom: 1.0)! !
+
 !FloatTest methodsFor: 'zero behavior' stamp: 'md 4/16/2003 15:02'!
 testIsZero
 	self assert: 0.0 isZero.
@@ -4631,6 +1973,31 @@ testStringAsNumber
 	self assert: 1234.56 = aFloat.
 ! !
 
+!FloatTest methodsFor: 'testing - arithmetic' stamp: 'jmv 10/30/2016 17:12:55'!
+testTimesTwoPowerGradualUnderflow
+	"Here is a vicious case where timesTwoPower is inexact because it underflows.
+	And two consecutive inexact operations lead to a different result than a single one.
+	Typically expressed as multiple of Float fmin in base 2,
+	2r1011*Float fmin shifted by -3 with round to nearest, tie to even mode:
+	-> round(1.011) -> 1.0 = fmin
+	But if first shifted by -2 then by -1:
+	-> round(10.11) -> 11.0 = 3*fmin
+	-> round(1.1) -> 10.0 = 2*fmin
+	Or first shifted by -1 then by -2:
+	-> round(101.1) -> 110.0 = 6*fmin
+	-> round(1.1) -> 10.0 = 2*fmin
+	A naive implementation that split the shift uncarefully might fail to handle such case correctly."
+
+	| f |
+	f := 2r1011 asFloat.
+	"scan the whole range of possible exponents for this significand"
+	Float fmin exponent + f exponent to: Float fmax exponent - f exponent
+		do:
+			[:exp |
+				| g |
+				g := f timesTwoPower: exp.
+				self assert: (g timesTwoPower: Float fmin exponent - g exponent) = Float fmin]! !
+
 !FloatTest methodsFor: 'zero behavior' stamp: 'sd 6/5/2005 08:33'!
 testZero1
 	"FloatTest new testZero1"
@@ -4657,331 +2024,6 @@ testZeroSignificandAsInteger
 	"This is about http://bugs.squeak.org/view.php?id=6990"
 	
 	self assert: 0.0 significandAsInteger = 0! !
-
-!FmFileIOAccessorTest methodsFor: 'private' stamp: 'jmv 9/28/2015 14:02'!
-defaultDirectoryPath
-	^FmDirectoryEntry currentDirectory pathName! !
-
-!FmFileIOAccessorTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 11:22'!
-testDirectoryExists
-	"FmFileIOAccessorTest debug: #testDirectoryExists"
-	| subDirString dirString |
-	subDirString := 99999 atRandom asString.
-	dirString := self defaultDirectoryPath, FmFileIOAccessor default slash, subDirString.
-
-	FmFileIOAccessor default createDirectory: dirString.
-
-	self should: [ dirString asDirectoryEntry exists ].
-
-	FmFileIOAccessor default deleteDirectory: dirString.
-
-	self shouldnt: [ dirString asDirectoryEntry exists ].! !
-
-!FmFileManTest methodsFor: 'private' stamp: 'mu 11/6/2006 20:35'!
-directoryEntryForTest
-	^'./fmTestDir' asDirectoryEntry! !
-
-!FmFileManTest methodsFor: 'private' stamp: 'mu 11/6/2006 20:29'!
-randomFileName
-	^100000 atRandom asString, '.fmtst'! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/28/2015 10:33'!
-testAbsolutePath
-	"FmFileManTest debug: #testAbsolutePath"
-	| dirEntry dirEntry1 dirEntry2 dirEntry3 dirEntry4 |
-	dirEntry := '/' asDirectoryEntry.
-	self should: [dirEntry = ':' asDirectoryEntry].
-	self should: [dirEntry = '\' asDirectoryEntry].
-	
-	dirEntry1 := '/temp/' asDirectoryEntry.
-	self should: [dirEntry1 = ':temp' asDirectoryEntry].
-	self should: [dirEntry1 = '\temp' asDirectoryEntry].
-
-	dirEntry2 := '/temp/a' asDirectoryEntry.
-	self should: [dirEntry2 = ':temp:a' asDirectoryEntry].
-	self should: [dirEntry2 = '\temp\a' asDirectoryEntry].
-
-	dirEntry3 := 'C:/temp/b' asDirectoryEntry.
-	self should: [dirEntry3 = 'C:\temp\b' asDirectoryEntry].
-	self should: [dirEntry3 = 'C::temp:b' asDirectoryEntry].
-
-	"Platform specific path tests"
-	FmFileIOAccessor default onMacClassic ifTrue: [
-	dirEntry4 := 'Macintosh HD:tmp' asDirectoryEntry.
-	self should: [dirEntry4 = 'Macintosh HD/tmp' asDirectoryEntry].
-	self should: [dirEntry4 = 'Macintosh HD\tmp' asDirectoryEntry].
-	].
-	
-	
-	
-	! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/6/2006 23:08'!
-testAtPut
-	"FmFileManTest debug: #testAtPut" 
-	| dir bytes |
-	dir := self directoryEntryForTest.
-	dir at: 'test1' put: 'Hello'.
-	self should: [(dir at: 'test1') = 'Hello'].
-	self should: [dir includesKey: 'test1'].
-
-	bytes := #(1 2 3 4 5 6) asByteArray.
-	dir binaryAt: 'test2' put: bytes.
-	self should: [(dir binaryAt: 'test2') = bytes].
-	self should: [dir includesKey: 'test2'].
-
-	dir removeKey: 'test1'.
-
-	self shouldnt: [dir includesKey: 'test1'].
-
-	dir recursiveDelete.
-	self should: [dir exists not]! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 6/6/2015 19:49'!
-testConcatenation
-	"
-	FmFileManTest debug: #testConcatenation
-	"
-	| dir |
-	dir := ('./subDir' asDirectoryEntry / 'aaa/bbb' / 'ccc' / 'ddd\eee' / 'fff:ggg').
-	dir at: 'test1' put: 'RecursiveDeleted!!'.
-
-	self assert: dir name = 'ggg'.
-	self assert: dir parent name = 'fff'.
-	self assert: dir parent parent name = 'eee'.
-	self assert: dir parent parent parent name = 'ddd'.
-	self assert: dir parent parent parent parent name = 'ccc'.
-	self assert: dir parent parent parent parent parent name = 'bbb'.
-	self assert: dir parent parent parent parent parent parent name = 'aaa'.
-
-	'./subDir' asDirectoryEntry recursiveDelete.
-	self shouldnt: [dir exists].
-	self shouldnt: ['./subDir' asDirectoryEntry exists].! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 12:08'!
-testCopy
-	"FmFileManTest debug: #testCopy" 
-	| file1 file2 |
-	file1 := self randomFileName asFileEntry.
-	file2 := file1 parent // self randomFileName.
-
-	file1 fileContents: 'This is a test'.
-
-"	self should: [file2 fileContents isEmpty]."
-	self should: [file2 exists not].
-
-	file1 copyTo: file2 pathName.
-
-	self should: [file2 fileContents = 'This is a test'].
-
-	file1 delete.
-	file2 delete.
-	self should: [file1 exists not].
-	self should: [file2 exists not]
-	
-	
-	! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/5/2015 08:43'!
-testDefaultDirectory
-	"
-	FmFileManTest debug: #testDefaultDirectory
-	"
-	
-	| pathComponents |
-
-	self assert: '' asDirectoryEntry =  FmDirectoryEntry currentDirectory.
-
-	pathComponents := '' asDirectoryEntry pathComponents.
-	self assert: pathComponents = FmDirectoryEntry currentDirectory pathComponents! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/6/2006 20:33'!
-testFileContents
-	"FmFileManTest debug: #testFileContents" 
-	| file1 file2 bytes |
-	file1 := self randomFileName asFileEntry.
-	file1 fileContents: 'This is a test'.
-	self should: [file1 fileContents = 'This is a test'].
-	file1 delete.
-	self should: [file1 exists not].
-
-	file2 := self randomFileName asFileEntry.
-	bytes := #(1 2 3 4 5 6) asByteArray.
-	file2 fileContents: bytes.
-	self should: [file2 fileContents = bytes asString].
-	self should: [file2 binaryContents = bytes].
-	file2 delete.
-	self should: [file2 exists not]! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 11/30/2015 09:43'!
-testIsAbsolutePathName
-	"
-	FmFileManTest debug: #testIsAbsolutePathName
-	"
-	self assert: '/' isAbsolutePathName.
-	self assert: '/temp/' isAbsolutePathName.
-	self assert: '/temp/a' isAbsolutePathName.
-	Smalltalk platformName = 'Win32' ifTrue: [
-		self assert: 'C:/temp/b' isAbsolutePathName ].
-	FmFileIOAccessor default onMacClassic ifTrue: [
-		self assert: 'Macintosh HD/tmp' isAbsolutePathName ].
-	
-	self deny: './' isAbsolutePathName.
-	self deny: '../' isAbsolutePathName.
-	self deny: 'afile' isAbsolutePathName.! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 6/6/2015 23:20'!
-testIsRelativePathName
-	"
-	FmFileManTest debug: #testIsRelativePathName
-	"
-	self assert: './' isRelativePathName.
-	self assert: '../' isRelativePathName.
-"	self assert: 'afile' isRelativePathName."
-	self deny: '/' isRelativePathName.
-	self deny: '/temp/' isRelativePathName.
-	self deny: '/temp/a' isRelativePathName.
-	self deny: 'C:/temp/b' isRelativePathName.
-	self deny: 'Macintosh HD/tmp' isRelativePathName.! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 6/6/2015 22:03'!
-testPathComponents
-	"
-	FmFileManTest debug: #testPathComponents
-	"
-	| pathComponents |
-
-	pathComponents := './aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
-	pathComponents := pathComponents last: 4.
-	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd').
-
-	pathComponents := '/aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
-	pathComponents := pathComponents last: 4.
-	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd').
-
-	pathComponents := 'aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
-	pathComponents := pathComponents last: 4.
-	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd')! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 11:28'!
-testPipe
-	"FmFileManTest debug: #testPipe" 
-	| reverseFilter file1 file2 file3 |
-
-	reverseFilter := [:in :out | out nextPutAll: (in upToEnd reverse)].
-
-	file1 := self randomFileName asFileEntry.
-	file2 := self randomFileName asFileEntry.
-	file3 := self randomFileName asFileEntry.
-
-	file1 fileContents: 'This is a pipe test'.
-
-	file1 pipe: reverseFilter to: file2 pathName.
-
-	self should: [('.' asDirectoryEntry at: file1 name) = 'This is a pipe test'].	
-	self should: [(file2 fileContents) = 'tset epip a si sihT'].	
-"	self should: [(file3 fileContents) isEmpty]."
-	self should: [file3 exists not].
-
-	file2 pipe: reverseFilter to: file3 pathName.
-	self should: [(file3 fileContents) = 'This is a pipe test'].	
-
-	file1 delete.
-	file2 delete.
-	file3 delete.
-	self should: [file1 exists not].
-	self should: [file2 exists not].
-	self should: [file3 exists not]
-	
-	
-	! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 12:09'!
-testRecursiveDelete
-	"FmFileManTest debug: #testRecursiveDelete" 
-	| dir |
-	dir := ('./subDir' asDirectoryEntry / 'aaa\bbb' / 'ccc' / 'ddd\eee' / 'fff:ggg').
-	dir at: 'test1' put: 'RecursiveDelete!!'.
-	self should: [(dir at: 'test1') = 'RecursiveDelete!!'].
-
-	dir removeKey: 'test1'.
-
-	self shouldnt: [(dir // 'test1') exists].
-
-	'./subDir' asDirectoryEntry recursiveDelete.
-	self shouldnt: [dir exists].
-	self shouldnt: ['./subDir' asDirectoryEntry exists].
-
-	! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/15/2006 20:22'!
-testRefresh
-	"FmFileManTest debug: #testRefresh" 
-	| file1 |
-	file1 := self randomFileName asFileEntry.
-
-	file1 fileContents: '1234567890'.
-	self should: [file1 fileSize = 10].
-
-	file1 fileContents: '123'.
-	self should: [file1 fileSize = 3].
-	
-
-	file1 delete.
-	self should: [file1 exists not].
-	! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'mu 11/15/2006 20:19'!
-testRename
-	"FmFileManTest debug: #testRename" 
-	| file1 |
-	file1 := self randomFileName asFileEntry.
-	file1 fileContents: 'ToBeRenamed'.
-
-	self shouldnt: [file1 name = 'newName1'].
-
-	file1 rename: 'newName1'.
-
-	self should: [file1 name = 'newName1'].
-	self should: [file1 exists].
-
-	self should: [file1 fileContents = 'ToBeRenamed'].
-
-	file1 delete.
-	self should: [file1 exists not].
-	! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/21/2015 11:31'!
-testRoot
-	"FmFileManTest debug: #testRoot"
-	| root |
-	root := FmDirectoryEntry roots first.
-	self should: [root pathComponents isEmpty].
-	FmFileIOAccessor default onUnix ifTrue: [
-		self should: [root = '\' asDirectoryEntry]. 
-		self should: [root = ':' asDirectoryEntry]. 
-		self should: [root = '/' asDirectoryEntry]]! !
-
-!FmFileManTest methodsFor: 'testing' stamp: 'jmv 10/2/2015 16:42'!
-testStream
-	"FmFileManTest debug: #testStream" 
-	| file1 contents formerContents allContents |
-	file1 := self randomFileName asFileEntry.
-	file1 writeStream: [:str | str nextPutAll: 'HELLO!!'].
-	contents := file1 readStream: [:str | str upToEnd].
-	self should: [contents = 'HELLO!!'].
-
-	file1 appendStream: [:str | str nextPutAll: 'AGAIN!!'].
-
-	formerContents := file1 readStream: [:str | str upTo:$!!].
-	self should: [formerContents = 'HELLO'].
-
-	allContents := file1 readStream: [:str | str upToEnd].
-	self should: [allContents = 'HELLO!!AGAIN!!'].
-
-	file1 delete.
-	self should: [file1 exists not].
-	! !
 
 !FractionTest methodsFor: 'private' stamp: 'jmv 10/11/2011 22:12'!
 assert: a classAndValueEquals: b
@@ -5183,17 +2225,17 @@ testInexactSqrt
 	"
 	self assert: ((1 << 1024 + 1) / (1 << 1024 + 3)) sqrt = 1.0! !
 
-!FractionTest methodsFor: 'tests - mathematical functions' stamp: 'nice 6/12/2010 00:35'!
+!FractionTest methodsFor: 'tests - mathematical functions' stamp: 'sqr 5/26/2016 18:07'!
 testLn
-	self assert: ((1/100) ln closeTo: -2 * 10 ln).
-	self assert: (((2 raisedTo: Float emax + 11)/3) ln closeTo: (Float emax + 11)*2 ln - 3 ln) description: 'Fraction>>ln should not overflow'.
-	self assert: ((3/(2 raisedTo: Float precision - Float emin)) ln closeTo: (Float emin - Float precision)*2 ln + 3 ln) description: 'Fraction>>ln should not underflow'! !
+	self assert: (1/100) ln isAbout: -2 * 10 ln.
+	self assert: ((2 raisedTo: Float emax + 11) / 3) ln isAbout: (Float emax + 11) * 2 ln - 3 ln description: 'Fraction>>ln should not overflow'.
+	self assert: (3 / (2 raisedTo: Float precision - Float emin)) ln isAbout: (Float emin - Float precision) * 2 ln + 3 ln description: 'Fraction>>ln should not underflow'! !
 
-!FractionTest methodsFor: 'tests - mathematical functions' stamp: 'nice 6/12/2010 00:37'!
+!FractionTest methodsFor: 'tests - mathematical functions' stamp: 'sqr 5/26/2016 18:08'!
 testLog
-	self assert: ((1/100) log closeTo: -2).
-	self assert: (((2 raisedTo: Float emax + 11)/3) log closeTo: (Float emax + 11)*2 log - 3 log) description: 'Fraction>>log should not overflow'.
-	self assert: ((3/(2 raisedTo: Float precision - Float emin)) log closeTo: (Float emin - Float precision)*2 log + 3 log) description: 'Fraction>>log should not underflow'! !
+	self assert: (1/100) log isAbout: -2.
+	self assert: ((2 raisedTo: Float emax + 11) / 3) log isAbout: (Float emax + 11) * 2 log - 3 log description: 'Fraction>>log should not overflow'.
+	self assert: (3 / (2 raisedTo: Float precision - Float emin)) log isAbout: (Float emin - Float precision) * 2 log + 3 log description: 'Fraction>>log should not underflow'! !
 
 !FractionTest methodsFor: 'tests - mathematical functions' stamp: 'nice 10/19/2011 20:48'!
 testNthRoot
@@ -5224,94 +2266,6 @@ testSqrtErrorConditions
 	"
 	self should: [ (-1/4) sqrt ] raise: DomainError.
 	self should: [ ((1 << 1024 + 1) / (1 << 1024 + 3)) negated sqrt ] raise: DomainError! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNilIfNotNil0Arg
-
-	self assert: (5@4 ifNil: [#foo] ifNotNil: [#bar]) = #bar.
-	self assert: (nil ifNil: [#foo] ifNotNil: [#bar]) = #foo! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNilIfNotNil0ArgAsVar
-
-	| block1 block2 |
-	block1 := [#foo].
-	block2 := [#bar].
-	self assert: (5@4 ifNil: block1 ifNotNil: block2) = #bar.
-	self assert: (nil ifNil: block1 ifNotNil: block2) = #foo! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNilIfNotNil1Arg
-
-	self assert: (5@4 ifNil: [#foo] ifNotNil: [:a | a printString]) = '5@4'.
-	self assert: (nil ifNil: [#foo] ifNotNil: [:a | a printString]) = #foo! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNilIfNotNil1ArgAsVar
-
-	| block1 block2 |
-	block1 := [#foo].
-	block2 := [:a | a printString].
-	self assert: (5@4 ifNil: block1 ifNotNil: block2) = '5@4'.
-	self assert: (nil ifNil: block1 ifNotNil: block2) = #foo! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNil0Arg
-
-	self assert: (5@4 ifNotNil: [#foo]) = #foo.
-	self assert: (nil ifNotNil: [#foo]) = nil! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNil0ArgAsVar
-
-	| block |
-	block := [#foo].
-	self assert: (5@4 ifNotNil: block) = #foo.
-	self assert: (nil ifNotNil: block) = nil! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNil1Arg
-
-	self assert: (5@4 ifNotNil: [:a | a printString]) = '5@4'.
-	self assert: (nil ifNotNil: [:a | a printString]) = nil! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNil1ArgAsVar
-
-	| block |
-	block := [:a | a printString].
-	self assert: (5@4 ifNotNil: block) = '5@4'.
-	self assert: (nil ifNotNil: block) = nil! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNilIfNil0Arg
-
-	self assert: (5@4 ifNotNil: [#foo] ifNil: [#bar]) = #foo.
-	self assert: (nil ifNotNil: [#foo] ifNil: [#bar]) = #bar! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNilIfNil0ArgAsVar
-
-	| block1 block2 |
-	block1 := [#foo].
-	block2 := [#bar].
-	self assert: (5@4 ifNotNil: block2 ifNil: block1) = #bar.
-	self assert: (nil ifNotNil: block2 ifNil: block1) = #foo! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
-testIfNotNilIfNil1Arg
-
-	self assert: (5@4 ifNotNil: [:a | a printString] ifNil: [#foo]) = '5@4'.
-	self assert: (nil ifNotNil: [:a | a printString] ifNil: [#foo]) = #foo! !
-
-!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:47'!
-testIfNotNilIfNil1ArgAsVar
-
-	| block1 block2 |
-	block1 := [#foo].
-	block2 := [:a | a printString].
-	self assert: (5@4 ifNotNil: block2 ifNil: block1) = '5@4'.
-	self assert: (nil ifNotNil: block2 ifNil: block1) = #foo! !
 
 !IntegerDigitLogicTest methodsFor: 'tests' stamp: 'hmm 1/7/2002 21:12'!
 testAndSingleBitWithMinusOne
@@ -5531,7 +2485,7 @@ testBenchFib
 	self assert: (2 benchFib = 3).
 	! !
 
-!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 10/19/2011 22:59'!
+!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 8/21/2016 20:02:52'!
 testBigReceiverInexactNthRoot
 	"
 	IntegerTest new testBigReceiverInexactNthRoot
@@ -5543,12 +2497,12 @@ testBigReceiverInexactNthRoot
 	bigNum _ (100 factorial raisedTo: 3) + 1.		"Add 1 so it is not a whole cube"
 	self assert: bigNum asFloat isInfinite.			"Otherwise, we chose a bad sample"
 	result _ bigNum nthRoot: 3.
-	self assert: result class == Float.
+	self assert: result isFloat.
 	self deny: result isInfinite.
 	self assert: result = 100 factorial asFloat.		"No other float is closer. See following line"
 	self assert: 100 factorial asFloat = (100 factorial+1) asFloat! !
 
-!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 10/29/2011 14:15'!
+!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 8/21/2016 20:03:04'!
 testBigReceiverInexactSqrt
 	"
 	IntegerTest new testBigReceiverInexactSqrt
@@ -5560,7 +2514,7 @@ testBigReceiverInexactSqrt
 	bigNum _ 100 factorial squared + 1.		"Add 1 so it is not a whole square"
 	self assert: bigNum asFloat isInfinite.			"Otherwise, we chose a bad sample"
 	result _ bigNum sqrt.
-	self assert: result class == Float.
+	self assert: result isFloat.
 	self deny: result isInfinite.
 	self assert: result = 100 factorial asFloat.		"No other float is closer. See following lines"
 	self assert: (result successor asFraction squared - bigNum) abs >= (result asFraction squared - bigNum) abs.
@@ -6169,15 +3123,15 @@ testLargePrimesUpTo
 	
 ! !
 
-!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'nice 5/28/2010 21:28'!
+!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'sqr 5/26/2016 18:09'!
 testLn
-	self assert: (100 ln closeTo: 10 ln*2).
-	self assert: ((2 raisedTo: Float emax + 3) ln closeTo: 2 ln*(Float emax + 3)) description: 'Integer>>ln should not overflow'! !
+	self assert: 100 ln isAbout: 10 ln*2.
+	self assert: (2 raisedTo: Float emax + 3) ln isAbout: 2 ln * (Float emax + 3) description: 'Integer>>ln should not overflow'! !
 
-!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'nice 6/12/2010 00:37'!
+!IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'sqr 5/26/2016 18:09'!
 testLog
-	self assert: (100 log closeTo: 2).
-	self assert: ((2 raisedTo: Float emax + 3) log closeTo: 2 log*(Float emax + 3)) description: 'Integer>>log should not overflow'! !
+	self assert: 100 log isAbout: 2.
+	self assert: (2 raisedTo: Float emax + 3) log isAbout: 2 log * (Float emax + 3) description: 'Integer>>log should not overflow'! !
 
 !IntegerTest methodsFor: 'tests - bitLogic' stamp: 'nice 7/8/2008 02:21'!
 testLowBit
@@ -6508,6 +3462,39 @@ testNthRootErrorConditions
 
 	self should: [ -2 nthRoot: 1/4 ] raise: ArithmeticError.
 	self should: [ -2 nthRoot: 1.24 ] raise: ArithmeticError.! !
+
+!IntegerTest methodsFor: 'mathematical functions' stamp: 'jmv 10/15/2016 10:58:02'!
+testNthRootExactnessForHugeValue
+	"
+	self new testNthRootExactnessForHugeValue
+	"
+        self assert: ((10 raisedTo: 600) nthRoot: 300) = 100.
+        self assert: ((10 raisedTo: 600) nthRoot: 300) class == SmallInteger.
+        self assert: ((10 raisedTo: 600) + 1 nthRoot: 300) = 100.0.
+        self assert: (((10 raisedTo: 600) + 1 nthRoot: 300) isKindOf: Float)! !
+
+!IntegerTest methodsFor: 'mathematical functions' stamp: 'jmv 10/15/2016 10:57:28'!
+testNthRootImmuneToDoubleRounding
+"
+self new testNthRootImmuneToDoubleRounding
+"
+          "Use a specially crafted number for causing double rounding.
+         Solution is 10...01.1 - verySmallQuantity.
+         Where verySmallQuantity is approximately 1/53/(1<<53).
+         If the verySmallQuantity is not taken into account, then solution is rounded to 10....010"
+         | exponent crafted root highPrecisionRoot |
+         exponent := 4.
+         crafted := (1 << Float precision + 3 raisedTo: exponent) - 1.
+         root := crafted nthRoot: exponent.
+         highPrecisionRoot := (crafted << (exponent squared * Float precision * 4) nthRootRounded: exponent) / (1 << (exponent * Float precision * 4)).
+         self assert: (root asFraction - highPrecisionRoot) abs < (root predecessor asFraction - highPrecisionRoot) abs.
+         
+         "Same with the other sign.
+         Solution is 10...00.1 + verySmallQuantity."
+         crafted := (1 << Float precision + 1 raisedTo: exponent) + 1.
+         root := crafted nthRoot: exponent.
+         highPrecisionRoot := (crafted << (exponent squared * Float precision * 4) nthRootRounded: exponent) / (1 << (exponent * Float precision * 4)).
+         self assert: (root asFraction - highPrecisionRoot) abs < (root successor asFraction - highPrecisionRoot) abs.! !
 
 !IntegerTest methodsFor: 'tests - mathematical functions' stamp: 'jmv 5/27/2015 13:43'!
 testNthRootTruncated
@@ -7352,92 +4339,10 @@ testTwoComplementRightShift
      self assert: ((small bitShift: -1) ~= (small + 1 bitShift: -1)
 		== ((large bitShift: -1) ~= (large + 1 bitShift: -1))).! !
 
-!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/9/2016 16:21'!
-testAt
-	"
-	IntervalTest new testAt
-	"
-	self assert: (2 to: 5 by: 2) first = 2.
-	self assert: ((2 to: 5 by: 2) at: 1) = 2.
-	self assert: ((2 to: 5 by: 2) at: 2) = 4.
-	self assert: (2 to: 5 by: 2) last = 4.
-
-	self assert: (0 to: 2.4 by: 0.1) first = 0.
-	self assert: ((0 to: 2.4 by: 0.1) at: 1) = 0.
-	self assert: (((0 to: 2.4 by: 0.1) at: 2) closeTo: 0.1).
-	self assert: (((0 to: 2.4 by: 0.1) at: 3) closeTo: 0.2).
-	self assert: (((0 to: 2.4 by: 0.1) at: 23) closeTo: 2.2).
-	self assert: ((0 to: 2.4 by: 0.1) at: 24) = 2.3.
-	self assert: ((0 to: 2.4 by: 0.1) at: 25) = 2.4.
-	self assert: (0 to: 2.4 by: 0.1) last = 2.4.! !
-
-!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/9/2016 15:16'!
-testFloatInterval
-	"
-	IntervalTest new testFloatInterval
-	"
-	
-	self assert: (0 to: 2.4 by: 0.1) size = 25.
-	self assert: (0 to: 2.4 by: 0.1) first = 0.
-	self assert: (0 to: 2.4 by: 0.1) last = 2.4.
-
-	2 to: 200 do: [ :n |
-		self assert: (0.0 to: 1.0 count: n) size = n.
-		self assert: (0.0 to: 1.0 count: n) first = 0.0.
-		self assert: ((0.0 to: 1.0 count: n) last closeTo: 1.0) ].
-	2 to: 200 do: [ :n |
-		self assert: (1.0 to: 0.0 count: n) size = n.
-		self assert: (1.0 to: 0.0 count: n) first = 1.0.
-		self assert: ((1.0 to: 0.0 count: n) last closeTo: 0.0) ].! !
-
-!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/27/2016 14:49'!
-testFloatToByDo
-	"
-	IntervalTest new testFloatToByDo
-	"
-	| interval toByDo |
-
-	"See comment at #to:by:do:"
-	self flag: #expectedFailure.
-
-	interval _ 0 to: 2.4 by: 0.1.
-	toByDo _ Array streamContents: [ :strm |
-		0 to: 2.4 by: 0.1 do: [ :each |
-			strm nextPut: each ]].
-	self assert: toByDo size = interval size.
-	1 to: toByDo size do: [ :i |
-		self assert: (toByDo at: i) = (interval at: i) ]! !
-
-!IntervalTest methodsFor: 'testing' stamp: 'jmv 3/27/2016 17:18'!
-testIntegerInterval
-	"
-	IntervalTest new testIntegerInterval
-	"
-	| z |
-	self assert: (2 to: 5 by: 2) size = 2.
-	self assert: (2 to: 5 by: 2) last = 4.
-	z _ 0.
-	(2 to: 5 by: 2) do: [ :i | z _ i ].
-	self assert: z = 4! !
-
-!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/27/2016 14:29'!
-testIntegerToByDo
-	"
-	IntervalTest new testIntegerToByDo
-	"
-	| interval toByDo |
-	interval _ 2 to: 5 by: 2.
-	toByDo _ Array streamContents: [ :strm |
-		2 to: 5 by: 2 do: [ :each |
-			strm nextPut: each ]].
-	self assert: toByDo size = interval size.
-	1 to: toByDo size do: [ :i |
-		self assert: (toByDo at: i) = (interval at: i) ]! !
-
-!LargeNegativeIntegerTest methodsFor: 'tests' stamp: 'ar 11/30/2009 22:06'!
+!LargeNegativeIntegerTest methodsFor: 'tests' stamp: 'jmv 8/21/2016 20:04:13'!
 testCompactClassIndex
-	self assert: LargeNegativeInteger indexIfCompact = 4.
-! !
+	Smalltalk isSpur ifFalse: [
+		self assert: LargeNegativeInteger indexIfCompact = 4 ]! !
 
 !LargeNegativeIntegerTest methodsFor: 'tests' stamp: 'jmv 9/1/2010 13:46'!
 testDenormalizedPrintString
@@ -7472,9 +4377,10 @@ testBitShift
 	
 	1 to: 257 do: [:i | self should: [((i bitShift: i) bitShift: 0-i) = i]].! !
 
-!LargePositiveIntegerTest methodsFor: 'tests' stamp: 'ar 11/30/2009 22:06'!
+!LargePositiveIntegerTest methodsFor: 'tests' stamp: 'jmv 8/21/2016 20:04:20'!
 testCompactClassIndex
-	self assert: LargePositiveInteger indexIfCompact = 5.! !
+	Smalltalk isSpur ifFalse: [
+		self assert: LargePositiveInteger indexIfCompact = 5 ]! !
 
 !LargePositiveIntegerTest methodsFor: 'tests' stamp: 'jmv 9/1/2010 13:47'!
 testDenormalizedPrintString
@@ -7527,6 +4433,491 @@ testNormalize
 	self assert: (SmallInteger maxVal + 3 - 6) = (SmallInteger maxVal-3).
 	self should: ((SmallInteger minVal - 1 + 1) = SmallInteger minVal).
 	self assert: (SmallInteger minVal - 3 + 6) = (SmallInteger minVal+3).! !
+
+!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/26/2009 21:57'!
+testFractionPart
+
+	self 
+		assert: 2 fractionPart = 0;
+		assert: (1/2) fractionPart = (1/2);
+		assert: (4/3) fractionPart = (1/3);
+		assert: 2.0 fractionPart = 0.0;
+		assert: 0.5 fractionPart = 0.5;
+		assert: 2.5 fractionPart = 0.5
+! !
+
+!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/26/2009 21:55'!
+testIntegerPart
+
+	self 
+		assert: 2 integerPart = 2;
+		assert: (1/2) integerPart = 0;
+		assert: (4/3) integerPart = 1;
+		assert: 2.0 integerPart = 2.0;
+		assert: 0.5 integerPart = 0.0;
+		assert: 2.5 integerPart = 2.0
+! !
+
+!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/23/2009 20:49'!
+testOne
+
+	self 
+		assert: Integer one = 1;
+		assert: Float one = 1.0;
+		assert: Fraction one = 1! !
+
+!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:23'!
+testPrintShowingDecimalPlaces
+
+	self assert: (String streamContents: [ :s | 111.2 printOn: s fractionDigits: 2]) = '111.20'.
+	self assert: (String streamContents: [ :s | 111.2 printOn: s fractionDigits: 0]) = '111'.
+	self assert: (String streamContents: [ :s | 111 printOn: s fractionDigits: 0]) = '111'.
+	self assert: (String streamContents: [ :s | 111111111111111 printOn: s fractionDigits: 2]) = '111111111111111.00'.
+	self assert: (String streamContents: [ :s | 10 printOn: s fractionDigits: 20]) ='10.00000000000000000000'.
+	self assert: (String streamContents: [ :s | 0.98 printOn: s fractionDigits: 2]) = '0.98'.
+	self assert: (String streamContents: [ :s | -0.98 printOn: s fractionDigits: 2]) = '-0.98'.
+	self assert: (String streamContents: [ :s | 2.567 printOn: s fractionDigits: 2]) = '2.57'.
+	self assert: (String streamContents: [ :s | -2.567 printOn: s fractionDigits: 2]) = '-2.57'! !
+
+!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:21'!
+testPrintShowingDecimalPlaces2
+	"This tests problems related to Float>>rounded and Float>>roundTo::
+	- Float>>#rounded is inexact
+	- Float>>#roundTo: might overflow"
+
+	"5000000000000001.0 asTrueFraction = 5000000000000001.
+	5000000000000001 highBit = 53.
+	This number is represented exactly asFloat, it should print exactly"
+	self assert: (String streamContents: [ :s | 5000000000000001.0 printOn: s fractionDigits: 0]) = '5000000000000001'.
+	
+	"50000000000001.25 asTrueFraction = (200000000000005/4).
+	200000000000005 highBit = 48, 4 isPowerOfTwo,
+	So this number is also represented exactly as Float, it should print exactly.
+	Beware: (50000000000001.25 / 0.01) rounded exhibit the same problem as above."
+	self assert: (String streamContents: [ :s | 50000000000001.25 printOn: s fractionDigits: 2]) = '50000000000001.25'.
+	
+	"This number is close to maximum float value"
+	self shouldnt: [String streamContents: [ :s | 1.0e306 printOn: s fractionDigits: 3]] raise: Error.! !
+
+!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:22'!
+testPrintShowingDecimalPlaces3
+	"This problem were reported at http://bugs.squeak.org/view.php?id=7028
+	unfortunate inversion of left / right padding"
+	self assert: (String streamContents: [ :s | 1.009 printOn: s fractionDigits: 3]) = '1.009'.
+	self assert: (String streamContents: [ :s | 35.900 printOn: s fractionDigits: 3]) = '35.900'.
+	self assert: (String streamContents: [ :s | -0.097 printOn: s fractionDigits: 3]) = '-0.097'.! !
+
+!NumberTest methodsFor: 'tests' stamp: 'nice 12/6/2007 21:24'!
+testRaisedTo
+	"this is a test related to http://bugs.squeak.org/view.php?id=6781"
+	
+	self should: [0 raisedTo: -1] raise: ZeroDivide.
+	self should: [0 raisedTo: -1.0] raise: ZeroDivide.! !
+
+!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/25/2009 16:41'!
+testRaisedToInteger
+
+	self 
+		assert: (2 raisedToInteger: 0) = 1;
+		assert: (2 raisedToInteger: 1) = 2;
+		assert: (2 raisedToInteger: 4) = 16;
+		assert: (0 raisedToInteger: 0) = 1;
+		assert: (0 raisedToInteger: 2) = 0;
+		assert: (2 raisedToInteger: -1) = (1/2);
+		assert: (2 raisedToInteger: -4) = (1/16).
+	
+	self 
+		assert: (-3 raisedTo: 0) = 1;
+		assert: (-3 raisedTo: 1) = -3;
+		assert: (-3 raisedTo: 2) = 9;
+		assert: (-3 raisedTo: 3) = -27;
+		assert: (-3 raisedTo: -2) = (1/9);
+		assert: (-3 raisedTo: -3) = (-1/27).
+	
+	self should: [ 0 raisedTo: -1 ] raise: ZeroDivide! !
+
+!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/25/2009 16:46'!
+testRaisedToIntegerWithFloats
+
+	self 
+		assert: (2.0 raisedToInteger: 0) = 1.0;
+		assert: (2.0 raisedToInteger: 1) = 2.0;
+		assert: (2.0 raisedToInteger: 4) = 16.0;
+		assert: (0.0 raisedToInteger: 0) = 1.0;
+		assert: (0.0 raisedToInteger: 2) = 0.0;
+		assert: (2.0 raisedToInteger: -1) = 0.5;
+		assert: (2.0 raisedToInteger: -4) = 0.0625.
+	
+	self 
+		assert: (-3.0 raisedTo: 0) = 1.0;
+		assert: (-3.0 raisedTo: 1) = -3.0;
+		assert: (-3.0 raisedTo: 2) = 9.0;
+		assert: (-3.0 raisedTo: 3) = -27.0;
+		assert: (-2.0 raisedTo: -2) = 0.25;
+		assert: (-2.0 raisedTo: -3) = -0.125.
+	
+	self should: [ 0.0 raisedTo: -1 ] raise: ZeroDivide! !
+
+!NumberTest methodsFor: 'tests' stamp: 'sd 6/5/2005 08:56'!
+testReadFrom
+	
+	self assert: 1.0e-14	= (Number readFrom: '1.0e-14').
+	self assert: 2r1e26	= (Number readFrom: '2r1e26').! !
+
+!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/23/2009 19:26'!
+testReciprocal
+
+	self 
+		assert: 1 reciprocal = 1;
+		assert: 2 reciprocal = (1/2);
+		assert: -1 reciprocal = -1;
+		assert: -3 reciprocal = (-1/3).
+		
+	self should: [ 0 reciprocal ] raise: ZeroDivide! !
+
+!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
+testBasicNew
+
+	self should: [SmallInteger basicNew] raise: TestResult error. ! !
+
+!SmallIntegerTest methodsFor: 'testing - arithmetic' stamp: 'sd 6/5/2005 08:59'!
+testDivide
+
+	self assert: 2 / 1 = 2.
+	self assert: (3 / 2) isFraction.
+	self assert: 4 / 2 = 2.
+	self should: [ 1 / 0 ] raise: ZeroDivide.! !
+
+!SmallIntegerTest methodsFor: 'testing - basic' stamp: 'jmv 5/7/2012 21:35'!
+testEven
+	
+	self assert: (SmallInteger minVal even).
+	self deny: (SmallInteger maxVal even).
+	
+	self deny: ((SmallInteger minVal + 1) even).
+	self assert: ((SmallInteger maxVal - 1) even).
+	
+	self deny: (1 even).
+	self deny: (-1 even).
+	
+	self assert: (2 even).
+	self assert: (-2 even).
+	
+	self assert: (0 even)! !
+
+!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
+testMaxVal
+
+	self assert: (SmallInteger maxVal = 16r3FFFFFFF).! !
+
+!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
+testMinVal
+
+	self assert: (SmallInteger minVal = -16r40000000).! !
+
+!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
+testNew
+
+	self should: [SmallInteger new] raise: TestResult error. ! !
+
+!SmallIntegerTest methodsFor: 'testing - basic' stamp: 'jmv 5/7/2012 21:35'!
+testOdd
+	
+	self deny: (SmallInteger minVal odd).
+	self assert: (SmallInteger maxVal odd).
+	
+	self assert: ((SmallInteger minVal + 1) odd).
+	self deny: ((SmallInteger maxVal - 1) odd).
+	
+	self assert: (1 odd).
+	self assert: (-1 odd).
+	
+	self deny: (2 odd).
+	self deny: (-2 odd).
+	
+	self deny: (0 odd)! !
+
+!SmallIntegerTest methodsFor: 'testing - printing' stamp: 'jmv 1/9/2014 23:41'!
+testPrintPaddedWith
+
+	self assert: (123 printStringBase: 2 length: 10 padded: true) = '0001111011'.
+	self assert: (123 printStringBase: 8 length: 10 padded: true) = '0000000173'.
+	self assert: (123 printStringBase: 10 length: 10 padded: true) = '0000000123'.
+	self assert: (123 printStringBase: 16 length: 10 padded: true) = '000000007B'! !
+
+!SmallIntegerTest methodsFor: 'testing - printing' stamp: 'al 7/21/2008 21:48'!
+testPrintString
+	self assert: 1 printString  = '1'.
+	self assert: -1 printString  = '-1'.
+	self assert: SmallInteger minVal printString  = '-1073741824'.
+	self assert: SmallInteger maxVal printString  = '1073741823'.
+	self assert: 12345 printString  = '12345'.
+	self assert: -54321 printString  = '-54321'.
+
+	self assert: 0 decimalDigitLength = 1.
+	self assert: 4 decimalDigitLength = 1.
+	self assert: 12 decimalDigitLength = 2.
+	self assert: 123 decimalDigitLength = 3.
+	self assert: 1234 decimalDigitLength = 4.
+	self assert: 56789 decimalDigitLength = 5.
+	self assert: 657483 decimalDigitLength = 6.
+	self assert: 6571483 decimalDigitLength = 7.
+	self assert: 65174383 decimalDigitLength = 8.
+	self assert: 625744831 decimalDigitLength = 9.
+	self assert: 1000001111 decimalDigitLength = 10.
+	self assert: SmallInteger maxVal decimalDigitLength = 10.! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:33'!
+byteBitCounts
+
+	| tablePower answer |
+	tablePower _ 8.
+	answer _ ByteArray new: (1 bitShift: tablePower).
+	0 to: tablePower - 1 do:
+		[:eachPowerIndex |
+			| powerOfTwo |
+			powerOfTwo _ 1 bitShift: eachPowerIndex.
+			1 + powerOfTwo to: answer size by: powerOfTwo * 2 do:
+				[:eachPivot |
+					0 to: powerOfTwo - 1 do:
+						[:eachIndex |
+							answer
+								at: eachPivot + eachIndex
+								put: (answer at: eachPivot + eachIndex) + 1
+						]
+				]
+		].
+	^answer! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:16'!
+nSamplesByDefault
+
+	^1000! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 17:59'!
+rng
+
+	^self rngClass new! !
+
+!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:01'!
+rngClass
+
+	self subclassResponsibility! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:38'!
+testRandomLargeInteger1
+
+	| random nSamples highBound odds |
+	random _ self rng.
+	nSamples _ self nSamplesByDefault.
+	highBound _ 1 << 64.
+	odds _ 0.
+	nSamples timesRepeat: [odds _ highBound atRandom: random :: bitAnd: 1 :: + odds].
+	self assert: (odds * 2 - nSamples * 5) abs < nSamples  "10% max deviation"! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:47'!
+testRandomLargeInteger2
+
+	| random nSamples bitCounts bitsPerRandom highBound ones |
+	random _ self rng.
+	nSamples _ self nSamplesByDefault.
+	bitCounts _ self byteBitCounts.
+	bitsPerRandom _ 1000.
+	highBound _ 1 << bitsPerRandom.
+	ones _ 0.
+	nSamples timesRepeat:
+		[
+			| next |
+			next _ highBound atRandom: random.
+			1 to: next basicSize do:
+				[:eachIndex | ones _ bitCounts at: (next basicAt: eachIndex) + 1 :: + ones].
+		].
+	self assert: ones - (nSamples * bitsPerRandom / 2) abs / 10 < nSamples "1% max deviation"! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:05'!
+testSeed0
+
+	| random |
+	random := self rng.
+	self should: [random seed: 0] raise: Error.
+	self assert: (10 atRandom: random) <= 10! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:17'!
+testSetAtRandom
+
+	| random set nSamples sum |
+	random _ self rng.
+	set _ Set with: 0 with: 1.
+	nSamples _ self nSamplesByDefault.
+	sum _ 0.
+	nSamples timesRepeat: [sum _ set atRandom: random :: + sum].
+	self assert: (sum / nSamples - 0.5) abs < 0.1! !
+
+!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 20:51'!
+testSimpleBuckets
+	"This is a poor test, see Knuth's TAOCP"
+
+	| nbuckets buckets nSamples random slot |
+	nbuckets _ 1000.
+	buckets _ Array new: nbuckets.
+	buckets atAllPut: 0.
+	nSamples _ 1000.
+	random _ self rng.
+	nSamples * nbuckets timesRepeat:
+		[
+			slot := (random next * nbuckets) floor + 1.
+			buckets at: slot put: (buckets at: slot) + 1
+		].
+	buckets do:
+		[:each |
+			"max ~17% deviation"
+			self assert: (each - nSamples * 6) abs < nSamples
+		]! !
+
+!RandomTest class methodsFor: 'testing' stamp: 'sqr 3/5/2016 17:54'!
+isAbstract
+
+	^self subclasses notEmpty! !
+
+!LaggedFibonacciRandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:50'!
+nSamplesByDefault
+
+	^self rng majorLag * 100! !
+
+!LaggedFibonacciRandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:00'!
+rngClass
+
+	^LaggedFibonacciRandom! !
+
+!ParkMiller88RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 19:58'!
+rngClass
+
+	^ParkMiller88Random! !
+
+!ParkMiller88RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 20:06'!
+testParkMillerCorrectness
+	"The correctness test suggested by the authors"
+
+	| random next |
+	random _ self rng seed: 1.
+	10000 timesRepeat: [next _ random next].
+	self assert: next * 16r7FFFFFFF = 1043618065.0! !
+
+!ParkMiller88RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:48'!
+testParkMillerInitialValues
+
+	| nSamples random samples |
+	nSamples _ self nSamplesByDefault.
+	random _ self rng.
+	samples _ 1 to: nSamples :: collect: [:each | random next].
+	self assert: (samples average - 0.5) abs < 0.1.
+	self assert: samples size * 10 > nSamples! !
+
+!ParkMiller93RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 19:58'!
+rngClass
+
+	^ParkMiller93Random! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:11'!
+testComposition
+	"
+	AffineTransformationTest new testComposition
+	"
+	| composition inner outer |
+
+	outer _ AffineTransformation withTranslation: 3@5.
+	inner _ AffineTransformation withRadians: 0.3.
+	composition _ outer composedWith: inner.
+	self assert: composition translation = outer translation.
+	self assert: (outer externalizePosition: (inner externalizePosition: 3@4)) = (composition externalizePosition: 3@4).
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: (inner internalizePosition: (outer internalizePosition: 3@4)) = (composition internalizePosition: 3@4).
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).
+
+
+	outer _ AffineTransformation withRadians: 0.3.
+	inner _ AffineTransformation withTranslation: 3@5.
+	composition _ outer composedWith: inner.
+	self assert: composition radians = outer radians.
+	self assert: ((outer externalizePosition: (inner externalizePosition: 3@4)) - (composition externalizePosition: 3@4)) r < 0.0001.
+	self assert: (outer externalizeDelta: (inner externalizeDelta: 3@4)) = (composition externalizeDelta: 3@4).
+	self assert: (outer externalizeScalar: (inner externalizeScalar: 7)) = (composition externalizeScalar: 7).
+	self assert: ((inner internalizePosition: (outer internalizePosition: 3@4)) - (composition internalizePosition: 3@4)) r < 0.0001.
+	self assert: (inner internalizeDelta: (outer internalizeDelta: 3@4)) = (composition internalizeDelta: 3@4).
+	self assert: (inner internalizeScalar: (outer internalizeScalar: 7)) = (composition internalizeScalar: 7).! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:11'!
+testDisplayBounds
+	"
+	AffineTransformationTest new testDisplayBounds
+	"
+	self assert:
+		((AffineTransformation withRadians: 0.3) displayBoundsOfTransformOf: (10@10 extent: 20@30))
+			= (-2@13 corner: 26@47).
+
+	self assert: (AffineTransformation new displayBoundsOfTransformOf: (-2@ 2 extent: 10@10)) = (-2@2 corner: 8@12).
+	self assert: (AffineTransformation new displayBoundsOfTransformOf: (-12@ 12 extent: 10@10)) = (-12@12 corner: -2@22).
+	self assert: ((AffineTransformation withTranslation: 2)  displayBoundsOfTransformOf: (-4@ 2  extent: 10@10)) = (-2@4 corner: 8@14).
+	self assert: ((AffineTransformation withTranslation: -4)  displayBoundsOfTransformOf: (2@ 2  extent: 10@10)) = (-2@-2 corner: 8@8).
+	self assert: ((AffineTransformation withTranslation: 2)  displayBoundsOfTransformOf: (-14@ 2  extent: 10@10)) = (-12@4 corner: -2@14).
+	self assert: ((AffineTransformation withTranslation: 4)  displayBoundsOfTransformOf: (-12@ 2  extent: 10@10)) = (-8@6 corner: 2@16).
+	self assert: ((AffineTransformation withTranslation: -4)  displayBoundsOfTransformOf: (12@ 2  extent: 10@10)) = (8@-2 corner: 18@8).
+	self assert: ((AffineTransformation withTranslation: -2)  displayBoundsOfTransformOf: (4@ 2  extent: 10@10)) = (2@0 corner: 12@10).
+	self assert: ((AffineTransformation withTranslation: 4)  displayBoundsOfTransformOf: (-2@ 2  extent: 10@10)) = (2@6 corner: 12@16).! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:05'!
+testFloatInverseTransform
+	"
+	AffineTransformationTest new testFloatInverseTransform
+	"
+	self assert: (AffineTransformation new inverseTransform: (-2@ 2)) = (-2@2).
+	self assert: ((AffineTransformation withTranslation: 2) inverseTransform: (-4@ 2)) = (-6@0).
+	self assert: ((AffineTransformation withTranslation: 4) inverseTransform: (-2@ 2)) = (-6@-2).
+	self assert: ((AffineTransformation withTranslation: -2) inverseTransform: (4@ 2)) = (6@4).
+	self assert: ((AffineTransformation withTranslation: -4) inverseTransform: (2@ 2)) = (6@6)! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/21/2015 13:06'!
+testFloatTransform
+	"
+	AffineTransformationTest new testFloatTransform
+	"
+	self assert: (AffineTransformation new transform: (-2@ 2)) = (-2@2).
+	self assert: ((AffineTransformation withTranslation: 2) transform: (-4@ 2)) = (-2@4).
+	self assert: ((AffineTransformation withTranslation: 4) transform: (-2@ 2)) = (2@6).
+	self assert: ((AffineTransformation withTranslation: -2) transform: (4@ 2)) = (2@0).
+	self assert: ((AffineTransformation withTranslation: -4) transform: (2@ 2)) = (-2@-2)! !
+
+!AffineTransformationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 15:12'!
+testInverseTransformation
+	"
+	AffineTransformationTest new testInverseTransformation
+	"
+	| forward inverse |
+
+	forward _ AffineTransformation withTranslation: 3@5.
+	inverse _ forward inverseTransformation.
+	
+	self assert: inverse translation = forward translation negated.
+	self assert: (inverse externalizePosition: 3@4) = (forward internalizePosition: 3@4).
+	self assert: (inverse externalizeDelta: 3@4) = (forward internalizeDelta: 3@4).
+	self assert: (inverse externalizeScalar: 7) = (forward internalizeScalar: 7).
+	self assert: (inverse internalizePosition: 3@4) = (forward externalizePosition: 3@4).
+	self assert: (inverse internalizeDelta: 3@4) = (forward externalizeDelta: 3@4).
+	self assert: (inverse internalizeScalar: 7) = (forward externalizeScalar: 7).
+
+
+	forward _ AffineTransformation withRadians: 0.25.
+	inverse _ forward inverseTransformation.
+
+	self assert: inverse radians = forward radians negated.
+	self assert: ((inverse externalizePosition: 3@4) - (forward internalizePosition: 3@4)) r < 0.0001.
+	self assert: ((inverse externalizeDelta: 3@4) - (forward internalizeDelta: 3@4)) r < 0.0001.
+	self assert: ((inverse externalizeScalar: 7) - (forward internalizeScalar: 7)) abs < 0.0001.
+	self assert: ((inverse internalizePosition: 3@4) - (forward externalizePosition: 3@4)) r < 0.0001.
+	self assert: ((inverse internalizeDelta: 3@4) - (forward externalizeDelta: 3@4)) r < 0.0001.
+	self assert: ((inverse internalizeScalar: 7) - (forward externalizeScalar: 7)) abs < 0.0001.! !
 
 !LayoutMorphTest methodsFor: 'tests' stamp: 'jmv 4/19/2016 10:39'!
 testLayout1
@@ -7697,213 +5088,6 @@ testLayout3
 
 	pane delete! !
 
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
-testMirrorAt
-	| stackpBefore stackpAfter array byteArray |
-
-	Smalltalk isRunningCog ifFalse: [
-		^self assert: false description: 'Needs Cog' ].
-
-	stackpBefore := thisContext stackPtr.
-	array := { 1. 2. 3 }.
-	byteArray := ByteArray with: 1 with: 2 with: 3.
-	self assert: (thisContext object: array basicAt: 1) = 1.
-	self assert: (thisContext object: byteArray basicAt: 2) = 2.
-	thisContext object: array basicAt: 2 put: #two.
-	self assert: array = #(1 #two 3).
-	thisContext object: byteArray basicAt: 2 put: 222.
-	self assert: byteArray asArray = #(1 222 3).
-	stackpAfter := thisContext stackPtr.
-	self assert: stackpBefore = stackpAfter. "Make sure primitives pop all their arguments"
-	self should: [thisContext object: array basicAt: 4] raise: Error.
-	self should: [thisContext object: byteArray basicAt: 0] raise: Error.
-	self should: [thisContext object: byteArray basicAt: 1 put: -1] raise: Error! !
-
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'eem 4/8/2009 19:44'!
-testMirrorClass
-	| stackpBefore stackpAfter |
-	stackpBefore := thisContext stackPtr.
-	self assert: (thisContext objectClass: Array new) = Array.
-	self assert: (thisContext objectClass: 1) = 1 class.
-	self assert: (thisContext objectClass: ProtoObject new) = ProtoObject.
-	stackpAfter := thisContext stackPtr.
-	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
-
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
-testMirrorEqEq
-	| stackpBefore stackpAfter |
-
-	Smalltalk isRunningCog ifFalse: [
-		^self assert: false description: 'Needs Cog' ].
-
-	stackpBefore := thisContext stackPtr.
-	self assert: (thisContext object: Array new eqeq: Array new) == false.
-	self assert: (thisContext object: Array eqeq: Array) == true.
-	stackpAfter := thisContext stackPtr.
-	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
-
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
-testMirrorInstVarAt
-	| stackpBefore stackpAfter array point |
-
-	Smalltalk isRunningCog ifFalse: [
-		^self assert: false description: 'Needs Cog' ].
-
-	stackpBefore := thisContext stackPtr.
-	array := { 1. 2. 3 }.
-	point := Point x: 1 y: 2.
-	self assert: (thisContext object: array instVarAt: 1) = 1.
-	self assert: (thisContext object: point instVarAt: 2) = 2.
-	thisContext object: array instVarAt: 2 put: #two.
-	self assert: array = #(1 #two 3).
-	thisContext object: point instVarAt: 1 put: 1/2.
-	self assert: point = (Point x: 1 / 2 y: 2).
-	stackpAfter := thisContext stackPtr.
-	self assert: stackpBefore = stackpAfter. "Make sure primitives pop all their arguments"
-	self should: [thisContext object: array instVarAt: 4] raise: Error.
-	self should: [thisContext object: point instVarAt: 3] raise: Error! !
-
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
-testMirrorPerform
-	| stackpBefore stackpAfter anInterval |
-
-	Smalltalk isRunningCog ifFalse: [
-		^self assert: false description: 'Needs Cog' ].
-
-	stackpBefore := thisContext stackPtr.
-	anInterval := 1 to: 2.
-	self assert: (thisContext object: anInterval perform:# species withArguments: #() inClass: Interval) == Array.
-	self assert: (thisContext object: anInterval perform:# species withArguments: #() inClass: Interval superclass) == Interval.
-	self should: [thisContext object: anInterval perform:# species withArguments: #() inClass: Point]
-		raise: Error.
-	self should: [thisContext object: anInterval perform:# species withArguments: OrderedCollection new inClass: Interval]
-		raise: Error.
-	stackpAfter := thisContext stackPtr.
-	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
-
-!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
-testMirrorSize
-	| stackpBefore stackpAfter |
-
-	Smalltalk isRunningCog ifFalse: [
-		^self assert: false description: 'Needs Cog' ].
-
-	stackpBefore := thisContext stackPtr.
-	self assert: (thisContext objectSize: #(1 2 3)) = 3.
-	self assert: (thisContext objectSize: '123') = 3.
-	self assert: (thisContext objectSize: nil) = 0.
-	self assert: (thisContext objectSize: 1) = 0.
-	stackpAfter := thisContext stackPtr.
-	self assert: stackpBefore = stackpAfter. "Make sure primitives pop all their arguments"! !
-
-!MonitorTest methodsFor: 'examples' stamp: 'md 3/19/2006 21:15'!
-testExample1
-
-	| producer1 producer2  monitor goal work counter goalReached finished |
-	goal := (1 to: 1000) asOrderedCollection.
-	work := OrderedCollection new.
-	counter := 0.
-	goalReached := false.
-	finished := Semaphore new.
-	monitor := Monitor new.
-
-	producer1 := [
-       [monitor critical:
-             [monitor waitUntil: [counter \\5 = 0].
-              goalReached or: [work add: (counter := counter + 1)].
-              goalReached := counter >= goal size.
-              monitor signal
-            ].
-           goalReached
-          ]
-             whileFalse.
-         finished signal.
-	].
-
-	producer2 := [
-         [monitor critical:
-                [monitor waitWhile: [counter \\5 = 0].
-                 goalReached or: [work add: (counter := counter + 1)].
-                 goalReached := counter >= goal size.
-                 monitor signal].
-         goalReached
-       ] whileFalse.
-     finished signal
-	].
-
-	producer1 forkAt: Processor userBackgroundPriority.
-	producer2 forkAt: Processor userBackgroundPriority.
-
-	finished wait; wait.
-	self assert: goal = work! !
-
-!MonitorTest methodsFor: 'examples' stamp: 'md 3/19/2006 21:19'!
-testExample2
-	"Here is a second version that does not use a semaphore to inform the 
-	forking process about termination of both forked processes"
-
-	| producer1 producer2  monitor goal work counter goalReached activeProducers|
-	goal := (1 to: 1000) asOrderedCollection.
-	work := OrderedCollection new.
-	counter := 0.
-	goalReached := false.
-	activeProducers := 0.
-	monitor := Monitor new.
-
-  producer1 :=
-      [ monitor critical: [activeProducers := activeProducers + 1].
-  [monitor critical:
-            [monitor waitUntil: [counter \\5 = 0].
-      goalReached or: [work add: (counter := counter + 1)].
-     " Transcript show: 'P1  '; show: counter printString; show: '  ';
-       show: activeProducers printString; cr."
-      goalReached := counter >= goal size.
-      monitor signal
-            ].
-           goalReached
-          ]
-             whileFalse.
-         monitor critical: [activeProducers := activeProducers - 1.
-        monitor signal: #finish].
- ] .
-
- producer2 :=
-    [monitor critical: [activeProducers := activeProducers + 1].
-
-  [monitor critical:
-          [monitor waitWhile: [counter \\5 = 0].
-    goalReached or: [work add: (counter := counter + 1)].
-    goalReached := counter >= goal size.
-    monitor signal].
-         goalReached ] whileFalse.
-     monitor critical: [
-		activeProducers := activeProducers - 1. 
-		monitor signal: #finish].
-	].
-
-	producer1 forkAt: Processor userBackgroundPriority.
-	producer2  forkAt: Processor userBackgroundPriority.
-
-
-	monitor critical: [
-		monitor waitUntil: [activeProducers = 0 & (goalReached)]
-				for: #finish.
-  	].
-
-	self assert: goal = work
-! !
-
-!MonitorTest methodsFor: 'examples' stamp: 'ul 9/10/2011 16:55'!
-testMonitorNotGainingUnwantedSignalsDuringUnwinding
-
-	| monitor process |
-	monitor := Monitor new.
-	process := [ monitor critical: [ monitor wait ] ] newProcess.
-	process resume.
-	50 milliSeconds asDelay wait.
-	process terminate.
-	self assert: 1 equals: ((monitor instVarNamed: #mutex) instVarNamed: #excessSignals)! !
-
 !MorphicLocationTest methodsFor: 'testing' stamp: 'jmv 1/14/2015 14:32'!
 testComposition
 	"
@@ -8020,198 +5204,1421 @@ testTransform
 	self assert: ((MorphicTranslation withTranslation: -2) transform: (4@ 2)) = (2@0).
 	self assert: ((MorphicTranslation withTranslation: -4) transform: (2@ 2)) = (-2@-2)! !
 
-!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/26/2009 21:57'!
-testFractionPart
+!WorldTest methodsFor: 'Running' stamp: 'jmv 7/11/2011 16:02'!
+testDamageRecorder
+	"
+	WorldTest new testDamageRecorder
+	"
+	| dr |
+	dr _ DamageRecorder new.
+	dr recordInvalidRect: (20@20 extent: 10@10).
+	dr recordInvalidRect: (30@20 extent: 10@10).
+	dr recordInvalidRect: (40@20 extent: 10@10).
+	dr recordInvalidRect: (50@20 extent: 10@10).
+	dr recordInvalidRect: (60@20 extent: 10@10).
+	dr recordInvalidRect: (70@20 extent: 10@10).
+	dr recordInvalidRect: (80@20 extent: 10@10).
+	dr recordInvalidRect: (90@20 extent: 10@10).
+	dr recordInvalidRect: (100@20 extent: 10@10).
+	dr recordInvalidRect: (110@20 extent: 10@10).
+	dr recordInvalidRect: (120@20 extent: 10@10).
+	dr recordInvalidRect: (130@20 extent: 10@10).
+	dr recordInvalidRect: (140@20 extent: 10@10).
+	dr recordInvalidRect: (150@20 extent: 10@10).
+	dr recordInvalidRect: (160@20 extent: 10@10).
+	self shouldnt: [ dr recordInvalidRect: (10@20 extent: 300@300) ] raise: Error.
+	(dr invalidRectsFullBounds: (10@10 extent: 10@10)) do: [ :r |
+		self deny: r isNil ]! !
 
-	self 
-		assert: 2 fractionPart = 0;
-		assert: (1/2) fractionPart = (1/2);
-		assert: (4/3) fractionPart = (1/3);
-		assert: 2.0 fractionPart = 0.0;
-		assert: 0.5 fractionPart = 0.5;
-		assert: 2.5 fractionPart = 0.5
+!WorldTest methodsFor: 'as yet unclassified' stamp: 'jmv 10/23/2012 23:30'!
+testDoOneCycleWorksWithDeferredQueue
+        "Ensure that nested doOneCycles don't break deferred UI messages"
+        | finished |
+        [
+                WorldState addDeferredUIMessage: [ ProjectX ui doOneCycleNow ].
+                WorldState addDeferredUIMessage: nil "whatever".
+                ProjectX ui doOneCycleNow.
+                finished _ true.
+        ] valueWithin: 1 seconds onTimeout: [finished _ false ].
+        self assert: finished! !
+
+!ArrayLiteralTest methodsFor: 'running' stamp: 'avi 2/16/2004 21:09'!
+tearDown
+	self class removeSelector: #array! !
+
+!ArrayLiteralTest methodsFor: 'tests' stamp: 'avi 2/16/2004 21:08'!
+testReservedIdentifiers
+	self class compile: 'array ^ #(nil true false)'.
+	self assert: self array = {nil. true. false}.! !
+
+!ArrayLiteralTest methodsFor: 'tests' stamp: 'avi 2/16/2004 21:09'!
+testSymbols
+	self class compile: 'array ^ #(#nil #true #false #''nil'' #''true'' #''false'')'.
+	self assert: self array = {#nil. #true. #false. #nil. #true. #false}.! !
+
+!ClosureCompilerTest methodsFor: 'source' stamp: 'jmv 3/13/2012 11:29'!
+closureCases
+	^#(
+'| n |
+n := 1.
+^n + n'
+
+'| i |
+i := 0.
+[i := i + 1.
+ i <= 10] whileTrue.
+^i'
+
+'[:c :s| | mn |
+mn := Compiler new
+		compile: (c sourceCodeAt: s)
+		in: c
+		notifying: nil
+		ifFail: [self halt].
+mn generate: #(0 0 0 0).
+{mn blockExtentsToTempsMap.
+  mn encoder schematicTempNames}]
+			value: ArrayLiteralTest
+			value: #testSymbols'
+
+'inject: thisValue into: binaryBlock
+	| nextValue |
+	nextValue := thisValue.
+	self do: [:each | nextValue := binaryBlock value: nextValue value: each].
+	^nextValue'
+
+'runBinaryConditionalJumps: assertPrintBar
+	"CogIA32CompilerTests new runBinaryConditionalJumps: false"
+	| mask reg1 reg2 reg3 |
+	mask := 1 << self processor bitsInWord - 1.
+	self concreteCompilerClass dataRegistersWithAccessorsDo:
+		[:n :get :set|
+		n = 0 ifTrue: [reg1 := get].
+		n = 1 ifTrue: [reg2 := set].
+		n = 2 ifTrue: [reg3 := set]].
+	#(	(JumpAbove > unsigned)			(JumpBelowOrEqual <= unsigned)
+		(JumpBelow < unsigned)			(JumpAboveOrEqual >= unsigned)
+		(JumpGreater > signed)			(JumpLessOrEqual <= signed)
+		(JumpLess < signed)				(JumpGreaterOrEqual >= signed)
+		(JumpZero = signed)				(JumpNonZero ~= signed)) do:
+		[:triple|
+		[:opName :relation :signednessOrResult| | opcode jumpNotTaken jumpTaken nop memory bogus |
+		self resetGen.
+		opcode := CogRTLOpcodes classPool at: opName.
+		self gen: CmpRR operand: 2 operand: 1.
+		jumpTaken := self gen: opcode.
+		self gen: MoveCqR operand: 0 operand: 0.
+		jumpNotTaken := self gen: Jump.
+		jumpTaken jmpTarget: (self gen: MoveCqR operand: 1 operand: 0).
+		jumpNotTaken jmpTarget: (nop := self gen: Nop).
+		memory := self generateInstructions.
+		bogus := false.
+		self pairs: (-2 to: 2)  do:
+			[:a :b| | taken |
+			self processor
+				reset;
+				perform: reg2 with: a signedIntToLong;
+				perform: reg3 with: b signedIntToLong.
+			[self processor singleStepIn: memory.
+			 self processor pc ~= nop address] whileTrue.
+			taken := (self processor perform: reg1) = 1.
+			assertPrintBar
+				ifTrue:
+					[self assert: taken = (signednessOrResult == #unsigned
+											ifTrue: [(a bitAnd: mask) perform: relation with: (b bitAnd: mask)]
+											ifFalse: [a perform: relation with: b])]
+				ifFalse:
+					[Transcript
+						nextPutAll: reg2; nextPut: $(; print: a; nextPutAll: '') ''; nextPutAll: relation; space;
+						nextPutAll: reg3; nextPut: $(; print: b; nextPutAll: '') = '';
+						print: taken; cr; flush.
+					 taken = (signednessOrResult == #unsigned
+											ifTrue: [(a bitAnd: mask) perform: relation with: (b bitAnd: mask)]
+											ifFalse: [a perform: relation with: b]) ifFalse:
+						[bogus := true]]].
+			 bogus ifTrue:
+				[self processor printRegistersOn: Transcript.
+				 Transcript show: (self processor disassembleInstructionAt: jumpTaken address In: memory); cr]]
+					valueWithArguments: triple]'
+
+'mapFromBlockStartsIn: aMethod toTempVarsFrom: schematicTempNamesString constructor: aDecompilerConstructor
+	| map |
+	map := aMethod
+				mapFromBlockKeys: aMethod startpcsToBlockExtents keys asSortedCollection
+				toSchematicTemps: schematicTempNamesString.
+	map keysAndValuesDo:
+		[:startpc :tempNameTupleVector| | subMap tempVector numTemps |
+		subMap := Dictionary new.
+		"Find how many temp slots there are (direct & indirect temp vectors)
+		 and for each indirect temp vector find how big it is."
+		tempNameTupleVector do:
+			[:tuple|
+			tuple last isArray
+				ifTrue:
+					[subMap at: tuple last first put: tuple last last.
+					 numTemps := tuple last first]
+				ifFalse:
+					[numTemps := tuple last]].
+		"create the temp vector for this scope level."
+		tempVector := Array new: numTemps.
+		"fill it in with any indirect temp vectors"
+		subMap keysAndValuesDo:
+			[:index :size|
+			tempVector at: index put: (Array new: size)].
+		"fill it in with temp nodes."
+		tempNameTupleVector do:
+			[:tuple| | itv |
+			tuple last isArray
+				ifTrue:
+					[itv := tempVector at: tuple last first.
+					 itv at: tuple last last
+						put: (aDecompilerConstructor
+								codeTemp: tuple last last - 1
+								named: tuple first)]
+				ifFalse:
+					[tempVector
+						at: tuple last
+						put: (aDecompilerConstructor
+								codeTemp: tuple last - 1
+								named: tuple first)]].
+		"replace any indirect temp vectors with proper RemoteTempVectorNodes"
+		subMap keysAndValuesDo:
+			[:index :size|
+			tempVector
+				at: index
+				put: (aDecompilerConstructor
+						codeRemoteTemp: index
+						remoteTemps: (tempVector at: index))].
+		"and update the entry in the map"
+		map at: startpc put: tempVector].
+	^map'
+
+ 'gnuifyFrom: inFileStream to: outFileStream
+
+"convert interp.c to use GNU features"
+
+	| inData beforeInterpret inInterpret inInterpretVars beforePrimitiveResponse inPrimitiveResponse |
+
+	inData := inFileStream upToEnd withSqueakLineEndings.
+	inFileStream close.
+
+	"print a header"
+	outFileStream
+		nextPutAll: ''/* This file has been post-processed for GNU C */'';
+		cr; cr; cr.
+
+	beforeInterpret := true.    "whether we are before the beginning of interpret()"
+	inInterpret := false.     "whether we are in the middle of interpret"
+	inInterpretVars := false.    "whether we are in the variables of interpret"
+	beforePrimitiveResponse := true.  "whether we are before the beginning of primitiveResponse()"
+	inPrimitiveResponse := false.   "whether we are inside of primitiveResponse"
+	''Gnuifying''
+		displayProgressAt: Sensor mousePoint
+		from: 1 to: (inData occurrencesOf: Character crCharacter)
+		during:
+			[:bar | | lineNumber |
+			lineNumber := 0.
+			inData linesDo:
+				[ :inLine | | outLine extraOutLine caseLabel |
+				bar value: (lineNumber := lineNumber + 1).
+				outLine := inLine. 	"print out one line for each input line; by default, print out the line that was input, but some rules modify it"
+				extraOutLine := nil.   "occasionally print a second output line..."
+				beforeInterpret ifTrue: [
+					inLine = ''#include "sq.h"'' ifTrue: [
+						outLine := ''#include "sqGnu.h"'' ].
+					inLine = ''interpret(void) {'' ifTrue: [
+						"reached the beginning of interpret"
+						beforeInterpret := false.
+						inInterpret := true.
+						inInterpretVars := true ] ]
+				ifFalse: [
+				inInterpretVars ifTrue: [
+					(inLine findString: ''register struct foo * foo = &fum;'') > 0 ifTrue: [
+						outLine := ''register struct foo * foo FOO_REG = &fum;'' ].
+					(inLine findString: '' localIP;'') > 0 ifTrue: [
+						outLine := ''    char* localIP IP_REG;'' ].
+					(inLine findString: '' localFP;'') > 0 ifTrue: [
+						outLine := ''    char* localFP FP_REG;'' ].
+					(inLine findString: '' localSP;'') > 0 ifTrue: [
+						outLine := ''    char* localSP SP_REG;'' ].
+					(inLine findString: '' currentBytecode;'') > 0 ifTrue: [
+						outLine := ''    sqInt currentBytecode CB_REG;'' ].
+					inLine isEmpty ifTrue: [
+						"reached end of variables"
+						inInterpretVars := false.
+						outLine := ''    JUMP_TABLE;''.
+						extraOutLine := inLine ] ]
+				ifFalse: [
+				inInterpret ifTrue: [
+					"working inside interpret(); translate the switch statement"
+					(inLine beginsWith: ''		case '') ifTrue: [
+						caseLabel := (inLine findTokens: ''	 :'') second.
+						outLine := ''		CASE('', caseLabel, '')'' ].
+					inLine = ''			break;'' ifTrue: [
+						outLine := ''			BREAK;'' ].
+					inLine = ''}'' ifTrue: [
+						"all finished with interpret()"
+						inInterpret := false ] ]
+				ifFalse: [
+				beforePrimitiveResponse ifTrue: [
+					(inLine beginsWith: ''primitiveResponse('') ifTrue: [
+						"into primitiveResponse we go"
+						beforePrimitiveResponse := false.
+						inPrimitiveResponse := true.
+						extraOutLine := ''    PRIM_TABLE;'' ] ]
+				ifFalse: [
+				inPrimitiveResponse ifTrue: [
+					inLine = ''	switch (primitiveIndex) {'' ifTrue: [
+						extraOutLine := outLine.
+						outLine := ''	PRIM_DISPATCH;'' ].
+					inLine = ''	switch (GIV(primitiveIndex)) {'' ifTrue: [
+						extraOutLine := outLine.
+						outLine := ''	PRIM_DISPATCH;'' ].
+					(inLine beginsWith: ''	case '') ifTrue: [
+						caseLabel := (inLine findTokens: ''	 :'') second.
+						outLine := ''	CASE('', caseLabel, '')'' ].
+					inLine = ''}'' ifTrue: [
+						inPrimitiveResponse := false ] ]
+				] ] ] ].
+
+				outFileStream nextPutAll: outLine; cr.
+				extraOutLine ifNotNil: [
+					outFileStream nextPutAll: extraOutLine; cr ]]].
+
+	outFileStream close' )! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/24/2008 12:28'!
+doTestDebuggerTempAccessWith: one with: two
+	"Test debugger access for temps"
+	| outerContext local1 remote1 |
+	outerContext := thisContext.
+	local1 := 3.
+	remote1 := 1/2.
+	self assert: (Compiler new evaluate: 'one' in: thisContext to: self) == one.
+	self assert: (Compiler new evaluate: 'two' in: thisContext to: self) == two.
+	self assert: (Compiler new evaluate: 'local1' in: thisContext to: self) == local1.
+	self assert: (Compiler new evaluate: 'remote1' in: thisContext to: self) == remote1.
+	Compiler new evaluate: 'local1 := -3.0' in: thisContext to: self.
+	self assert: local1 = -3.0.
+	(1 to: 2) do:
+		[:i| | local2 r1 r2 r3 r4 |
+		local2 := i * 3.
+		remote1 := local2 / 7.
+		self assert: thisContext ~~ outerContext.
+		self assert: (r1 := Compiler new evaluate: 'one' in: thisContext to: self) == one.
+		self assert: (r2 := Compiler new evaluate: 'two' in: thisContext to: self) == two.
+		self assert: (r3 := Compiler new evaluate: 'i' in: thisContext to: self) == i.
+		self assert: (r4 := Compiler new evaluate: 'local2' in: thisContext to: self) == local2.
+		self assert: (r4 := Compiler new evaluate: 'remote1' in: thisContext to: self) == remote1.
+		self assert: (r4 := Compiler new evaluate: 'remote1' in: outerContext to: self) == remote1.
+		Compiler new evaluate: 'local2 := 15' in: thisContext to: self.
+		self assert: local2 = 15.
+		Compiler new evaluate: 'local1 := 25' in: thisContext to: self.
+		self assert: local1 = 25.
+		{ r1. r2. r3. r4 } "placate the compiler"].
+	self assert: local1 = 25.
+	self assert: remote1 = (6/7)! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:03'!
+supportTestSourceRangeAccessForDecompiledInjectInto: method source: source
+	"Test debugger source range selection for inject:into:"
+	^self
+		supportTestSourceRangeAccessForInjectInto: method
+		source: source
+		selectionSequence: #(	'_ arg1'
+								'do: [:arg5 | temp3 _ arg2 value: temp3 value: arg5]'
+								'value: temp3 value: arg5'
+								'_ arg2 value: temp3 value: arg5'
+								'temp3 _ arg2 value: temp3 value: arg5'
+								'value: temp3 value: arg5'
+								'_ arg2 value: temp3 value: arg5'
+								'temp3 _ arg2 value: temp3 value: arg5'
+								'^temp3')! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 19:44'!
+supportTestSourceRangeAccessForDecompiledNoBytecodeInjectInto: method source: source
+	"Test debugger source range selection for inject:into:"
+	^self
+		supportTestSourceRangeAccessForInjectInto: method
+		source: source
+		selectionSequence: #(	'at: 1 put: t1'
+								'do: [:t4 | t3 at: 1 put: (t2 value: (t3 at: 1) value: t4)]'
+								'value: (t3 at: 1) value: t4'
+								'at: 1 put: (t2 value: (t3 at: 1) value: t4)'
+								']'
+								'value: (t3 at: 1) value: t4'
+								'at: 1 put: (t2 value: (t3 at: 1) value: t4)'
+								']'
+								'^t3 at: 1')! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 12/30/2009 14:17'!
+supportTestSourceRangeAccessForInjectInto: method source: source
+	"Test debugger source range selection for inject:into:"
+	^self
+		supportTestSourceRangeAccessForInjectInto: method
+		source: source
+		selectionSequence: #(	'_ thisValue'
+								'do: [:each | nextValue _ binaryBlock value: nextValue value: each]'
+								'value: nextValue value: each'
+								'_ binaryBlock value: nextValue value: each'
+								'nextValue _ binaryBlock value: nextValue value: each'
+								'value: nextValue value: each'
+								'_ binaryBlock value: nextValue value: each'
+								'nextValue _ binaryBlock value: nextValue value: each'
+								'^nextValue')! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 7/29/2008 17:16'!
+supportTestSourceRangeAccessForInjectInto: method source: source selectionSequence: selections
+	"Test debugger source range selection for inject:into:"
+	| evaluationCount sourceMap debugTokenSequence debugCount |
+	DebuggerMethodMap voidMapCache.
+	evaluationCount := 0.
+	sourceMap := method debuggerMap abstractSourceMap.
+	debugTokenSequence := selections collect: [:string| Scanner new scanTokens: string].
+	debugCount := 0.
+	thisContext
+		runSimulated: [(1 to: 2)
+						withArgs:
+							{	0.
+								[:sum :each|
+								 evaluationCount := evaluationCount + 1.
+								 sum + each]}
+						executeMethod: method]
+		contextAtEachStep:
+			[:ctxt| | range debugTokens |
+			(ctxt method == method
+			and: ["Exclude the send of #blockCopy: or #closureCopy:copiedValues: and braceWith:with:
+				    to create the block, and the #new: and #at:'s for the indirect temp vector.
+				   This for compilation without closure bytecodes. (Note that at:put:'s correspond to stores)"
+				(ctxt willSend
+					and: [(#(closureCopy:copiedValues: blockCopy: new: at: braceWith:with:) includes: ctxt selectorToSendOrSelf) not])
+				"Exclude the store of the argument into the home context (for BlueBook blocks)
+				 and the store of an indirection vector into an initial temp"
+				or: [(ctxt willStore
+					and: [(ctxt isBlock and: [ctxt pc = ctxt startpc]) not
+					and: [(ctxt isBlock not
+						and: [(method usesClosureBytecodes and: [ctxt abstractPC = 2])]) not]])
+				or: [ctxt willReturn]]]) ifTrue:
+				[debugTokens := debugTokenSequence at: (debugCount := debugCount + 1) ifAbsent: [#(bogusToken)].
+				 self assert: (sourceMap includesKey: ctxt abstractPC).
+				 range := sourceMap at: ctxt abstractPC ifAbsent: [(1 to: 0)].
+				 self assert: (Scanner new scanTokens: (source copyFrom: range first to: range last)) = debugTokens]].
+	self assert: evaluationCount = 2! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 11/3/2016 11:45:16'!
+testBlockDoitDecompilation
+	"Tests that decompile of a doit block with remote vars executes correcly"
+	"Tests that decompilation of a Block, when 'method' of block is equivalent to that compiled by a DoIt, preserves the temp names "
+	
+	| blockSourceStream methodNode block decompiledBlock method |
+	blockSourceStream := '|x y| [:a :b | x _ a. y _ b. x + y]' readStream.
+	methodNode := Compiler new 
+						from: blockSourceStream class: nil class context: nil notifying: nil;
+						translate: blockSourceStream noPattern: true ifFail: [nil].
+	method _ methodNode generate.
+	block := nil withArgs: #() executeMethod: method.
+	
+	self shouldnt: [decompiledBlock := block decompile] raise: Error.
+	self assert: 
+ '{[ :arg4 :arg5 |
+	temp1 _ arg4.
+	temp3 _ arg5.
+	temp1 + temp3. ]}' equals: decompiledBlock printString
 ! !
 
-!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/26/2009 21:55'!
-testIntegerPart
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 1/17/2011 00:13'!
+testBlockNumbering
+	"Test that the compiler and CompiledMethod agree on the block numbering of a substantial doit."
+	"self new testBlockNumbering"
+	| methodNode method tempRefs |
+	methodNode _
+		Parser new
+			encoderClass: EncoderForV3PlusClosures;
+			parse: 'foo
+					| numCopiedValuesCounts |
+					numCopiedValuesCounts := Dictionary new.
+					0 to: 32 do: [:i| numCopiedValuesCounts at: i put: 0].
+					Transcript clear.
+					Smalltalk allClassesDo:
+						[:c|
+						{c. c class} do:
+							[:b|
+							Transcript nextPut: b name first; endEntry.
+							b selectorsAndMethodsDo:
+								[:s :m| | pn |
+								m isQuick not ifTrue:
+									[pn := b parserClass new
+												encoderClass: EncoderForV3PlusClosures;
+												parse: (b sourceCodeAt: s)
+												class: b.
+									 pn generate: #(0 0 0 0).
+									 [pn accept: nil]
+										on: MessageNotUnderstood
+										do: [:ex| | msg numCopied |
+											msg := ex message.
+											(msg selector == #visitBlockNode:
+											 and: [(msg argument instVarNamed: ''optimized'') not]) ifTrue:
+												[numCopied := (msg argument computeCopiedValues: pn) size.
+												 numCopiedValuesCounts
+													at: numCopied
+													put: (numCopiedValuesCounts at: numCopied) + 1].
+											msg setSelector: #==.
+											ex resume: nil]]]]].
+					numCopiedValuesCounts'
+			class: Object.
+	method _ methodNode generate: #(0 0 0 0).
+	tempRefs _ methodNode encoder blockExtentsToTempsMap.
+	self assert: tempRefs keys asSet = method startpcsToBlockExtents values asSet! !
 
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 1/17/2011 00:13'!
+testBlockNumberingForInjectInto
+	"Test that the compiler and CompiledMethod agree on the block numbering of Collection>>inject:into:
+	 and that temp names for inject:into: are recorded."
+	"self new testBlockNumberingForInjectInto"
+	| methodNode method tempRefs |
+	methodNode := Parser new
+						encoderClass: EncoderForV3PlusClosures;
+						parse: (Collection sourceCodeAt: #inject:into:)
+						class: Collection.
+	method := methodNode generate: #(0 0 0 0).
+	tempRefs := methodNode encoder blockExtentsToTempsMap.
+	self assert: tempRefs keys asSet = method startpcsToBlockExtents values asSet.
+	self assert: ((tempRefs includesKey: (0 to: 6))
+				and: [(tempRefs at: (0 to: 6)) hasEqualElements: #(('thisValue' 1) ('binaryBlock' 2) ('nextValue' (3 1)))]).
+	self assert: ((tempRefs includesKey: (2 to: 4))
+				and: [(tempRefs at: (2 to: 4)) hasEqualElements: #(('each' 1) ('binaryBlock' 2) ('nextValue' (3 1)))])! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:00'!
+testDebuggerTempAccess
+
+	"This test also fails in Squeak. Check if it is ever fixed."
+	self flag: #expectedFailure.
+
+	self doTestDebuggerTempAccessWith: 1 with: 2! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:52'!
+testInjectIntoDecompilationsEncoderForV3PlusClosures
+	"Test various compilations decompile to the same code for a method sufficiently
+	 simple that this is possible and sufficiently complex that the code generated
+	 varies between the compilations."
+	"self new testInjectIntoDecompilationsEncoderForV3PlusClosures"
+	| source |
+
+	source := (Collection sourceCodeAt: #inject:into:) asString.
+	{ EncoderForV3PlusClosures } do:
+		[:encoderClass| | method |
+		method := (Parser new
+							encoderClass: encoderClass;
+							parse: source
+							class: Collection)
+						generate: #(0 0 0 0).
+		self assert: (Scanner new scanTokens: method decompileString)
+					= #(inject: arg1 into: arg2
+							| temp3 |
+							temp3 _ arg1 .
+							self do: [ ':arg5' | temp3 _ arg2 value: temp3 value: arg5 ] .
+							^ temp3 . )]! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'jmv 5/27/2015 13:04'!
+testInjectIntoDecompiledDebugs
+	"Test various debugs of the decompiled form debug correctly."
+	"self new testInjectIntoDecompiledDebugs"
+	| source |
+
+	source := (Collection sourceCodeAt: #inject:into:) asString.
+	{ EncoderForV3PlusClosures } do:
+		[:encoderClass| | method |
+		method := (Parser new
+							encoderClass: encoderClass;
+							parse: source
+							class: Collection)
+						generate: #(0 0 0 0).
+		self supportTestSourceRangeAccessForDecompiledInjectInto: method source: method decompileString]! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 7/24/2009 11:51'!
+testInlineBlockCollectionEM1
+	| a1 b1 i1 a2 b2 i2 we wb |
+	b1 := OrderedCollection new.
+	i1 := 1.
+	[a1 := i1.
+	 i1 <= 3] whileTrue:
+		[b1 add: [a1].
+		i1 := i1 + 1].
+	b1 := b1 asArray collect: [:b | b value].
+	b2 := OrderedCollection new.
+	i2 := 1.
+	we := [a2 := i2. i2 <= 3].
+	wb := [b2 add: [a2]. i2 := i2 + 1].
+	we whileTrue: wb. "defeat optimization"
+	b2 := b2 asArray collect: [:b | b value].
+	self assert: b1 = b2! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 3/7/2009 11:25'!
+testInlineBlockCollectionLR1
+	"Test case from Lukas Renggli"
+	| col |
+	col := OrderedCollection new.
+	1 to: 11 do: [ :each | col add: [ each ] ].
+	self assert: (col collect: [ :each | each value ]) asArray = (1 to: 11) asArray! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 3/7/2009 11:39'!
+testInlineBlockCollectionLR2
+	"Test case from Lukas Renggli"
+	| col |
+	col := OrderedCollection new.
+	1 to: 11 do: [ :each | #(1) do: [:ignored| col add: [ each ]] ].
+	self assert: (col collect: [ :each | each value ]) asArray = (1 to: 11) asArray! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 3/9/2009 11:00'!
+testInlineBlockCollectionLR3
+	| col |
+	col := OrderedCollection new.
+	1 to: 11 do: [ :each | | i | i := each. col add: [ i ]. i := i + 1 ].
+	self assert: (col collect: [ :each | each value ]) asArray = (2 to: 12) asArray! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 7/22/2009 16:55'!
+testInlineBlockCollectionSD1
+	| a1 b1 a2 b2 |
+	b1 := OrderedCollection new.
+	1 to: 3 do:
+		[:i |
+		a1 := i.
+		b1 add: [a1]].
+	b1 := b1 asArray collect: [:b | b value].
+	b2 := OrderedCollection new.
+	1 to: 3 do:
+		[:i |
+		a2 := i.
+		b2 add: [a2]] yourself. "defeat optimization"
+	b2 := b2 asArray collect: [:b | b value].
+	self assert: b1 = b2! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 15:20'!
+testSourceRangeAccessForClosureBytecodeInjectInto
+	"Test debugger source range selection for inject:into: for a version compiled with closures"
+	"self new testSourceRangeAccessForClosureBytecodeInjectInto"
+	| source method |
+	source := (Collection sourceCodeAt: #inject:into:) asString.
+	method := (Parser new
+						encoderClass: EncoderForV3PlusClosures;
+						parse: source
+						class: Collection)
+					generate: (Collection compiledMethodAt: #inject:into:) trailer.
+	self supportTestSourceRangeAccessForInjectInto: method source: source! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/4/2008 11:40'!
+testSourceRangeAccessForInjectInto
+	"Test debugger source range selection for inject:into: for the current version of the method"
+	"self new testSourceRangeAccessForInjectInto"
+	self supportTestSourceRangeAccessForInjectInto: (Collection compiledMethodAt: #inject:into:)
+		source: (Collection sourceCodeAt: #inject:into:) asString! !
+
+!ClosureCompilerTest methodsFor: 'tests' stamp: 'eem 6/15/2008 11:26'!
+testTempNameAccessForInjectInto
+	"self new testTempNameAccessForInjectInto"
+	| methodNode method evaluationCount block debuggerMap |
+	methodNode := Parser new
+						encoderClass: EncoderForV3PlusClosures;
+						parse: (Collection sourceCodeAt: #inject:into:)
+						class: Collection.
+	method := methodNode generate: #(0 0 0 0).
+	debuggerMap := DebuggerMethodMap forMethod: method methodNode: methodNode.
+	evaluationCount := 0.
+	block := [:prev :each| | theContext tempNames |
+			evaluationCount := evaluationCount + 1.
+			theContext := thisContext sender.
+			tempNames := debuggerMap tempNamesForContext: theContext.
+			self assert: (tempNames hasEqualElements: tempNames).
+			#('thisValue' 'each' 'binaryBlock' 'nextValue')
+				with: { 0. each. block. prev}
+				do: [:tempName :value|
+					self assert: (debuggerMap namedTempAt: (tempNames indexOf: tempName) in: theContext) == value.
+					tempName ~= 'each' ifTrue:
+						[self assert: (debuggerMap namedTempAt: (tempNames indexOf: tempName) in: theContext home) == value]]].
+	(1 to: 10) withArgs: { 0. block } executeMethod: method.
+	self assert: evaluationCount = 10! !
+
+!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/20/2008 09:40'!
+methodWithCopiedAndAssignedTemps
+	| blk "0w" a "0w" b "0w" c "0w" t "0w" r1 "0w" r2 "0w" |
+	a := 1. "1w"
+	b := 2. "1w"
+	c := 4. "1w"
+	t := 0. "1w"
+	blk "5w" := ["2" t  "3w" := t "3r" + a "3r" + b "3r" + c "3r" ] "4".
+	r1 "5w" := blk "5r" value.
+	b "5w" := -100.
+	r2 "5w" := blk "5r" value.
+	^r1 "5r" -> r2 "5r" -> t "5r"
+
+	"a: main(read(),write(0,1)), block(read(3),write()) => copy; no writes follow read
+	 b: main(read(),write(0,1,5)), block(read(3),write()) => remote; write follows contained read
+	 blk: main(read(5),write(0,5)), block(read(),write()) => no copy in blocks < 5
+	 c: main(read(),write(0,1)), block(read(3),write()) => copy; no writes follow read
+	 r1: main(read(5),write(0,5)), block(read(),write()) => no copy in blocks < 5
+	 r2: main(read(5),write(0,5)), block(read(),write()) => no copy in blocks < 5
+	 t: main(read(5),write(0,1)), block(read(3),write(3)) => remote; read follows contained write"
+
+
+	"(Parser new
+		encoderClass: EncoderForV3;
+		parse: (self class sourceCodeAt: #methodWithCopiedAndAssignedTemps)
+		class: self class) generateUsingClosures: #(0 0 0 0)"! !
+
+!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 20:45'!
+methodWithCopiedAndPostClosedOverAssignedTemps
+	| blk a b c r1 r2 |
+	a := 1.
+	b := 2.
+	c := 4.
+	blk := [a + b + c].
+	r1 := blk value.
+	b := nil.
+	r2 := blk value.
+	r1 -> r2
+
+	"(Parser new
+		encoderClass: EncoderForV3;
+		parse: (self class sourceCodeAt: #methodWithCopiedAndPostClosedOverAssignedTemps)
+		class: self class) generateUsingClosures: #(0 0 0 0)"! !
+
+!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 20:10'!
+methodWithCopiedTemps
+	| a b c r |
+	a := 1.
+	b := 2.
+	c := 4.
+	r := [a + b + c] value.
+	b := nil.
+	r
+
+	"Parser new
+		parse: (self class sourceCodeAt: #methodWithCopiedTemps)
+		class: self class"
+
+	"(Parser new
+		encoderClass: EncoderForV3;
+		parse: (self class sourceCodeAt: #methodWithCopiedTemps)
+		class: self class) generateUsingClosures: #(0 0 0 0)"! !
+
+!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 14:24'!
+methodWithOptimizedBlocks
+	| s c |
+	s := self isNil
+			ifTrue: [| a | a := 'isNil'. a]
+			ifFalse: [| b | b := 'notNil'. b].
+	c := String new: s size.
+	1 to: s size do:
+		[:i| c at: i put: (s at: i)].
+	^c
+
+	"Parser new
+		parse: (self class sourceCodeAt: #methodWithOptimizedBlocks)
+		class: self class"! !
+
+!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 14:24'!
+methodWithOptimizedBlocksA
+	| s c |
+	s := self isNil
+			ifTrue: [| a | a := 'isNil'. a]
+			ifFalse: [| a | a := 'notNil'. a].
+	c := String new: s size.
+	1 to: s size do:
+		[:i| c at: i put: (s at: i)].
+	^c
+
+	"Parser new
+		parse: (self class sourceCodeAt: #methodWithOptimizedBlocksA)
+		class: self class"! !
+
+!ClosureCompilerTest class methodsFor: 'code examples' stamp: 'eem 5/19/2008 14:12'!
+methodWithVariousTemps
+	| classes total totalLength |
+	classes := self withAllSuperclasses.
+	total := totalLength := 0.
+	classes do: [:class| | className |
+		className := class name.
+		total := total + 1.
+		totalLength := totalLength + className size].
+	^total -> totalLength
+
+	"Parser new
+		parse: (self class sourceCodeAt: #methodWithVariousTemps)
+		class: self class"! !
+
+!ClosureTests methodsFor: 'utilities' stamp: 'lr 3/9/2009 16:48'!
+assertValues: anArray
+	| values |
+	values := collection collect: [ :each | each value ].
 	self 
-		assert: 2 integerPart = 2;
-		assert: (1/2) integerPart = 0;
-		assert: (4/3) integerPart = 1;
-		assert: 2.0 integerPart = 2.0;
-		assert: 0.5 integerPart = 0.0;
-		assert: 2.5 integerPart = 2.0
-! !
+		assert: anArray asArray = values asArray
+		description: 'Expected: ' , anArray asArray printString , 
+			', but got ' , values asArray printString! !
 
-!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/23/2009 20:49'!
-testOne
+!ClosureTests methodsFor: 'utilities' stamp: 'cwp 11/16/2009 08:12'!
+evaluateCopyOf: aBlock
+	aBlock copy value! !
 
-	self 
-		assert: Integer one = 1;
-		assert: Float one = 1.0;
-		assert: Fraction one = 1! !
+!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:35'!
+methodArgument: anObject
+	^ [ anObject ]
+	! !
 
-!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:23'!
-testPrintShowingDecimalPlaces
+!ClosureTests methodsFor: 'utilities' stamp: 'cwp 11/16/2009 08:12'!
+methodWithNonLocalReturn
+	self evaluateCopyOf: [^ self].
+	self signalFailure: 'Should never reach here'! !
 
-	self assert: (String streamContents: [ :s | 111.2 printOn: s fractionDigits: 2]) = '111.20'.
-	self assert: (String streamContents: [ :s | 111.2 printOn: s fractionDigits: 0]) = '111'.
-	self assert: (String streamContents: [ :s | 111 printOn: s fractionDigits: 0]) = '111'.
-	self assert: (String streamContents: [ :s | 111111111111111 printOn: s fractionDigits: 2]) = '111111111111111.00'.
-	self assert: (String streamContents: [ :s | 10 printOn: s fractionDigits: 20]) ='10.00000000000000000000'.
-	self assert: (String streamContents: [ :s | 0.98 printOn: s fractionDigits: 2]) = '0.98'.
-	self assert: (String streamContents: [ :s | -0.98 printOn: s fractionDigits: 2]) = '-0.98'.
-	self assert: (String streamContents: [ :s | 2.567 printOn: s fractionDigits: 2]) = '2.57'.
-	self assert: (String streamContents: [ :s | -2.567 printOn: s fractionDigits: 2]) = '-2.57'! !
+!ClosureTests methodsFor: 'running' stamp: 'lr 3/9/2009 16:48'!
+setUp
+	super setUp.
+	collection := OrderedCollection new! !
 
-!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:21'!
-testPrintShowingDecimalPlaces2
-	"This tests problems related to Float>>rounded and Float>>roundTo::
-	- Float>>#rounded is inexact
-	- Float>>#roundTo: might overflow"
+!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:33'!
+testBlockArgument
+	| block block1 block2 |
+	block := [ :arg | | temp | temp := arg. [ temp ] ].
+	block1 := block value: 1.
+	block2 := block value: 2.
+	self assert: block1 value = 1.
+	self assert: block2 value = 2! !
 
-	"5000000000000001.0 asTrueFraction = 5000000000000001.
-	5000000000000001 highBit = 53.
-	This number is represented exactly asFloat, it should print exactly"
-	self assert: (String streamContents: [ :s | 5000000000000001.0 printOn: s fractionDigits: 0]) = '5000000000000001'.
-	
-	"50000000000001.25 asTrueFraction = (200000000000005/4).
-	200000000000005 highBit = 48, 4 isPowerOfTwo,
-	So this number is also represented exactly as Float, it should print exactly.
-	Beware: (50000000000001.25 / 0.01) rounded exhibit the same problem as above."
-	self assert: (String streamContents: [ :s | 50000000000001.25 printOn: s fractionDigits: 2]) = '50000000000001.25'.
-	
-	"This number is close to maximum float value"
-	self shouldnt: [String streamContents: [ :s | 1.0e306 printOn: s fractionDigits: 3]] raise: Error.! !
+!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:33'!
+testBlockTemp
+	| block block1 block2 |
+	block := [ :arg | [ arg ] ].
+	block1 := block value: 1.
+	block2 := block value: 2.
+	self assert: block1 value = 1.
+	self assert: block2 value = 2! !
 
-!NumberTest methodsFor: 'tests' stamp: 'jmv 1/9/2014 21:22'!
-testPrintShowingDecimalPlaces3
-	"This problem were reported at http://bugs.squeak.org/view.php?id=7028
-	unfortunate inversion of left / right padding"
-	self assert: (String streamContents: [ :s | 1.009 printOn: s fractionDigits: 3]) = '1.009'.
-	self assert: (String streamContents: [ :s | 35.900 printOn: s fractionDigits: 3]) = '35.900'.
-	self assert: (String streamContents: [ :s | -0.097 printOn: s fractionDigits: 3]) = '-0.097'.! !
+!ClosureTests methodsFor: 'testing' stamp: 'cwp 11/16/2009 08:11'!
+testCopyNonLocalReturn
+	self
+		shouldnt: [self methodWithNonLocalReturn]
+		raise: Error! !
 
-!NumberTest methodsFor: 'tests' stamp: 'nice 12/6/2007 21:24'!
-testRaisedTo
-	"this is a test related to http://bugs.squeak.org/view.php?id=6781"
-	
-	self should: [0 raisedTo: -1] raise: ZeroDivide.
-	self should: [0 raisedTo: -1.0] raise: ZeroDivide.! !
-
-!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/25/2009 16:41'!
-testRaisedToInteger
-
-	self 
-		assert: (2 raisedToInteger: 0) = 1;
-		assert: (2 raisedToInteger: 1) = 2;
-		assert: (2 raisedToInteger: 4) = 16;
-		assert: (0 raisedToInteger: 0) = 1;
-		assert: (0 raisedToInteger: 2) = 0;
-		assert: (2 raisedToInteger: -1) = (1/2);
-		assert: (2 raisedToInteger: -4) = (1/16).
-	
-	self 
-		assert: (-3 raisedTo: 0) = 1;
-		assert: (-3 raisedTo: 1) = -3;
-		assert: (-3 raisedTo: 2) = 9;
-		assert: (-3 raisedTo: 3) = -27;
-		assert: (-3 raisedTo: -2) = (1/9);
-		assert: (-3 raisedTo: -3) = (-1/27).
-	
-	self should: [ 0 raisedTo: -1 ] raise: ZeroDivide! !
-
-!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/25/2009 16:46'!
-testRaisedToIntegerWithFloats
-
-	self 
-		assert: (2.0 raisedToInteger: 0) = 1.0;
-		assert: (2.0 raisedToInteger: 1) = 2.0;
-		assert: (2.0 raisedToInteger: 4) = 16.0;
-		assert: (0.0 raisedToInteger: 0) = 1.0;
-		assert: (0.0 raisedToInteger: 2) = 0.0;
-		assert: (2.0 raisedToInteger: -1) = 0.5;
-		assert: (2.0 raisedToInteger: -4) = 0.0625.
-	
-	self 
-		assert: (-3.0 raisedTo: 0) = 1.0;
-		assert: (-3.0 raisedTo: 1) = -3.0;
-		assert: (-3.0 raisedTo: 2) = 9.0;
-		assert: (-3.0 raisedTo: 3) = -27.0;
-		assert: (-2.0 raisedTo: -2) = 0.25;
-		assert: (-2.0 raisedTo: -3) = -0.125.
-	
-	self should: [ 0.0 raisedTo: -1 ] raise: ZeroDivide! !
-
-!NumberTest methodsFor: 'tests' stamp: 'sd 6/5/2005 08:56'!
-testReadFrom
-	
-	self assert: 1.0e-14	= (Number readFrom: '1.0e-14').
-	self assert: 2r1e26	= (Number readFrom: '2r1e26').! !
-
-!NumberTest methodsFor: 'tests' stamp: 'GabrielOmarCotelli 5/23/2009 19:26'!
-testReciprocal
-
-	self 
-		assert: 1 reciprocal = 1;
-		assert: 2 reciprocal = (1/2);
-		assert: -1 reciprocal = -1;
-		assert: -3 reciprocal = (-1/3).
-		
-	self should: [ 0 reciprocal ] raise: ZeroDivide! !
-
-!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
-testCollectAsReceiverIsModified
+!ClosureTests methodsFor: 'testing' stamp: 'jmv 5/26/2015 16:33'!
+testIsTrivialClosure
 	"
-	This test modifies a collection while iterating it.
-	This is very bad practice and should never be done.
-	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:do:,  as called by #collect:
-
-	OrderedCollectionTest new testCollectAsReceiverIsModified
+	ClosureTests new testIsTrivialClosure
 	"
-	| col result |
-	col _ #(1 2 3 4 5) asOrderedCollection.
-	result _ OrderedCollection new.
-	col collect: [ :elem | 
-		result add: elem.
-		elem < 4 ifTrue: [ col add: col size + 1 ]].
-	self assert: result = #(1 2 3 4 5) asOrderedCollection! !
+	| tempVar |
+	tempVar _ 1.
+	self assert: [ 3 + 4 ] isTrivialClosure.
+	self assert: [ :a | a * 2 ] isTrivialClosure.
+	self assert: [ Smalltalk size ] isTrivialClosure.
+	self assert: [ ClosureTests selectors size ] isTrivialClosure.
+	self assert: [ :blockArg | blockArg printString ] isTrivialClosure.
+	self assert: [ | blockTemp | blockTemp printString ] isTrivialClosure.
+	self assert: [ | blockTemp | blockTemp _ 7 ] isTrivialClosure.
+	self assert: [ | c | c _ [ :a :b | a+b ]. c value: 3 value: 4 ] isTrivialClosure.
 
-!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
-testDoAsReceiverIsModified
-	"
-	This test modifies a collection while iterating it.
-	This is very bad practice and should never be done.
-	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:do:,  as called by #do:
+	self assert: [ | outerBlockTemp | [ outerBlockTemp printString ] ] isTrivialClosure.
+	self assert: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] ] isTrivialClosure.
+	self assert: [ | outerBlockTemp | [[ outerBlockTemp printString ]] ] isTrivialClosure.
+	self assert: [ | outerBlockTemp | [[ outerBlockTemp _ 7 ]] ] isTrivialClosure.
+	self assert: [ [| outerBlockTemp | [ outerBlockTemp printString ]] ] isTrivialClosure.
+	self assert: [ [| outerBlockTemp | [ outerBlockTemp _ 7 ]] ] isTrivialClosure.
 
-	OrderedCollectionTest new testDoAsReceiverIsModified
-	"
-	| col result |
-	col _ #(1 2 3 4 5) asOrderedCollection.
-	result _ OrderedCollection new.
-	col do: [ :elem | 
-		result add: elem.
-		elem < 4 ifTrue: [ col add: col size + 1 ]].
-	self assert: result = #(1 2 3 4 5) asOrderedCollection! !
+	self deny: [ | outerBlockTemp | [ outerBlockTemp printString ] isTrivialClosure ] value.
+	self deny: [ | outerBlockTemp | [ outerBlockTemp _ 7 ] isTrivialClosure ] value.
+	self deny: [ | outerBlockTemp | [[ outerBlockTemp printString ]] isTrivialClosure ] value.
+	self deny: [ | outerBlockTemp | [[ outerBlockTemp _ 7 ]] isTrivialClosure ] value.
 
-!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
-testReverseDoAsReceiverIsModified
-	"
-	This test modifies a collection while iterating it.
-	This is very bad practice and should never be done.
-	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:by:do:,  as called by #reverseDo:
+	self deny: [ tempVar + 1 ] isTrivialClosure.
+	self deny: [ tempVar _ 1 ] isTrivialClosure.
+	self deny: [ ivar + 1 ] isTrivialClosure.
+	self deny: [ ivar _ 1 ] isTrivialClosure.
+	self deny: [ ^ true ] isTrivialClosure.
+	self deny: [ self printString ] isTrivialClosure.
+	self deny: [ ^ self ] isTrivialClosure.
+	self deny: [ ClassVar + 1 ] isTrivialClosure.
+	self deny: [ ClassVar _ 1 ] isTrivialClosure! !
 
-	OrderedCollectionTest new testReverseDoAsReceiverIsModified
-	"
-	| col result |
-	col _ #(1 2 3 4 5) asOrderedCollection.
-	result _ OrderedCollection new.
-	col reverseDo: [ :elem |
-		result add: elem.
-		col size > 3 ifTrue: [ col removeFirst ]].
-	"Not nice, but what can we expect if we remove stuff during iteration?"
-	self assert: result = #(nil nil 3 4 5) asOrderedCollection reversed! !
+!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:36'!
+testMethodArgument
+	| temp block |
+	temp := 0.
+	block := [ [ temp ] ].
+	temp := 1.
+	block := block value.
+	temp := 2.
+	self assert: block value = 2! !
+
+!ClosureTests methodsFor: 'testing' stamp: 'lr 3/11/2009 17:36'!
+testMethodTemp
+	| block1 block2 |
+	block1 := self methodArgument: 1.
+	block2 := self methodArgument: 2.
+	self assert: block1 value = 1.
+	self assert: block2 value = 2! !
+
+!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
+testToDoArgument
+	1 to: 5 do: [ :index |
+		collection add: [ index ] ].
+	self assertValues: #(1 2 3 4 5)! !
+
+!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
+testToDoArgumentNotInlined
+	| block |
+	block := [ :index |
+		collection add: [ index ] ].
+	1 to: 5 do: block.
+	self assertValues: #(1 2 3 4 5)! !
+
+!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
+testToDoInsideTemp
+	1 to: 5 do: [ :index | 
+		| temp | 
+		temp := index. 
+		collection add: [ temp ] ].
+	self assertValues: #(1 2 3 4 5)! !
+
+!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
+testToDoInsideTempNotInlined
+	| block |
+	block := [ :index | 
+		| temp | 
+		temp := index. 
+		collection add: [ temp ] ].
+	1 to: 5 do: block.
+	self assertValues: #(1 2 3 4 5)! !
+
+!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
+testToDoOutsideTemp
+	| temp |
+	1 to: 5 do: [ :index | 
+		temp := index. 
+		collection add: [ temp ] ].
+	self assertValues: #(5 5 5 5 5)! !
+
+!ClosureTests methodsFor: 'testing-todo' stamp: 'lr 3/10/2009 14:51'!
+testToDoOutsideTempNotInlined
+	| block temp |
+	block := [ :index | 
+		temp := index. 
+		collection add: [ temp ] ].
+	1 to: 5 do: block.
+	self assertValues: #(5 5 5 5 5)! !
+
+!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
+testWhileModificationAfter
+	| index |
+	index := 0.
+	[ index < 5 ] whileTrue: [
+		collection add: [ index ].
+		index := index + 1 ].
+	self assertValues: #(5 5 5 5 5)! !
+
+!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
+testWhileModificationAfterNotInlined
+	| index block |
+	index := 0.
+	block := [ 
+		collection add: [ index ].
+		index := index + 1 ].
+	[ index < 5 ] whileTrue: block.
+	self assertValues: #(5 5 5 5 5)! !
+
+!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
+testWhileModificationBefore
+	| index |
+	index := 0.
+	[ index < 5 ] whileTrue: [ 
+		index := index + 1.
+		collection add: [ index ] ].
+	self assertValues: #(5 5 5 5 5)! !
+
+!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:29'!
+testWhileModificationBeforeNotInlined
+	| index block |
+	index := 0.
+	block := [ 
+		index := index + 1.
+		collection add: [ index ] ].
+	[ index < 5 ] whileTrue: block.
+	self assertValues: #(5 5 5 5 5)! !
+
+!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:52'!
+testWhileWithTemp
+	| index |
+	index := 0.
+	[ index < 5 ] whileTrue: [
+		| temp |
+		temp := index := index + 1.
+		collection add: [ temp ] ].
+	self assertValues: #(1 2 3 4 5)! !
+
+!ClosureTests methodsFor: 'testing-while' stamp: 'lr 3/10/2009 14:53'!
+testWhileWithTempNotInlined
+	| index block |
+	index := 0.
+	block := [
+		| temp |
+		temp := index := index + 1.
+		collection add: [ temp ] ].
+	[ index < 5 ] whileTrue: block.
+	self assertValues: #(1 2 3 4 5)! !
+
+!CompilerExceptionsTest methodsFor: 'as yet unclassified' stamp: 'cwp 8/25/2009 20:27'!
+griffle | goo |! !
+
+!CompilerExceptionsTest methodsFor: 'emulating' stamp: 'cwp 8/25/2009 20:23'!
+selectFrom: start to: end 
+	! !
+
+!CompilerExceptionsTest methodsFor: 'emulating' stamp: 'cwp 8/25/2009 20:22'!
+selectionInterval
+	^ 1 to: 0! !
+
+!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:22'!
+testUndeclaredVariable
+	self 
+		should: 
+			[self class 
+				compile: 'griffle ^ goo'
+				notifying: self]
+		raise: UndeclaredVariable! !
+
+!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:24'!
+testUndefinedVariable
+	self 
+		should: 
+			[self class 
+				compile: 'griffle | goo | ^ goo'
+				notifying: self]
+		raise: UndefinedVariable! !
+
+!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:25'!
+testUnknownSelector
+	self 
+		should: 
+			[self class 
+				compile: 'griffle self reallyHopeThisIsntImplementedAnywhere'
+				notifying: self]
+		raise: UnknownSelector! !
+
+!CompilerExceptionsTest methodsFor: 'tests' stamp: 'cwp 8/25/2009 20:27'!
+testUnusedVariable
+	self 
+		should: 
+			[self class 
+				compile: self unusedVariableSource
+				notifying: self]
+		raise: UnusedVariable! !
+
+!CompilerExceptionsTest methodsFor: 'emulating' stamp: 'cwp 8/25/2009 20:26'!
+text
+	^ self unusedVariableSource! !
+
+!CompilerExceptionsTest methodsFor: 'private' stamp: 'cwp 8/25/2009 20:28'!
+unusedVariableSource
+	^ 'griffle 
+		| goo |
+		^ nil'! !
+
+!ContextCompilationTest methodsFor: 'tests' stamp: 'eem 6/19/2008 10:11'!
+testVariablesAndOffsetsDo
+
+	"ContextCompilationTest new testVariablesAndOffsetsDo"
+	| contextClasses |
+	contextClasses := ContextPart withAllSuperclasses, ContextPart allSubclasses asArray.
+	contextClasses do:
+		[:class|
+		class variablesAndOffsetsDo:
+			[:var :offset|
+			self assert: offset < 0.
+			self assert: (class instVarNameForIndex: offset negated) == var]].
+
+	InstructionStream withAllSuperclasses, InstructionStream allSubclasses asArray do:
+		[:class|
+		(contextClasses includes: class) ifFalse:
+			[class variablesAndOffsetsDo:
+				[:var :offset|
+				(InstructionStream instVarNames includes: var) ifFalse:
+					[self assert: offset > 0.
+					 self assert: (class instVarNameForIndex: offset) == var]]]]! !
+
+!DecompilerTests methodsFor: 'utilities' stamp: 'sd 9/25/2004 15:30'!
+blockingClasses
+
+
+	^ #(CompiledMethod)! !
+
+!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 6/29/2014 19:59'!
+checkDecompileMethod: oldMethod
+	
+	| cls selector oldMethodNode methodNode newMethod oldCodeString newCodeString |
+	cls := oldMethod methodClass.
+	selector := oldMethod selector.
+	oldMethodNode := Decompiler new
+						decompile: selector
+						in: cls
+						method: oldMethod.
+	[oldMethodNode properties includesKey: #warning] whileTrue:
+		[oldMethodNode properties removeKey: #warning].
+	oldCodeString := oldMethodNode decompileString.
+	methodNode := [ Compiler new
+						compile: oldCodeString
+						in: cls
+						notifying: nil
+						ifFail: nil]
+						on: SyntaxErrorNotification
+						do: [:ex|
+							ex errorMessage = 'Cannot store into' ifTrue:
+								[ex return: #badStore].
+							ex pass].
+	"Ignore cannot store into block arg errors; they're not our issue."
+	methodNode ~~ #badStore ifTrue:
+		[newMethod := methodNode generate: #(0 0 0 0).
+		 newCodeString := (Decompiler new
+							decompile: selector
+							in: cls
+							method: newMethod) decompileString.
+		 "(StringHolder new textContents:
+			(TextDiffBuilder buildDisplayPatchFrom: oldCodeString to: newCodeString))
+				openLabel: 'Decompilation Differences for ', cls name,'>>',selector"
+		 "(StringHolder new textContents:
+			(TextDiffBuilder buildDisplayPatchFrom: oldMethod abstractSymbolic to: newMethod abstractSymbolic))
+				openLabel: 'Bytecode Differences for ', cls name,'>>',selector"
+		 self assert: oldCodeString = newCodeString
+			description: cls name asString, ' ', selector asString
+			resumable: true]! !
+
+!DecompilerTests methodsFor: 'utilities' stamp: 'jmv 5/27/2015 13:58'!
+decompileClassesSelect: aBlock
+	| cls |
+	(Smalltalk classNames select: aBlock) do: [ :cn |
+		cls _ Smalltalk at: cn.
+		 cls selectorsAndMethodsDo: [ :selector :meth |
+				self checkDecompileMethod: meth ]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesAAtoAM
+	self decompileClassesSelect: [:cn| cn first = $A and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesANtoAZ
+	self decompileClassesSelect: [:cn| cn first = $A and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesBAtoBM
+	self decompileClassesSelect: [:cn| cn first = $B and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesBNtoBZ
+	self decompileClassesSelect: [:cn| cn first = $B and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesCAtoCM
+	self decompileClassesSelect: [:cn| cn first = $C and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesCNtoCZ
+	self decompileClassesSelect: [:cn| cn first = $C and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesDAtoDM
+	self decompileClassesSelect: [:cn| cn first = $D and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesDNtoDZ
+	self decompileClassesSelect: [:cn| cn first = $D and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesEAtoEM
+	self decompileClassesSelect: [:cn| cn first = $E and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesENtoEZ
+	self decompileClassesSelect: [:cn| cn first = $E and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesFAtoFM
+	self decompileClassesSelect: [:cn| cn first = $F and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesFNtoFZ
+	self decompileClassesSelect: [:cn| cn first = $F and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesGAtoGM
+	self decompileClassesSelect: [:cn| cn first = $G and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesGNtoGZ
+	self decompileClassesSelect: [:cn| cn first = $G and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesHAtoHM
+	self decompileClassesSelect: [:cn| cn first = $H and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesHNtoHZ
+	self decompileClassesSelect: [:cn| cn first = $H and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesIAtoIM
+	self decompileClassesSelect: [:cn| cn first = $I and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesINtoIZ
+	self decompileClassesSelect: [:cn| cn first = $I and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesJAtoJM
+	self decompileClassesSelect: [:cn| cn first = $J and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesJNtoJZ
+	self decompileClassesSelect: [:cn| cn first = $J and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesKAtoKM
+	self decompileClassesSelect: [:cn| cn first = $K and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesKNtoKZ
+	self decompileClassesSelect: [:cn| cn first = $K and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesLAtoLM
+	self decompileClassesSelect: [:cn| cn first = $L and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesLNtoLZ
+	self decompileClassesSelect: [:cn| cn first = $L and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesMAtoMM
+	self decompileClassesSelect: [:cn| cn first = $M and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesMNtoMZ
+	self decompileClassesSelect: [:cn| cn first = $M and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesNAtoNM
+	self decompileClassesSelect: [:cn| cn first = $N and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesNNtoNZ
+	self decompileClassesSelect: [:cn| cn first = $N and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesOAtoOM
+	self decompileClassesSelect: [:cn| cn first = $O and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesONtoOZ
+	self decompileClassesSelect: [:cn| cn first = $O and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesPAtoPM
+	self decompileClassesSelect: [:cn| cn first = $P and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesPNtoPZ
+	self decompileClassesSelect: [:cn| cn first = $P and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesQAtoQM
+	self decompileClassesSelect: [:cn| cn first = $Q and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesQNtoQZ
+	self decompileClassesSelect: [:cn| cn first = $Q and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesRAtoRM
+	self decompileClassesSelect: [:cn| cn first = $R and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesRNtoRZ
+	self decompileClassesSelect: [:cn| cn first = $R and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesSAtoSM
+	self decompileClassesSelect: [:cn| cn first = $S and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesSNtoSZ
+	self decompileClassesSelect: [:cn| cn first = $S and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesTAtoTM
+	self decompileClassesSelect: [:cn| cn first = $T and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesTNtoTZ
+	self decompileClassesSelect: [:cn| cn first = $T and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesUAtoUM
+	self decompileClassesSelect: [:cn| cn first = $U and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesUNtoUZ
+	self decompileClassesSelect: [:cn| cn first = $U and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesVAtoVM
+	self decompileClassesSelect: [:cn| cn first = $V and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesVNtoVZ
+	self decompileClassesSelect: [:cn| cn first = $V and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesWAtoWM
+	self decompileClassesSelect: [:cn| cn first = $W and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesWNtoWZ
+	self decompileClassesSelect: [:cn| cn first = $W and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesXAtoXM
+	self decompileClassesSelect: [:cn| cn first = $X and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesXNtoXZ
+	self decompileClassesSelect: [:cn| cn first = $X and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesYAtoYM
+	self decompileClassesSelect: [:cn| cn first = $Y and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesYNtoYZ
+	self decompileClassesSelect: [:cn| cn first = $Y and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesZAtoZM
+	self decompileClassesSelect: [:cn| cn first = $Z and: [cn second asUppercase <= $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'eem 9/23/2008 11:16'!
+testDecompilerInClassesZNtoZZ
+	self decompileClassesSelect: [:cn| cn first = $Z and: [cn second asUppercase > $M]]! !
+
+!DecompilerTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:04'!
+testRemoteTemp
+	| aBlock |
+	aBlock := Compiler evaluate: '| x y |  [:a :b | x := a. y := b. x+y]'.
+	self shouldnt: [aBlock decompile] raise: Error
+	! !
+
+!DecompilerTestFailuresCollector methodsFor: 'accessing' stamp: 'jmv 3/2/2010 15:57'!
+assert: aBoolean description: aString resumable: resumableBoolean 
+	aBoolean ifFalse: [
+		failures ifNil: [
+			failures := OrderedCollection new].
+		 failures addLast: (thisContext sender tempAt: 1) methodReference]! !
+
+!DecompilerTestFailuresCollector methodsFor: 'accessing' stamp: 'eem 11/10/2008 15:47'!
+failures
+	^failures! !
+
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
+testMirrorAt
+	| stackpBefore stackpAfter array byteArray |
+
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
+
+	stackpBefore := thisContext stackPtr.
+	array := { 1. 2. 3 }.
+	byteArray := ByteArray with: 1 with: 2 with: 3.
+	self assert: (thisContext object: array basicAt: 1) = 1.
+	self assert: (thisContext object: byteArray basicAt: 2) = 2.
+	thisContext object: array basicAt: 2 put: #two.
+	self assert: array = #(1 #two 3).
+	thisContext object: byteArray basicAt: 2 put: 222.
+	self assert: byteArray asArray = #(1 222 3).
+	stackpAfter := thisContext stackPtr.
+	self assert: stackpBefore = stackpAfter. "Make sure primitives pop all their arguments"
+	self should: [thisContext object: array basicAt: 4] raise: Error.
+	self should: [thisContext object: byteArray basicAt: 0] raise: Error.
+	self should: [thisContext object: byteArray basicAt: 1 put: -1] raise: Error! !
+
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'eem 4/8/2009 19:44'!
+testMirrorClass
+	| stackpBefore stackpAfter |
+	stackpBefore := thisContext stackPtr.
+	self assert: (thisContext objectClass: Array new) = Array.
+	self assert: (thisContext objectClass: 1) = 1 class.
+	self assert: (thisContext objectClass: ProtoObject new) = ProtoObject.
+	stackpAfter := thisContext stackPtr.
+	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
+
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
+testMirrorEqEq
+	| stackpBefore stackpAfter |
+
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
+
+	stackpBefore := thisContext stackPtr.
+	self assert: (thisContext object: Array new eqeq: Array new) == false.
+	self assert: (thisContext object: Array eqeq: Array) == true.
+	stackpAfter := thisContext stackPtr.
+	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
+
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
+testMirrorInstVarAt
+	| stackpBefore stackpAfter array point |
+
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
+
+	stackpBefore := thisContext stackPtr.
+	array := { 1. 2. 3 }.
+	point := Point x: 1 y: 2.
+	self assert: (thisContext object: array instVarAt: 1) = 1.
+	self assert: (thisContext object: point instVarAt: 2) = 2.
+	thisContext object: array instVarAt: 2 put: #two.
+	self assert: array = #(1 #two 3).
+	thisContext object: point instVarAt: 1 put: 1/2.
+	self assert: point = (Point x: 1 / 2 y: 2).
+	stackpAfter := thisContext stackPtr.
+	self assert: stackpBefore = stackpAfter. "Make sure primitives pop all their arguments"
+	self should: [thisContext object: array instVarAt: 4] raise: Error.
+	self should: [thisContext object: point instVarAt: 3] raise: Error! !
+
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
+testMirrorPerform
+	| stackpBefore stackpAfter anInterval |
+
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
+
+	stackpBefore := thisContext stackPtr.
+	anInterval := 1 to: 2.
+	self assert: (thisContext object: anInterval perform:# species withArguments: #() inClass: Interval) == Array.
+	self assert: (thisContext object: anInterval perform:# species withArguments: #() inClass: Interval superclass) == Interval.
+	self should: [thisContext object: anInterval perform:# species withArguments: #() inClass: Point]
+		raise: Error.
+	self should: [thisContext object: anInterval perform:# species withArguments: OrderedCollection new inClass: Interval]
+		raise: Error.
+	stackpAfter := thisContext stackPtr.
+	self assert: stackpBefore = stackpAfter "Make sure primitives pop all their arguments"! !
+
+!MirrorPrimitiveTests methodsFor: 'tests' stamp: 'jmv 12/28/2013 19:06'!
+testMirrorSize
+	| stackpBefore stackpAfter |
+
+	Smalltalk isRunningCog ifFalse: [
+		^self assert: false description: 'Needs Cog' ].
+
+	stackpBefore := thisContext stackPtr.
+	self assert: (thisContext objectSize: #(1 2 3)) = 3.
+	self assert: (thisContext objectSize: '123') = 3.
+	self assert: (thisContext objectSize: nil) = 0.
+	self assert: (thisContext objectSize: 1) = 0.
+	stackpAfter := thisContext stackPtr.
+	self assert: stackpBefore = stackpAfter. "Make sure primitives pop all their arguments"! !
 
 !PrettyPrintingTest methodsFor: 'testing' stamp: 'jmv 4/19/2014 17:39'!
 test1
@@ -8345,99 +6752,577 @@ test6
 
 	self assert: source equals: prettyPrinted! !
 
-!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:15'!
-testSchedulerTermination
-	| process sema gotHere sema2 |
-	gotHere _ false.
-	sema _ Semaphore new.
-	sema2 _ Semaphore new.
-	process _ [
-		sema signal.
-		sema2 wait.
-		"will be suspended here"
-		gotHere _ true ] newProcess.
-	process priority: Processor activeProcess priority.
-	process name: 'testSchedulerTermination'.
-	process resume.
-	sema wait.
-	"until process gets scheduled"
-	process terminate.
-	sema2 signal.
-	Processor yield.
-	"will give process a chance to continue and horribly screw up"
-	self assert: gotHere not.! !
+!ScannerTest methodsFor: 'testing' stamp: 'jmv 9/5/2016 20:48:53'!
+testLiteralSymbols
 
-!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 11/4/2011 22:00'!
-testTerminationDuringUnwind
-	"An illustration of the issue of process termination during unwind.
-	This uses a well-behaved unwind block that we should allow to complete
-	if at all possible."
+	self assert: ('*+-/\~=<>&@%,|' allSatisfy: [:char | Scanner isLiteralSymbol: (String with: char) asSymbol])
+		description: 'single letter binary symbols can be printed without string quotes'.
+		
+	self assert: (#('x' 'x:' 'x:y:' 'from:to:by:' 'yourself') allSatisfy: [:str | Scanner isLiteralSymbol: str asSymbol])
+		description: 'valid ascii selector symbols can be printed without string quotes'.
+		
+	((32 to: 94), (96 to: 126) collect: [:ascii | Character numericValue: ascii]) ,
+	#(':x:yourself' '::' 'x:yourself' '123' 'x0:x1:x2:' 'x.y.z' '1abc' 'a1b0c2' ' x' 'x ' '+x-y' '||' '-' '++' '+' '+/-' '-/+' '<|>' '#x' '()' '[]' '{}' '')
+		do: [:str |
+			self assert: (Compiler evaluate: str asSymbol printString) = str asSymbol
+				description: 'in all case, a Symbol must be printed in an interpretable fashion']! !
+
+!BinarySearchTest methodsFor: 'testing' stamp: 'sqr 5/25/2016 14:36'!
+testquickFindFirst
+
+	| collection |
+	collection := 1000 to: 2100.
+	collection withIndexDo:
+		[:eachElement :eachIndex |
+			self assert: (collection quickFindFirst: [:one | one >= eachElement]) = eachIndex.
+			self assert: (collection quickFindFirst: [:one | one >= (eachElement - 0.5)]) = eachIndex
+		].
+	self assert: (collection quickFindFirst: [:one | one > 2101]) = 0! !
+
+!BinarySearchTest methodsFor: 'testing' stamp: 'sqr 5/25/2016 14:36'!
+testquickFindLast
+
+	| collection |
+	collection := 1000 to: 2100.
+	collection withIndexDo:
+		[:eachElement :eachIndex |
+			self assert: (collection quickFindLast: [:one | one <= eachElement]) = eachIndex.
+			self assert: (collection quickFindLast: [:one | one <= (eachElement + 0.5)]) = eachIndex
+		].
+	self assert: (collection quickFindLast: [:one | one < 0]) = 0! !
+
+!BinarySearchTest methodsFor: 'testing' stamp: 'sqr 5/25/2016 14:46'!
+testquickIndexOf
+
+	| collection |
+	collection := 1000 to: 2100.
+	collection withIndexDo:
+		[:eachElement :eachIndex |
+			self assert: (collection quickIndexOf: eachElement) = eachIndex
+		].
+	self assert: (collection quickIndexOf: 999) = 0.
+	self assert: (collection quickIndexOf: 2101) = 0! !
+
+!BinarySearchTest methodsFor: 'testing' stamp: 'sqr 5/25/2016 15:01'!
+testquickIndexOfWithSemistableOrder
+
+	| collection |
+	collection := SortedCollection
+		sortBlock: [:x :y | x key <= y key].
+	1 to: 1000 do: [:each | collection add: each -> each].
+	1 to: 50 do: [:each | collection add: 42 -> each].
+	self assert: (collection quickIndexOf: 42 -> 6) = 48! !
+
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:34'!
+testIdentitySet
 	"
-	self new testTerminationDuringUnwind
+	CollectTest  new testIdentitySet
 	"
-	| unwindStarted unwindFinished p |
-	unwindStarted := unwindFinished := false.
-	p := [[] ensure:[
-			unwindStarted := true.
-			Processor yield.
-			unwindFinished := true.
-		]] newProcess.
-	p resume.
-	self deny: unwindStarted.
-	Processor yield.
-	self assert: unwindStarted.
-	self deny: unwindFinished.
-	p terminate.
-	self assert: unwindFinished.! !
+	| col result |
+	col _ #(1 2 3 1.0 2.0 3.0) asIdentitySet.
+	result _ col collect: [ :elem |  elem yourself ].
+	self assert: result class = IdentitySet.
+	self assert: result = #(1 2 3 1.0 2.0 3.0) asIdentitySet.
+	self assert: result = col! !
 
-!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:15'!
-testUnwindFromActiveProcess
-	| sema process |
-	sema := Semaphore forMutualExclusion.
-	self assert:(sema isSignaled).
-	process := [
-		sema critical:[
-			self deny: sema isSignaled.
-			Processor activeProcess terminate.
-		]
-	] newProcess.
-	process priority: Processor userInterruptPriority.
-	process name: 'testUnwindFromActiveProcess'.
-	process resume.
-	self assert: sema isSignaled! !
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 10:51'!
+testOrderedCollection
+	"
+	CollectTest  new testOrderedCollection
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ col collect: [ :elem |  elem * 2 ].
+	self assert: result class = OrderedCollection.
+	self assert: result = #(2 4 6 8 10) asOrderedCollection! !
 
-!ProcessTerminateBug methodsFor: 'tests' stamp: 'jmv 10/8/2012 22:14'!
-testUnwindFromForeignProcess
-	| sema process |
-	sema := Semaphore forMutualExclusion.
-	self assert: sema isSignaled.
-	process := [
-		sema critical:[
-			self deny: sema isSignaled.
-			sema wait. "deadlock"
-		]
-	] newProcess.
-	process priority: Processor userInterruptPriority.
-	process name: 'testUnwindFromForeignProcess'.
-	process resume.
-	self deny: sema isSignaled.
-	"This is for illustration only - the BlockCannotReturn cannot 
-	be handled here (it's truncated already)"
-	self shouldnt: [process terminate] raise: BlockCannotReturn.
-	self assert: sema isSignaled! !
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:34'!
+testSet
+	"
+	CollectTest  new testSet
+	"
+	| col result |
+	col _ #(1 2 3 1.0 2.0 3.0) asSet.
+	result _ col collect: [ :elem |  elem yourself ].
+	self assert: result class = Set.
+	self assert: result = #(1 2 3) asSet.
+	self assert: result = col! !
 
-!ProcessTest methodsFor: 'tests' stamp: 'jmv 11/4/2011 22:17'!
-testAtomicSuspend
-	"Test atomic suspend of foreign processes"
+!CollectTest methodsFor: 'testing' stamp: 'jmv 11/30/2014 11:01'!
+testSortedCollection
+	"
+	CollectTest  new testSortedCollection
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asSortedCollection: [ :a :b | a > b ].
+	result _ col collect: [ :elem |  elem * 2 ].
+	self assert: result class = OrderedCollection.
+	self assert: result = #(10 8 6 4 2) asOrderedCollection! !
 
-	| list p sema |
-	sema := Semaphore new.
-	p := [sema wait] newProcess.
-	p resume.
-	Processor yield.
-	self shouldnt: [list := p suspendPrimitivelyOrFail] raise: Error.
-	self assert: list == sema.
-! !
+!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
+testCollectAsReceiverIsModified
+	"
+	This test modifies a collection while iterating it.
+	This is very bad practice and should never be done.
+	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:do:,  as called by #collect:
+
+	OrderedCollectionTest new testCollectAsReceiverIsModified
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ OrderedCollection new.
+	col collect: [ :elem | 
+		result add: elem.
+		elem < 4 ifTrue: [ col add: col size + 1 ]].
+	self assert: result = #(1 2 3 4 5) asOrderedCollection! !
+
+!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
+testDoAsReceiverIsModified
+	"
+	This test modifies a collection while iterating it.
+	This is very bad practice and should never be done.
+	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:do:,  as called by #do:
+
+	OrderedCollectionTest new testDoAsReceiverIsModified
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ OrderedCollection new.
+	col do: [ :elem | 
+		result add: elem.
+		elem < 4 ifTrue: [ col add: col size + 1 ]].
+	self assert: result = #(1 2 3 4 5) asOrderedCollection! !
+
+!OrderedCollectionTest methodsFor: 'tests' stamp: 'jmv 11/30/2014 10:47'!
+testReverseDoAsReceiverIsModified
+	"
+	This test modifies a collection while iterating it.
+	This is very bad practice and should never be done.
+	It is done here just to assert somewhat reasonable behavior, and more specifically, correct bytecode generation for #to:by:do:,  as called by #reverseDo:
+
+	OrderedCollectionTest new testReverseDoAsReceiverIsModified
+	"
+	| col result |
+	col _ #(1 2 3 4 5) asOrderedCollection.
+	result _ OrderedCollection new.
+	col reverseDo: [ :elem |
+		result add: elem.
+		col size > 3 ifTrue: [ col removeFirst ]].
+	"Not nice, but what can we expect if we remove stuff during iteration?"
+	self assert: result = #(nil nil 3 4 5) asOrderedCollection reversed! !
+
+!ShortIntegerArrayTest methodsFor: 'testing' stamp: 'jmv 2/28/2013 16:58'!
+testShortIntegerArray
+	"
+	Short IntegerArray holds 16 bit signed numbers.
+	ShortIntegerArrayTest new testShortIntegerArray
+	"
+        | u16 |
+        u16 := ShortIntegerArray new: 8.
+
+        u16 at: 1 put:  16r7123.
+        self assert: ((u16 at: 1) = 16r7123).
+        u16 at: 1 put: 0.
+        self assert: ((u16 at: 1) = 0).
+        u16 at: 1 put:  -1.
+        self assert: ((u16 at: 1) = -1).
+        u16 at: 1 put:  -32768.
+        self assert: ((u16 at: 1) = -32768).
+        self should: [u16 at: 1 put:  -32769] raise: Error. "to big"
+        self should: [u16 at: 1 put:  (16r7FFF + 1)] raise: Error. "too big"! !
+
+!ShortWordArrayTest methodsFor: 'testing' stamp: 'jmv 2/28/2013 16:58'!
+testShortWordArray
+	"
+	Short IntegerArray holds 16 bit unsigned numbers.
+	ShortWordArrayTest new testShortWordArray
+	"
+        | u16 |
+        u16 := ShortWordArray new: 8.
+
+        u16 at: 1 put:  16r8123.
+        self assert: ((u16 at: 1) = 16r8123).
+        u16 at: 1 put: 0.
+        self assert: ((u16 at: 1) = 0).
+        u16 at: 1 put:  32768.
+        self assert: ((u16 at: 1) = 32768).
+        u16 at: 1 put:  16rFFFF.
+        self assert: ((u16 at: 1) = 16rFFFF).
+        self should: [u16 at: 1 put:  -1] raise: Error. "wrong sign"
+        self should: [u16 at: 1 put:  (16rFFFF + 1)] raise: Error. "too big"! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:40'!
+testAllAlphasRgbAdd
+	"self run: #testAllAlphasRgbAdd"
+	| sourceForm destForm blt correctAlphas |
+     correctAlphas _ 0.
+     0  to: 255 do: [:sourceAlpha |
+         sourceForm _ Form extent: 1 @ 1 depth: 32.
+         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
+         0 to: 255 do: [:destAlpha |
+             destForm _ Form extent: 1 @ 1 depth: 32.
+             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
+              blt _ BitBlt new.
+              blt sourceForm: sourceForm.
+              blt sourceOrigin: 0 @ 0.
+              blt setDestForm: destForm.
+              blt destOrigin: 0 @ 0.
+              blt combinationRule: 20.	"rgbAdd"
+              blt copyBits.
+              correctAlphas _ correctAlphas
+                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha + sourceAlpha min: 255)
+                         ifTrue: [1]
+                         ifFalse: [0])
+      ]].
+     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbAdd'! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:40'!
+testAllAlphasRgbMax
+	"self run: #testAllAlphasRgbMax"
+	| sourceForm destForm blt correctAlphas |
+     correctAlphas _ 0.
+     0  to: 255 do: [:sourceAlpha |
+         sourceForm _ Form extent: 1 @ 1 depth: 32.
+         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
+         0 to: 255 do: [:destAlpha |
+             destForm _ Form extent: 1 @ 1 depth: 32.
+             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
+              blt _ BitBlt new.
+              blt sourceForm: sourceForm.
+              blt sourceOrigin: 0 @ 0.
+              blt setDestForm: destForm.
+              blt destOrigin: 0 @ 0.
+              blt combinationRule: 27.	"rgbMax"
+              blt copyBits.
+              correctAlphas _ correctAlphas
+                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha max: sourceAlpha)
+                         ifTrue: [1]
+                         ifFalse: [0])
+      ]].
+     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMax'! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:40'!
+testAllAlphasRgbMin
+	"self run: #testAllAlphasRgbMin"
+	| sourceForm destForm blt correctAlphas |
+     correctAlphas _ 0.
+     0  to: 255 do: [:sourceAlpha |
+         sourceForm _ Form extent: 1 @ 1 depth: 32.
+         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
+         0 to: 255 do: [:destAlpha |
+             destForm _ Form extent: 1 @ 1 depth: 32.
+             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
+              blt _ BitBlt new.
+              blt sourceForm: sourceForm.
+              blt sourceOrigin: 0 @ 0.
+              blt setDestForm: destForm.
+              blt destOrigin: 0 @ 0.
+              blt combinationRule: 28.	"rgbMin"
+              blt copyBits.
+              correctAlphas _ correctAlphas
+                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha min: sourceAlpha)
+                         ifTrue: [1]
+                         ifFalse: [0])
+      ]].
+     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMin'! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:39'!
+testAllAlphasRgbMinInvert
+	"self run: #testAllAlphasRgbMinInvert"
+	| sourceForm destForm blt correctAlphas |
+     correctAlphas _ 0.
+     0  to: 255 do: [:sourceAlpha |
+         sourceForm _ Form extent: 1 @ 1 depth: 32.
+         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
+         0 to: 255 do: [:destAlpha |
+             destForm _ Form extent: 1 @ 1 depth: 32.
+             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
+              blt _ BitBlt new.
+              blt sourceForm: sourceForm.
+              blt sourceOrigin: 0 @ 0.
+              blt setDestForm: destForm.
+              blt destOrigin: 0 @ 0.
+              blt combinationRule: 29.	"rgbMinInvert"
+              blt copyBits.
+              correctAlphas _ correctAlphas
+                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha min: 255-sourceAlpha)
+                         ifTrue: [1]
+                         ifFalse: [0])
+      ]].
+     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMinInvert'! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:39'!
+testAllAlphasRgbMul
+	"self run: #testAllAlphasRgbMul"
+	| sourceForm destForm blt correctAlphas |
+     correctAlphas _ 0.
+     0  to: 255 do: [:sourceAlpha |
+         sourceForm _ Form extent: 1 @ 1 depth: 32.
+         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
+         0 to: 255 do: [:destAlpha |
+             destForm _ Form extent: 1 @ 1 depth: 32.
+             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
+              blt _ BitBlt new.
+              blt sourceForm: sourceForm.
+              blt sourceOrigin: 0 @ 0.
+              blt setDestForm: destForm.
+              blt destOrigin: 0 @ 0.
+              blt combinationRule: 37.	"rgbMul"
+              blt copyBits.
+              correctAlphas _ correctAlphas
+                + (((blt destForm bits at: 1) digitAt: 4) = ((destAlpha+1) * (sourceAlpha+1)- 1 // 256)
+                         ifTrue: [1]
+                         ifFalse: [0])
+      ]].
+     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbMul'! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 3/11/2010 08:39'!
+testAllAlphasRgbSub
+	"self run: #testAllAlphasRgbSub"
+	| sourceForm destForm blt correctAlphas |
+     correctAlphas _ 0.
+     0  to: 255 do: [:sourceAlpha |
+         sourceForm _ Form extent: 1 @ 1 depth: 32.
+         sourceForm bits at: 1 put: sourceAlpha << 24 + (33 << 16) + (25 << 8) + 27.
+         0 to: 255 do: [:destAlpha |
+             destForm _ Form extent: 1 @ 1 depth: 32.
+             destForm bits at: 1 put: destAlpha << 24 + (255 << 16) + (255 << 8) + 255.
+              blt _ BitBlt new.
+              blt sourceForm: sourceForm.
+              blt sourceOrigin: 0 @ 0.
+              blt setDestForm: destForm.
+              blt destOrigin: 0 @ 0.
+              blt combinationRule: 21.	"rgbSub"
+              blt copyBits.
+              correctAlphas _ correctAlphas
+                + (((blt destForm bits at: 1) digitAt: 4) = (destAlpha - sourceAlpha) abs
+                         ifTrue: [1]
+                         ifFalse: [0])
+      ]].
+     self assert: correctAlphas = 65536 description: 'Some incorrect alpha values computed for BitBlt rule rgbSub'! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 7/12/2015 22:27'!
+testAlphaCompositing
+	"
+	BitBltTest new testAlphaCompositing
+	"
+
+	| bb f1 f2 mixColor result eps |
+	f1 := Form extent: 1@1 depth: 32.
+	f2 := Form extent: 1@1 depth: 32.
+	eps := 0.5 / 255.
+	0 to: 255 do:[:i|
+		f1 colorAt: 0@0 put: (Color r: 0 g: 0 b: 1).
+		mixColor := Color r: 1 g: 0 b: 0 alpha: i / 255.0.
+		f2 colorAt: 0@0 put: mixColor.
+		mixColor := f2 colorAt: 0@0.
+		bb := BitBlt toForm: f1.
+		bb sourceForm: f2.
+		bb combinationRule: Form blend.
+		bb copyBits.
+		result := f1 colorAt: 0@0.
+		self assert: (result red - mixColor alpha) abs < eps.
+		self assert: (result blue - (1.0 - mixColor alpha)) abs < eps.
+		self assert: result alpha = 1.0.
+	].! !
+
+!BitBltTest methodsFor: 'bugs' stamp: 'jmv 7/12/2015 22:27'!
+testAlphaCompositing2
+	"
+	BitBltTest new testAlphaCompositing2
+	"
+
+	| bb f1 f2 mixColor result eps |
+	f1 := Form extent: 1@1 depth: 32.
+	f2 := Form extent: 1@1 depth: 32.
+	eps := 0.5 / 255.
+	0 to: 255 do:[:i|
+		f1 colorAt: 0@0 put: Color transparent.
+		mixColor := Color r: 1 g: 0 b: 0 alpha: i / 255.0.
+		f2 colorAt: 0@0 put: mixColor.
+		mixColor := f2 colorAt: 0@0.
+		bb := BitBlt toForm: f1.
+		bb sourceForm: f2.
+		bb combinationRule: Form blend.
+		bb copyBits.
+		result := f1 colorAt: 0@0.
+		self assert: (result red - mixColor alpha) abs < eps.
+		self assert: result alpha = mixColor alpha.
+	].! !
+
+!CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:08'!
+testCaseConversion
+	"
+	self new testCaseConversion
+	"
+	self assert: ('año Comé tomá Camión' collect: [ :c | c asLowercase ]) = 'año comé tomá camión'.
+	self assert:('año Comé tomá Camión' collect: [ :c | c asUppercase ]) = 'AÑO COMÉ TOMÁ CAMIÓN'! !
+
+!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 2/20/2013 20:09'!
+testFromUtf8
+	"
+	CharacterTest new testFromUtf8
+	"
+	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: '24')) hex = '16r24'.
+	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: 'C2A2')) hex = '16rA2'.
+	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: 'E282AC')) hex = '16r20AC'.
+	self assert: (Character unicodeCodePointOfUtf8Bytes: (ByteArray readHexFrom: 'F0A4ADA2')) hex = '16r24B62'! !
+
+!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 9/5/2016 20:48:25'!
+testSomeLatinCharsFromUtf8
+	"
+	CharacterTest new testSomeLatinCharsFromUtf8
+	"
+	| bytes string |
+	bytes _ (ByteArray readHexFrom: 'C3A1C3A5C3A6C3B1C386C2A5C3BC') readStream.
+	string _ String streamContents: [ :strm |
+		[bytes atEnd ] whileFalse: [
+			strm nextPut: (Character codePoint: (Character nextUnicodeCodePointFromUtf8: bytes )) ]].
+	self assert: string = 'áåæñÆ¥ü'! !
+
+!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 9/4/2016 13:11:55'!
+testSomeLatinCharsToUtf8
+	"
+	CharacterTest new testSomeLatinCharsToUtf8
+	"
+	| characters bytes |
+	characters _ 'áåæñÆ¥ü' readStream.
+	bytes _ ByteArray streamContents: [ :strm |
+		[ characters atEnd ] whileFalse: [
+			Character
+				evaluate: [ :byte | strm nextPut: byte ]
+				withUtf8BytesOfUnicodeCodePoint: characters next codePoint ]].
+	self assert: bytes hex = 'C3A1C3A5C3A6C3B1C386C2A5C3BC'! !
+
+!CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:05'!
+testSorting
+	"
+	self new testSorting
+	"
+	self assert: $a < $á.
+	self deny: $a < $Á.
+	self assert: $A < $á.
+	self assert: $A < $Á.
+	self assert: $á < $b.
+	self deny: $á < $B.
+	self assert: $Á < $b.
+	self assert: $Á < $B.! !
+
+!CharacterTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:10'!
+testTestingMethods
+	"
+	self new testTestingMethods
+	"
+	self assert:
+		('año Comé tomá Camión' allSatisfy: [ :c |
+			c = $  or: [ c isLetter ]]).
+	self assert:
+		('año comé tomá camión' allSatisfy: [ :c |
+			c = $  or: [ c isLowercase ]]).
+	self assert:
+		('AÑO COMÉ TOMÁ CAMIÓN' allSatisfy: [ :c |
+			c = $  or: [ c isUppercase ]]).
+	self assert:
+		('AaÀàÁáÂâÃãÄäÅåEeÈèÉéÊêËëIiÌìÍíÎîÏïOoÒòÓóÔôÕõÖöUuÙùÚúÛûÜü' allSatisfy: [ :c |
+			c isVowel ]).! !
+
+!CharacterTest methodsFor: 'UTF-8 conversion' stamp: 'jmv 2/20/2013 20:09'!
+testToUtf8
+	"
+	CharacterTest new testToUtf8
+	"
+	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r0024) hex =  '24'.
+	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r00A2) hex =  'C2A2'.
+	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r20AC) hex = 'E282AC'.
+	self assert: (Character utf8BytesOfUnicodeCodePoint: 16r024B62) hex = 'F0A4ADA2'! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNilIfNotNil0Arg
+
+	self assert: (5@4 ifNil: [#foo] ifNotNil: [#bar]) = #bar.
+	self assert: (nil ifNil: [#foo] ifNotNil: [#bar]) = #foo! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNilIfNotNil0ArgAsVar
+
+	| block1 block2 |
+	block1 := [#foo].
+	block2 := [#bar].
+	self assert: (5@4 ifNil: block1 ifNotNil: block2) = #bar.
+	self assert: (nil ifNil: block1 ifNotNil: block2) = #foo! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNilIfNotNil1Arg
+
+	self assert: (5@4 ifNil: [#foo] ifNotNil: [:a | a printString]) = '5@4'.
+	self assert: (nil ifNil: [#foo] ifNotNil: [:a | a printString]) = #foo! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNilIfNotNil1ArgAsVar
+
+	| block1 block2 |
+	block1 := [#foo].
+	block2 := [:a | a printString].
+	self assert: (5@4 ifNil: block1 ifNotNil: block2) = '5@4'.
+	self assert: (nil ifNil: block1 ifNotNil: block2) = #foo! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNil0Arg
+
+	self assert: (5@4 ifNotNil: [#foo]) = #foo.
+	self assert: (nil ifNotNil: [#foo]) = nil! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNil0ArgAsVar
+
+	| block |
+	block := [#foo].
+	self assert: (5@4 ifNotNil: block) = #foo.
+	self assert: (nil ifNotNil: block) = nil! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNil1Arg
+
+	self assert: (5@4 ifNotNil: [:a | a printString]) = '5@4'.
+	self assert: (nil ifNotNil: [:a | a printString]) = nil! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNil1ArgAsVar
+
+	| block |
+	block := [:a | a printString].
+	self assert: (5@4 ifNotNil: block) = '5@4'.
+	self assert: (nil ifNotNil: block) = nil! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNilIfNil0Arg
+
+	self assert: (5@4 ifNotNil: [#foo] ifNil: [#bar]) = #foo.
+	self assert: (nil ifNotNil: [#foo] ifNil: [#bar]) = #bar! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNilIfNil0ArgAsVar
+
+	| block1 block2 |
+	block1 := [#foo].
+	block2 := [#bar].
+	self assert: (5@4 ifNotNil: block2 ifNil: block1) = #bar.
+	self assert: (nil ifNotNil: block2 ifNil: block1) = #foo! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:46'!
+testIfNotNilIfNil1Arg
+
+	self assert: (5@4 ifNotNil: [:a | a printString] ifNil: [#foo]) = '5@4'.
+	self assert: (nil ifNotNil: [:a | a printString] ifNil: [#foo]) = #foo! !
+
+!IfNotNilTests methodsFor: 'tests' stamp: 'jmv 11/16/2010 08:47'!
+testIfNotNilIfNil1ArgAsVar
+
+	| block1 block2 |
+	block1 := [#foo].
+	block2 := [:a | a printString].
+	self assert: (5@4 ifNotNil: block2 ifNil: block1) = '5@4'.
+	self assert: (nil ifNotNil: block2 ifNil: block1) = #foo! !
 
 !ProcessorTest methodsFor: 'as yet unclassified' stamp: 'jmv 4/17/2013 12:08'!
 testGrabProcessor
@@ -8650,482 +7535,6 @@ testValueUnpreemptively
 wasteTime: iterations
 	iterations timesRepeat: [1.23 asString asNumber]! !
 
-!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:33'!
-byteBitCounts
-
-	| tablePower answer |
-	tablePower _ 8.
-	answer _ ByteArray new: (1 bitShift: tablePower).
-	0 to: tablePower - 1 do:
-		[:eachPowerIndex |
-			| powerOfTwo |
-			powerOfTwo _ 1 bitShift: eachPowerIndex.
-			1 + powerOfTwo to: answer size by: powerOfTwo * 2 do:
-				[:eachPivot |
-					0 to: powerOfTwo - 1 do:
-						[:eachIndex |
-							answer
-								at: eachPivot + eachIndex
-								put: (answer at: eachPivot + eachIndex) + 1
-						]
-				]
-		].
-	^answer! !
-
-!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:16'!
-nSamplesByDefault
-
-	^1000! !
-
-!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 17:59'!
-rng
-
-	^self rngClass new! !
-
-!RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:01'!
-rngClass
-
-	self subclassResponsibility! !
-
-!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:38'!
-testRandomLargeInteger1
-
-	| random nSamples highBound odds |
-	random _ self rng.
-	nSamples _ self nSamplesByDefault.
-	highBound _ 1 << 64.
-	odds _ 0.
-	nSamples timesRepeat: [odds _ highBound atRandom: random :: bitAnd: 1 :: + odds].
-	self assert: (odds * 2 - nSamples * 5) abs < nSamples  "10% max deviation"! !
-
-!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:47'!
-testRandomLargeInteger2
-
-	| random nSamples bitCounts bitsPerRandom highBound ones |
-	random _ self rng.
-	nSamples _ self nSamplesByDefault.
-	bitCounts _ self byteBitCounts.
-	bitsPerRandom _ 1000.
-	highBound _ 1 << bitsPerRandom.
-	ones _ 0.
-	nSamples timesRepeat:
-		[
-			| next |
-			next _ highBound atRandom: random.
-			1 to: next basicSize do:
-				[:eachIndex | ones _ bitCounts at: (next basicAt: eachIndex) + 1 :: + ones].
-		].
-	self assert: ones - (nSamples * bitsPerRandom / 2) abs / 10 < nSamples "1% max deviation"! !
-
-!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:05'!
-testSeed0
-
-	| random |
-	random := self rng.
-	self should: [random seed: 0] raise: Error.
-	self assert: (10 atRandom: random) <= 10! !
-
-!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:17'!
-testSetAtRandom
-
-	| random set nSamples sum |
-	random _ self rng.
-	set _ Set with: 0 with: 1.
-	nSamples _ self nSamplesByDefault.
-	sum _ 0.
-	nSamples timesRepeat: [sum _ set atRandom: random :: + sum].
-	self assert: (sum / nSamples - 0.5) abs < 0.1! !
-
-!RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 20:51'!
-testSimpleBuckets
-	"This is a poor test, see Knuth's TAOCP"
-
-	| nbuckets buckets nSamples random slot |
-	nbuckets _ 1000.
-	buckets _ Array new: nbuckets.
-	buckets atAllPut: 0.
-	nSamples _ 1000.
-	random _ self rng.
-	nSamples * nbuckets timesRepeat:
-		[
-			slot := (random next * nbuckets) floor + 1.
-			buckets at: slot put: (buckets at: slot) + 1
-		].
-	buckets do:
-		[:each |
-			"max ~17% deviation"
-			self assert: (each - nSamples * 6) abs < nSamples
-		]! !
-
-!RandomTest class methodsFor: 'testing' stamp: 'sqr 3/5/2016 17:54'!
-isAbstract
-
-	^self subclasses notEmpty! !
-
-!LaggedFibonacciRandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:50'!
-nSamplesByDefault
-
-	^self rng majorLag * 100! !
-
-!LaggedFibonacciRandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 18:00'!
-rngClass
-
-	^LaggedFibonacciRandom! !
-
-!ParkMiller88RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 19:58'!
-rngClass
-
-	^ParkMiller88Random! !
-
-!ParkMiller88RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 20:06'!
-testParkMillerCorrectness
-	"The correctness test suggested by the authors"
-
-	| random next |
-	random _ self rng seed: 1.
-	10000 timesRepeat: [next _ random next].
-	self assert: next * 16r7FFFFFFF = 1043618065.0! !
-
-!ParkMiller88RandomTest methodsFor: 'tests' stamp: 'sqr 3/5/2016 18:48'!
-testParkMillerInitialValues
-
-	| nSamples random samples |
-	nSamples _ self nSamplesByDefault.
-	random _ self rng.
-	samples _ 1 to: nSamples :: collect: [:each | random next].
-	self assert: (samples average - 0.5) abs < 0.1.
-	self assert: samples size * 10 > nSamples! !
-
-!ParkMiller93RandomTest methodsFor: 'setup' stamp: 'sqr 3/5/2016 19:58'!
-rngClass
-
-	^ParkMiller93Random! !
-
-!ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 9/25/2012 22:42'!
-testDiskProxy
-	"
-	ReferenceStreamTest new testDiskProxy
-	"
-	| newInstance oldInstance |
-	self flag: #jmvVer2.
-	oldInstance _ { Smalltalk . Display . Morph}.
-	newInstance _ ReferenceStream unStream: (ReferenceStream streamedRepresentationOf: oldInstance).
-	1 to: oldInstance size do: [ :i |
-		self assert: (newInstance at: i) == (oldInstance at: i) ]! !
-
-!ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 12/6/2011 08:19'!
-testSortedCollection
-	"
-	ReferenceStreamTest new testSortedCollection
-	"
-	| newInstance oldInstance |
-	oldInstance _ SortedCollection sortBlock: [ :a :b | a printString < b printString ].
-	oldInstance add: 'hi'; add: 'there'; add: 'you'; add: 'all'.
-	newInstance _ ReferenceStream unStream: (ReferenceStream streamedRepresentationOf: oldInstance).
-	self assert: newInstance asArray = oldInstance asArray! !
-
-!ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 8/21/2012 17:02'!
-testWeakDumps
-	"Test that if we serialize a model with weak references to views, only the model is serialized and not the views.
-	
-	Note: The bug became apparent only when dumping a model to a SmartRefStream, that calls #references, and the serialized stream
-	was later materialized in an image where the view classes had been deleted. In such rare cases, materialization would fail when trying to reference these
-	absent classes. If serializing to a ReferenceStream, the bug didn't become apparent (views were never serialized). If serializing to a SmartRefStream, but
-	view classes still existed, the bug didn't really become apparent (because views were not actually deserialized), the only effect was a larger file.
-	
-	ReferenceStreamTest new testWeakDumps
-	"
-	| oldInstance window refStream |
-	oldInstance _ TextModel withText: 'This is a text'.
-	window _ SystemWindow editText: oldInstance label: 'old instance' wrap: true.
-	refStream _ ReferenceStream on: (DummyStream on: nil).
-	refStream nextPut: oldInstance.
-	self deny: (refStream references keys anySatisfy: [ :dumpedObject | dumpedObject isKindOf: Morph ]).
-	window delete! !
-
-!ScannerTest methodsFor: 'testing' stamp: 'jmv 10/23/2012 23:20'!
-testLiteralSymbols
-
-	self assert: ('*+-/\~=<>&@%,|' allSatisfy: [:char | Scanner isLiteralSymbol: (String with: char) asSymbol])
-		description: 'single letter binary symbols can be printed without string quotes'.
-		
-	self assert: (#('x' 'x:' 'x:y:' 'from:to:by:' 'yourself') allSatisfy: [:str | Scanner isLiteralSymbol: str asSymbol])
-		description: 'valid ascii selector symbols can be printed without string quotes'.
-		
-	((32 to: 94), (96 to: 126) collect: [:ascii | Character value: ascii]) ,
-	#(':x:yourself' '::' 'x:yourself' '123' 'x0:x1:x2:' 'x.y.z' '1abc' 'a1b0c2' ' x' 'x ' '+x-y' '||' '-' '++' '+' '+/-' '-/+' '<|>' '#x' '()' '[]' '{}' '')
-		do: [:str |
-			self assert: (Compiler evaluate: str asSymbol printString) = str asSymbol
-				description: 'in all case, a Symbol must be printed in an interpretable fashion']! !
-
-!SemaphoreTest methodsFor: 'private' stamp: 'tlk 5/5/2006 13:26'!
-criticalError
-	Processor activeProcess terminate! !
-
-!SemaphoreTest methodsFor: 'testing' stamp: 'tlk 5/5/2006 13:27'!
-testCritical
-	| lock |
-	lock := Semaphore forMutualExclusion.
-	[lock critical: [self criticalError]] forkAt: Processor userInterruptPriority.
-	self assert: lock isSignaled! !
-
-!SemaphoreTest methodsFor: 'testing' stamp: 'tlk 5/5/2006 13:28'!
-testCriticalIfError
-	| lock |
-	lock := Semaphore forMutualExclusion.
-	[lock critical: [self criticalError ifError:[]]] forkAt: Processor userInterruptPriority.
-	self assert: lock isSignaled! !
-
-!SemaphoreTest methodsFor: 'testing' stamp: 'jmv 6/15/2009 21:24'!
-testSemaAfterCriticalWait	"self run: #testSemaAfterCriticalWait"
-	"This tests whether a semaphore that has just left the wait in Semaphore>>critical:
-	leaves it with signaling the associated semaphore."
-	| s p |
-	s := Semaphore new.
-	p := [ s critical: []] newProcess.
-	p priority: Processor activePriority-1.
-	p resume.
-	"wait until p entered the critical section"
-	[ p suspendingList == s ] whileFalse: [ (Delay forMilliseconds: 10) wait ].
-	"Now that p entered it, signal the semaphore. p now 'owns' the semaphore
-	but since we are running at higher priority than p it will not get to do
-	anything."
-	s signal.
-	p terminate.
-	self assert: [ (s instVarNamed: #excessSignals) = 1 ]! !
-
-!SemaphoreTest methodsFor: 'testing' stamp: 'jmv 6/15/2009 21:17'!
-testSemaInCriticalWait	"self run: #testSemaInCriticalWait"
-	"This tests whether a semaphore that has entered the wait in Semaphore>>critical:
-	leaves it without signaling the associated semaphore."
-	| s p |
-	s := Semaphore new.
-	p := [s critical:[]] newProcess.
-	p resume.
-	Processor yield.
-	self assert:[p suspendingList == s].
-	p terminate.
-	self assert:[(s instVarNamed: #excessSignals) = 0]! !
-
-!SemaphoreTest methodsFor: 'testing' stamp: 'jmv 11/4/2011 22:12'!
-testWaitAndWaitTimeoutTogether
-	| semaphore value waitProcess waitTimeoutProcess |
-	semaphore := Semaphore new.
-	
-	waitProcess := [semaphore wait. value := #wait] newProcess.
-	waitProcess resume.
-
-	waitTimeoutProcess := [semaphore waitTimeoutMSecs: 50. value := #waitTimeout] newProcess.
-	waitTimeoutProcess resume.
-
-	"Wait for the timeout to happen"
-	(Delay forMilliseconds: 100) wait.
-
-	"The waitTimeoutProcess should already have timed out.  This should release the waitProcess"
-	semaphore signal.
-
-	[waitProcess isTerminated and: [waitTimeoutProcess isTerminated]]
-		whileFalse: [(Delay forMilliseconds: 100) wait].
-
-	self assert: value = #wait.
-	! !
-
-!SemaphoreTest methodsFor: 'testing' stamp: 'ar 3/23/2009 17:01'!
-testWaitTimeoutMSecs
-	"Ensure that waitTimeoutMSecs behaves properly"
-
-	"Ensure that a timed out waitTimeoutMSecs: returns true from the wait"
-	self assert: (Semaphore new waitTimeoutMSecs: 50) == true.
-
-	"Ensure that a signaled waitTimeoutMSecs: returns false from the wait"
-	self assert: (Semaphore new signal waitTimeoutMSecs: 50) == false.
-! !
-
-!ShortIntegerArrayTest methodsFor: 'testing' stamp: 'jmv 2/28/2013 16:58'!
-testShortIntegerArray
-	"
-	Short IntegerArray holds 16 bit signed numbers.
-	ShortIntegerArrayTest new testShortIntegerArray
-	"
-        | u16 |
-        u16 := ShortIntegerArray new: 8.
-
-        u16 at: 1 put:  16r7123.
-        self assert: ((u16 at: 1) = 16r7123).
-        u16 at: 1 put: 0.
-        self assert: ((u16 at: 1) = 0).
-        u16 at: 1 put:  -1.
-        self assert: ((u16 at: 1) = -1).
-        u16 at: 1 put:  -32768.
-        self assert: ((u16 at: 1) = -32768).
-        self should: [u16 at: 1 put:  -32769] raise: Error. "to big"
-        self should: [u16 at: 1 put:  (16r7FFF + 1)] raise: Error. "too big"! !
-
-!ShortWordArrayTest methodsFor: 'testing' stamp: 'jmv 2/28/2013 16:58'!
-testShortWordArray
-	"
-	Short IntegerArray holds 16 bit unsigned numbers.
-	ShortWordArrayTest new testShortWordArray
-	"
-        | u16 |
-        u16 := ShortWordArray new: 8.
-
-        u16 at: 1 put:  16r8123.
-        self assert: ((u16 at: 1) = 16r8123).
-        u16 at: 1 put: 0.
-        self assert: ((u16 at: 1) = 0).
-        u16 at: 1 put:  32768.
-        self assert: ((u16 at: 1) = 32768).
-        u16 at: 1 put:  16rFFFF.
-        self assert: ((u16 at: 1) = 16rFFFF).
-        self should: [u16 at: 1 put:  -1] raise: Error. "wrong sign"
-        self should: [u16 at: 1 put:  (16rFFFF + 1)] raise: Error. "too big"! !
-
-!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
-testBasicNew
-
-	self should: [SmallInteger basicNew] raise: TestResult error. ! !
-
-!SmallIntegerTest methodsFor: 'testing - arithmetic' stamp: 'sd 6/5/2005 08:59'!
-testDivide
-
-	self assert: 2 / 1 = 2.
-	self assert: (3 / 2) isFraction.
-	self assert: 4 / 2 = 2.
-	self should: [ 1 / 0 ] raise: ZeroDivide.! !
-
-!SmallIntegerTest methodsFor: 'testing - basic' stamp: 'jmv 5/7/2012 21:35'!
-testEven
-	
-	self assert: (SmallInteger minVal even).
-	self deny: (SmallInteger maxVal even).
-	
-	self deny: ((SmallInteger minVal + 1) even).
-	self assert: ((SmallInteger maxVal - 1) even).
-	
-	self deny: (1 even).
-	self deny: (-1 even).
-	
-	self assert: (2 even).
-	self assert: (-2 even).
-	
-	self assert: (0 even)! !
-
-!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
-testMaxVal
-
-	self assert: (SmallInteger maxVal = 16r3FFFFFFF).! !
-
-!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
-testMinVal
-
-	self assert: (SmallInteger minVal = -16r40000000).! !
-
-!SmallIntegerTest methodsFor: 'testing - Class Methods' stamp: 'sd 6/5/2005 08:59'!
-testNew
-
-	self should: [SmallInteger new] raise: TestResult error. ! !
-
-!SmallIntegerTest methodsFor: 'testing - basic' stamp: 'jmv 5/7/2012 21:35'!
-testOdd
-	
-	self deny: (SmallInteger minVal odd).
-	self assert: (SmallInteger maxVal odd).
-	
-	self assert: ((SmallInteger minVal + 1) odd).
-	self deny: ((SmallInteger maxVal - 1) odd).
-	
-	self assert: (1 odd).
-	self assert: (-1 odd).
-	
-	self deny: (2 odd).
-	self deny: (-2 odd).
-	
-	self deny: (0 odd)! !
-
-!SmallIntegerTest methodsFor: 'testing - printing' stamp: 'jmv 1/9/2014 23:41'!
-testPrintPaddedWith
-
-	self assert: (123 printStringBase: 2 length: 10 padded: true) = '0001111011'.
-	self assert: (123 printStringBase: 8 length: 10 padded: true) = '0000000173'.
-	self assert: (123 printStringBase: 10 length: 10 padded: true) = '0000000123'.
-	self assert: (123 printStringBase: 16 length: 10 padded: true) = '000000007B'! !
-
-!SmallIntegerTest methodsFor: 'testing - printing' stamp: 'al 7/21/2008 21:48'!
-testPrintString
-	self assert: 1 printString  = '1'.
-	self assert: -1 printString  = '-1'.
-	self assert: SmallInteger minVal printString  = '-1073741824'.
-	self assert: SmallInteger maxVal printString  = '1073741823'.
-	self assert: 12345 printString  = '12345'.
-	self assert: -54321 printString  = '-54321'.
-
-	self assert: 0 decimalDigitLength = 1.
-	self assert: 4 decimalDigitLength = 1.
-	self assert: 12 decimalDigitLength = 2.
-	self assert: 123 decimalDigitLength = 3.
-	self assert: 1234 decimalDigitLength = 4.
-	self assert: 56789 decimalDigitLength = 5.
-	self assert: 657483 decimalDigitLength = 6.
-	self assert: 6571483 decimalDigitLength = 7.
-	self assert: 65174383 decimalDigitLength = 8.
-	self assert: 625744831 decimalDigitLength = 9.
-	self assert: 1000001111 decimalDigitLength = 10.
-	self assert: SmallInteger maxVal decimalDigitLength = 10.! !
-
-!SmalltalkCompleterTest methodsFor: 'testing' stamp: 'jmv 7/14/2011 14:26'!
-testMessages
-	"
-	SmalltalkCompleterTest new testMessages
-	"
-	| fromSmalltalk fromUCompleter |
-	fromSmalltalk _ Smalltalk allImplementedMessages.
-	fromUCompleter _ Symbol allInstances select: [ :s |
-		SmalltalkCompleter isThereAnImplementorOf: s].
-	self assert: fromSmalltalk = fromUCompleter asSet! !
-
-!SmartRefStreamTest methodsFor: 'testing' stamp: 'jmv 9/25/2012 22:42'!
-testDiskProxy
-	"
-	SmartRefStreamTest new testDiskProxy
-	"
-	| newInstance oldInstance |
-	self flag: #jmvVer2.
-	oldInstance _ { Smalltalk . Display . Morph}.
-	newInstance _ SmartRefStream unStream: (SmartRefStream streamedRepresentationOf: oldInstance).
-	1 to: oldInstance size do: [ :i |
-		self assert: (newInstance at: i) == (oldInstance at: i) ]! !
-
-!SmartRefStreamTest methodsFor: 'testing' stamp: 'jmv 12/6/2011 08:34'!
-testSortedCollection
-	"
-	SmartRefStreamTest new testSortedCollection
-	"
-	| newInstance oldInstance |
-	oldInstance _ SortedCollection sortBlock: [ :a :b | a printString < b printString ].
-	oldInstance add: 'hi'; add: 'there'; add: 'you'; add: 'all'.
-	newInstance _ SmartRefStream unStream: (SmartRefStream streamedRepresentationOf: oldInstance).
-	self assert: newInstance asArray = oldInstance asArray! !
-
-!SmartRefStreamTest methodsFor: 'testing' stamp: 'jmv 8/21/2012 17:00'!
-testWeakDumps
-	"Test that if we serialize a model with weak references to views, only the model is serialized and not the views.
-	
-	Note: The bug became apparent only when dumping a model to a SmartRefStream, that calls #references, and the serialized stream
-	was later materialized in an image where the view classes had been deleted. In such rare cases, materialization would fail when trying to reference these
-	absent classes. If serializing to a ReferenceStream, the bug didn't become apparent (views were never serialized). If serializing to a SmartRefStream, but
-	view classes still existed, the bug didn't really become apparent (because views were not actually deserialized), the only effect was a larger file.
-	
-	SmartRefStreamTest new testWeakDumps
-	"
-	| oldInstance window refStream |
-	oldInstance _ TextModel withText: 'This is a text'.
-	window _ SystemWindow editText: oldInstance label: 'old instance' wrap: true.
-	refStream _ SmartRefStream on: (DummyStream on: nil).
-	refStream nextPut: oldInstance.
-	self deny: (refStream references keys anySatisfy: [ :dumpedObject | dumpedObject isKindOf: Morph ]).
-	window delete! !
-
 !StrikeFontTest methodsFor: 'testing' stamp: 'jmv 4/12/2011 10:01'!
 testBaseAndDerivedFont
 	"
@@ -9201,13 +7610,15 @@ abc&#x0915;&#x0916;&#x0940;&#x570B;&#x969B;&#x10384;&#x10394;&#x10398;'.
 
 	self assert: (stringWithHexNCRs asUtf8: true) = utf8! !
 
-!StringTest methodsFor: 'tests - converting' stamp: 'ul 10/30/2012 02:14'!
+!StringTest methodsFor: 'tests - converting' stamp: 'jmv 9/19/2016 09:55:39'!
 testBase64
 
 	self 
-		assert: 'SGVsbG8gV29ybGQ=' base64Decoded = 'Hello World';
-		assert: 'Hello World' base64Encoded = 'SGVsbG8gV29ybGQ=';
-		assert: (String new: 100 withAll: $x) base64Encoded  = 'eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eA=='! !
+		assert: 'SGVsbG8gV29ybGQ=' base64Decoded = 'Hello World' asByteArray;
+		assert: 'Hello World' asByteArray base64Encoded = 'SGVsbG8gV29ybGQ=';
+		assert: (String new: 100 withAll: $x) asByteArray base64Encoded  =
+'eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
+eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eA==' ! !
 
 !StringTest methodsFor: 'testing' stamp: 'jmv 10/6/2010 22:08'!
 testCaseConversion
@@ -9361,211 +7772,1678 @@ self new testSorting
 	self assert: ('Á' caseInsensitiveLessOrEqual: 'b').
 	self assert: ('Á' caseInsensitiveLessOrEqual: 'B').! !
 
+!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/22/2011 23:57'!
+testAddressRange
+	"Test source pointer to file position address translation across the full address range"
+	
+	| sf |
+	sf := CuisSourceFileArray new.
+	(16r1000000 to: 16r4FFFFFF by: 811) do: [:e | | i a p |
+		i := sf fileIndexFromSourcePointer: e.
+		p := sf filePositionFromSourcePointer: e.
+		a := sf sourcePointerFromFileIndex: i andPosition: p.
+		self assert: a = e]
+! !
+
+!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:08'!
+testChangesFileAddressRange
+	"Test file position to source pointer address translation for the changes file"
+	
+	| sf a e |
+	sf := CuisSourceFileArray new.
+	(0 to: 16r1FFFFFF by: 811) do: [:ee | | a2 i p |
+		e _ ee // 32 * 32.
+		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
+		i := sf fileIndexFromSourcePointer: a.
+		self assert: i = 2.
+		p := sf filePositionFromSourcePointer: a.
+		self assert: p = e.
+		a2 := sf sourcePointerFromFileIndex: 2 andPosition: p.
+		self assert: a2 = a].
+	(0 to: 16rFFFFFF by: 811) do: [:ee |
+		e _ ee // 32 * 32.
+		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
+		self assert: (a between: 16r3000000 and: 16r3FFFFFF)].
+	(16r1000000 to: 16r1FFFFFF by: 811) do: [:ee |
+		e _ ee // 32 * 32.
+		a := sf sourcePointerFromFileIndex: 2 andPosition: e.
+		self assert: (a between: 16r3000000 and: 16r4FFFFFF)]
+
+
+! !
+
+!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:06'!
+testFileIndexFromSourcePointer
+	"Test derivation of file index for sources or changes file from source pointers"
+
+	| sf |
+	sf := CuisSourceFileArray new.
+	"sources file mapping"
+	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1000000).
+	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1000013).
+	self assert: 1 = (sf fileIndexFromSourcePointer: 16r1FFFFFF).
+	self assert: 1 = (sf fileIndexFromSourcePointer: 16r2000000).
+	self assert: 1 = (sf fileIndexFromSourcePointer: 16r2000013).
+	self assert: 1 = (sf fileIndexFromSourcePointer: 16r2FFFFFF).
+	(16r1000000 to: 16r1FFFFFF by: 811) do: [:e | self assert: 1 = (sf fileIndexFromSourcePointer: e)].
+	(16r2000000 to: 16r2FFFFFF by: 811) do: [:e | self assert: 1 = (sf fileIndexFromSourcePointer: e)].
+	"changes file mapping"
+	self assert: 2 = (sf fileIndexFromSourcePointer: 16r3000000).
+	self assert: 2 = (sf fileIndexFromSourcePointer: 16r3000013).
+	self assert: 2 = (sf fileIndexFromSourcePointer: 16r3FFFFFF).
+	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4000000).
+	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4000013).
+	self assert: 2 = (sf fileIndexFromSourcePointer: 16r4FFFFFF).
+	(16r3000000 to: 16r3FFFFFF by: 811) do: [:e | self assert: 2 = (sf fileIndexFromSourcePointer: e)].
+	(16r4000000 to: 16r4FFFFFF by: 811) do: [:e | self assert: 2 = (sf fileIndexFromSourcePointer: e)]
+
+
+! !
+
+!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:09'!
+testFilePositionFromSourcePointer
+	"Test derivation of file position for sources or changes file from source pointers"
+
+	| sf |
+	sf := CuisSourceFileArray new.
+	"sources file"
+	self assert: 0 = (sf filePositionFromSourcePointer: 16r1000000).
+	"changes file"
+	self assert: 0 = (sf filePositionFromSourcePointer: 16r3000000).! !
+
+!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:10'!
+testSourcePointerFromFileIndexAndPosition
+	"Test valid input ranges"
+
+	| sf |
+	sf := CuisSourceFileArray new.
+	self should: [sf sourcePointerFromFileIndex: 0 andPosition: 0] raise: Error.
+	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 0] raise: Error.
+	self shouldnt: [sf sourcePointerFromFileIndex: 2 andPosition: 0] raise: Error.
+	self should: [sf sourcePointerFromFileIndex: 0 andPosition: 3] raise: Error.
+	self should: [sf sourcePointerFromFileIndex: 1 andPosition: -1] raise: Error.
+	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 16r1FFFFFF] raise: Error.
+	self shouldnt: [sf sourcePointerFromFileIndex: 1 andPosition: 16r2000000] raise: Error.
+	self should: [sf sourcePointerFromFileIndex: 3 andPosition: 0] raise: Error.
+	self should: [sf sourcePointerFromFileIndex: 4 andPosition: 0] raise: Error.
+	
+	self assert: 16r1000000 = (sf sourcePointerFromFileIndex: 1 andPosition: 0).
+	self assert: 16r3000000 = (sf sourcePointerFromFileIndex: 2 andPosition: 0).! !
+
+!CuisSourceFileArrayTest methodsFor: 'testing' stamp: 'jmv 5/23/2011 00:11'!
+testSourcesFileAddressRange
+	"Test file position to source pointer address translation for the sources file"
+	
+	| sf a e |
+	sf := CuisSourceFileArray new.
+	(0 to: 16r1FFFFFF by: 811) do: [:ee | | a2 p i |
+		e _ ee // 32 * 32.
+		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
+		i := sf fileIndexFromSourcePointer: a.
+		self assert: i = 1.
+		p := sf filePositionFromSourcePointer: a.
+		self assert: p = e.
+		a2 := sf sourcePointerFromFileIndex: 1 andPosition: p.
+		self assert: a2 = a].
+	(0 to: 16rFFFFFF by: 811) do: [:ee |
+		e _ ee // 32 * 32.
+		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
+		self assert: (a between: 16r1000000 and: 16r1FFFFFF)].
+	(16r1000000 to: 16r1FFFFFF by: 811) do: [:ee |
+		e _ ee // 32 * 32.
+		a := sf sourcePointerFromFileIndex: 1 andPosition: e.
+		self assert: (a between: 16r1000000 and: 16r2FFFFFF)]
+
+! !
+
+!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:29'!
+testCreation
+	"
+	self new testCreation
+	"
+	| d |
+	d _ (DateAndTime julianDayNumber: 2456814) date.
+	self assert: d yearNumber = 2014.
+	self assert: d monthIndex = 6.
+	self assert: d dayOfMonth = 5.
+	
+	d _ (DateAndTime fromSeconds: 3579379200) date.
+	self assert: d yearNumber = 2014.
+	self assert: d monthIndex = 6.
+	self assert: d dayOfMonth = 5.
+	
+	d _ DateAndTime fromSeconds: 3579431284.
+	self assert: d yearNumber = 2014.
+	self assert: d monthIndex = 6.
+	self assert: d dayOfMonth = 5.
+	self assert: d hour = 14.
+	self assert: d minute = 28.
+	self assert: d second = 4.
+	self assert: d nanoSecond = 0! !
+
+!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:22'!
+testOperations
+	"
+	self new testOperations
+	"
+	| d dt |
+	dt _ DateAndTime now.
+
+	d _ 1 hours.
+	self assert: dt < (dt + d).
+	self assert: dt - d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ 1 minutes.
+	self assert: dt < (dt + d).
+	self assert: dt - d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ 1 seconds.
+	self assert: dt < (dt + d).
+	self assert: dt - d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ -1 hours.
+	self assert: dt < (dt - d).
+	self assert: dt + d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ -1 minutes.
+	self assert: dt < (dt - d).
+	self assert: dt + d < dt.
+	self assert: dt + d - d = dt.
+
+	d _ -1 seconds.
+	self assert: dt < (dt - d).
+	self assert: dt + d < dt.
+	self assert: dt + d - d = dt.! !
+
+!DateAndTimeTest methodsFor: 'tests' stamp: 'jmv 4/27/2016 15:04'!
+testToByDo
+	"
+	DateAndTimeTest new testToByDo
+	"
+	| end last start step |
+	start _ DateAndTime midnight.
+	end _ DateAndTime midnight + 2 hours.
+	step _ 15 minutes.
+	start to: end by: step do: [ :time | last _ time ].
+	self assert: last = end! !
+
+!TimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:32'!
+testCreation
+	"
+	self new testCreation
+	"
+	| t |
+	
+	t _ Time seconds: 52262.
+	self assert: t hour = 14.
+	self assert: t minute = 31.
+	self assert: t second = 2.
+
+	t _ Time seconds: 52262 nanoSeconds: 414712000.
+	self assert: t hour = 14.
+	self assert: t minute = 31.
+	self assert: t second = 2.
+	self assert: t nanoSecond = 414712000! !
+
+!TimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:34'!
+testEqual
+	"
+	self new testEqual
+	"
+	| t1 t2 |
+	
+	t1 _ Time seconds: 52262.
+	t2 _ Time seconds: 52262 nanoSeconds: 0.
+	self assert: t1 = t2.
+	t2 _ Time seconds: 52262 nanoSeconds: 1234.
+	self deny: t1 = t2.
+	t2 _ Time seconds: 52263 nanoSeconds: 0.
+	self deny: t1 = t2.! !
+
+!TimeTest methodsFor: 'Tests' stamp: 'jmv 5/27/2014 22:46'!
+testSqueakInquiries
+	| timewords |
+
+	timewords := #(0.5 30 62 130 4000 10000 60000 86401) 
+		collect: [ :ss | Time humanWordsForSecondsAgo: ss ].
+	self assert: 
+		timewords = #('a second ago' '30 seconds ago' 'a minute ago' '2 minutes ago' 
+			'an hour ago' '2 hours ago' '16 hours ago' 'yesterday').! !
+
+!TimeTest methodsFor: 'tests' stamp: 'jmv 11/11/2014 09:26'!
+testTimePartsArePositive
+	self assert: (Time afterMidnight: -10 minutes) minute > 0.
+	self assert: (Time afterMidnight: -10 minutes) hour = 23.
+	self assert: (Time afterMidnight: -10 minutes) minute = 50.! !
+
+!DelayTest methodsFor: 'testing-limits' stamp: 'laza 9/5/2009 08:49'!
+testBounds
+	"self run: #testBounds"
+	
+	self should: [Delay forMilliseconds: -1] raise: Error.
+	self shouldnt: [Delay forMilliseconds: SmallInteger maxVal + 1] raise: Error.
+	self shouldnt: [(Delay forMilliseconds: Float pi) wait] raise: Error. "Wait 3ms"
+! !
+
+!DelayTest methodsFor: 'testing-limits' stamp: 'jmv 10/8/2012 22:17'!
+testMultiProcessWaitOnSameDelay
+	"Ensure that waiting on the same delay from multiple processes raises an error"
+	"
+	self new testMultiProcessWaitOnSameDelay
+	"
+	| delay p1 p2 wasRun |
+	delay := Delay forSeconds: 1.
+	wasRun := false.
+	p1 := [delay wait] newProcess.
+	p1 priority: Processor activePriority+1.
+	p1 name: 'testMultiProcessWaitOnSameDelay-1'.
+	p1 resume.
+	p2 := [
+		self should:[delay wait] raise: Error.
+		wasRun := true.
+	] newProcess.
+	p2 priority:  Processor activePriority+1.
+	p2 name: 'testMultiProcessWaitOnSameDelay-2'.
+	p2 resume.
+	p1 terminate.
+	p2 terminate.
+	self assert: wasRun.
+
+! !
+
+!DelayTest methodsFor: 'testing-limits' stamp: 'ar 9/21/2009 22:12'!
+testMultiSchedule
+	"Ensure that scheduling the same delay twice raises an error"
+	| delay |
+	delay := Delay forSeconds: 1.
+	delay schedule.
+	self should:[delay schedule] raise: Error.
+! !
+
+!MonitorTest methodsFor: 'examples' stamp: 'md 3/19/2006 21:15'!
+testExample1
+
+	| producer1 producer2  monitor goal work counter goalReached finished |
+	goal := (1 to: 1000) asOrderedCollection.
+	work := OrderedCollection new.
+	counter := 0.
+	goalReached := false.
+	finished := Semaphore new.
+	monitor := Monitor new.
+
+	producer1 := [
+       [monitor critical:
+             [monitor waitUntil: [counter \\5 = 0].
+              goalReached or: [work add: (counter := counter + 1)].
+              goalReached := counter >= goal size.
+              monitor signal
+            ].
+           goalReached
+          ]
+             whileFalse.
+         finished signal.
+	].
+
+	producer2 := [
+         [monitor critical:
+                [monitor waitWhile: [counter \\5 = 0].
+                 goalReached or: [work add: (counter := counter + 1)].
+                 goalReached := counter >= goal size.
+                 monitor signal].
+         goalReached
+       ] whileFalse.
+     finished signal
+	].
+
+	producer1 forkAt: Processor userBackgroundPriority.
+	producer2 forkAt: Processor userBackgroundPriority.
+
+	finished wait; wait.
+	self assert: goal = work! !
+
+!MonitorTest methodsFor: 'examples' stamp: 'md 3/19/2006 21:19'!
+testExample2
+	"Here is a second version that does not use a semaphore to inform the 
+	forking process about termination of both forked processes"
+
+	| producer1 producer2  monitor goal work counter goalReached activeProducers|
+	goal := (1 to: 1000) asOrderedCollection.
+	work := OrderedCollection new.
+	counter := 0.
+	goalReached := false.
+	activeProducers := 0.
+	monitor := Monitor new.
+
+  producer1 :=
+      [ monitor critical: [activeProducers := activeProducers + 1].
+  [monitor critical:
+            [monitor waitUntil: [counter \\5 = 0].
+      goalReached or: [work add: (counter := counter + 1)].
+     " Transcript show: 'P1  '; show: counter printString; show: '  ';
+       show: activeProducers printString; cr."
+      goalReached := counter >= goal size.
+      monitor signal
+            ].
+           goalReached
+          ]
+             whileFalse.
+         monitor critical: [activeProducers := activeProducers - 1.
+        monitor signal: #finish].
+ ] .
+
+ producer2 :=
+    [monitor critical: [activeProducers := activeProducers + 1].
+
+  [monitor critical:
+          [monitor waitWhile: [counter \\5 = 0].
+    goalReached or: [work add: (counter := counter + 1)].
+    goalReached := counter >= goal size.
+    monitor signal].
+         goalReached ] whileFalse.
+     monitor critical: [
+		activeProducers := activeProducers - 1. 
+		monitor signal: #finish].
+	].
+
+	producer1 forkAt: Processor userBackgroundPriority.
+	producer2  forkAt: Processor userBackgroundPriority.
+
+
+	monitor critical: [
+		monitor waitUntil: [activeProducers = 0 & (goalReached)]
+				for: #finish.
+  	].
+
+	self assert: goal = work
+! !
+
+!MonitorTest methodsFor: 'examples' stamp: 'ul 9/10/2011 16:55'!
+testMonitorNotGainingUnwantedSignalsDuringUnwinding
+
+	| monitor process |
+	monitor := Monitor new.
+	process := [ monitor critical: [ monitor wait ] ] newProcess.
+	process resume.
+	50 milliSeconds asDelay wait.
+	process terminate.
+	self assert: 1 equals: ((monitor instVarNamed: #mutex) instVarNamed: #excessSignals)! !
+
+!ProcessTest methodsFor: 'tests' stamp: 'jmv 11/4/2011 22:17'!
+testAtomicSuspend
+	"Test atomic suspend of foreign processes"
+
+	| list p sema |
+	sema := Semaphore new.
+	p := [sema wait] newProcess.
+	p resume.
+	Processor yield.
+	self shouldnt: [list := p suspendPrimitivelyOrFail] raise: Error.
+	self assert: list == sema.
+! !
+
+!SemaphoreTest methodsFor: 'private' stamp: 'tlk 5/5/2006 13:26'!
+criticalError
+	Processor activeProcess terminate! !
+
+!SemaphoreTest methodsFor: 'testing' stamp: 'tlk 5/5/2006 13:27'!
+testCritical
+	| lock |
+	lock := Semaphore forMutualExclusion.
+	[lock critical: [self criticalError]] forkAt: Processor userInterruptPriority.
+	self assert: lock isSignaled! !
+
+!SemaphoreTest methodsFor: 'testing' stamp: 'tlk 5/5/2006 13:28'!
+testCriticalIfError
+	| lock |
+	lock := Semaphore forMutualExclusion.
+	[lock critical: [self criticalError ifError:[]]] forkAt: Processor userInterruptPriority.
+	self assert: lock isSignaled! !
+
+!SemaphoreTest methodsFor: 'testing' stamp: 'jmv 6/15/2009 21:24'!
+testSemaAfterCriticalWait	"self run: #testSemaAfterCriticalWait"
+	"This tests whether a semaphore that has just left the wait in Semaphore>>critical:
+	leaves it with signaling the associated semaphore."
+	| s p |
+	s := Semaphore new.
+	p := [ s critical: []] newProcess.
+	p priority: Processor activePriority-1.
+	p resume.
+	"wait until p entered the critical section"
+	[ p suspendingList == s ] whileFalse: [ (Delay forMilliseconds: 10) wait ].
+	"Now that p entered it, signal the semaphore. p now 'owns' the semaphore
+	but since we are running at higher priority than p it will not get to do
+	anything."
+	s signal.
+	p terminate.
+	self assert: [ (s instVarNamed: #excessSignals) = 1 ]! !
+
+!SemaphoreTest methodsFor: 'testing' stamp: 'jmv 6/15/2009 21:17'!
+testSemaInCriticalWait	"self run: #testSemaInCriticalWait"
+	"This tests whether a semaphore that has entered the wait in Semaphore>>critical:
+	leaves it without signaling the associated semaphore."
+	| s p |
+	s := Semaphore new.
+	p := [s critical:[]] newProcess.
+	p resume.
+	Processor yield.
+	self assert:[p suspendingList == s].
+	p terminate.
+	self assert:[(s instVarNamed: #excessSignals) = 0]! !
+
+!SemaphoreTest methodsFor: 'testing' stamp: 'jmv 11/4/2011 22:12'!
+testWaitAndWaitTimeoutTogether
+	| semaphore value waitProcess waitTimeoutProcess |
+	semaphore := Semaphore new.
+	
+	waitProcess := [semaphore wait. value := #wait] newProcess.
+	waitProcess resume.
+
+	waitTimeoutProcess := [semaphore waitTimeoutMSecs: 50. value := #waitTimeout] newProcess.
+	waitTimeoutProcess resume.
+
+	"Wait for the timeout to happen"
+	(Delay forMilliseconds: 100) wait.
+
+	"The waitTimeoutProcess should already have timed out.  This should release the waitProcess"
+	semaphore signal.
+
+	[waitProcess isTerminated and: [waitTimeoutProcess isTerminated]]
+		whileFalse: [(Delay forMilliseconds: 100) wait].
+
+	self assert: value = #wait.
+	! !
+
+!SemaphoreTest methodsFor: 'testing' stamp: 'ar 3/23/2009 17:01'!
+testWaitTimeoutMSecs
+	"Ensure that waitTimeoutMSecs behaves properly"
+
+	"Ensure that a timed out waitTimeoutMSecs: returns true from the wait"
+	self assert: (Semaphore new waitTimeoutMSecs: 50) == true.
+
+	"Ensure that a signaled waitTimeoutMSecs: returns false from the wait"
+	self assert: (Semaphore new signal waitTimeoutMSecs: 50) == false.
+! !
+
+!DifferenceFinderTest methodsFor: 'all' stamp: 'LC 1/24/2010 11:29'!
+testCharacters
+	| lcs |
+	lcs := DifferenceFinder charactersOf: 'GAC' and: 'AGCAT'.
+	lcs compute.
+	self
+		assert: (lcs lcsAt: 1 at: 1) anyOne size = 0;
+		assert: (lcs lcsAt: 1 at: 2) anyOne size = 1;
+		assert: (lcs lcsAt: 1 at: 3) anyOne size = 1;
+		assert: (lcs lcsAt: 1 at: 4) anyOne size = 1;
+		assert: (lcs lcsAt: 1 at: 5) anyOne size = 1;
+		assert: (lcs lcsAt: 2 at: 1) anyOne size = 1;
+		assert: (lcs lcsAt: 2 at: 2) anyOne size = 1;
+		assert: (lcs lcsAt: 2 at: 3) anyOne size = 1;
+		assert: (lcs lcsAt: 2 at: 4) anyOne size = 2;
+		assert: (lcs lcsAt: 2 at: 5) anyOne size = 2;
+		assert: (lcs lcsAt: 3 at: 1) anyOne size = 1;
+		assert: (lcs lcsAt: 3 at: 2) anyOne size = 1;
+		assert: (lcs lcsAt: 3 at: 3) anyOne size = 2;
+		assert: (lcs lcsAt: 3 at: 4) anyOne size = 2;
+		assert: (lcs lcsAt: 3 at: 5) anyOne size = 2
+! !
+
+!DifferenceFinderTest methodsFor: 'all'!
+testCharacters2
+	| finder x y |
+	finder := DifferenceFinder charactersOf: 'GAC' and: 'AGCAT'.
+	finder compute.
+	self assert: finder differences size = 3.
+	finder differences do: [:diff | 
+		x := String streamContents: [:strm | 
+			diff
+				do: [:char :condition | (#(#removed #unchanged) includes: condition)
+					ifTrue: [strm nextPut: char]]].
+		self assert: x = 'GAC'.
+		y := String streamContents: [:strm | 
+			diff
+				do: [:char :condition | (#(#inserted #unchanged) includes: condition)
+					ifTrue: [strm nextPut: char]]].
+		self assert: y = 'AGCAT']
+! !
+
+!DifferenceFinderTest methodsFor: 'all'!
+testCode
+	| old new finder |
+	old := 'differencesText
+	| change sourceString current diff rtf selectedString |
+	change := self selectedMethod ifNil: [self currentClass].
+	current := change currentVersion.
+	sourceString := current isNil
+		ifTrue: ['']
+		ifFalse: [current isCompiledMethod ifTrue: [(self
+			formatSource: current sourceString
+			inClass: current classField)
+			sourceCode] ifFalse: [current sourceString]].
+	selectedString := (current isNil or: [current isCompiledMethod not])
+		ifTrue: [change sourceString]
+		ifFalse: [((self
+			formatSource: change sourceString
+			inClass: current classField) ifNil: [change]) sourceCode].
+	diff := TextDiffBuilder from: sourceString to: selectedString.
+	rtf := RTFText new setFont: TextFont.
+	rtf setTabStops: self tabStops.
+	diff run; printPatchSequenceOn: rtf.
+	^rtf contents contents'.
+	new := 'differencesText
+	| change sourceString current finder rtf selectedString |
+	change := self selectedMethod ifNil: [self currentClass].
+	current := change currentVersion.
+	sourceString := current isNil ifTrue: [''] ifFalse: [
+		current isCompiledMethod
+			ifTrue: [(self
+				formatSource: current sourceString
+				inClass: current classField)
+				sourceCode]
+			ifFalse: [current sourceString]].
+	selectedString := (current isNil or: [current isCompiledMethod not])
+		ifTrue: [change sourceString]
+		ifFalse: [((self
+			formatSource: change sourceString
+			inClass: current classField)
+			ifNil: [change])
+			sourceCode].
+	finder := DifferenceFinder wordsOf: sourceString and: selectedString.
+	finder compute.
+	rtf := RTFText new setFont: TextFont.
+	rtf setTabStops: self tabStops.
+	finder differences first printTextOn: rtf.
+	^rtf contents contents'.
+	finder := DifferenceFinder wordsOf: old and: new.
+	finder compute
+! !
+
+!DifferenceFinderTest methodsFor: 'all'!
+testLines
+	| finder alan ian x y |
+	alan := 'The best way to
+	predict
+	the future is to
+	invent
+	it.
+	A. Kay'.
+	ian := 'The best way to
+	invent
+	the future is to
+	not predicting
+	it.
+	Ian Piumarta'.
+	finder := DifferenceFinder linesOf: alan and: ian.
+	finder compute.
+	finder differences do: [:diff | 
+		x := String streamContents: [:strm | 
+			diff
+				do: [:chunk :condition | (#(#removed #unchanged) includes: condition)
+					ifTrue: [strm nextPutAll: chunk]]].
+		self assert: x = alan.
+		y := String streamContents: [:strm | 
+			diff
+				do: [:chunk :condition | (#(#inserted #unchanged) includes: condition)
+					ifTrue: [strm nextPutAll: chunk]]].
+		self assert: y = ian]
+! !
+
+!DifferenceFinderTest methodsFor: 'all'!
+testWords
+	| finder alan ian x y |
+	alan := 'The best way to
+	predict
+	the future is to
+	invent
+	it.
+	A. Kay'.
+	ian := 'The best way to
+	invent 	the future is to
+	not predicting
+	it.
+	Ian Piumarta'.
+	finder := DifferenceFinder wordsOf: alan and: ian.
+	finder compute.
+	finder differences do: [:diff | 
+		x := String streamContents: [:strm | 
+			diff
+				do: [:chunk :condition | (#(#removed #unchanged) includes: condition)
+					ifTrue: [strm nextPutAll: chunk]]].
+		self assert: x = alan.
+		y := String streamContents: [:strm | 
+			diff
+				do: [:chunk :condition | (#(#inserted #unchanged) includes: condition)
+					ifTrue: [strm nextPutAll: chunk]]].
+		self assert: y = ian]
+! !
+
+!FileIOAccessorTest methodsFor: 'private' stamp: 'jmv 5/31/2016 10:30'!
+defaultDirectoryPath
+	^DirectoryEntry currentDirectory pathName! !
+
+!FileIOAccessorTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:48'!
+testDirectoryExists
+	"FileIOAccessorTest debug: #testDirectoryExists"
+	| subDirString dirString |
+	subDirString := 99999 atRandom asString.
+	dirString := self defaultDirectoryPath, FileIOAccessor default slash, subDirString.
+
+	FileIOAccessor default createDirectory: dirString.
+
+	self should: [ dirString asDirectoryEntry exists ].
+
+	FileIOAccessor default deleteDirectory: dirString.
+
+	self shouldnt: [ dirString asDirectoryEntry exists ].! !
+
+!FileManTest methodsFor: 'private' stamp: 'jmv 5/31/2016 10:28'!
+directoryEntryForTest
+	^'./fmTestDir' asDirectoryEntry! !
+
+!FileManTest methodsFor: 'private' stamp: 'jmv 5/31/2016 10:28'!
+randomFileName
+	^100000 atRandom asString, '.fmtst'! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:49'!
+testAbsolutePath
+	"FileManTest debug: #testAbsolutePath"
+	| dirEntry dirEntry1 dirEntry2 dirEntry3 dirEntry4 |
+	dirEntry := '/' asDirectoryEntry.
+	self should: [dirEntry = ':' asDirectoryEntry].
+	self should: [dirEntry = '\' asDirectoryEntry].
+	
+	dirEntry1 := '/temp/' asDirectoryEntry.
+	self should: [dirEntry1 = ':temp' asDirectoryEntry].
+	self should: [dirEntry1 = '\temp' asDirectoryEntry].
+
+	dirEntry2 := '/temp/a' asDirectoryEntry.
+	self should: [dirEntry2 = ':temp:a' asDirectoryEntry].
+	self should: [dirEntry2 = '\temp\a' asDirectoryEntry].
+
+	dirEntry3 := 'C:/temp/b' asDirectoryEntry.
+	self should: [dirEntry3 = 'C:\temp\b' asDirectoryEntry].
+	self should: [dirEntry3 = 'C::temp:b' asDirectoryEntry].
+
+	"Platform specific path tests"
+	FileIOAccessor default onMacClassic ifTrue: [
+	dirEntry4 := 'Macintosh HD:tmp' asDirectoryEntry.
+	self should: [dirEntry4 = 'Macintosh HD/tmp' asDirectoryEntry].
+	self should: [dirEntry4 = 'Macintosh HD\tmp' asDirectoryEntry].
+	].
+	
+	
+	
+	! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:49'!
+testAtPut
+	"FileManTest debug: #testAtPut" 
+	| dir bytes |
+	dir := self directoryEntryForTest.
+	dir at: 'test1' put: 'Hello'.
+	self should: [(dir at: 'test1') = 'Hello'].
+	self should: [dir includesKey: 'test1'].
+
+	bytes := #(1 2 3 4 5 6) asByteArray.
+	dir binaryAt: 'test2' put: bytes.
+	self should: [(dir binaryAt: 'test2') = bytes].
+	self should: [dir includesKey: 'test2'].
+
+	dir removeKey: 'test1'.
+
+	self shouldnt: [dir includesKey: 'test1'].
+
+	dir recursiveDelete.
+	self should: [dir exists not]! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:49'!
+testConcatenation
+	"
+	FileManTest debug: #testConcatenation
+	"
+	| dir |
+	dir := ('./subDir' asDirectoryEntry / 'aaa/bbb' / 'ccc' / 'ddd\eee' / 'fff:ggg').
+	dir at: 'test1' put: 'RecursiveDeleted!!'.
+
+	self assert: dir name = 'ggg'.
+	self assert: dir parent name = 'fff'.
+	self assert: dir parent parent name = 'eee'.
+	self assert: dir parent parent parent name = 'ddd'.
+	self assert: dir parent parent parent parent name = 'ccc'.
+	self assert: dir parent parent parent parent parent name = 'bbb'.
+	self assert: dir parent parent parent parent parent parent name = 'aaa'.
+
+	'./subDir' asDirectoryEntry recursiveDelete.
+	self shouldnt: [dir exists].
+	self shouldnt: ['./subDir' asDirectoryEntry exists].! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:49'!
+testCopy
+	"FileManTest debug: #testCopy" 
+	| file1 file2 |
+	file1 := self randomFileName asFileEntry.
+	file2 := file1 parent // self randomFileName.
+
+	file1 fileContents: 'This is a test'.
+
+"	self should: [file2 fileContents isEmpty]."
+	self should: [file2 exists not].
+
+	file1 copyTo: file2 pathName.
+
+	self should: [file2 fileContents = 'This is a test'].
+
+	file1 delete.
+	file2 delete.
+	self should: [file1 exists not].
+	self should: [file2 exists not]
+	
+	
+	! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 6/1/2016 17:17'!
+testDefaultDirectory
+	"
+	FileManTest debug: #testDefaultDirectory
+	"
+	
+	| pathComponents |
+
+	"
+	See #asAbsolutePathName. See #isAbsolutePathName
+	self assert: '' asDirectoryEntry =  DirectoryEntry currentDirectory.
+	"
+
+	pathComponents := '' asDirectoryEntry pathComponents.
+	self assert: pathComponents = DirectoryEntry currentDirectory pathComponents! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:49'!
+testFileContents
+	"FileManTest debug: #testFileContents" 
+	| file1 file2 bytes |
+	file1 := self randomFileName asFileEntry.
+	file1 fileContents: 'This is a test'.
+	self should: [file1 fileContents = 'This is a test'].
+	file1 delete.
+	self should: [file1 exists not].
+
+	file2 := self randomFileName asFileEntry.
+	bytes := #(1 2 3 4 5 6) asByteArray.
+	file2 fileContents: bytes.
+	self should: [file2 fileContents = bytes asString].
+	self should: [file2 binaryContents = bytes].
+	file2 delete.
+	self should: [file2 exists not]! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:49'!
+testIsAbsolutePathName
+	"
+	FileManTest debug: #testIsAbsolutePathName
+	"
+	self assert: '/' isAbsolutePathName.
+	self assert: '/temp/' isAbsolutePathName.
+	self assert: '/temp/a' isAbsolutePathName.
+	Smalltalk platformName = 'Win32' ifTrue: [
+		self assert: 'C:/temp/b' isAbsolutePathName ].
+	FileIOAccessor default onMacClassic ifTrue: [
+		self assert: 'Macintosh HD/tmp' isAbsolutePathName ].
+	
+	self deny: './' isAbsolutePathName.
+	self deny: '../' isAbsolutePathName.
+	self deny: 'afile' isAbsolutePathName.! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:50'!
+testIsRelativePathName
+	"
+	FileManTest debug: #testIsRelativePathName
+	"
+	self assert: './' isRelativePathName.
+	self assert: '../' isRelativePathName.
+"	self assert: 'afile' isRelativePathName."
+	self deny: '/' isRelativePathName.
+	self deny: '/temp/' isRelativePathName.
+	self deny: '/temp/a' isRelativePathName.
+	self deny: 'C:/temp/b' isRelativePathName.
+	self deny: 'Macintosh HD/tmp' isRelativePathName.! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:50'!
+testPathComponents
+	"
+	FileManTest debug: #testPathComponents
+	"
+	| pathComponents |
+
+	pathComponents := './aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
+	pathComponents := pathComponents last: 4.
+	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd').
+
+	pathComponents := '/aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
+	pathComponents := pathComponents last: 4.
+	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd').
+
+	pathComponents := 'aaa/bbb\ccc:ddd' asDirectoryEntry pathComponents.
+	pathComponents := pathComponents last: 4.
+	self assert: pathComponents asArray = #('aaa' 'bbb' 'ccc' 'ddd')! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:50'!
+testPipe
+	"FileManTest debug: #testPipe" 
+	| reverseFilter file1 file2 file3 |
+
+	reverseFilter := [:in :out | out nextPutAll: (in upToEnd reverse)].
+
+	file1 := self randomFileName asFileEntry.
+	file2 := self randomFileName asFileEntry.
+	file3 := self randomFileName asFileEntry.
+
+	file1 fileContents: 'This is a pipe test'.
+
+	file1 pipe: reverseFilter to: file2 pathName.
+
+	self should: [('.' asDirectoryEntry at: file1 name) = 'This is a pipe test'].	
+	self should: [(file2 fileContents) = 'tset epip a si sihT'].	
+"	self should: [(file3 fileContents) isEmpty]."
+	self should: [file3 exists not].
+
+	file2 pipe: reverseFilter to: file3 pathName.
+	self should: [(file3 fileContents) = 'This is a pipe test'].	
+
+	file1 delete.
+	file2 delete.
+	file3 delete.
+	self should: [file1 exists not].
+	self should: [file2 exists not].
+	self should: [file3 exists not]
+	
+	
+	! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:50'!
+testRecursiveDelete
+	"FileManTest debug: #testRecursiveDelete" 
+	| dir |
+	dir := ('./subDir' asDirectoryEntry / 'aaa\bbb' / 'ccc' / 'ddd\eee' / 'fff:ggg').
+	dir at: 'test1' put: 'RecursiveDelete!!'.
+	self should: [(dir at: 'test1') = 'RecursiveDelete!!'].
+
+	dir removeKey: 'test1'.
+
+	self shouldnt: [(dir // 'test1') exists].
+
+	'./subDir' asDirectoryEntry recursiveDelete.
+	self shouldnt: [dir exists].
+	self shouldnt: ['./subDir' asDirectoryEntry exists].
+
+	! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:50'!
+testRefresh
+	"FileManTest debug: #testRefresh" 
+	| file1 |
+	file1 := self randomFileName asFileEntry.
+
+	file1 fileContents: '1234567890'.
+	self should: [file1 fileSize = 10].
+
+	file1 fileContents: '123'.
+	self should: [file1 fileSize = 3].
+	
+
+	file1 delete.
+	self should: [file1 exists not].
+	! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 10:50'!
+testRename
+	"FileManTest debug: #testRename" 
+	| file1 |
+	file1 := self randomFileName asFileEntry.
+	file1 fileContents: 'ToBeRenamed'.
+
+	self shouldnt: [file1 name = 'newName1'].
+
+	file1 rename: 'newName1'.
+
+	self should: [file1 name = 'newName1'].
+	self should: [file1 exists].
+
+	self should: [file1 fileContents = 'ToBeRenamed'].
+
+	file1 delete.
+	self should: [file1 exists not].
+	! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 12:02'!
+testRoot
+	"FileManTest debug: #testRoot"
+	| root |
+	root := DirectoryEntry roots first.
+	self should: [root pathComponents isEmpty].
+	FileIOAccessor default onUnix ifTrue: [
+		self should: [root = '\' asDirectoryEntry]. 
+		self should: [root = ':' asDirectoryEntry]. 
+		self should: [root = '/' asDirectoryEntry]]! !
+
+!FileManTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 11:19'!
+testStream
+	"FileManTest debug: #testStream" 
+	| file1 contents formerContents allContents |
+	file1 := self randomFileName asFileEntry.
+	file1 writeStreamDo: [:str | str nextPutAll: 'HELLO!!'].
+	contents := file1 readStreamDo: [:str | str upToEnd].
+	self should: [contents = 'HELLO!!'].
+
+	file1 appendStreamDo: [:str | str nextPutAll: 'AGAIN!!'].
+
+	formerContents := file1 readStreamDo: [:str | str upTo:$!!].
+	self should: [formerContents = 'HELLO'].
+
+	allContents := file1 readStreamDo: [:str | str upToEnd].
+	self should: [allContents = 'HELLO!!AGAIN!!'].
+
+	file1 delete.
+	self should: [file1 exists not].
+	! !
+
+!IntervalTest methodsFor: 'helpers' stamp: 'sqr 5/26/2016 18:13'!
+assert: aNumber isAbout: anotherNumber
+
+	self assert: (aNumber isWithin: 1 ulpsFrom: anotherNumber)! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'sqr 5/26/2016 18:09'!
+testAt
+	"
+	IntervalTest new testAt
+	"
+	self assert: (2 to: 5 by: 2) first = 2.
+	self assert: ((2 to: 5 by: 2) at: 1) = 2.
+	self assert: ((2 to: 5 by: 2) at: 2) = 4.
+	self assert: (2 to: 5 by: 2) last = 4.
+
+	self assert: (0 to: 2.4 by: 0.1) first = 0.
+	self assert: ((0 to: 2.4 by: 0.1) at: 1) = 0.
+	self assert: ((0 to: 2.4 by: 0.1) at: 2) isAbout: 0.1.
+	self assert: ((0 to: 2.4 by: 0.1) at: 3) isAbout: 0.2.
+	self assert: ((0 to: 2.4 by: 0.1) at: 23) isAbout: 2.2.
+	self assert: ((0 to: 2.4 by: 0.1) at: 24) = 2.3.
+	self assert: ((0 to: 2.4 by: 0.1) at: 25) = 2.4.
+	self assert: (0 to: 2.4 by: 0.1) last = 2.4.! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'sqr 5/26/2016 18:10'!
+testFloatInterval
+	"
+	IntervalTest new testFloatInterval
+	"
+	
+	self assert: (0 to: 2.4 by: 0.1) size = 25.
+	self assert: (0 to: 2.4 by: 0.1) first = 0.
+	self assert: (0 to: 2.4 by: 0.1) last = 2.4.
+
+	2 to: 200 do: [ :n |
+		self assert: (0.0 to: 1.0 count: n) size = n.
+		self assert: (0.0 to: 1.0 count: n) first = 0.0.
+		self assert: (0.0 to: 1.0 count: n) last isAbout: 1.0].
+	2 to: 200 do: [ :n |
+		self assert: (1.0 to: 0.0 count: n) size = n.
+		self assert: (1.0 to: 0.0 count: n) first = 1.0.
+		self assert: (1.0 to: 0.0 count: n) last isAbout: 0.0]! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/27/2016 14:49'!
+testFloatToByDo
+	"
+	IntervalTest new testFloatToByDo
+	"
+	| interval toByDo |
+
+	"See comment at #to:by:do:"
+	self flag: #expectedFailure.
+
+	interval _ 0 to: 2.4 by: 0.1.
+	toByDo _ Array streamContents: [ :strm |
+		0 to: 2.4 by: 0.1 do: [ :each |
+			strm nextPut: each ]].
+	self assert: toByDo size = interval size.
+	1 to: toByDo size do: [ :i |
+		self assert: (toByDo at: i) = (interval at: i) ]! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 3/27/2016 17:18'!
+testIntegerInterval
+	"
+	IntervalTest new testIntegerInterval
+	"
+	| z |
+	self assert: (2 to: 5 by: 2) size = 2.
+	self assert: (2 to: 5 by: 2) last = 4.
+	z _ 0.
+	(2 to: 5 by: 2) do: [ :i | z _ i ].
+	self assert: z = 4! !
+
+!IntervalTest methodsFor: 'testing' stamp: 'jmv 4/27/2016 14:29'!
+testIntegerToByDo
+	"
+	IntervalTest new testIntegerToByDo
+	"
+	| interval toByDo |
+	interval _ 2 to: 5 by: 2.
+	toByDo _ Array streamContents: [ :strm |
+		2 to: 5 by: 2 do: [ :each |
+			strm nextPut: each ]].
+	self assert: toByDo size = interval size.
+	1 to: toByDo size do: [ :i |
+		self assert: (toByDo at: i) = (interval at: i) ]! !
+
+!WeakIdentitySetTest methodsFor: 'testing' stamp: 'jmv 8/24/2012 08:24'!
+test
+	"
+	(also tests WeakSet a bit)
+	WeakIdentitySetTest new test
+	"
+	| ary1 ary2 count w wi |
+	ary1 _ { 3@4 . 4@5 }.
+	ary2 _ { 13@4 . 14@5 }.
+	w _ WeakSet new.
+	w addAll: ary1.
+	wi _ WeakIdentitySet new.
+	wi addAll: ary2.
+	
+	self assert: w size = 2.
+	count _ 0.
+	w do: [ :each |
+		count _ count + 1.
+		self assert: each class == Point ].
+	self assert: count = 2.
+	self assert: (w includes: ary1 first).
+	self assert: (w includes: ary1 second).
+	self assert: (w includes: 3@4).
+	self assert: (w includes: 4@5).
+
+	self assert: wi size = 2.
+	count _ 0.
+	wi do: [ :each |
+		count _ count + 1.
+		self assert: each class == Point ].
+	self assert: count = 2.
+	self assert: (wi includes: ary2 first).
+	self assert: (wi includes: ary2 second).
+	self deny: (wi includes: 13@4).
+	self deny: (wi includes: 14@5).
+
+	"Now make one element in each disappear"
+	ary1 at: 1 put: 9.
+	ary2 at: 1 put: 99.
+	Smalltalk garbageCollect.
+
+	"A little weird, but yes, elements that disappeared are still counted, but NOT iterated!!"
+	self assert: w size = 2.
+	count _ 0.
+	w do: [ :each |
+		count _ count + 1 ].
+	self assert: count = 1.
+	self deny: (w includes: ary1 first).
+	self assert: (w includes: ary1 second).
+
+	self assert: wi size = 2. 	"A little weird, but yes, elements that disappeared are still counted"
+	count _ 0.
+	wi do: [ :each |
+		count _ count + 1 ].
+	self assert: count = 1.
+	self deny: (wi includes: ary2 first).
+	self assert: (wi includes: ary2 second).! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:43'!
+test16bpp
+	"
+	TestJpeg new test16bpp
+	"
+	| form n read |
+	form _ Form lenaColor64 asFormOfDepth: 16.
+	self assert: form nativeDepth = 16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bpp61
+	"
+	TestJpeg new test16bpp61
+	"
+	| form n read |
+	form _ (Form lenaColor64 asFormOfDepth: 16) copy: (0@0 extent: 61@61).
+	self assert: form nativeDepth = 16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (61@61).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bpp62
+	"
+	TestJpeg new test16bpp62
+	"
+	| form n read |
+	form _ (Form lenaColor64 asFormOfDepth: 16) copy: (0@0 extent: 62@62).
+	self assert: form nativeDepth = 16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (62@62).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bpp63
+	"
+	TestJpeg new test16bpp63
+	"
+	| form n read |
+	form _ (Form lenaColor64 asFormOfDepth: 16) copy: (0@0 extent: 63@63).
+	self assert: form nativeDepth = 16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bppLE
+	"
+	TestJpeg new test16bppLE
+	"
+	| form n read |
+	form _ Form lenaColor64 asFormOfDepth: -16.
+	self assert: form nativeDepth = -16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bppLE61
+	"
+	TestJpeg new test16bppLE61
+	"
+	| form n read |
+	form _ (Form lenaColor64 asFormOfDepth: -16) copy: (0@0 extent: 61@61).
+	self assert: form nativeDepth = -16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (61@61).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bppLE62
+	"
+	TestJpeg new test16bppLE62
+	"
+	| form n read |
+	form _ (Form lenaColor64 asFormOfDepth: -16) copy: (0@0 extent: 62@62).
+	self assert: form nativeDepth = -16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (62@62).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+test16bppLE63
+	"
+	TestJpeg new test16bppLE63
+	"
+	| form n read |
+	form _ (Form lenaColor64 asFormOfDepth: -16) copy: (0@0 extent: 63@63).
+	self assert: form nativeDepth = -16.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 10:55'!
+test32bpp
+	"
+	TestJpeg new test32bpp
+	"
+	| form n read |
+	form _ Form lenaColor64.
+	self assert: form depth = 32.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 10:55'!
+test32bpp63
+	"
+	TestJpeg new test32bpp63
+	"
+	| form n read |
+	form _ Form lenaColor64 copy: (0@0 extent: 63@63).
+	self assert: form depth = 32.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 10:55'!
+test32bppLE63
+	"
+	TestJpeg new test32bppLE63
+	"
+	| form n read |
+	form _ Form lenaColor64 copy: (0@0 extent: 63@63).
+	self assert: form depth = 32.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read depth = 32.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bpp
+	"
+	TestJpeg new testBA16bpp
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 asFormOfDepth: 16.
+	self assert: form nativeDepth = 16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bpp61
+	"
+	TestJpeg new testBA16bpp61
+	"
+	| form n read bytes |
+	form _ (Form lenaColor64 asFormOfDepth: 16) copy: (0@0 extent: 61@61).
+	self assert: form nativeDepth = 16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bpp62
+	"
+	TestJpeg new testBA16bpp62
+	"
+	| form n read bytes |
+	form _ (Form lenaColor64 asFormOfDepth: 16) copy: (0@0 extent: 62@62).
+	self assert: form nativeDepth = 16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bpp63
+	"
+	TestJpeg new test16BAbpp63
+	"
+	| form n read bytes |
+	form _ (Form lenaColor64 asFormOfDepth: 16) copy: (0@0 extent: 63@63).
+	self assert: form nativeDepth = 16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bppLE
+	"
+	TestJpeg new test16BAbppLE
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 asFormOfDepth: -16.
+	self assert: form nativeDepth = -16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bppLE61
+	"
+	TestJpeg new test16BAbppLE61
+	"
+	| form n read bytes |
+	form _ (Form lenaColor64 asFormOfDepth: -16) copy: (0@0 extent: 61@61).
+	self assert: form nativeDepth = -16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bppLE62
+	"
+	TestJpeg new test16BAbppLE62
+	"
+	| form n read bytes |
+	form _ (Form lenaColor64 asFormOfDepth: -16) copy: (0@0 extent: 62@62).
+	self assert: form nativeDepth = -16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:44'!
+testBA16bppLE63
+	"
+	TestJpeg new testBA16bppLE63
+	"
+	| form n read bytes |
+	form _ (Form lenaColor64 asFormOfDepth: -16) copy: (0@0 extent: 63@63).
+	self assert: form nativeDepth = -16.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ Form extent: form extent depth: 16.
+	JPEGReadWriter2 new uncompress: bytes into: read.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 10:55'!
+testBA32bpp
+	"
+	TestJpeg new testBA32bpp
+	"
+	| form n read bytes |
+	form _ Form lenaColor64.
+	self assert: form depth = 32.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ JPEGReadWriter2 new uncompress: bytes into: nil.
+	self assert: read depth = 32.
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 10:55'!
+testBA32bpp63
+	"
+	TestJpeg new testBA32bpp63
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 copy: (0@0 extent: 63@63).
+	self assert: form depth = 32.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ JPEGReadWriter2 new uncompress: bytes into: nil.
+	self assert: read depth = 32.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height * 3.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGray
+	"
+	TestJpeg new testGray
+	"
+	| form n read |
+	form _ Form lenaColor64 asGrayForm.
+	self assert: form nativeDepth = -8.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read nativeDepth = -8.
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGray61
+	"
+	TestJpeg new testGray61
+	"
+	| form n read |
+	form _ Form lenaColor64 asGrayForm copy: (0@0 extent: 61@61).
+	self assert: form nativeDepth = -8.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read nativeDepth = -8.
+	self assert: read extent = (61@61).
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGray62
+	"
+	TestJpeg new testGray62
+	"
+	| form n read |
+	form _ Form lenaColor64 asGrayForm copy: (0@0 extent: 62@62).
+	self assert: form nativeDepth = -8.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read nativeDepth = -8.
+	self assert: read extent = (62@62).
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGray63
+	"
+	TestJpeg new testGray63
+	"
+	| form n read |
+	form _ Form lenaColor64 asGrayForm copy: (0@0 extent: 63@63).
+	self assert: form nativeDepth = -8.
+	form writeJPEGfileNamed: 'test.jpg'.
+	read _ 'test.jpg' asFileEntry formContents.
+	self assert: read nativeDepth = -8.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGrayBA
+	"
+	TestJpeg new testGrayBA
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 asGrayForm.
+	self assert: form nativeDepth = -8.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ JPEGReadWriter2 new uncompress: bytes into: nil.
+	self assert: read nativeDepth = -8.
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGrayBA61
+	"
+	TestJpeg new testGray61BA
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 asGrayForm copy: (0@0 extent: 61@61).
+	self assert: form nativeDepth = -8.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ JPEGReadWriter2 new uncompress: bytes into: nil.
+	self assert: read nativeDepth = -8.
+	self assert: read extent = (61@61).
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGrayBA62
+	"
+	TestJpeg new testGray62BA
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 asGrayForm copy: (0@0 extent: 62@62).
+	self assert: form nativeDepth = -8.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ JPEGReadWriter2 new uncompress: bytes into: nil.
+	self assert: read nativeDepth = -8.
+	self assert: read extent = (62@62).
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!JpegTest methodsFor: 'testing' stamp: 'jmv 6/3/2016 17:45'!
+testGrayBA63
+	"
+	TestJpeg new testGray63BA
+	"
+	| form n read bytes |
+	form _ Form lenaColor64 asGrayForm copy: (0@0 extent: 63@63).
+	self assert: form nativeDepth = -8.
+	bytes _ JPEGReadWriter2 new compress: form quality: -1 progressiveJPEG: false.
+	read _ JPEGReadWriter2 new uncompress: bytes into: nil.
+	self assert: read nativeDepth = -8.
+	self assert: read extent = (63@63).
+
+	n _ form boundingBox width * form boundingBox height.
+	self assert: (form pixelCompare: form boundingBox with: read at: 0@0) / n asFloat < 8! !
+
+!ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 9/25/2012 22:42'!
+testDiskProxy
+	"
+	ReferenceStreamTest new testDiskProxy
+	"
+	| newInstance oldInstance |
+	self flag: #jmvVer2.
+	oldInstance _ { Smalltalk . Display . Morph}.
+	newInstance _ ReferenceStream unStream: (ReferenceStream streamedRepresentationOf: oldInstance).
+	1 to: oldInstance size do: [ :i |
+		self assert: (newInstance at: i) == (oldInstance at: i) ]! !
+
+!ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 12/6/2011 08:19'!
+testSortedCollection
+	"
+	ReferenceStreamTest new testSortedCollection
+	"
+	| newInstance oldInstance |
+	oldInstance _ SortedCollection sortBlock: [ :a :b | a printString < b printString ].
+	oldInstance add: 'hi'; add: 'there'; add: 'you'; add: 'all'.
+	newInstance _ ReferenceStream unStream: (ReferenceStream streamedRepresentationOf: oldInstance).
+	self assert: newInstance asArray = oldInstance asArray! !
+
+!ReferenceStreamTest methodsFor: 'testing' stamp: 'jmv 8/21/2012 17:02'!
+testWeakDumps
+	"Test that if we serialize a model with weak references to views, only the model is serialized and not the views.
+	
+	Note: The bug became apparent only when dumping a model to a SmartRefStream, that calls #references, and the serialized stream
+	was later materialized in an image where the view classes had been deleted. In such rare cases, materialization would fail when trying to reference these
+	absent classes. If serializing to a ReferenceStream, the bug didn't become apparent (views were never serialized). If serializing to a SmartRefStream, but
+	view classes still existed, the bug didn't really become apparent (because views were not actually deserialized), the only effect was a larger file.
+	
+	ReferenceStreamTest new testWeakDumps
+	"
+	| oldInstance window refStream |
+	oldInstance _ TextModel withText: 'This is a text'.
+	window _ SystemWindow editText: oldInstance label: 'old instance' wrap: true.
+	refStream _ ReferenceStream on: (DummyStream on: nil).
+	refStream nextPut: oldInstance.
+	self deny: (refStream references keys anySatisfy: [ :dumpedObject | dumpedObject isKindOf: Morph ]).
+	window delete! !
+
+!SmartRefStreamTest methodsFor: 'testing' stamp: 'jmv 9/25/2012 22:42'!
+testDiskProxy
+	"
+	SmartRefStreamTest new testDiskProxy
+	"
+	| newInstance oldInstance |
+	self flag: #jmvVer2.
+	oldInstance _ { Smalltalk . Display . Morph}.
+	newInstance _ SmartRefStream unStream: (SmartRefStream streamedRepresentationOf: oldInstance).
+	1 to: oldInstance size do: [ :i |
+		self assert: (newInstance at: i) == (oldInstance at: i) ]! !
+
+!SmartRefStreamTest methodsFor: 'testing' stamp: 'jmv 12/6/2011 08:34'!
+testSortedCollection
+	"
+	SmartRefStreamTest new testSortedCollection
+	"
+	| newInstance oldInstance |
+	oldInstance _ SortedCollection sortBlock: [ :a :b | a printString < b printString ].
+	oldInstance add: 'hi'; add: 'there'; add: 'you'; add: 'all'.
+	newInstance _ SmartRefStream unStream: (SmartRefStream streamedRepresentationOf: oldInstance).
+	self assert: newInstance asArray = oldInstance asArray! !
+
+!SmartRefStreamTest methodsFor: 'testing' stamp: 'jmv 8/21/2012 17:00'!
+testWeakDumps
+	"Test that if we serialize a model with weak references to views, only the model is serialized and not the views.
+	
+	Note: The bug became apparent only when dumping a model to a SmartRefStream, that calls #references, and the serialized stream
+	was later materialized in an image where the view classes had been deleted. In such rare cases, materialization would fail when trying to reference these
+	absent classes. If serializing to a ReferenceStream, the bug didn't become apparent (views were never serialized). If serializing to a SmartRefStream, but
+	view classes still existed, the bug didn't really become apparent (because views were not actually deserialized), the only effect was a larger file.
+	
+	SmartRefStreamTest new testWeakDumps
+	"
+	| oldInstance window refStream |
+	oldInstance _ TextModel withText: 'This is a text'.
+	window _ SystemWindow editText: oldInstance label: 'old instance' wrap: true.
+	refStream _ SmartRefStream on: (DummyStream on: nil).
+	refStream nextPut: oldInstance.
+	self deny: (refStream references keys anySatisfy: [ :dumpedObject | dumpedObject isKindOf: Morph ]).
+	window delete! !
+
+!SmalltalkCompleterTest methodsFor: 'testing' stamp: 'jmv 7/14/2011 14:26'!
+testMessages
+	"
+	SmalltalkCompleterTest new testMessages
+	"
+	| fromSmalltalk fromUCompleter |
+	fromSmalltalk _ Smalltalk allImplementedMessages.
+	fromUCompleter _ Symbol allInstances select: [ :s |
+		SmalltalkCompleter isThereAnImplementorOf: s].
+	self assert: fromSmalltalk = fromUCompleter asSet! !
+
 !SystemConsistencyTest methodsFor: 'testing' stamp: 'jmv 5/7/2012 09:35'!
 testMethodsWithUnboundGlobals
 	"
 	SystemConsistencyTest new testMethodsWithUnboundGlobals
 	"
 	self assert: Smalltalk methodsWithUnboundGlobals isEmpty! !
-
-!TaskbarTaskTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:30'!
-setUp
-
-	needsDelete _ ProjectX ui taskbar isNil.
-	taskbar _ ProjectX ui hideTaskbar; showTaskbar; taskbar.
-	morph _ Morph new.
-	task _ TaskbarTask forTaskbar: taskbar.
-	task minimize: morph! !
-
-!TaskbarTaskTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:47'!
-tearDown
-
-	needsDelete ifTrue: [
-		ProjectX ui hideTaskbar ]! !
-
-!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 17:28'!
-testMinimize
-
-	task restore.
-	task minimize: morph.
-	self shouldnt: [ morph visible ]! !
-
-!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'cbr 4/19/2011 18:23'!
-testMorph
-	self should: [ task respondsTo: #morph ]! !
-
-!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 17:28'!
-testRestore
-
-	task restore.
-	self should: [ morph visible ]! !
-
-!TaskbarTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:48'!
-setUp
-
-	needsDelete _ ProjectX ui taskbar isNil.
-	taskbar _ ProjectX ui hideTaskbar; showTaskbar; taskbar.
-	taskbar screenSizeChanged.
-	taskbar world runStepMethods! !
-
-!TaskbarTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:31'!
-tearDown
-
-	needsDelete ifTrue: [
-		ProjectX ui hideTaskbar ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/27/2015 10:10'!
-testClassMinimize
-	"
-	TaskbarTest new setUp testClassMinimize tearDown
-	"
-
-	| m | m _ Morph new.
-
-	taskbar minimize: m.
-	self shouldnt: [ m visible ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/26/2015 16:45'!
-testClassRestore
-
-	| m | m _ Morph new. 
-
-	taskbar minimize: m.
-	
-	self should: [ m visible not ].
-
-	taskbar restore: m.
-
-	self should: [ m visible ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/26/2015 16:46'!
-testClassSingleton
-
-	self should: [ taskbar == ProjectX ui taskbar ].
-! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 9/4/2012 17:30'!
-testHorizontalAlignment
-
-	self should: [ taskbar morphPositionInWorld x = 0 ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 02:48'!
-testMinimize
-
-	|m| m _ Morph new. 
-	taskbar minimize: m.
-	self shouldnt: [ m visible ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 02:48'!
-testRestore
-
-	|m| m _ Morph new. 
-	taskbar minimize: m.
-	taskbar restore: m.
-	self should: [ m visible ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 02:54'!
-testRestoreAll
-
-	| a b |
-	a _ Morph new.
-	b _ Morph new. 
-
-	taskbar
-		minimize: a;
-		minimize: b;
-		restoreAll.
-
-	self should: [ a visible & b visible ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 10/23/2012 23:28'!
-testVerticalAlignment
-	
-	self should: [ taskbar morphBoundsInWorld bottom = ProjectX ui morphBoundsInWorld bottom ]! !
-
-!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 10/23/2012 23:28'!
-testWidth
-	
-	self should: [ taskbar morphWidth = ProjectX ui morphWidth ]! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'jmv 4/17/2013 12:11'!
-testValueWithinNonLocalReturnFixReal
-	"self run: #testValueWithinNonLocalReturnFixReal"
-	"The real test for the fix is just as obscure as the original problem"
-	| startTime |
-	self valueWithinNonLocalReturn.
-	startTime := Time localMillisecondClock.
-	[[] repeat] valueWithin: 100 milliSeconds onTimeout:[ | deltaTime |
-		"This *should* timeout after 100 msecs but the pending process from
-		the previous invokation will signal timeout after 20 msecs already
-		which will in turn cut this invokation short."
-		deltaTime := Time localMillisecondClock - startTime.
-		self deny: deltaTime < 90.
-	].
-! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 8/17/2007 13:38'!
-testValueWithinNonLocalReturnFixSimply
-	"self run: #testValueWithinNonLocalReturnFixSimply"
-	"The simple version to test the fix"
-	self valueWithinNonLocalReturn.
-	self shouldnt:[(Delay forMilliseconds: 50) wait] raise: TimedOut.! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
-testValueWithinTimingBasic
-	"Test timing of valueWithin:onTimeout:"
-	| time |
-	time := [
-		[1000 milliSeconds asDelay wait]
-			valueWithin: 100 milliSeconds onTimeout: []
-	] durationToRun.
-	self assert: time < 150 milliSeconds.! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
-testValueWithinTimingNestedInner
-	"Test nested timing of valueWithin:onTimeout:"
-	| time |
-	time := [
-		[
-			[5 seconds asDelay wait]
-				valueWithin: 100 milliSeconds onTimeout: []
-		] valueWithin: 500 milliSeconds onTimeout: []
-	] durationToRun.
-	self assert: time < 150 milliSeconds.
-! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
-testValueWithinTimingNestedOuter
-	"Test nested timing of valueWithin:onTimeout:"
-	| time |
-	time := [
-		[
-			3 timesRepeat: [
-				[5 seconds asDelay wait]
-					valueWithin: 100 milliSeconds onTimeout: []]
-		] valueWithin: 150 milliSeconds onTimeout: []
-	] durationToRun.
-	self assert: time > 100 milliSeconds.
-	self assert: time < 200 milliSeconds.
-	! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
-testValueWithinTimingRepeat
-	"Test timing of valueWithin:onTimeout:"
-	| time |
-	time := [
-		3 timesRepeat: [
-			[500 milliSeconds asDelay wait]
-				valueWithin: 100 milliSeconds onTimeout: []]
-	] durationToRun.
-	self assert: time < 350 milliSeconds.
-! !
-
-!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 8/17/2007 13:37'!
-valueWithinNonLocalReturn
-	"Do a non-local return from a valueWithin: block"
-	[^self] valueWithin: 20 milliSeconds onTimeout:[].
-! !
 
 !TextEditorTest methodsFor: 'as yet unclassified' stamp: 'jmv 10/23/2012 23:29'!
 testSimpleEditor
@@ -9627,109 +9505,6 @@ testUndoRedo
 	self assert: model actualContents = text1.
 	editor redo.
 	self assert: model actualContents = (text1, text2).! !
-
-!ThemesTest methodsFor: 'as yet unclassified' stamp: 'jmv 6/6/2012 22:37'!
-setUp
-	"Create an anonymous subclass of Theme, override #shout.
-	We do this because the ouput of #generateShoutConfig, the
-	method under test, is dependent on the color data answered 
-	by #shout, and we don't want the test to fail just because 
-	someone changed the colors on the default theme (Theme.)"
-
-	| metaclass |
-
-	metaclass := Metaclass new
-		superclass: Theme class;
-		methodDictionary: MethodDictionary new;
-		setFormat: Theme class format;
-		yourself.
-
-	theme := metaclass new
-		superclass: Theme;
-		methodDictionary: MethodDictionary new;
-		setFormat: Theme format;
-		yourself.
-		
-	theme compile:
-'	shout
-	"Color symbols as an association list."
-	
-	^ {
-		#defaults 				-> #black.
-		#undefined 			-> #green.
-		#methodTags 			-> #(green muchDarker).
-		#pseudoVariables 		-> #(red muchDarker).
-		#messages 			-> #(blue muchDarker).
-		#arguments 			-> #(cyan muchDarker).
-		#instVar 				-> #(magenta muchDarker).
-		#incompleteMessages -> #(gray veryMuchDarker).
-		#blockLevelFour 		-> #(green darker).
-		#blockLevelFive 		-> #(orange darker).
-		#blockLevelSix 		-> #(magenta darker).
-		#blockLevelSeven 		-> #blue.
-		#tempBar 				-> #gray.
-		#tempVars 			-> #(gray muchDarker).
-	}
-'! !
-
-!ThemesTest methodsFor: 'as yet unclassified' stamp: 'jmv 4/19/2016 10:26'!
-shoutArray
-	^  #(#(#invalid #green) #(#excessCode #green) #(#'$' #green) #(#undefinedKeyword #green) #(#undefinedBinary #green) #(#undefinedUnary #green) #(#character #(#red #muchDarker)) #(#integer #(#red #muchDarker)) #(#number #(#red #muchDarker)) #(#- #(#red #muchDarker)) #(#blockStart3 #(#red #muchDarker)) #(#blockEnd3 #(#red #muchDarker)) #(#leftParenthesis3 #(#red #muchDarker)) #(#rightParenthesis3 #(#red #muchDarker)) #(#default #black) #(#arrayStart #black) #(#arrayEnd #black) #(#arrayStart1 #black) #(#arrayEnd1 #black) #(#leftBrace #black) #(#rightBrace #black) #(#cascadeSeparator #black) #(#chainSeparator #black) #(#statementSeparator #black) #(#externalCallType #black) #(#externalCallTypePointerIndicator #black) #(#rightParenthesis1 #black) #(#blockArgColon #black) #(#leftParenthesis #black) #(#rightParenthesis #black) #(#blockStart #black) #(#blockEnd #black) #(#self #(#red #muchDarker)) #(#super #(#red #muchDarker)) #(#true #(#red #muchDarker)) #(#false #(#red #muchDarker)) #(#nil #(#red #muchDarker)) #(#thisContext #(#red #muchDarker)) #(#blockStart4 #(#green #darker)) #(#blockEnd4 #(#green #darker)) #(#leftParenthesis4 #(#green #darker)) #(#rightParenthesis4 #(#green #darker)) #(#instVar #(#magenta #muchDarker)) #(#blockStart2 #(#magenta #muchDarker)) #(#blockEnd2 #(#magenta #muchDarker)) #(#leftParenthesis2 #(#magenta #muchDarker)) #(#rightParenthesis2 #(#magenta #muchDarker)) #(#keyword #(#blue #muchDarker)) #(#binary #(#blue #muchDarker)) #(#unary #(#blue #muchDarker)) #(#leftParenthesis5 #(#orange #darker)) #(#rightParenthesis5 #(#orange #darker)) #(#blockStart5 #(#orange #darker)) #(#blockEnd5 #(#orange #darker)) #(#leftParenthesis6 #(#magenta #darker)) #(#rightParenthesis6 #(#magenta #darker)) #(#blockStart6 #(#magenta #darker)) #(#blockEnd6 #(#magenta #darker)) #(#leftParenthesis7 #blue) #(#rightParenthesis7 #blue) #(#blockStart7 #blue) #(#blockEnd7 #blue) #(#methodTempBar #gray) #(#blockTempBar #gray) #(#blockArgsBar #gray) #(#primitive #(#green #muchDarker) #bold) #(#pragmaKeyword #(#green #muchDarker) #bold) #(#pragmaUnary #(#green #muchDarker) #bold) #(#pragmaBinary #(#green #muchDarker) #bold) #(#externalFunctionCallingConvention #(#green #muchDarker) #bold) #(#module #(#green #muchDarker) #bold) #(#primitiveOrExternalCallStart #black #bold) #(#primitiveOrExternalCallEnd #black #bold) #(#globalVar #black #bold) #(#workspaceVar #black #bold) #(#incompleteKeyword #(#gray #veryMuchDarker) #underlined) #(#incompleteBinary #(#gray #veryMuchDarker) #underlined) #(#incompleteUnary #(#gray #veryMuchDarker) #underlined) #(#patternArg #(#cyan #muchDarker) #italic) #(#methodArg #(#cyan #muchDarker) #italic) #(#blockPatternArg #(#cyan #muchDarker) #italic) #(#blockArg #(#cyan #muchDarker) #italic) #(#argument #(#cyan #muchDarker) #italic) #(#symbol #(#blue #muchDarker) #bold) #(#stringSymbol #(#blue #muchDarker) #bold) #(#literalArray #(#blue #muchDarker) #bold) #(#patternKeyword nil #bold) #(#patternBinary nil #bold) #(#patternUnary nil #bold) #(#ansiAssignment nil #bold) #(#assignment nil #(#bold #withST80Glyphs)) #(#return nil #(#bold #withST80Glyphs)) #(#tempVar #(#gray #muchDarker) #italic) #(#patternTempVar #(#gray #muchDarker) #italic) #(#poolConstant #(#gray #muchDarker) #italic) #(#blockTempVar #gray #italic) #(#blockPatternTempVar #gray #italic) #(#unfinishedString #green #normal) #(#undefinedIdentifier #green #bold) #(#unfinishedComment #(#red #muchDarker) #italic) #(#comment #(#green #muchDarker) #italic) #(#string #(#magenta #muchDarker) #normal) #(#literal nil #italic) #(#incompleteIdentifier #(#gray #muchDarker) #(#italic #underlined)) #(#classVar #(#gray #muchDarker) #bold))! !
-
-!ThemesTest methodsFor: 'as yet unclassified' stamp: 'cbr 12/17/2010 21:01'!
-testGenerateShoutConfig
-
-	self assert: 
-		(self shoutArray = theme new generateShoutConfig asArray)! !
-
-!TimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:32'!
-testCreation
-	"
-	self new testCreation
-	"
-	| t |
-	
-	t _ Time seconds: 52262.
-	self assert: t hour = 14.
-	self assert: t minute = 31.
-	self assert: t second = 2.
-
-	t _ Time seconds: 52262 nanoSeconds: 414712000.
-	self assert: t hour = 14.
-	self assert: t minute = 31.
-	self assert: t second = 2.
-	self assert: t nanoSecond = 414712000! !
-
-!TimeTest methodsFor: 'tests' stamp: 'jmv 6/5/2014 14:34'!
-testEqual
-	"
-	self new testEqual
-	"
-	| t1 t2 |
-	
-	t1 _ Time seconds: 52262.
-	t2 _ Time seconds: 52262 nanoSeconds: 0.
-	self assert: t1 = t2.
-	t2 _ Time seconds: 52262 nanoSeconds: 1234.
-	self deny: t1 = t2.
-	t2 _ Time seconds: 52263 nanoSeconds: 0.
-	self deny: t1 = t2.! !
-
-!TimeTest methodsFor: 'Tests' stamp: 'jmv 5/27/2014 22:46'!
-testSqueakInquiries
-	| timewords |
-
-	timewords := #(0.5 30 62 130 4000 10000 60000 86401) 
-		collect: [ :ss | Time humanWordsForSecondsAgo: ss ].
-	self assert: 
-		timewords = #('a second ago' '30 seconds ago' 'a minute ago' '2 minutes ago' 
-			'an hour ago' '2 hours ago' '16 hours ago' 'yesterday').! !
-
-!TimeTest methodsFor: 'tests' stamp: 'jmv 11/11/2014 09:26'!
-testTimePartsArePositive
-	self assert: (Time afterMidnight: -10 minutes) minute > 0.
-	self assert: (Time afterMidnight: -10 minutes) hour = 23.
-	self assert: (Time afterMidnight: -10 minutes) minute = 50.! !
 
 !TrieTest methodsFor: 'aux' stamp: 'jmv 6/21/2011 22:05'!
 assert: subject isEquivalentToDictionary: controlGroup
@@ -10061,7 +9836,260 @@ testSetProtocol
 	controlGroup add: 'ÑANDÚ'.
 	self assert: subject isEquivalentToSet: controlGroup.! !
 
-!UnicodeTest methodsFor: 'set up' stamp: 'jmv 10/3/2015 16:45'!
+!TaskbarTaskTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:30'!
+setUp
+
+	needsDelete _ ProjectX ui taskbar isNil.
+	taskbar _ ProjectX ui hideTaskbar; showTaskbar; taskbar.
+	morph _ Morph new.
+	task _ TaskbarTask forTaskbar: taskbar.
+	task minimize: morph! !
+
+!TaskbarTaskTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:47'!
+tearDown
+
+	needsDelete ifTrue: [
+		ProjectX ui hideTaskbar ]! !
+
+!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 17:28'!
+testMinimize
+
+	task restore.
+	task minimize: morph.
+	self shouldnt: [ morph visible ]! !
+
+!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'cbr 4/19/2011 18:23'!
+testMorph
+	self should: [ task respondsTo: #morph ]! !
+
+!TaskbarTaskTest methodsFor: 'as yet unclassified' stamp: 'jmv 8/28/2013 17:28'!
+testRestore
+
+	task restore.
+	self should: [ morph visible ]! !
+
+!TaskbarTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:48'!
+setUp
+
+	needsDelete _ ProjectX ui taskbar isNil.
+	taskbar _ ProjectX ui hideTaskbar; showTaskbar; taskbar.
+	taskbar screenSizeChanged.
+	taskbar world runStepMethods! !
+
+!TaskbarTest methodsFor: 'Running' stamp: 'jmv 5/27/2015 10:31'!
+tearDown
+
+	needsDelete ifTrue: [
+		ProjectX ui hideTaskbar ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/27/2015 10:10'!
+testClassMinimize
+	"
+	TaskbarTest new setUp testClassMinimize tearDown
+	"
+
+	| m | m _ Morph new.
+
+	taskbar minimize: m.
+	self shouldnt: [ m visible ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/26/2015 16:45'!
+testClassRestore
+
+	| m | m _ Morph new. 
+
+	taskbar minimize: m.
+	
+	self should: [ m visible not ].
+
+	taskbar restore: m.
+
+	self should: [ m visible ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 5/26/2015 16:46'!
+testClassSingleton
+
+	self should: [ taskbar == ProjectX ui taskbar ].
+! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 9/4/2012 17:30'!
+testHorizontalAlignment
+
+	self should: [ taskbar morphPositionInWorld x = 0 ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 02:48'!
+testMinimize
+
+	|m| m _ Morph new. 
+	taskbar minimize: m.
+	self shouldnt: [ m visible ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 02:48'!
+testRestore
+
+	|m| m _ Morph new. 
+	taskbar minimize: m.
+	taskbar restore: m.
+	self should: [ m visible ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'cbr 4/19/2011 02:54'!
+testRestoreAll
+
+	| a b |
+	a _ Morph new.
+	b _ Morph new. 
+
+	taskbar
+		minimize: a;
+		minimize: b;
+		restoreAll.
+
+	self should: [ a visible & b visible ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 10/23/2012 23:28'!
+testVerticalAlignment
+	
+	self should: [ taskbar morphBoundsInWorld bottom = ProjectX ui morphBoundsInWorld bottom ]! !
+
+!TaskbarTest methodsFor: 'test cases' stamp: 'jmv 10/23/2012 23:28'!
+testWidth
+	
+	self should: [ taskbar morphWidth = ProjectX ui morphWidth ]! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'jmv 4/17/2013 12:11'!
+testValueWithinNonLocalReturnFixReal
+	"self run: #testValueWithinNonLocalReturnFixReal"
+	"The real test for the fix is just as obscure as the original problem"
+	| startTime |
+	self valueWithinNonLocalReturn.
+	startTime := Time localMillisecondClock.
+	[[] repeat] valueWithin: 100 milliSeconds onTimeout:[ | deltaTime |
+		"This *should* timeout after 100 msecs but the pending process from
+		the previous invokation will signal timeout after 20 msecs already
+		which will in turn cut this invokation short."
+		deltaTime := Time localMillisecondClock - startTime.
+		self deny: deltaTime < 90.
+	].
+! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 8/17/2007 13:38'!
+testValueWithinNonLocalReturnFixSimply
+	"self run: #testValueWithinNonLocalReturnFixSimply"
+	"The simple version to test the fix"
+	self valueWithinNonLocalReturn.
+	self shouldnt:[(Delay forMilliseconds: 50) wait] raise: TimedOut.! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
+testValueWithinTimingBasic
+	"Test timing of valueWithin:onTimeout:"
+	| time |
+	time := [
+		[1000 milliSeconds asDelay wait]
+			valueWithin: 100 milliSeconds onTimeout: []
+	] durationToRun.
+	self assert: time < 150 milliSeconds.! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
+testValueWithinTimingNestedInner
+	"Test nested timing of valueWithin:onTimeout:"
+	| time |
+	time := [
+		[
+			[5 seconds asDelay wait]
+				valueWithin: 100 milliSeconds onTimeout: []
+		] valueWithin: 500 milliSeconds onTimeout: []
+	] durationToRun.
+	self assert: time < 150 milliSeconds.
+! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
+testValueWithinTimingNestedOuter
+	"Test nested timing of valueWithin:onTimeout:"
+	| time |
+	time := [
+		[
+			3 timesRepeat: [
+				[5 seconds asDelay wait]
+					valueWithin: 100 milliSeconds onTimeout: []]
+		] valueWithin: 150 milliSeconds onTimeout: []
+	] durationToRun.
+	self assert: time > 100 milliSeconds.
+	self assert: time < 200 milliSeconds.
+	! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 12/4/2012 20:35'!
+testValueWithinTimingRepeat
+	"Test timing of valueWithin:onTimeout:"
+	| time |
+	time := [
+		3 timesRepeat: [
+			[500 milliSeconds asDelay wait]
+				valueWithin: 100 milliSeconds onTimeout: []]
+	] durationToRun.
+	self assert: time < 350 milliSeconds.
+! !
+
+!TestValueWithinFix methodsFor: 'tests' stamp: 'ar 8/17/2007 13:37'!
+valueWithinNonLocalReturn
+	"Do a non-local return from a valueWithin: block"
+	[^self] valueWithin: 20 milliSeconds onTimeout:[].
+! !
+
+!ThemesTest methodsFor: 'as yet unclassified' stamp: 'jmv 6/6/2012 22:37'!
+setUp
+	"Create an anonymous subclass of Theme, override #shout.
+	We do this because the ouput of #generateShoutConfig, the
+	method under test, is dependent on the color data answered 
+	by #shout, and we don't want the test to fail just because 
+	someone changed the colors on the default theme (Theme.)"
+
+	| metaclass |
+
+	metaclass := Metaclass new
+		superclass: Theme class;
+		methodDictionary: MethodDictionary new;
+		setFormat: Theme class format;
+		yourself.
+
+	theme := metaclass new
+		superclass: Theme;
+		methodDictionary: MethodDictionary new;
+		setFormat: Theme format;
+		yourself.
+		
+	theme compile:
+'	shout
+	"Color symbols as an association list."
+	
+	^ {
+		#defaults 				-> #black.
+		#undefined 			-> #green.
+		#methodTags 			-> #(green muchDarker).
+		#pseudoVariables 		-> #(red muchDarker).
+		#messages 			-> #(blue muchDarker).
+		#arguments 			-> #(cyan muchDarker).
+		#instVar 				-> #(magenta muchDarker).
+		#incompleteMessages -> #(gray veryMuchDarker).
+		#blockLevelFour 		-> #(green darker).
+		#blockLevelFive 		-> #(orange darker).
+		#blockLevelSix 		-> #(magenta darker).
+		#blockLevelSeven 		-> #blue.
+		#tempBar 				-> #gray.
+		#tempVars 			-> #(gray muchDarker).
+	}
+'! !
+
+!ThemesTest methodsFor: 'as yet unclassified' stamp: 'jmv 4/19/2016 10:26'!
+shoutArray
+	^  #(#(#invalid #green) #(#excessCode #green) #(#'$' #green) #(#undefinedKeyword #green) #(#undefinedBinary #green) #(#undefinedUnary #green) #(#character #(#red #muchDarker)) #(#integer #(#red #muchDarker)) #(#number #(#red #muchDarker)) #(#- #(#red #muchDarker)) #(#blockStart3 #(#red #muchDarker)) #(#blockEnd3 #(#red #muchDarker)) #(#leftParenthesis3 #(#red #muchDarker)) #(#rightParenthesis3 #(#red #muchDarker)) #(#default #black) #(#arrayStart #black) #(#arrayEnd #black) #(#arrayStart1 #black) #(#arrayEnd1 #black) #(#leftBrace #black) #(#rightBrace #black) #(#cascadeSeparator #black) #(#chainSeparator #black) #(#statementSeparator #black) #(#externalCallType #black) #(#externalCallTypePointerIndicator #black) #(#rightParenthesis1 #black) #(#blockArgColon #black) #(#leftParenthesis #black) #(#rightParenthesis #black) #(#blockStart #black) #(#blockEnd #black) #(#self #(#red #muchDarker)) #(#super #(#red #muchDarker)) #(#true #(#red #muchDarker)) #(#false #(#red #muchDarker)) #(#nil #(#red #muchDarker)) #(#thisContext #(#red #muchDarker)) #(#blockStart4 #(#green #darker)) #(#blockEnd4 #(#green #darker)) #(#leftParenthesis4 #(#green #darker)) #(#rightParenthesis4 #(#green #darker)) #(#instVar #(#magenta #muchDarker)) #(#blockStart2 #(#magenta #muchDarker)) #(#blockEnd2 #(#magenta #muchDarker)) #(#leftParenthesis2 #(#magenta #muchDarker)) #(#rightParenthesis2 #(#magenta #muchDarker)) #(#keyword #(#blue #muchDarker)) #(#binary #(#blue #muchDarker)) #(#unary #(#blue #muchDarker)) #(#leftParenthesis5 #(#orange #darker)) #(#rightParenthesis5 #(#orange #darker)) #(#blockStart5 #(#orange #darker)) #(#blockEnd5 #(#orange #darker)) #(#leftParenthesis6 #(#magenta #darker)) #(#rightParenthesis6 #(#magenta #darker)) #(#blockStart6 #(#magenta #darker)) #(#blockEnd6 #(#magenta #darker)) #(#leftParenthesis7 #blue) #(#rightParenthesis7 #blue) #(#blockStart7 #blue) #(#blockEnd7 #blue) #(#methodTempBar #gray) #(#blockTempBar #gray) #(#blockArgsBar #gray) #(#primitive #(#green #muchDarker) #bold) #(#pragmaKeyword #(#green #muchDarker) #bold) #(#pragmaUnary #(#green #muchDarker) #bold) #(#pragmaBinary #(#green #muchDarker) #bold) #(#externalFunctionCallingConvention #(#green #muchDarker) #bold) #(#module #(#green #muchDarker) #bold) #(#primitiveOrExternalCallStart #black #bold) #(#primitiveOrExternalCallEnd #black #bold) #(#globalVar #black #bold) #(#workspaceVar #black #bold) #(#incompleteKeyword #(#gray #veryMuchDarker) #underlined) #(#incompleteBinary #(#gray #veryMuchDarker) #underlined) #(#incompleteUnary #(#gray #veryMuchDarker) #underlined) #(#patternArg #(#cyan #muchDarker) #italic) #(#methodArg #(#cyan #muchDarker) #italic) #(#blockPatternArg #(#cyan #muchDarker) #italic) #(#blockArg #(#cyan #muchDarker) #italic) #(#argument #(#cyan #muchDarker) #italic) #(#symbol #(#blue #muchDarker) #bold) #(#stringSymbol #(#blue #muchDarker) #bold) #(#literalArray #(#blue #muchDarker) #bold) #(#patternKeyword nil #bold) #(#patternBinary nil #bold) #(#patternUnary nil #bold) #(#ansiAssignment nil #bold) #(#assignment nil #(#bold #withST80Glyphs)) #(#return nil #(#bold #withST80Glyphs)) #(#tempVar #(#gray #muchDarker) #italic) #(#patternTempVar #(#gray #muchDarker) #italic) #(#poolConstant #(#gray #muchDarker) #italic) #(#blockTempVar #gray #italic) #(#blockPatternTempVar #gray #italic) #(#unfinishedString #green #normal) #(#undefinedIdentifier #green #bold) #(#unfinishedComment #(#red #muchDarker) #italic) #(#comment #(#green #muchDarker) #italic) #(#string #(#magenta #muchDarker) #normal) #(#literal nil #italic) #(#incompleteIdentifier #(#gray #muchDarker) #(#italic #underlined)) #(#classVar #(#gray #muchDarker) #bold))! !
+
+!ThemesTest methodsFor: 'as yet unclassified' stamp: 'cbr 12/17/2010 21:01'!
+testGenerateShoutConfig
+
+	self assert: 
+		(self shoutArray = theme new generateShoutConfig asArray)! !
+
+!UnicodeTest methodsFor: 'set up' stamp: 'jmv 5/31/2016 11:24'!
 setUp
 	"
 	self new setUp
@@ -10073,7 +10101,7 @@ setUp
 	"see UnicodeNotes.md"
 	
      "write the bytes of an UFT8 encoded string in binary mode to a file"
-	self class fileName asFileEntry forceWriteStream: [ :stream |
+	self class fileName asFileEntry forceWriteStreamDo: [ :stream |
 		stream binary.
 		stream nextPutAll: bytesOfExample1 ]! !
 
@@ -10126,7 +10154,7 @@ test4BackConversion
 
 	self assert: contentByteArray = (contentInternalString asUtf8: true)! !
 
-!UnicodeTest methodsFor: 'testing' stamp: 'jmv 10/3/2015 20:07'!
+!UnicodeTest methodsFor: 'testing' stamp: 'jmv 5/31/2016 11:24'!
 test5ReadWriteUtf8
 	
 	"see UnicodeNotes.md"
@@ -10144,7 +10172,7 @@ test5ReadWriteUtf8
 	"NCRs were added to 'content' as needed"
 
 	"write internal string back to UTF8 file with NCRs converted back to UTF8 chars"
-	self class fileName2 asFileEntry forceWriteStream: [ :stream |
+	self class fileName2 asFileEntry forceWriteStreamDo: [ :stream |
 		stream binary.
 		stream nextPutAll: (content asUtf8: true).  "true means: convert NCRs back to UTF8"
 		].
@@ -10161,102 +10189,6 @@ fileName
 !UnicodeTest class methodsFor: 'as yet unclassified' stamp: 'hjh 2/12/2013 21:35'!
 fileName2
 	^'UTF8abc-test2.txt'! !
-
-!WeakIdentitySetTest methodsFor: 'testing' stamp: 'jmv 8/24/2012 08:24'!
-test
-	"
-	(also tests WeakSet a bit)
-	WeakIdentitySetTest new test
-	"
-	| ary1 ary2 count w wi |
-	ary1 _ { 3@4 . 4@5 }.
-	ary2 _ { 13@4 . 14@5 }.
-	w _ WeakSet new.
-	w addAll: ary1.
-	wi _ WeakIdentitySet new.
-	wi addAll: ary2.
-	
-	self assert: w size = 2.
-	count _ 0.
-	w do: [ :each |
-		count _ count + 1.
-		self assert: each class == Point ].
-	self assert: count = 2.
-	self assert: (w includes: ary1 first).
-	self assert: (w includes: ary1 second).
-	self assert: (w includes: 3@4).
-	self assert: (w includes: 4@5).
-
-	self assert: wi size = 2.
-	count _ 0.
-	wi do: [ :each |
-		count _ count + 1.
-		self assert: each class == Point ].
-	self assert: count = 2.
-	self assert: (wi includes: ary2 first).
-	self assert: (wi includes: ary2 second).
-	self deny: (wi includes: 13@4).
-	self deny: (wi includes: 14@5).
-
-	"Now make one element in each disappear"
-	ary1 at: 1 put: 9.
-	ary2 at: 1 put: 99.
-	Smalltalk garbageCollect.
-
-	"A little weird, but yes, elements that disappeared are still counted, but NOT iterated!!"
-	self assert: w size = 2.
-	count _ 0.
-	w do: [ :each |
-		count _ count + 1 ].
-	self assert: count = 1.
-	self deny: (w includes: ary1 first).
-	self assert: (w includes: ary1 second).
-
-	self assert: wi size = 2. 	"A little weird, but yes, elements that disappeared are still counted"
-	count _ 0.
-	wi do: [ :each |
-		count _ count + 1 ].
-	self assert: count = 1.
-	self deny: (wi includes: ary2 first).
-	self assert: (wi includes: ary2 second).! !
-
-!WorldTest methodsFor: 'Running' stamp: 'jmv 7/11/2011 16:02'!
-testDamageRecorder
-	"
-	WorldTest new testDamageRecorder
-	"
-	| dr |
-	dr _ DamageRecorder new.
-	dr recordInvalidRect: (20@20 extent: 10@10).
-	dr recordInvalidRect: (30@20 extent: 10@10).
-	dr recordInvalidRect: (40@20 extent: 10@10).
-	dr recordInvalidRect: (50@20 extent: 10@10).
-	dr recordInvalidRect: (60@20 extent: 10@10).
-	dr recordInvalidRect: (70@20 extent: 10@10).
-	dr recordInvalidRect: (80@20 extent: 10@10).
-	dr recordInvalidRect: (90@20 extent: 10@10).
-	dr recordInvalidRect: (100@20 extent: 10@10).
-	dr recordInvalidRect: (110@20 extent: 10@10).
-	dr recordInvalidRect: (120@20 extent: 10@10).
-	dr recordInvalidRect: (130@20 extent: 10@10).
-	dr recordInvalidRect: (140@20 extent: 10@10).
-	dr recordInvalidRect: (150@20 extent: 10@10).
-	dr recordInvalidRect: (160@20 extent: 10@10).
-	self shouldnt: [ dr recordInvalidRect: (10@20 extent: 300@300) ] raise: Error.
-	(dr invalidRectsFullBounds: (10@10 extent: 10@10)) do: [ :r |
-		self deny: r isNil ]! !
-
-!WorldTest methodsFor: 'as yet unclassified' stamp: 'jmv 10/23/2012 23:30'!
-testDoOneCycleWorksWithDeferredQueue
-        "Ensure that nested doOneCycles don't break deferred UI messages"
-        | finished |
-        [
-                WorldState addDeferredUIMessage: [ ProjectX ui doOneCycleNow ].
-                WorldState addDeferredUIMessage: nil "whatever".
-                ProjectX ui doOneCycleNow.
-                finished _ true.
-        ] valueWithin: 1 seconds onTimeout: [finished _ false ].
-        self assert: finished! !
 
 !ZipCrcTests methodsFor: 'tests' stamp: 'ar 2/29/2004 04:43'!
 testInvalidGZipCrc
@@ -10443,3 +10375,748 @@ testValidZipCrc
 	reader expectedCrc: writer crc.
 	self shouldnt:[ readBytes _ reader next: 100 ] raise: CRCError.
 	self assert: readBytes = 'Hello World'.! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 10:56:56'!
+testMax
+	"
+	StatisticsTest new testMax
+	"
+	| i correct gimpCorrect |
+	i _ FloatImage lena.
+	correct _ i elements inject: 0 into: [ :prev :each | prev max: each ].
+	gimpCorrect _ 246 / 256.0.
+	self assert: correct = gimpCorrect.
+	self assert: i elements max = correct.
+	self assert: i max = correct.
+	self assert: i histogram max = correct.! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 10:57:56'!
+testMean
+	"
+	StatisticsTest new testMean
+	"
+	| i correct gimpCorrect |
+	i _ FloatImage lena.
+	correct _ i elements sum / i elements size.
+	gimpCorrect _ 124.7 / 256.0.
+	self assert: (correct roundTo: 0.001) = (gimpCorrect roundTo: 0.001).
+	self assert: i elements mean = correct.
+	self assert: i mean = correct.
+	self assert: i histogram mean = correct! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 10:58:18'!
+testMedian
+	"
+	StatisticsTest new testMedian
+	"
+	| i correct n sorted gimpCorrect |
+	i _ FloatImage lena.
+	sorted _ i elements asArray sort.
+	n _ sorted size.
+	self assert: n even.
+	correct _ ((sorted at: n/2) + (sorted at: n/2+1)) * 0.5.
+	gimpCorrect _ 129 / 256.0.
+	self assert: correct = gimpCorrect.
+	self assert: i elements median = correct.
+	self assert: i median = correct.
+	self assert: i histogram median = correct.
+	self assert: i elements asSortedCollection median = correct.! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 10:59:14'!
+testMin
+	"
+	StatisticsTest new testMin
+	"
+	| i correct gimpCorrect |
+	i _ FloatImage lena.
+	correct _ i elements inject: 1 into: [ :prev :each | prev min: each ].
+	gimpCorrect _ 14 / 256.0.
+	self assert: correct = gimpCorrect.
+	self assert: i elements min = correct.
+	self assert: i min = correct.
+	self assert: i histogram min = correct! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 12:29:29'!
+testMode
+	"
+	StatisticsTest new testMode
+	"
+	| i correct |
+	i _ FloatImage lena.
+	correct _ i elements asBag sortedCounts first value.
+
+	self assert: i elements mode = correct.
+	self assert: i mode = correct.
+	self assert: i histogram mode = correct! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 11:07:03'!
+testPercentiles
+	"
+	StatisticsTest new testPercentiles
+	"
+	| image correct n sorted i0 i1 p percentiles gimpCorrect gimpCorrectValues |
+	image _ FloatImage lena.
+	sorted _ image elements asArray sort.
+	n _ sorted size.
+	self assert: n even.
+	percentiles _ #(0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0).
+	gimpCorrectValues _ #(14 54 77 100 115 129 141 152 163 188 246).
+	1 to: percentiles size do: [ :i |
+		p _ percentiles at: i.
+		i0 _ (n * p) floor max: 1.
+		i1 _ (n * p) ceiling max: 1.
+		correct _ ((sorted at: i0) + (sorted at: i1)) * 0.5.
+		gimpCorrect _ (gimpCorrectValues at: i) / 256.0.
+		self assert: correct = gimpCorrect.
+		self assert: (image elements percentile: p) = correct.
+		self assert: (image percentile: p) = correct.
+		self assert: (image histogram percentile: p) = correct.
+		self assert: (image elements asSortedCollection percentile: p) = correct ]! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 11:08:34'!
+testStandardDeviation
+	"
+	StatisticsTest new testStandardDeviation
+	"
+	| i correct gimpCorrect |
+	i _ FloatImage lena.
+	correct _ i elements standardDeviation.
+	gimpCorrect _ 46.7 / 256.0.
+	self assert: (correct roundTo: 0.001) = (gimpCorrect roundTo: 0.001).
+"	self assert: i elements standardDeviation = correct."
+	self assert: i standardDeviation = correct.
+	self assert: (i histogram standardDeviation closeTo: correct)! !
+
+!StatisticsTest methodsFor: 'testing' stamp: 'jmv 7/19/2016 10:41:31'!
+testSum
+	"
+	StatisticsTest new testSum
+	"
+	| i correct |
+	i _ FloatImage lena.
+	correct _ i elements inject: 0 into: [ :p :e | p + e ].
+	self assert: i elements sum = correct.
+	self assert: i sum = correct.
+	self assert: i histogram sum = correct! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'dtl 6/1/2004 21:53'!
+basicANSISignaledExceptionTestSelectors
+
+	^#( simpleIsNestedTest simpleOuterTest doubleOuterTest doubleOuterPassTest doublePassOuterTest simplePassTest simpleResignalAsTest simpleResumeTest simpleRetryTest simpleRetryUsingTest simpleReturnTest)! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'brp 10/21/2004 17:54'!
+basicTestSelectors
+	^ #(#simpleEnsureTest #simpleEnsureTestWithNotification #simpleEnsureTestWithUparrow #simpleEnsureTestWithError #signalFromHandlerActionTest #resumableFallOffTheEndHandler #nonResumableFallOffTheEndHandler #doubleResumeTest #simpleTimeoutWithZeroDurationTest #simpleTimeoutTest simpleNoTimeoutTest)! !
+
+!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/8/1999 09:17'!
+clearLog
+
+	log := nil! !
+
+!ExceptionTester methodsFor: 'logging' stamp: 'jmv 3/13/2012 12:33'!
+contents
+
+	^( self log
+		inject: (WriteStream on: (String new: 80))
+		into: [ :result :item |
+			result 
+				newLine; 
+				nextPutAll: item;
+				yourself] ) contents! !
+
+!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:13'!
+doSomething
+
+	self log: self doSomethingString! !
+
+!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:14'!
+doSomethingElse
+
+	self log: self doSomethingElseString! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:14'!
+doSomethingElseString
+
+	^'Do something else.'! !
+
+!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:14'!
+doSomethingExceptional
+
+	self log: self doSomethingExceptionalString! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:14'!
+doSomethingExceptionalString
+
+	^'Do something exceptional.'! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:13'!
+doSomethingString
+
+	^'Do something.'! !
+
+!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:15'!
+doYetAnotherThing
+
+	self log: self doYetAnotherThingString! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:15'!
+doYetAnotherThingString
+
+	^'Do yet another thing.'! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'dtl 6/1/2004 21:51'!
+doubleOuterPassTest
+	"uses #resume"
+
+	[[[self doSomething.
+	MyTestNotification signal.
+	self doSomethingExceptional]
+		on: MyTestNotification
+		do: [:ex | ex outer.
+			self doSomethingElse]]
+			on: MyTestNotification
+			do: [:ex | ex pass.
+				self doSomethingExceptional]]
+				on: MyTestNotification
+				do: [:ex | self doYetAnotherThing. ex resume]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'dtl 6/1/2004 21:56'!
+doubleOuterPassTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		add: self doSomethingElseString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'dtl 6/1/2004 21:49'!
+doubleOuterTest
+	"uses #resume"
+
+	[[[self doSomething.
+	MyTestNotification signal.
+	self doSomethingExceptional]
+		on: MyTestNotification
+		do: [:ex | ex outer.
+			self doSomethingExceptional]]
+			on: MyTestNotification
+			do: [:ex | ex outer.
+				self doSomethingElse]]
+				on: MyTestNotification
+				do: [:ex | self doYetAnotherThing. ex resume]! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'dtl 6/1/2004 21:52'!
+doublePassOuterTest
+	"uses #resume"
+
+	[[[self doSomething.
+	MyTestNotification signal.
+	self doSomethingExceptional]
+		on: MyTestNotification
+		do: [:ex | ex pass.
+			self doSomethingExceptional]]
+			on: MyTestNotification
+			do: [:ex | ex outer.
+				self doSomethingElse]]
+				on: MyTestNotification
+				do: [:ex | self doYetAnotherThing. ex resume]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'dtl 6/1/2004 21:56'!
+doublePassOuterTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		add: self doSomethingElseString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 11/14/1999 17:26'!
+doubleResumeTest
+
+       [self doSomething.
+       MyResumableTestError signal.
+       self doSomethingElse.
+       MyResumableTestError signal.
+       self doYetAnotherThing]
+               on: MyResumableTestError
+               do: [:ex | ex resume].! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 11/14/1999 17:29'!
+doubleResumeTestResults
+
+       ^OrderedCollection new
+               add: self doSomethingString;
+               add: self doSomethingElseString;
+               add: self doYetAnotherThingString;
+               yourself! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'brp 10/21/2004 17:15'!
+iterationsBeforeTimeout
+
+	^ iterationsBeforeTimeout! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'brp 10/21/2004 17:16'!
+iterationsBeforeTimeout: anInteger
+
+	iterationsBeforeTimeout := anInteger! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/7/1999 15:03'!
+log
+
+	log == nil
+		ifTrue: [log := OrderedCollection new].
+	^log! !
+
+!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/7/1999 15:03'!
+log: aString
+
+	self log add: aString! !
+
+!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/12/1999 23:07'!
+logTest: aSelector
+
+	self suiteLog add: aSelector! !
+
+!ExceptionTester methodsFor: 'logging' stamp: 'tfei 6/8/1999 09:38'!
+logTestResult: aString
+
+	| index |
+	index := self suiteLog size.
+	self suiteLog 
+		at: index
+		put: ((self suiteLog at: index), ' ', aString)! !
+
+!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:16'!
+methodWithError
+
+	MyTestError signal: self testString! !
+
+!ExceptionTester methodsFor: 'pseudo actions' stamp: 'tfei 6/8/1999 09:16'!
+methodWithNotification
+
+	MyTestNotification signal: self testString! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/7/1999 13:43'!
+nonResumableFallOffTheEndHandler
+	
+	[self doSomething.
+	MyTestError signal.
+	self doSomethingElse]
+		on: MyTestError
+		do: [:ex | self doSomethingExceptional].
+	self doYetAnotherThing! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 09:21'!
+nonResumableFallOffTheEndHandlerResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doSomethingExceptionalString;
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/9/1999 16:07'!
+resumableFallOffTheEndHandler
+
+	[self doSomething.
+	MyTestNotification signal.
+	self doSomethingElse]
+		on: MyTestNotification
+		do: [:ex | self doSomethingExceptional].
+	self doYetAnotherThing! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 8/19/1999 02:39'!
+resumableFallOffTheEndHandlerResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doSomethingExceptionalString;
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'suites' stamp: 'tfei 6/13/1999 01:25'!
+runAllTests
+	"ExceptionTester new runAllTests"
+
+	self
+		runBasicTests;
+		runBasicANSISignaledExceptionTests! !
+
+!ExceptionTester methodsFor: 'suites' stamp: 'tfei 6/12/1999 23:54'!
+runBasicANSISignaledExceptionTests
+
+	self basicANSISignaledExceptionTestSelectors
+		do:
+			[:eachTestSelector |
+			self runTest: eachTestSelector]! !
+
+!ExceptionTester methodsFor: 'suites' stamp: 'tfei 6/9/1999 16:06'!
+runBasicTests
+
+	self basicTestSelectors
+		do:
+			[:eachTestSelector |
+			self runTest: eachTestSelector]! !
+
+!ExceptionTester methodsFor: 'testing' stamp: 'brp 10/21/2004 17:40'!
+runTest: aSelector
+
+	| actualResult expectedResult |
+	[ self 
+		logTest: aSelector;
+		clearLog;
+		perform: aSelector ]
+			on: MyTestError do: 
+				[ :ex | self log: 'Unhandled Exception'.
+					ex return: nil ].
+
+	actualResult	:= self log.
+	expectedResult := self perform: (aSelector, #Results) asSymbol.
+
+	actualResult = expectedResult
+		ifTrue: [self logTestResult: 'succeeded']
+		ifFalse: [self logTestResult: 'failed' ].
+! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 8/19/1999 01:39'!
+signalFromHandlerActionTest
+
+	[self doSomething.
+	MyTestError signal.
+	self doSomethingElse]
+		on: MyTestError
+		do:
+			[self doYetAnotherThing.
+			MyTestError signal]! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 8/19/1999 01:51'!
+signalFromHandlerActionTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		add: 'Unhandled Exception';
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/8/1999 09:44'!
+simpleEnsureTest
+
+	[self doSomething.
+	self doSomethingElse]
+		ensure:
+			[self doYetAnotherThing].
+	! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 09:47'!
+simpleEnsureTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doSomethingElseString;
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/8/1999 12:50'!
+simpleEnsureTestWithError
+
+	[self doSomething.
+	MyTestError signal.
+	self doSomethingElse]
+		ensure:
+			[self doYetAnotherThing].
+	! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/9/1999 17:44'!
+simpleEnsureTestWithErrorResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: 'Unhandled Exception';
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/8/1999 10:15'!
+simpleEnsureTestWithNotification
+
+	[self doSomething.
+	self methodWithNotification.
+	self doSomethingElse]
+		ensure:
+			[self doYetAnotherThing].
+	! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 10:13'!
+simpleEnsureTestWithNotificationResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doSomethingElseString;
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/9/1999 16:04'!
+simpleEnsureTestWithUparrow
+
+	[self doSomething.
+	true ifTrue: [^nil].
+	self doSomethingElse]
+		ensure:
+			[self doYetAnotherThing].
+	! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'tfei 6/8/1999 18:55'!
+simpleEnsureTestWithUparrowResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+"		add: self doSomethingElseString;"
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 01:27'!
+simpleIsNestedTest
+	"uses resignalAs:"
+
+	[self doSomething.
+	MyTestError signal.
+	self doSomethingElse]
+		on: MyTestError
+		do:
+			[:ex |
+			ex isNested "expecting to detect handler in #runTest:"
+				ifTrue:
+					[self doYetAnotherThing.
+					ex resignalAs: MyTestNotification new]]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:09'!
+simpleIsNestedTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		add: self doSomethingElseString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'jmv 5/7/2012 21:38'!
+simpleNoTimeoutTest
+
+	[ self doSomething ]
+		valueWithin: 1 days onTimeout:
+			[ self doSomethingElse ]! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'brp 10/21/2004 16:54'!
+simpleNoTimeoutTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tpr 5/27/2004 21:50'!
+simpleOuterTest
+	"uses #resume"
+
+	[[self doSomething.
+	MyTestNotification signal.
+	"self doSomethingElse"
+	self doSomethingExceptional]
+		on: MyTestNotification
+		do: [:ex | ex outer. self doSomethingElse]]
+				on: MyTestNotification
+				do: [:ex | self doYetAnotherThing. ex resume]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:10'!
+simpleOuterTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		add: self doSomethingElseString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 00:37'!
+simplePassTest
+
+	[self doSomething.
+	MyTestError signal.
+	self doSomethingElse]
+		on: MyTestError
+		do:
+			[:ex |
+			self doYetAnotherThing.
+			ex pass "expecting handler in #runTest:"]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:10'!
+simplePassTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		add: 'Unhandled Exception';
+		yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 02:12'!
+simpleResignalAsTest
+	"ExceptionTester new simpleResignalAsTest"
+
+	[self doSomething.
+	MyTestNotification signal.
+	self doSomethingElse]
+		on: MyTestNotification
+		do:
+			[:ex | ex resignalAs: MyTestError new]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:11'!
+simpleResignalAsTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: 'Unhandled Exception';
+		yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'nice 12/27/2009 21:06'!
+simpleResumeTest
+	"see if we can resume twice"
+	
+	[ | it |
+	self doSomething.
+	it := MyResumableTestError signal.
+	it = 3 ifTrue: [self doSomethingElse].
+	it := MyResumableTestError signal.
+	it = 3 ifTrue: [self doSomethingElse].
+	]
+		on: MyResumableTestError
+		do:
+			[:ex |
+			self doYetAnotherThing.
+			ex resume: 3]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'RAA 12/8/2000 12:59'!
+simpleResumeTestResults
+
+	"see if we can resume twice"
+
+	^OrderedCollection new
+			add: self doSomethingString;
+			add: self doYetAnotherThingString;
+			add: self doSomethingElseString;
+			add: self doYetAnotherThingString;
+			add: self doSomethingElseString;
+			yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 01:02'!
+simpleRetryTest
+
+	| theMeaningOfLife |
+	theMeaningOfLife := nil.
+	[self doSomething.
+	theMeaningOfLife == nil
+		ifTrue: [MyTestError signal]
+		ifFalse: [self doSomethingElse]]
+			on: MyTestError
+			do:
+				[:ex |
+				theMeaningOfLife := 42.
+				self doYetAnotherThing.
+				ex retry]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:23'!
+simpleRetryTestResults
+
+	^OrderedCollection new
+			add: self doSomethingString;
+			add: self doYetAnotherThingString;
+			add: self doSomethingString;
+			add: self doSomethingElseString;
+			yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 01:03'!
+simpleRetryUsingTest
+
+	[self doSomething.
+	MyTestError signal.
+	self doSomethingElse]
+		on: MyTestError
+		do:
+			[:ex | ex retryUsing: [self doYetAnotherThing]]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 01:23'!
+simpleRetryUsingTestResults
+
+	^OrderedCollection new
+			add: self doSomethingString;
+			add: self doYetAnotherThingString;
+			yourself! !
+
+!ExceptionTester methodsFor: 'signaledException tests' stamp: 'tfei 6/13/1999 00:59'!
+simpleReturnTest
+
+	| it |
+	it :=
+		[self doSomething.
+		MyTestError signal.
+		self doSomethingElse]
+			on: MyTestError
+			do: [:ex | ex return: 3].
+	it = 3 ifTrue: [self doYetAnotherThing]! !
+
+!ExceptionTester methodsFor: 'signaledException results' stamp: 'tfei 6/13/1999 02:22'!
+simpleReturnTestResults
+
+	^OrderedCollection new
+		add: self doSomethingString;
+		add: self doYetAnotherThingString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'brp 10/22/2004 12:00'!
+simpleTimeoutTest
+
+	| n |
+	[1 to: 1000000 do: [ :i | n := i. self doSomething ] ]
+		valueWithin: 50 milliSeconds onTimeout:
+			[ self iterationsBeforeTimeout: n.
+			self doSomethingElse ]! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'brp 10/21/2004 17:44'!
+simpleTimeoutTestResults
+
+	| things |
+	things := OrderedCollection new: self iterationsBeforeTimeout.
+
+	self iterationsBeforeTimeout timesRepeat: [ things add: self  doSomethingString ].
+	things add: self doSomethingElseString.
+
+	^ things! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'brp 10/22/2004 12:00'!
+simpleTimeoutWithZeroDurationTest
+
+	[ self doSomething ]
+		valueWithin: 0 seconds onTimeout:
+			[ self doSomethingElse ].
+	! !
+
+!ExceptionTester methodsFor: 'results' stamp: 'brp 10/21/2004 16:52'!
+simpleTimeoutWithZeroDurationTestResults
+
+	^OrderedCollection new
+		add: self doSomethingElseString;
+		yourself! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:30'!
+suiteLog
+
+	suiteLog == nil
+		ifTrue: [suiteLog := OrderedCollection new].
+	^suiteLog! !
+
+!ExceptionTester methodsFor: 'accessing' stamp: 'tfei 6/8/1999 09:15'!
+testString
+
+	^'This is only a test.'! !
+
+!ExceptionTester methodsFor: 'tests' stamp: 'tfei 6/7/1999 14:28'!
+warningTest
+
+	self log: 'About to signal warning.'.
+	Warning signal: 'Ouch'.
+	self log: 'Warning signal handled and resumed.'! !
